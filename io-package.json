@@ -30,7 +30,7 @@
         "materialize": true,
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
-        "keywords": ["lametric", "vis", "GUI", "graphical", "scada"],
+        "keywords": ["lametric"],
         "readme": "https://github.com/klein0r/ioBroker.lametric/blob/master/README.md",
         "loglevel": "info",
         "type": "hardware"
