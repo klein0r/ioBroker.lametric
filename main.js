@@ -22,10 +22,30 @@ adapter.on('objectChange', function (id, obj) {
 });
 
 adapter.on('stateChange', function (id, state) {
-    adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
-
     if (state && !state.ack) {
-        adapter.log.info('ack is not set!');
+        // No ack = changed by user
+        if (id == adapter.namespace + '.meta.display.brightness') {
+            adapter.log.info('changing brightness to ' + state.val);
+
+            buildRequest(
+                'device/display',
+                function(content) {},
+                {
+                    brightness: state.val,
+                    brightness_mode: 'manual'
+                }
+            );
+        } else if (id == adapter.namespace + '.meta.audio.volume') {
+            adapter.log.info('changing volume to ' + state.val);
+
+            buildRequest(
+                'device/audio',
+                function(content) {},
+                {
+                    volume: state.val
+                }
+            );
+        }
     }
 });
 
@@ -33,9 +53,6 @@ adapter.on('stateChange', function (id, state) {
 adapter.on('message', function (obj) {
     if (typeof obj === 'object' && obj.message) {
         if (obj.command === 'send') {
-            // e.g. send email or pushover or whatever
-            console.log('send command');
-
             // Send response in callback if required
             if (obj.callback) adapter.sendTo(obj.from, obj.command, 'Message received', obj.callback);
         }
@@ -96,19 +113,22 @@ function refreshState()
             adapter.setState('meta.wifi.mode', {val: content.wifi.mode, ack: true});
             adapter.setState('meta.wifi.netmask', {val: content.wifi.netmask, ack: true});
             adapter.setState('meta.wifi.strength', {val: content.wifi.strength, ack: true});
-        }
+        },
+        null
     );
 }
 
-function buildRequest(service, callback)
+function buildRequest(service, callback, data)
 {
     var url = 'http://' + adapter.config.lametricIp + ':8080/api/v2/' + service;
+
+    adapter.log.info('sending request to ' + url + ' with data: ' + JSON.stringify(data));
 
     request(
         {
             url: url,
-            method: "GET",
-            json: true,
+            method: data ? "PUT" : "GET",
+            json: data ? data : true,
             auth: {
                 user: 'dev',
                 pass: adapter.config.lametricToken,

@@ -149,7 +149,7 @@
                 "type": "number",
                 "role": "value",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },
@@ -251,7 +251,7 @@
                 "type": "number",
                 "role": "value",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },
