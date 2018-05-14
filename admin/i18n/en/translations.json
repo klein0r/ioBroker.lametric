@@ -1,9 +1,6 @@
 {
-  "Auto": "Auto",
-  "Manual": "Manual",
-  "My select": "My select",
-  "on save adapter restarts with new config immediately": "on save adapter restarts with new config immediately",
-  "template adapter settings": "template adapter settings",
-  "test1": "Test 1",
-  "test2": "Test 2"
+    "IP": "IP",
+    "IP address of your LaMetric Time": "IP address of your LaMetric Time",
+    "Developer Token": "Developer Token",
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>"
 }

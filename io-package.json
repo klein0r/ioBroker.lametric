@@ -30,10 +30,12 @@
         "materialize": true,
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
-        "keywords": ["lametric"],
+        "keywords": ["lametric", "message", "notification"],
         "readme": "https://github.com/klein0r/ioBroker.lametric/blob/master/README.md",
         "loglevel": "info",
-        "type": "hardware"
+        "type": "hardware",
+        "blockly": true,
+        "messagebox": true
     },
     "native": {
         "test1": true,
@@ -63,7 +65,7 @@
           },
           "native": {}
         },
-{
+        {
             "_id": "meta",
             "type": "channel",
             "common": {

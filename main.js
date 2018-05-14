@@ -9,16 +9,22 @@ var adapter = new utils.Adapter('lametric');
 
 adapter.on('unload', function (callback) {
     try {
-        adapter.log.info('cleaned everything up...');
+        adapter.setState('info.connection', false, true);
         callback();
     } catch (e) {
         callback();
     }
 });
 
-adapter.on('objectChange', function (id, obj) {
-    // Warning, obj can be null if it was deleted
-    adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+adapter.on('message', function (obj) {
+    adapter.log.info('received message');
+
+    if (obj && obj.message && obj.command === 'send') {
+
+        var json = JSON.stringify(obj.message);
+        adapter.log.info('message ' + json);
+
+    }
 });
 
 adapter.on('stateChange', function (id, state) {
