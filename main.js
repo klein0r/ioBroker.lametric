@@ -46,7 +46,7 @@ adapter.on('stateChange', function (id, state) {
 
             buildRequest(
                 'device/audio',
-                function(content) {},
+                function (content) {},
                 {
                     volume: state.val
                 }
@@ -86,7 +86,7 @@ function refreshState()
 
     buildRequest(
         'device',
-        function(content) {
+        function (content) {
             adapter.setState('info.connection', true, true);
 
             adapter.setState('meta.name', {val: content.name, ack: true});
@@ -141,7 +141,7 @@ function buildRequest(service, callback, data)
                 sendImmediately: true
             }
         },
-        function(error, response, content) {
+        function (error, response, content) {
             if (!error && response.statusCode == 200) {
                callback(content);
             } else if (error) {

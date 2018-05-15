@@ -31,6 +31,7 @@
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
         "keywords": ["lametric", "message", "notification"],
+        "license": "MIT",
         "readme": "https://github.com/klein0r/ioBroker.lametric/blob/master/README.md",
         "loglevel": "info",
         "type": "hardware",
