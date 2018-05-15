@@ -24,6 +24,16 @@ adapter.on('message', function (obj) {
         var json = JSON.stringify(obj.message);
         adapter.log.info('message ' + json);
 
+        buildRequest(
+            'device/notifications',
+            function (content) {
+                if (content.success) {
+                    
+                }
+            },
+            'POST',
+            obj.message
+        );
     }
 });
 
@@ -36,6 +46,7 @@ adapter.on('stateChange', function (id, state) {
             buildRequest(
                 'device/display',
                 function(content) {},
+                'PUT',
                 {
                     brightness: state.val,
                     brightness_mode: 'manual'
@@ -49,7 +60,9 @@ adapter.on('stateChange', function (id, state) {
                 function (content) {},
                 {
                     volume: state.val
-                }
+                },
+                'PUT',
+                null
             );
         }
     }
@@ -70,14 +83,11 @@ adapter.on('ready', function () {
 });
 
 function main() {
-
-    adapter.log.info('ip: ' + adapter.config.lametricIp);
+    adapter.subscribeStates('*');
 
     // Refresh State every Minute
     refreshState();
     setInterval(refreshState, 60000);
-
-    adapter.subscribeStates('*');
 }
 
 function refreshState()
@@ -120,11 +130,12 @@ function refreshState()
             adapter.setState('meta.wifi.netmask', {val: content.wifi.netmask, ack: true});
             adapter.setState('meta.wifi.strength', {val: content.wifi.strength, ack: true});
         },
+        'GET',
         null
     );
 }
 
-function buildRequest(service, callback, data)
+function buildRequest(service, callback, method, data)
 {
     var url = 'http://' + adapter.config.lametricIp + ':8080/api/v2/' + service;
 
@@ -133,7 +144,7 @@ function buildRequest(service, callback, data)
     request(
         {
             url: url,
-            method: data ? "PUT" : "GET",
+            method: method,
             json: data ? data : true,
             auth: {
                 user: 'dev',
@@ -142,7 +153,7 @@ function buildRequest(service, callback, data)
             }
         },
         function (error, response, content) {
-            if (!error && response.statusCode == 200) {
+            if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
                callback(content);
             } else if (error) {
                 adapter.log.error(error);
