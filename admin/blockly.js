@@ -17,7 +17,7 @@ Blockly.Words['lametric_priority_info'] = {'en': 'info', 'de': 'Info'};
 Blockly.Words['lametric_priority_warning'] = {'en': 'warning', 'de': 'Warnung'};
 Blockly.Words['lametric_priority_critical'] = {'en': 'critical', 'de': 'Kritisch'};
 
-Blockly.Words['lametric_sound_none'] = {'en': 'none', 'de': 'Ohne'};
+//Blockly.Words['lametric_sound_none'] = {'en': 'none', 'de': 'Ohne'}; Gibt Fehler! Existiert nicht!
 Blockly.Words['lametric_sound_bicycle'] = {'en': 'bicycle', 'de': 'Fahrrad'};
 Blockly.Words['lametric_sound_car'] = {'en': 'car', 'de': 'Auto'};
 Blockly.Words['lametric_sound_cash'] = {'en': 'cash', 'de': 'Bar'};
@@ -120,7 +120,7 @@ Blockly.Blocks['lametric'] = {
         this.appendDummyInput('SOUND')
             .appendField(Blockly.Words['lametric_sound'][systemLang])
             .appendField(new Blockly.FieldDropdown([
-                [Blockly.Words['lametric_sound_none'][systemLang], ""],
+               // [Blockly.Words['lametric_sound_none'][systemLang], ""], Gibt Fehler! Existiert nicht!
                 [Blockly.Words['lametric_sound_bicycle'][systemLang], "bicycle"],
                 [Blockly.Words['lametric_sound_car'][systemLang], "car"],
                 [Blockly.Words['lametric_sound_cash'][systemLang], "cash"],
@@ -209,6 +209,7 @@ Blockly.Blocks['lametric'] = {
 
 Blockly.JavaScript['lametric'] = function(block) {
     var dropdown_instance = block.getFieldValue('INSTANCE');
+    var value_message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
 
     var obj = {};
 
@@ -219,7 +220,7 @@ Blockly.JavaScript['lametric'] = function(block) {
         frames: [
             {
                 icon: Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC),
-                text: Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC)
+                text: '_text_' 
             }
         ],
         sound: {
@@ -229,6 +230,7 @@ Blockly.JavaScript['lametric'] = function(block) {
         },
         cycles: parseInt(Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC))
     }
-
-    return 'sendTo("lametric' + dropdown_instance + '", "send", ' + JSON.stringify(obj) + ');';
+   
+    var SendTo = 'sendTo("lametric' + dropdown_instance + '", "send", ' + JSON.stringify(obj) + ');';
+    return (SendTo.replace('"text":"_text_"','"text":' + value_message));
 };
