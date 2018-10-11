@@ -7,6 +7,11 @@ This adapter allows you to get status information about your LaMetric Time and t
 
 ## Changelog
 
+### 0.0.2
+
+* (Sigi74) Change message_value for variables message
+* (Sigi74) Leave sound none
+
 ### 0.0.1
 
 * (klein0r) initial release

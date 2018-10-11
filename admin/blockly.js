@@ -17,7 +17,6 @@ Blockly.Words['lametric_priority_info'] = {'en': 'info', 'de': 'Info'};
 Blockly.Words['lametric_priority_warning'] = {'en': 'warning', 'de': 'Warnung'};
 Blockly.Words['lametric_priority_critical'] = {'en': 'critical', 'de': 'Kritisch'};
 
-//Blockly.Words['lametric_sound_none'] = {'en': 'none', 'de': 'Ohne'}; Gibt Fehler! Existiert nicht!
 Blockly.Words['lametric_sound_bicycle'] = {'en': 'bicycle', 'de': 'Fahrrad'};
 Blockly.Words['lametric_sound_car'] = {'en': 'car', 'de': 'Auto'};
 Blockly.Words['lametric_sound_cash'] = {'en': 'cash', 'de': 'Bar'};
@@ -120,7 +119,6 @@ Blockly.Blocks['lametric'] = {
         this.appendDummyInput('SOUND')
             .appendField(Blockly.Words['lametric_sound'][systemLang])
             .appendField(new Blockly.FieldDropdown([
-               // [Blockly.Words['lametric_sound_none'][systemLang], ""], Gibt Fehler! Existiert nicht!
                 [Blockly.Words['lametric_sound_bicycle'][systemLang], "bicycle"],
                 [Blockly.Words['lametric_sound_car'][systemLang], "car"],
                 [Blockly.Words['lametric_sound_cash'][systemLang], "cash"],
