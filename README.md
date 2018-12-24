@@ -8,7 +8,7 @@ All you need is the IP address of your device and the api developer key.
 ## Configuration
 You can get your personal key [here](https://developer.lametric.com/).
 
-[api-key](docs/apiKey.png)
+![api-key](docs/apiKey.png)
 
 ## Usage
 To show the message on your la metric just send a message to this instance with script adapter:
