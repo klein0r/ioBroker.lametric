@@ -2,12 +2,14 @@
 /*jslint node: true */
 'use strict';
 
-var utils = require(__dirname + '/lib/utils');
-var request = require('request');
+const utils = require(__dirname + '/lib/utils');
+const request = require('request');
 
-var adapter = new utils.Adapter('lametric');
+const adapter = new utils.Adapter('lametric');
 
-adapter.on('unload', function (callback) {
+let lastMessageId = null;
+
+adapter.on('unload', callback => {
     try {
         adapter.setState('info.connection', false, true);
         callback();
@@ -16,31 +18,66 @@ adapter.on('unload', function (callback) {
     }
 });
 
-adapter.on('message', function (obj) {
+adapter.on('message', obj => {
     adapter.log.info('received message');
 
     if (obj && obj.message && obj.command === 'send') {
 
-        var json = JSON.stringify(obj.message);
-        adapter.log.info('message ' + json);
+        adapter.log.info('message ' + JSON.stringify(obj.message));
 
-        buildRequest(
-            'device/notifications',
-            function (content) {
-                if (content.success) {
-                    
-                }
+        if (lastMessageId !== null) {
+            buildRequest('device/notifications/' + lastMessageId, () => {
+                setTimeout(() =>
+                    buildRequest(
+                        'device/notifications',
+                        content => {
+                            adapter.log.debug('Response: ' + JSON.stringify(content));
+                            if (content && content.success) {
+                                lastMessageId = content.success.id;
+                                if (obj.callback) {
+                                    adapter.sendTo(obj.from, obj.command, content.success, obj.callback);
+                                }
+
+                            } else {
+                                if (obj.callback) {
+                                    adapter.sendTo(obj.from, obj.command, {}, obj.callback);
+                                }
+
+                            }
+                        },
+                        'POST',
+                        obj.message
+                    ), 500);
             },
-            'POST',
-            obj.message
-        );
+                'DELETE');
+        } else {
+            buildRequest(
+                'device/notifications',
+                content => {
+                    adapter.log.debug('Response: ' + JSON.stringify(content));
+                    if (content && content.success) {
+                        lastMessageId = content.success.id;
+                        if (obj.callback) {
+                            adapter.sendTo(obj.from, obj.command, content.success, obj.callback);
+                        }
+                    } else {
+                        if (obj.callback) {
+                            adapter.sendTo(obj.from, obj.command, {}, obj.callback);
+                        }
+                    }
+                },
+                'POST',
+                obj.message
+            );
+
+        }
     }
 });
 
-adapter.on('stateChange', function (id, state) {
+adapter.on('stateChange', (id, state) => {
     if (state && !state.ack) {
         // No ack = changed by user
-        if (id == adapter.namespace + '.meta.display.brightness') {
+        if (id === adapter.namespace + '.meta.display.brightness') {
             adapter.log.info('changing brightness to ' + state.val);
 
             buildRequest(
@@ -52,12 +89,12 @@ adapter.on('stateChange', function (id, state) {
                     brightness_mode: 'manual'
                 }
             );
-        } else if (id == adapter.namespace + '.meta.audio.volume') {
+        } else if (id === adapter.namespace + '.meta.audio.volume') {
             adapter.log.info('changing volume to ' + state.val);
 
             buildRequest(
                 'device/audio',
-                function (content) {},
+                content => {},
                 {
                     volume: state.val
                 },
@@ -68,19 +105,7 @@ adapter.on('stateChange', function (id, state) {
     }
 });
 
-// Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
-adapter.on('message', function (obj) {
-    if (typeof obj === 'object' && obj.message) {
-        if (obj.command === 'send') {
-            // Send response in callback if required
-            if (obj.callback) adapter.sendTo(obj.from, obj.command, 'Message received', obj.callback);
-        }
-    }
-});
-
-adapter.on('ready', function () {
-    main();
-});
+adapter.on('ready', main);
 
 function main() {
     adapter.subscribeStates('*');
@@ -90,13 +115,12 @@ function main() {
     setInterval(refreshState, 60000);
 }
 
-function refreshState()
-{
+function refreshState() {
     adapter.log.debug('refreshing LaMetric state');
 
     buildRequest(
         'device',
-        function (content) {
+        content => {
             adapter.setState('info.connection', true, true);
 
             adapter.setState('meta.name', {val: content.name, ack: true});
@@ -135,31 +159,30 @@ function refreshState()
     );
 }
 
-function buildRequest(service, callback, method, data)
-{
-    var url = 'http://' + adapter.config.lametricIp + ':8080/api/v2/' + service;
+function buildRequest(service, callback, method, data) {
+    const url = 'http://' + adapter.config.lametricIp + ':8080/api/v2/' + service;
 
     adapter.log.info('sending request to ' + url + ' with data: ' + JSON.stringify(data));
 
-    request(
-        {
-            url: url,
-            method: method,
-            json: data ? data : true,
-            auth: {
-                user: 'dev',
-                pass: adapter.config.lametricToken,
-                sendImmediately: true
-            }
-        },
-        function (error, response, content) {
-            if (!error && (response.statusCode == 200 || response.statusCode == 201)) {
-               callback(content);
-            } else if (error) {
-                adapter.log.error(error);
-            } else {
-                adapter.log.error('Status Code: ' + response.statusCode + ' / Content: ' + content);
-            }
+    request({
+        url: url,
+        method: method,
+        json: data ? data : true,
+        auth: {
+            user: 'dev',
+            pass: adapter.config.lametricToken,
+            sendImmediately: true
         }
-    );
+    },
+    (error, response, content) => {
+        if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
+           callback(content);
+        } else if (error) {
+            adapter.log.error(error);
+            callback();
+        } else {
+            adapter.log.error('Status Code: ' + response.statusCode + ' / Content: ' + JSON.stringify(content));
+            callback();
+        }
+    });
 }
