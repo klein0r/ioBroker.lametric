@@ -62,7 +62,7 @@ function show() {
         "model": {
         "frames": [
                 {
-                    "icon":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNWRHWFIAAABSSURBVBhXY1AIznff9ctz7z///yAEZAC5ytHVDEAKygIDpYhyiDoGIIaIQnQAGUAuVIJDRBpZAsglJAE0F1kCyAVJwC0HKgQihOUQq9CQSlw9AD51V+Bl/0hPAAAAAElFTkSuQmCC",
+                    "icon":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNWRHWFIAAAAySURBVBhXY4AAYdcKk1lngCSUDwHIfAQbzgLqgDCgIqRLwFkQCYQoBAD5EATl4wQMDADhuxQzaDgX0gAAAABJRU5ErkJggg==",
                     "text":"Hi " + i
                 }
             ],
