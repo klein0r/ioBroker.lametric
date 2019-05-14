@@ -1,6 +1,6 @@
 {
   "name": "iobroker.lametric",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "ioBroker lametric Adapter",
   "author": {
     "name": "Matthias Kleine",
@@ -25,12 +25,12 @@
     "url": "https://github.com/klein0r/ioBroker.lametric"
   },
   "dependencies": {
-      "request": "^2.72.0"
+      "request": "^2.88.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "mocha": "^4.1.0",
-    "chai": "^4.1.2"
+    "gulp": "^4.0.0",
+    "mocha": "^5.2.0",
+    "chai": "^4.2.0"
   },
   "main": "main.js",
   "scripts": {
