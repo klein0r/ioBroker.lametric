@@ -9,16 +9,19 @@
 
 [![NPM](https://nodei.co/npm/iobroker.lametric.png?downloads=true)](https://nodei.co/npm/iobroker.lametric/)
 
-This adapter allows you to get status information about your LaMetric Time and to send notification to it.
+This adapter allows you to get status information about your LaMetric Time and to send notifications to it.
 All you need is the IP address of your device and the api developer key.
 
 ## Configuration
+
 You can get your personal key [here](https://developer.lametric.com/).
 
 ![api-key](docs/apiKey.png)
 
 ## Usage
+
 To show the message on your la metric just send a message to this instance with script adapter:
+
 ```
 sendTo('lametric.0', 'send', {
     "priority": "[info|warning|critical]",
@@ -87,7 +90,8 @@ You can read more about notifications here: https://lametric-documentation.readt
 
 ## Changelog
 
-### 0.1.0
+### 0.0.3
+* (klein0r) Added app switching support, refactored everything
 * (bluefox) The deletion of the actual shown information was added
 
 ### 0.0.2

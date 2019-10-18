@@ -368,38 +368,39 @@ class LaMetric extends utils.Adapter {
     }
 
     buildRequest(service, callback, method, data) {
-        const url = 'http://' + this.config.lametricIp + ':8080/api/v2/' + service;
+        if (this.config.lametricIp && this.config.lametricToken) {
+            const url = 'http://' + this.config.lametricIp + ':8080/api/v2/' + service;
 
-        this.log.debug('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
+            this.log.debug('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
 
-        request(
-            {
-                url: url,
-                method: method,
-                json: data ? data : true,
-                auth: {
-                    user: 'dev',
-                    pass: this.config.lametricToken,
-                    sendImmediately: true
+            request(
+                {
+                    url: url,
+                    method: method,
+                    json: data ? data : true,
+                    auth: {
+                        user: 'dev',
+                        pass: this.config.lametricToken,
+                        sendImmediately: true
+                    }
+                },
+                (error, response, content) => {
+                    if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
+                       callback(content);
+                    } else if (error) {
+                        this.log.error(error);
+                    } else {
+                        this.log.error('Status Code: ' + response.statusCode + ' / Content: ' + JSON.stringify(content));
+                    }
                 }
-            },
-            (error, response, content) => {
-                if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
-                   callback(content);
-                } else if (error) {
-                    this.log.error(error);
-                    callback();
-                } else {
-                    this.log.error('Status Code: ' + response.statusCode + ' / Content: ' + JSON.stringify(content));
-                    callback();
-                }
-            }
-        );
+            );
+        }
     }
 
     onUnload(callback) {
         try {
             this.setState('info.connection', false, true);
+
             this.log.debug('cleaned everything up...');
             callback();
         } catch (e) {
