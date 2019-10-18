@@ -133,6 +133,27 @@ class LaMetric extends utils.Adapter {
                     'PUT',
                     null
                 );
+            } else if (id.match(/.+\.apps\..+\.activate$/)) {
+                this.log.debug('changing to specific app');
+
+                let matches = id.match(/.+\.apps\.(.+)\.activate$/);
+                let widget = matches[1];
+
+                this.getState(
+                    'apps.' + widget + '.package',
+                    (err, state) => {
+                        let pack = state.val;
+
+                        this.log.debug('activating specific widget: ' + widget + ' of package ' + pack);
+
+                        this.buildRequest(
+                            'device/apps/' + pack + '/widgets/' + widget + '/activate',
+                            content => {},
+                            'PUT',
+                            null
+                        );
+                    }
+                );
             }
         }
     }
@@ -260,12 +281,85 @@ class LaMetric extends utils.Adapter {
             content => {
                 let path = 'apps.';
 
-                for (var key in content) {
-                    this.log.debug('found app: ' + key);
+                for (var pack in content) {
+                    var pack = content[pack];
 
-                    var obj = content[key];
+                    for (var uuid in pack.widgets) {
+                        var widget = pack.widgets[uuid];
 
-                    
+                        this.setObjectNotExists(path + uuid, {
+                            type: 'channel',
+                            common: {
+                                name: 'Widget ' + pack.package + '(' + pack.version + ')',
+                                role: ''
+                            },
+                            native: {}
+                        });
+
+                        this.setObjectNotExists(path + uuid + '.activate', {
+                            type: 'state',
+                            common: {
+                                name: 'Activate',
+                                type: 'boolean',
+                                role: 'button',
+                                read: false,
+                                write: true
+                            },
+                            native: {}
+                        });
+
+                        this.setObjectNotExists(path + uuid + '.index', {
+                            type: 'state',
+                            common: {
+                                name: 'Index',
+                                type: 'number',
+                                role: 'value',
+                                read: true,
+                                write: false
+                            },
+                            native: {}
+                        });
+                        this.setState(path + uuid + '.index', {val: widget.index, ack: true});
+
+                        this.setObjectNotExists(path + uuid + '.package', {
+                            type: 'state',
+                            common: {
+                                name: 'Package',
+                                type: 'string',
+                                role: 'value',
+                                read: true,
+                                write: false
+                            },
+                            native: {}
+                        });
+                        this.setState(path + uuid + '.package', {val: pack.package, ack: true});
+
+                        this.setObjectNotExists(path + uuid + '.vendor', {
+                            type: 'state',
+                            common: {
+                                name: 'Vendor',
+                                type: 'string',
+                                role: 'value',
+                                read: true,
+                                write: false
+                            },
+                            native: {}
+                        });
+                        this.setState(path + uuid + '.vendor', {val: pack.vendor, ack: true});
+
+                        this.setObjectNotExists(path + uuid + '.version', {
+                            type: 'state',
+                            common: {
+                                name: 'Vendor',
+                                type: 'string',
+                                role: 'value',
+                                read: true,
+                                write: false
+                            },
+                            native: {}
+                        });
+                        this.setState(path + uuid + '.version', {val: pack.version, ack: true});
+                    }
                 }
             },
             'GET',
