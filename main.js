@@ -26,6 +26,10 @@ class LaMetric extends utils.Adapter {
         // Refresh State every Minute
         this.refreshState();
         setInterval(this.refreshState.bind(this), 60000);
+
+        // Refresh Apps every Hour
+        this.refreshApps();
+        setInterval(this.refreshApps.bind(this), 60000 * 60);
     }
 
     onStateChange(id, state) {
@@ -110,6 +114,24 @@ class LaMetric extends utils.Adapter {
                     {
                         name: state.val
                     }
+                );
+            } else if (id === this.namespace + '.apps.next') {
+                this.log.debug('changing to next app');
+
+                this.buildRequest(
+                    'device/apps/next',
+                    content => {},
+                    'PUT',
+                    null
+                );
+            } else if (id === this.namespace + '.apps.prev') {
+                this.log.debug('changing to previous app');
+
+                this.buildRequest(
+                    'device/apps/prev',
+                    content => {},
+                    'PUT',
+                    null
                 );
             }
         }
@@ -226,6 +248,25 @@ class LaMetric extends utils.Adapter {
                 this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.screensaver.modes.time_based.start_time, ack: true});
                 this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.screensaver.modes.time_based.end_time, ack: true});
                 this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.screensaver.modes.when_dark.enabled, ack: true});
+            },
+            'GET',
+            null
+        );
+    }
+
+    refreshApps() {
+        this.buildRequest(
+            'device/apps',
+            content => {
+                let path = 'apps.';
+
+                for (var key in content) {
+                    this.log.debug('found app: ' + key);
+
+                    var obj = content[key];
+
+                    
+                }
             },
             'GET',
             null

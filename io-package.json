@@ -545,6 +545,39 @@
                 "write": false
             },
             "native": {}
+        },
+        {
+            "_id": "apps",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "App information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "apps.next",
+            "type": "state",
+            "common": {
+                "name": "Next App",
+                "type": "boolean",
+                "role": "button",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "apps.prev",
+            "type": "state",
+            "common": {
+                "name": "Previous App",
+                "type": "boolean",
+                "role": "button",
+                "read": false,
+                "write": true
+            },
+            "native": {}
         }
     ]
 }
