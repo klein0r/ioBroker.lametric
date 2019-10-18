@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "lametric",
-        "version": "0.1.0",
+        "version": "0.0.3",
         "news": {
-            "0.1.0": {
+            "0.0.2": {
                 "en": "The deletion of the actual shown information was added",
                 "de": "Die Löschung der tatsächlich angezeigten Informationen wurde hinzugefügt",
                 "ru": "Добавлено удаление отображаемой информации.",
@@ -19,7 +19,7 @@
                 "de": "Initiale Version"
             }
         },
-		"title": "LaMetric adapter",
+		"title": "LaMetric Time",
         "titleLang": {
             "en": "Javascript/Node.js based LaMetric adapter",
             "de": "Javascript / Node.js basierte LaMetric-Adapter"
@@ -31,10 +31,6 @@
         "authors": [
             "Matthias Kleine <info@haus-automatisierung.com>"
         ],
-        "docs": {
-            "en": "docs/en/admin.md",
-            "de": "docs/de/admin.md"
-        },
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "icon": "lametric.png",
@@ -68,7 +64,7 @@
           "_id":  "info.connection",
           "type": "state",
           "common": {
-            "role":  "indicator.connected",
+            "role":  "indicator.reachable",
             "name":  "If connected to LaMetric",
             "type":  "boolean",
             "read":  true,
@@ -161,7 +157,8 @@
             "common": {
                 "name": "Audio volume",
                 "type": "number",
-                "role": "value",
+                "role": "level.volume",
+                "unit": "%",
                 "read": true,
                 "write": true
             },
@@ -242,7 +239,7 @@
             "common": {
                 "name": "Address",
                 "type": "string",
-                "role": "value",
+                "role": "info.mac",
                 "read": true,
                 "write": false
             },
@@ -263,7 +260,8 @@
             "common": {
                 "name": "Brightness",
                 "type": "number",
-                "role": "value",
+                "role": "level.dimmer",
+                "unit": "%",
                 "read": true,
                 "write": true
             },
@@ -344,7 +342,7 @@
             "common": {
                 "name": "Address",
                 "type": "string",
-                "role": "value",
+                "role": "info.mac",
                 "read": true,
                 "write": false
             },
@@ -392,7 +390,7 @@
             "common": {
                 "name": "IP",
                 "type": "string",
-                "role": "value",
+                "role": "info.ip",
                 "read": true,
                 "write": false
             },
@@ -429,6 +427,7 @@
                 "name": "Strength",
                 "type": "number",
                 "role": "value",
+                "unit": "%",
                 "read": true,
                 "write": false
             },

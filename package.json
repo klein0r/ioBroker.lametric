@@ -1,7 +1,7 @@
 {
   "name": "iobroker.lametric",
-  "version": "0.1.0",
-  "description": "ioBroker lametric Adapter",
+  "version": "0.0.3",
+  "description": "ioBroker LaMetric",
   "author": {
     "name": "Matthias Kleine",
     "email": "info@haus-automatisierung.com"
@@ -25,7 +25,7 @@
     "url": "https://github.com/klein0r/ioBroker.lametric"
   },
   "dependencies": {
-      "request": "^2.88.0"
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
