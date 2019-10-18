@@ -29,18 +29,31 @@ class LaMetric extends utils.Adapter {
     }
 
     onStateChange(id, state) {
-        if (state && !state.ack) {
+        if (id && state && !state.ack) {
             // No ack = changed by user
             if (id === this.namespace + '.meta.display.brightness') {
                 this.log.info('changing brightness to ' + state.val);
 
                 this.buildRequest(
                     'device/display',
-                    function(content) {},
+                    content => {
+                        this.refreshState();
+                    },
                     'PUT',
                     {
                         brightness: state.val,
                         brightness_mode: 'manual'
+                    }
+                );
+            } else if (id === this.namespace + '.meta.display.brightnessAuto') {
+                this.buildRequest(
+                    'device/display',
+                    content => {
+                        this.refreshState();
+                    },
+                    'PUT',
+                    {
+                        brightness_mode: state ? 'auto' : 'manual'
                     }
                 );
             } else if (id === this.namespace + '.meta.audio.volume') {
@@ -48,12 +61,13 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/audio',
-                    content => {},
-                    {
-                        volume: state.val
+                    content => {
+                        this.refreshState();
                     },
                     'PUT',
-                    null
+                    {
+                        volume: state.val
+                    }
                 );
             }
         }
@@ -143,7 +157,8 @@ class LaMetric extends utils.Adapter {
                 this.setState('meta.bluetooth.address', {val: content.bluetooth.address, ack: true});
     
                 this.setState('meta.display.brightness', {val: content.display.brightness, ack: true});
-                this.setState('meta.display.brightness_mode', {val: content.display.brightness_mode, ack: true});
+                this.setState('meta.display.brightnessAuto', {val: content.display.brightness_mode == 'auto', ack: true});
+                this.setState('meta.display.brightnessMode', {val: content.display.brightness_mode, ack: true});
                 this.setState('meta.display.width', {val: content.display.width, ack: true});
                 this.setState('meta.display.height', {val: content.display.height, ack: true});
                 this.setState('meta.display.type', {val: content.display.type, ack: true});
@@ -166,7 +181,7 @@ class LaMetric extends utils.Adapter {
     buildRequest(service, callback, method, data) {
         const url = 'http://' + this.config.lametricIp + ':8080/api/v2/' + service;
 
-        this.log.info('sending request to ' + url + ' with data: ' + JSON.stringify(data));
+        this.log.info('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
 
         request(
             {

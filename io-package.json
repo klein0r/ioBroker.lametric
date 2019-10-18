@@ -261,7 +261,19 @@
             "native": {}
         },
         {
-            "_id": "meta.display.brightness_mode",
+            "_id": "meta.display.brightnessAuto",
+            "type": "state",
+            "common": {
+                "name": "Auto",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.brightnessMode",
             "type": "state",
             "common": {
                 "name": "Brightness mode",
