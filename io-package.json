@@ -186,7 +186,7 @@
                 "type": "string",
                 "role": "value",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },
@@ -198,7 +198,7 @@
                 "type": "boolean",
                 "role": "value",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },

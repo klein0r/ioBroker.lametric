@@ -32,7 +32,7 @@ class LaMetric extends utils.Adapter {
         if (id && state && !state.ack) {
             // No ack = changed by user
             if (id === this.namespace + '.meta.display.brightness') {
-                this.log.info('changing brightness to ' + state.val);
+                this.log.debug('changing brightness to ' + state.val);
 
                 this.buildRequest(
                     'device/display',
@@ -48,6 +48,8 @@ class LaMetric extends utils.Adapter {
                     }
                 );
             } else if (id === this.namespace + '.meta.display.brightnessAuto') {
+                this.log.debug('changing auto brightness mode to ' + state.val);
+
                 this.buildRequest(
                     'device/display',
                     content => {
@@ -61,16 +63,52 @@ class LaMetric extends utils.Adapter {
                     }
                 );
             } else if (id === this.namespace + '.meta.audio.volume') {
-                this.log.info('changing volume to ' + state.val);
+                this.log.debug('changing volume to ' + state.val);
 
                 this.buildRequest(
                     'device/audio',
                     content => {
-                        this.refreshState();
+                        this.setState('meta.audio.volume', {val: content.success.data.volume, ack: true});
                     },
                     'PUT',
                     {
                         volume: state.val
+                    }
+                );
+            } else if (id === this.namespace + '.meta.bluetooth.active') {
+                this.log.debug('changing bluetooth state to ' + state.val);
+
+                this.buildRequest(
+                    'device/bluetooth',
+                    content => {
+                        this.setState('meta.bluetooth.active', {val: content.success.data.active, ack: true});
+                        this.setState('meta.bluetooth.available', {val: content.success.data.available, ack: true});
+                        this.setState('meta.bluetooth.discoverable', {val: content.success.data.discoverable, ack: true});
+                        this.setState('meta.bluetooth.address', {val: content.success.data.mac, ack: true});
+                        this.setState('meta.bluetooth.name', {val: content.success.data.name, ack: true});
+                        this.setState('meta.bluetooth.pairable', {val: content.success.data.pairable, ack: true});
+                    },
+                    'PUT',
+                    {
+                        active: state.val
+                    }
+                );
+            } else if (id === this.namespace + '.meta.bluetooth.name') {
+                this.log.debug('changing bluetooth name to ' + state.val);
+
+                this.buildRequest(
+                    'device/bluetooth',
+                    content => {
+                        this.setState('meta.bluetooth.active', {val: content.success.data.active, ack: true});
+                        this.setState('meta.bluetooth.available', {val: content.success.data.available, ack: true});
+                        this.setState('meta.bluetooth.discoverable', {val: content.success.data.discoverable, ack: true});
+                        this.setState('meta.bluetooth.address', {val: content.success.data.mac, ack: true});
+                        this.setState('meta.bluetooth.name', {val: content.success.data.name, ack: true});
+                        this.setState('meta.bluetooth.pairable', {val: content.success.data.pairable, ack: true});
+                    },
+                    'PUT',
+                    {
+                        name: state.val
                     }
                 );
             }
@@ -78,11 +116,11 @@ class LaMetric extends utils.Adapter {
     }
 
     onMessage(obj) {
-        this.log.info('received message');
+        this.log.debug('received message');
 
         if (obj && obj.message && obj.command === 'send') {
 
-            this.log.info('message ' + JSON.stringify(obj.message));
+            this.log.debug('message ' + JSON.stringify(obj.message));
 
             if (lastMessageId !== null) {
                 this.buildRequest(
@@ -98,12 +136,10 @@ class LaMetric extends utils.Adapter {
                                         if (obj.callback) {
                                             this.sendTo(obj.from, obj.command, content.success, obj.callback);
                                         }
-        
                                     } else {
                                         if (obj.callback) {
                                             this.sendTo(obj.from, obj.command, {}, obj.callback);
                                         }
-        
                                     }
                                 },
                                 'POST',
@@ -185,7 +221,7 @@ class LaMetric extends utils.Adapter {
     buildRequest(service, callback, method, data) {
         const url = 'http://' + this.config.lametricIp + ':8080/api/v2/' + service;
 
-        this.log.info('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
+        this.log.debug('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
 
         request(
             {
@@ -215,7 +251,7 @@ class LaMetric extends utils.Adapter {
     onUnload(callback) {
         try {
             this.setState('info.connection', false, true);
-            this.log.info('cleaned everything up...');
+            this.log.debug('cleaned everything up...');
             callback();
         } catch (e) {
             callback();
