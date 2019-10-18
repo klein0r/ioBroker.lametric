@@ -29,6 +29,7 @@
         "icon": "lametric.png",
         "materialize": true,
         "enabled": true,
+        "compact": true,
         "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
         "keywords": ["lametric", "message", "notification"],
         "license": "MIT",
