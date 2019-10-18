@@ -24,6 +24,9 @@ You can read more about notifications here: https://lametric-documentation.readt
 
 ## Changelog
 
+### 0.0.4
+* (klein0r) Refactored blockly sendTo / notifications
+
 ### 0.0.3
 * (klein0r) Added app switching support, refactored everything
 * (bluefox) The deletion of the actual shown information was added
