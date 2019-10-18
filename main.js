@@ -37,7 +37,9 @@ class LaMetric extends utils.Adapter {
                 this.buildRequest(
                     'device/display',
                     content => {
-                        this.refreshState();
+                        this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
+                        this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode == 'auto', ack: true});
+                        this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
                     },
                     'PUT',
                     {
@@ -49,11 +51,13 @@ class LaMetric extends utils.Adapter {
                 this.buildRequest(
                     'device/display',
                     content => {
-                        this.refreshState();
+                        this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
+                        this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode == 'auto', ack: true});
+                        this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
                     },
                     'PUT',
                     {
-                        brightness_mode: state ? 'auto' : 'manual'
+                        brightness_mode: state.val ? 'auto' : 'manual'
                     }
                 );
             } else if (id === this.namespace + '.meta.audio.volume') {
@@ -134,35 +138,35 @@ class LaMetric extends utils.Adapter {
     }
 
     refreshState() {
-        this.log.debug('refreshing LaMetric state');
+        this.log.debug('refreshing device state');
 
         this.buildRequest(
             'device',
             content => {
                 this.setState('info.connection', true, true);
-    
+
                 this.setState('meta.name', {val: content.name, ack: true});
                 this.setState('meta.serial', {val: content.serial_number, ack: true});
                 this.setState('meta.version', {val: content.os_version, ack: true});
                 this.setState('meta.model', {val: content.model, ack: true});
                 this.setState('meta.mode', {val: content.mode, ack: true});
-    
+
                 this.setState('meta.audio.volume', {val: content.audio.volume, ack: true});
-    
+
                 this.setState('meta.bluetooth.available', {val: content.bluetooth.available, ack: true});
                 this.setState('meta.bluetooth.name', {val: content.bluetooth.name, ack: true});
                 this.setState('meta.bluetooth.active', {val: content.bluetooth.active, ack: true});
                 this.setState('meta.bluetooth.discoverable', {val: content.bluetooth.discoverable, ack: true});
                 this.setState('meta.bluetooth.pairable', {val: content.bluetooth.pairable, ack: true});
                 this.setState('meta.bluetooth.address', {val: content.bluetooth.address, ack: true});
-    
+
                 this.setState('meta.display.brightness', {val: content.display.brightness, ack: true});
                 this.setState('meta.display.brightnessAuto', {val: content.display.brightness_mode == 'auto', ack: true});
                 this.setState('meta.display.brightnessMode', {val: content.display.brightness_mode, ack: true});
                 this.setState('meta.display.width', {val: content.display.width, ack: true});
                 this.setState('meta.display.height', {val: content.display.height, ack: true});
                 this.setState('meta.display.type', {val: content.display.type, ack: true});
-    
+
                 this.setState('meta.wifi.active', {val: content.wifi.active, ack: true});
                 this.setState('meta.wifi.address', {val: content.wifi.address, ack: true});
                 this.setState('meta.wifi.available', {val: content.wifi.available, ack: true});
