@@ -5,14 +5,7 @@
         "news": {
             "0.0.2": {
                 "en": "The deletion of the actual shown information was added",
-                "de": "Die Löschung der tatsächlich angezeigten Informationen wurde hinzugefügt",
-                "ru": "Добавлено удаление отображаемой информации.",
-                "pt": "A exclusão das informações exibidas reais foi adicionada",
-                "nl": "De verwijdering van de feitelijk getoonde informatie is toegevoegd",
-                "fr": "La suppression de l'information affichée a été ajoutée",
-                "it": "È stata aggiunta la cancellazione delle informazioni visualizzate effettive",
-                "es": "Se agregó la eliminación de la información real mostrada.",
-                "pl": "Usunięto faktyczne wyświetlane informacje"
+                "de": "Die Löschung der tatsächlich angezeigten Informationen wurde hinzugefügt"
             },
             "0.0.1": {
                 "en": "initial adapter",

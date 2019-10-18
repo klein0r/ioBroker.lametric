@@ -1,188 +1,217 @@
-/* jshint -W097 */// jshint strict:false
-/*jslint node: true */
+/* jshint -W097 */
+/* jshint strict: false */
+/* jslint node: true */
 'use strict';
 
-const utils = require(__dirname + '/lib/utils');
+const utils = require('@iobroker/adapter-core');
 const request = require('request');
 
-const adapter = new utils.Adapter('lametric');
+class LaMetric extends utils.Adapter {
 
-let lastMessageId = null;
+    constructor(options) {
+        super({
+            ...options,
+            name: 'lametric',
+        });
 
-adapter.on('unload', callback => {
-    try {
-        adapter.setState('info.connection', false, true);
-        callback();
-    } catch (e) {
-        callback();
+        this.on('ready', this.onReady.bind(this));
+        this.on('stateChange', this.onStateChange.bind(this));
+        this.on('message', this.onMessage.bind(this));
+        this.on('unload', this.onUnload.bind(this));
     }
-});
 
-adapter.on('message', obj => {
-    adapter.log.info('received message');
+    async onReady() {
+        this.subscribeStates('*');
 
-    if (obj && obj.message && obj.command === 'send') {
+        // Refresh State every Minute
+        this.refreshState();
+        setInterval(this.refreshState.bind(this), 60000);
+    }
 
-        adapter.log.info('message ' + JSON.stringify(obj.message));
+    onStateChange(id, state) {
+        if (state && !state.ack) {
+            // No ack = changed by user
+            if (id === this.namespace + '.meta.display.brightness') {
+                this.log.info('changing brightness to ' + state.val);
 
-        if (lastMessageId !== null) {
-            buildRequest('device/notifications/' + lastMessageId, () => {
-                setTimeout(() =>
-                    buildRequest(
-                        'device/notifications',
-                        content => {
-                            adapter.log.debug('Response: ' + JSON.stringify(content));
-                            if (content && content.success) {
-                                lastMessageId = content.success.id;
-                                if (obj.callback) {
-                                    adapter.sendTo(obj.from, obj.command, content.success, obj.callback);
-                                }
-
-                            } else {
-                                if (obj.callback) {
-                                    adapter.sendTo(obj.from, obj.command, {}, obj.callback);
-                                }
-
-                            }
-                        },
-                        'POST',
-                        obj.message
-                    ), 500);
-            },
-                'DELETE');
-        } else {
-            buildRequest(
-                'device/notifications',
-                content => {
-                    adapter.log.debug('Response: ' + JSON.stringify(content));
-                    if (content && content.success) {
-                        lastMessageId = content.success.id;
-                        if (obj.callback) {
-                            adapter.sendTo(obj.from, obj.command, content.success, obj.callback);
-                        }
-                    } else {
-                        if (obj.callback) {
-                            adapter.sendTo(obj.from, obj.command, {}, obj.callback);
-                        }
+                this.buildRequest(
+                    'device/display',
+                    function(content) {},
+                    'PUT',
+                    {
+                        brightness: state.val,
+                        brightness_mode: 'manual'
                     }
-                },
-                'POST',
-                obj.message
-            );
+                );
+            } else if (id === this.namespace + '.meta.audio.volume') {
+                this.log.info('changing volume to ' + state.val);
 
+                this.buildRequest(
+                    'device/audio',
+                    content => {},
+                    {
+                        volume: state.val
+                    },
+                    'PUT',
+                    null
+                );
+            }
         }
     }
-});
 
-adapter.on('stateChange', (id, state) => {
-    if (state && !state.ack) {
-        // No ack = changed by user
-        if (id === adapter.namespace + '.meta.display.brightness') {
-            adapter.log.info('changing brightness to ' + state.val);
+    onMessage(obj) {
+        this.log.info('received message');
 
-            buildRequest(
-                'device/display',
-                function(content) {},
-                'PUT',
-                {
-                    brightness: state.val,
-                    brightness_mode: 'manual'
+        if (obj && obj.message && obj.command === 'send') {
+
+            this.log.info('message ' + JSON.stringify(obj.message));
+
+            if (lastMessageId !== null) {
+                this.buildRequest(
+                    'device/notifications/' + lastMessageId,
+                    () => {
+                        setTimeout(
+                            () => this.buildRequest(
+                                'device/notifications',
+                                content => {
+                                    this.log.debug('Response: ' + JSON.stringify(content));
+                                    if (content && content.success) {
+                                        lastMessageId = content.success.id;
+                                        if (obj.callback) {
+                                            this.sendTo(obj.from, obj.command, content.success, obj.callback);
+                                        }
+        
+                                    } else {
+                                        if (obj.callback) {
+                                            this.sendTo(obj.from, obj.command, {}, obj.callback);
+                                        }
+        
+                                    }
+                                },
+                                'POST',
+                                obj.message
+                            ),
+                            500
+                        );
+                    },
+                    'DELETE'
+                );
+            } else {
+                this.buildRequest(
+                    'device/notifications',
+                    content => {
+                        this.log.debug('Response: ' + JSON.stringify(content));
+                        if (content && content.success) {
+                            lastMessageId = content.success.id;
+                            if (obj.callback) {
+                                this.sendTo(obj.from, obj.command, content.success, obj.callback);
+                            }
+                        } else {
+                            if (obj.callback) {
+                                this.sendTo(obj.from, obj.command, {}, obj.callback);
+                            }
+                        }
+                    },
+                    'POST',
+                    obj.message
+                );
+            }
+        }
+    }
+
+    refreshState() {
+        this.log.debug('refreshing LaMetric state');
+
+        this.buildRequest(
+            'device',
+            content => {
+                this.setState('info.connection', true, true);
+    
+                this.setState('meta.name', {val: content.name, ack: true});
+                this.setState('meta.serial', {val: content.serial_number, ack: true});
+                this.setState('meta.version', {val: content.os_version, ack: true});
+                this.setState('meta.model', {val: content.model, ack: true});
+                this.setState('meta.mode', {val: content.mode, ack: true});
+    
+                this.setState('meta.audio.volume', {val: content.audio.volume, ack: true});
+    
+                this.setState('meta.bluetooth.available', {val: content.bluetooth.available, ack: true});
+                this.setState('meta.bluetooth.name', {val: content.bluetooth.name, ack: true});
+                this.setState('meta.bluetooth.active', {val: content.bluetooth.active, ack: true});
+                this.setState('meta.bluetooth.discoverable', {val: content.bluetooth.discoverable, ack: true});
+                this.setState('meta.bluetooth.pairable', {val: content.bluetooth.pairable, ack: true});
+                this.setState('meta.bluetooth.address', {val: content.bluetooth.address, ack: true});
+    
+                this.setState('meta.display.brightness', {val: content.display.brightness, ack: true});
+                this.setState('meta.display.brightness_mode', {val: content.display.brightness_mode, ack: true});
+                this.setState('meta.display.width', {val: content.display.width, ack: true});
+                this.setState('meta.display.height', {val: content.display.height, ack: true});
+                this.setState('meta.display.type', {val: content.display.type, ack: true});
+    
+                this.setState('meta.wifi.active', {val: content.wifi.active, ack: true});
+                this.setState('meta.wifi.address', {val: content.wifi.address, ack: true});
+                this.setState('meta.wifi.available', {val: content.wifi.available, ack: true});
+                this.setState('meta.wifi.encryption', {val: content.wifi.encryption, ack: true});
+                this.setState('meta.wifi.ssid', {val: content.wifi.essid, ack: true});
+                this.setState('meta.wifi.ip', {val: content.wifi.ip, ack: true});
+                this.setState('meta.wifi.mode', {val: content.wifi.mode, ack: true});
+                this.setState('meta.wifi.netmask', {val: content.wifi.netmask, ack: true});
+                this.setState('meta.wifi.strength', {val: content.wifi.strength, ack: true});
+            },
+            'GET',
+            null
+        );
+    }
+
+    buildRequest(service, callback, method, data) {
+        const url = 'http://' + this.config.lametricIp + ':8080/api/v2/' + service;
+
+        this.log.info('sending request to ' + url + ' with data: ' + JSON.stringify(data));
+
+        request(
+            {
+                url: url,
+                method: method,
+                json: data ? data : true,
+                auth: {
+                    user: 'dev',
+                    pass: this.config.lametricToken,
+                    sendImmediately: true
                 }
-            );
-        } else if (id === adapter.namespace + '.meta.audio.volume') {
-            adapter.log.info('changing volume to ' + state.val);
+            },
+            (error, response, content) => {
+                if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
+                   callback(content);
+                } else if (error) {
+                    this.log.error(error);
+                    callback();
+                } else {
+                    this.log.error('Status Code: ' + response.statusCode + ' / Content: ' + JSON.stringify(content));
+                    callback();
+                }
+            }
+        );
+    }
 
-            buildRequest(
-                'device/audio',
-                content => {},
-                {
-                    volume: state.val
-                },
-                'PUT',
-                null
-            );
+    onUnload(callback) {
+        try {
+            this.setState('info.connection', false, true);
+            this.log.info('cleaned everything up...');
+            callback();
+        } catch (e) {
+            callback();
         }
     }
-});
-
-adapter.on('ready', main);
-
-function main() {
-    adapter.subscribeStates('*');
-
-    // Refresh State every Minute
-    refreshState();
-    setInterval(refreshState, 60000);
 }
 
-function refreshState() {
-    adapter.log.debug('refreshing LaMetric state');
-
-    buildRequest(
-        'device',
-        content => {
-            adapter.setState('info.connection', true, true);
-
-            adapter.setState('meta.name', {val: content.name, ack: true});
-            adapter.setState('meta.serial', {val: content.serial_number, ack: true});
-            adapter.setState('meta.version', {val: content.os_version, ack: true});
-            adapter.setState('meta.model', {val: content.model, ack: true});
-            adapter.setState('meta.mode', {val: content.mode, ack: true});
-
-            adapter.setState('meta.audio.volume', {val: content.audio.volume, ack: true});
-
-            adapter.setState('meta.bluetooth.available', {val: content.bluetooth.available, ack: true});
-            adapter.setState('meta.bluetooth.name', {val: content.bluetooth.name, ack: true});
-            adapter.setState('meta.bluetooth.active', {val: content.bluetooth.active, ack: true});
-            adapter.setState('meta.bluetooth.discoverable', {val: content.bluetooth.discoverable, ack: true});
-            adapter.setState('meta.bluetooth.pairable', {val: content.bluetooth.pairable, ack: true});
-            adapter.setState('meta.bluetooth.address', {val: content.bluetooth.address, ack: true});
-
-            adapter.setState('meta.display.brightness', {val: content.display.brightness, ack: true});
-            adapter.setState('meta.display.brightness_mode', {val: content.display.brightness_mode, ack: true});
-            adapter.setState('meta.display.width', {val: content.display.width, ack: true});
-            adapter.setState('meta.display.height', {val: content.display.height, ack: true});
-            adapter.setState('meta.display.type', {val: content.display.type, ack: true});
-
-            adapter.setState('meta.wifi.active', {val: content.wifi.active, ack: true});
-            adapter.setState('meta.wifi.address', {val: content.wifi.address, ack: true});
-            adapter.setState('meta.wifi.available', {val: content.wifi.available, ack: true});
-            adapter.setState('meta.wifi.encryption', {val: content.wifi.encryption, ack: true});
-            adapter.setState('meta.wifi.ssid', {val: content.wifi.essid, ack: true});
-            adapter.setState('meta.wifi.ip', {val: content.wifi.ip, ack: true});
-            adapter.setState('meta.wifi.mode', {val: content.wifi.mode, ack: true});
-            adapter.setState('meta.wifi.netmask', {val: content.wifi.netmask, ack: true});
-            adapter.setState('meta.wifi.strength', {val: content.wifi.strength, ack: true});
-        },
-        'GET',
-        null
-    );
-}
-
-function buildRequest(service, callback, method, data) {
-    const url = 'http://' + adapter.config.lametricIp + ':8080/api/v2/' + service;
-
-    adapter.log.info('sending request to ' + url + ' with data: ' + JSON.stringify(data));
-
-    request({
-        url: url,
-        method: method,
-        json: data ? data : true,
-        auth: {
-            user: 'dev',
-            pass: adapter.config.lametricToken,
-            sendImmediately: true
-        }
-    },
-    (error, response, content) => {
-        if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
-           callback(content);
-        } else if (error) {
-            adapter.log.error(error);
-            callback();
-        } else {
-            adapter.log.error('Status Code: ' + response.statusCode + ' / Content: ' + JSON.stringify(content));
-            callback();
-        }
-    });
+// @ts-ignore parent is a valid property on module
+if (module.parent) {
+    // Export the constructor in compact mode
+    /**
+     * @param {Partial<ioBroker.AdapterOptions>} [options={}]
+     */
+    module.exports = (options) => new LaMetric(options);
+} else {
+    // otherwise start the instance directly
+    new LaMetric();
 }
