@@ -13,10 +13,12 @@ Blockly.Words['lametric_sound'] = {'en': 'sound', 'de': 'Ton'};
 Blockly.Words['lametric_priority'] = {'en': 'priority', 'de': 'Priorität'};
 Blockly.Words['lametric_cycles'] = {'en': 'cycles', 'de': 'Wiederholungen'};
 
+Blockly.Words['lametric_priority_none'] = {'en': 'none', 'de': 'Ohne'};
 Blockly.Words['lametric_priority_info'] = {'en': 'info', 'de': 'Info'};
 Blockly.Words['lametric_priority_warning'] = {'en': 'warning', 'de': 'Warnung'};
 Blockly.Words['lametric_priority_critical'] = {'en': 'critical', 'de': 'Kritisch'};
 
+Blockly.Words['lametric_sound_none'] = {'en': 'none', 'de': 'Ohne'};
 Blockly.Words['lametric_sound_bicycle'] = {'en': 'bicycle', 'de': 'Fahrrad'};
 Blockly.Words['lametric_sound_car'] = {'en': 'car', 'de': 'Auto'};
 Blockly.Words['lametric_sound_cash'] = {'en': 'cash', 'de': 'Bar'};
@@ -52,7 +54,6 @@ Blockly.Words['lametric_sound_win'] = {'en': 'win', 'de': 'Gewinn 1'};
 Blockly.Words['lametric_sound_win2'] = {'en': 'win2', 'de': 'Gewinn 2'};
 Blockly.Words['lametric_sound_wind'] = {'en': 'wind', 'de': 'Wind'};
 Blockly.Words['lametric_sound_wind_short'] = {'en': 'wind_short', 'de': 'Wind kurz'};
-
 Blockly.Words['lametric_sound_alarm1'] = {'en': 'alarm1', 'de': 'Alarm 1'};
 Blockly.Words['lametric_sound_alarm2'] = {'en': 'alarm2', 'de': 'Alarm 2'};
 Blockly.Words['lametric_sound_alarm3'] = {'en': 'alarm3', 'de': 'Alarm 3'};
@@ -81,7 +82,7 @@ Blockly.Sendto.blocks['lametric'] =
     + '     </value>'
     + '     <value name="MESSAGE">'
     + '         <shadow type="text">'
-    + '             <field name="TEXT">text</field>'
+    + '             <field name="TEXT">Example Text</field>'
     + '         </shadow>'
     + '     </value>'
     + '     <value name="SOUND">'
@@ -90,14 +91,14 @@ Blockly.Sendto.blocks['lametric'] =
     + '     </value>'
     + '     <value name="ICON">'
     + '         <shadow type="text">'
-    + '             <field name="TEXT">a62</field>'
+    + '             <field name="TEXT">i31820</field>'
     + '         </shadow>'
     + '     </value>'
     + '     <value name="ICON_TYPE">'
     + '     </value>'
     + '     <value name="LIFETIME">'
     + '         <shadow type="math_number">'
-    + '             <field name="NUM">100</field>'
+    + '             <field name="NUM">1000</field>'
     + '         </shadow>'
     + '     </value>'
     + '     <value name="CYCLES">'
@@ -111,7 +112,16 @@ Blockly.Blocks['lametric'] = {
     init: function() {
         this.appendDummyInput('INSTANCE')
             .appendField(Blockly.Words['lametric'][systemLang])
-            .appendField(new Blockly.FieldDropdown([[Blockly.Words['lametric_anyInstance'][systemLang], ""], ["lametric.0", ".0"], ["lametric.1", ".1"], ["lametric.2", ".2"], ["lametric.3", ".3"], ["lametric.4", ".4"]]), "INSTANCE");
+            .appendField(new Blockly.FieldDropdown(
+                [
+                    [Blockly.Words['lametric_anyInstance'][systemLang], ""],
+                    ["lametric.0", ".0"],
+                    ["lametric.1", ".1"],
+                    ["lametric.2", ".2"],
+                    ["lametric.3", ".3"],
+                    ["lametric.4", ".4"]
+                ]
+            ), "INSTANCE");
 
         this.appendValueInput('MESSAGE')
             .appendField(Blockly.Words['lametric_message'][systemLang]);
@@ -119,6 +129,7 @@ Blockly.Blocks['lametric'] = {
         this.appendDummyInput('SOUND')
             .appendField(Blockly.Words['lametric_sound'][systemLang])
             .appendField(new Blockly.FieldDropdown([
+                [Blockly.Words['lametric_sound_none'][systemLang], ""],
                 [Blockly.Words['lametric_sound_bicycle'][systemLang], "bicycle"],
                 [Blockly.Words['lametric_sound_car'][systemLang], "car"],
                 [Blockly.Words['lametric_sound_cash'][systemLang], "cash"],
@@ -173,6 +184,7 @@ Blockly.Blocks['lametric'] = {
         this.appendDummyInput('PRIORITY')
             .appendField(Blockly.Words['lametric_priority'][systemLang])
             .appendField(new Blockly.FieldDropdown([
+                [Blockly.Words['lametric_priority_none'][systemLang], ""],
                 [Blockly.Words['lametric_priority_info'][systemLang], "info"],
                 [Blockly.Words['lametric_priority_warning'][systemLang], "warning"],
                 [Blockly.Words['lametric_priority_critical'][systemLang], "critical"]
@@ -184,7 +196,7 @@ Blockly.Blocks['lametric'] = {
         this.appendDummyInput('ICON_TYPE')
             .appendField(Blockly.Words['lametric_icontype'][systemLang])
             .appendField(new Blockly.FieldDropdown([
-                [Blockly.Words['lametric_icon_none'][systemLang], "none"],
+                [Blockly.Words['lametric_icon_none'][systemLang], ""],
                 [Blockly.Words['lametric_icon_info'][systemLang], "info"],
                 [Blockly.Words['lametric_icon_alert'][systemLang], "alert"]
             ]), 'ICON_TYPE');
@@ -206,29 +218,15 @@ Blockly.Blocks['lametric'] = {
 };
 
 Blockly.JavaScript['lametric'] = function(block) {
-    var dropdown_instance = block.getFieldValue('INSTANCE');
-    var value_message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+    var obj = {
+        priority: block.getFieldValue('PRIORITY'),
+        iconType: block.getFieldValue('ICON_TYPE'),
+        lifeTime: parseInt(eval(Blockly.JavaScript.valueToCode(block, 'LIFETIME', Blockly.JavaScript.ORDER_ATOMIC))),
+        icon: eval(Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC)),
+        text: eval(Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC)),
+        sound: block.getFieldValue('SOUND'),
+        cycles: parseInt(eval(Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC)))
+    };
 
-    var obj = {};
-
-    obj.priority = block.getFieldValue('PRIORITY');
-    obj.icon_type = block.getFieldValue('ICON_TYPE');
-    obj.lifeTime = parseInt(Blockly.JavaScript.valueToCode(block, 'LIFETIME', Blockly.JavaScript.ORDER_ATOMIC))
-    obj.model = {
-        frames: [
-            {
-                icon: Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC),
-                text: '_text_' 
-            }
-        ],
-        sound: {
-            category: block.getFieldValue('SOUND').indexOf('alarm') > -1 ? 'alarms' : 'notifications',
-            id: block.getFieldValue('SOUND'),
-            repeat: 1
-        },
-        cycles: parseInt(Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC))
-    }
-   
-    var SendTo = 'sendTo("lametric' + dropdown_instance + '", "send", ' + JSON.stringify(obj) + ');';
-    return (SendTo.replace('"text":"_text_"','"text":' + value_message));
+    return 'sendTo("lametric' + block.getFieldValue('INSTANCE') + '", "notification", ' + JSON.stringify(obj) + ');';
 };

@@ -159,60 +159,79 @@ class LaMetric extends utils.Adapter {
     }
 
     onMessage(obj) {
-        this.log.debug('received message');
+        this.log.debug('received message ' + JSON.stringify(obj.message));
 
-        if (obj && obj.message && obj.command === 'send') {
+        if (obj && obj.message && obj.command === 'notification') {
+            
+            let notification = obj.message;
+            var data = {};
 
-            this.log.debug('message ' + JSON.stringify(obj.message));
-
-            if (lastMessageId !== null) {
-                this.buildRequest(
-                    'device/notifications/' + lastMessageId,
-                    () => {
-                        setTimeout(
-                            () => this.buildRequest(
-                                'device/notifications',
-                                content => {
-                                    this.log.debug('Response: ' + JSON.stringify(content));
-                                    if (content && content.success) {
-                                        lastMessageId = content.success.id;
-                                        if (obj.callback) {
-                                            this.sendTo(obj.from, obj.command, content.success, obj.callback);
-                                        }
-                                    } else {
-                                        if (obj.callback) {
-                                            this.sendTo(obj.from, obj.command, {}, obj.callback);
-                                        }
-                                    }
-                                },
-                                'POST',
-                                obj.message
-                            ),
-                            500
-                        );
-                    },
-                    'DELETE'
-                );
-            } else {
-                this.buildRequest(
-                    'device/notifications',
-                    content => {
-                        this.log.debug('Response: ' + JSON.stringify(content));
-                        if (content && content.success) {
-                            lastMessageId = content.success.id;
-                            if (obj.callback) {
-                                this.sendTo(obj.from, obj.command, content.success, obj.callback);
-                            }
-                        } else {
-                            if (obj.callback) {
-                                this.sendTo(obj.from, obj.command, {}, obj.callback);
-                            }
-                        }
-                    },
-                    'POST',
-                    obj.message
-                );
+            if (notification.priority) {
+                data.priority = notification.priority; // Optional
             }
+
+            if (notification.iconType) {
+                data.icon_type = notification.iconType; // Optional
+            }
+
+            if (notification.lifeTime) {
+                data.lifetime = notification.lifeTime; // Optional
+            }
+
+            var dataModel = {
+                frames: []
+            };
+
+            if (!Array.isArray(notification.text)) {
+                notification.text = [notification.text];
+            }
+
+            for (var i = 0; i < notification.text.length; i++) {
+                if (notification.text[i] !== null) {
+                    var frame = {
+                        text: notification.text[i]
+                    };
+    
+                    if (notification.icon) {
+                        frame.icon = notification.icon;
+                    }
+    
+                    dataModel.frames.push(frame);
+                }
+            }
+
+            if (notification.sound) {
+                dataModel.sound = {
+                    category: notification.sound.indexOf('alarm') > -1 ? 'alarms' : 'notifications',
+                    id: notification.sound,
+                    repeat: 1
+                };
+            }
+
+            if (notification.cycles) { // Optional
+                dataModel.cycles = notification.cycles;
+            }
+
+            data.model = dataModel;
+
+            this.buildRequest(
+                'device/notifications',
+                content => {
+                    this.log.debug('Response: ' + JSON.stringify(content));
+                    if (content && content.success) {
+                        if (obj.callback) {
+                            this.sendTo(obj.from, obj.command, content.success, obj.callback);
+                        }
+                    } else {
+                        if (obj.callback) {
+                            this.sendTo(obj.from, obj.command, {}, obj.callback);
+                        }
+                    }
+                },
+                'POST',
+                data
+            );
+
         }
     }
 
