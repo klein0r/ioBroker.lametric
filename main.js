@@ -196,13 +196,6 @@ class LaMetric extends utils.Adapter {
                 this.setState('meta.bluetooth.pairable', {val: content.bluetooth.pairable, ack: true});
                 this.setState('meta.bluetooth.address', {val: content.bluetooth.address, ack: true});
 
-                this.setState('meta.display.brightness', {val: content.display.brightness, ack: true});
-                this.setState('meta.display.brightnessAuto', {val: content.display.brightness_mode == 'auto', ack: true});
-                this.setState('meta.display.brightnessMode', {val: content.display.brightness_mode, ack: true});
-                this.setState('meta.display.width', {val: content.display.width, ack: true});
-                this.setState('meta.display.height', {val: content.display.height, ack: true});
-                this.setState('meta.display.type', {val: content.display.type, ack: true});
-
                 this.setState('meta.wifi.active', {val: content.wifi.active, ack: true});
                 this.setState('meta.wifi.address', {val: content.wifi.address, ack: true});
                 this.setState('meta.wifi.available', {val: content.wifi.available, ack: true});
@@ -212,6 +205,27 @@ class LaMetric extends utils.Adapter {
                 this.setState('meta.wifi.mode', {val: content.wifi.mode, ack: true});
                 this.setState('meta.wifi.netmask', {val: content.wifi.netmask, ack: true});
                 this.setState('meta.wifi.strength', {val: content.wifi.strength, ack: true});
+            },
+            'GET',
+            null
+        );
+
+        this.buildRequest(
+            'device/display',
+            content => {
+                this.setState('meta.display.brightness', {val: content.brightness, ack: true});
+                this.setState('meta.display.brightnessAuto', {val: content.brightness_mode == 'auto', ack: true});
+                this.setState('meta.display.brightnessMode', {val: content.brightness_mode, ack: true});
+                this.setState('meta.display.width', {val: content.width, ack: true});
+                this.setState('meta.display.height', {val: content.height, ack: true});
+                this.setState('meta.display.type', {val: content.type, ack: true});
+
+                this.setState('meta.display.screensaver.enabled', {val: content.screensaver.enabled, ack: true});
+                this.setState('meta.display.screensaver.widget', {val: content.screensaver.widget, ack: true});
+                this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.screensaver.modes.time_based.enabled, ack: true});
+                this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.screensaver.modes.time_based.start_time, ack: true});
+                this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.screensaver.modes.time_based.end_time, ack: true});
+                this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.screensaver.modes.when_dark.enabled, ack: true});
             },
             'GET',
             null

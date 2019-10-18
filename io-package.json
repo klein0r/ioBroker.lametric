@@ -321,6 +321,114 @@
             "native": {}
         },
         {
+            "_id": "meta.display.screensaver",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Screensaver information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.enabled",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.widget",
+            "type": "state",
+            "common": {
+                "name": "Widget",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Mode information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Time Based"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased.enabled",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased.startTime",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased.endTime",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.whenDark",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "When Dark"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.whenDark.enabled",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "meta.wifi",
             "type": "channel",
             "common": {
