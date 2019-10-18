@@ -133,10 +133,10 @@ class LaMetric extends utils.Adapter {
                     'PUT',
                     null
                 );
-            } else if (id.match(/.+\.apps\..+\.activate$/)) {
+            } else if (id.match(/.+\.apps\.[a-z0-9]{32}\.activate$/g)) {
                 this.log.debug('changing to specific app');
 
-                let matches = id.match(/.+\.apps\.(.+)\.activate$/);
+                let matches = id.match(/.+\.apps\.([a-z0-9]{32})\.activate$/);
                 let widget = matches[1];
 
                 this.getState(
