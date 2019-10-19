@@ -22,6 +22,14 @@ You can get your personal key [here](https://developer.lametric.com/).
 
 You can read more about notifications here: https://lametric-documentation.readthedocs.io/en/latest/reference-docs/device-notifications.html
 
+## Features
+
+- Set display brightness (percent, auto-mode/manual-mode)
+- Set audio volume (percent)
+- Activate/Deactivate bluetooth and change bluetooth name
+- Switch between apps (next, previous, go to specific app)
+- Send blockly notifications (with configurable priority, sound, icons, text, ...)
+
 ## Changelog
 
 ### 0.0.4

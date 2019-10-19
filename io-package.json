@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "lametric",
-        "version": "0.0.4",
+        "version": "0.0.5",
         "news": {
             "0.0.2": {
                 "en": "The deletion of the actual shown information was added",
