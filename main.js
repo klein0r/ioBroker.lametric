@@ -133,6 +133,26 @@ class LaMetric extends utils.Adapter {
                     'PUT',
                     null
                 );
+            } else if (id === this.namespace + '.meta.display.screensaver.enabled') {
+                this.log.debug('changing screensaver state to ' + state.val);
+
+                this.buildRequest(
+                    'device/display',
+                    content => {
+                        this.setState('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
+                        this.setState('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
+                        this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
+                        this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.success.data.screensaver.modes.time_based.start_time, ack: true});
+                        this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.success.data.screensaver.modes.time_based.end_time, ack: true});
+                        this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.success.data.screensaver.modes.when_dark.enabled, ack: true});
+                    },
+                    'PUT',
+                    {
+                        screensaver: {
+                            enabled: state.val
+                        }
+                    }
+                );
             } else if (id.match(/.+\.apps\.[a-z0-9]{32}\.activate$/g)) {
                 this.log.debug('changing to specific app');
 
