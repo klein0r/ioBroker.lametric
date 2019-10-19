@@ -31,6 +31,16 @@ You can read more about notifications here: https://lametric-documentation.readt
 - Switch between apps (next, previous, go to specific app)
 - Send blockly notifications (with configurable priority, sound, icons, text, ...)
 
+## Blockly
+
+You can use a simple string as message, which will be shown as a single frame
+
+![simple](docs/blockly1.png)
+
+To show multiple frames, you can also provide an array as message
+
+![simple](docs/blockly2.png)
+
 ## Changelog
 
 ### 0.0.4
