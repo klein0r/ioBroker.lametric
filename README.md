@@ -26,6 +26,7 @@ You can read more about notifications here: https://lametric-documentation.readt
 
 - Set display brightness (percent, auto-mode/manual-mode)
 - Set audio volume (percent)
+- Configure screensaver (enable/disable, time based, when dark)
 - Activate/Deactivate bluetooth and change bluetooth name
 - Switch between apps (next, previous, go to specific app)
 - Send blockly notifications (with configurable priority, sound, icons, text, ...)

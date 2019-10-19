@@ -153,6 +153,48 @@ class LaMetric extends utils.Adapter {
                         }
                     }
                 );
+            } else if (id.indexOf(this.namespace + '.meta.display.screensaver.modes.') > -1) {
+                this.log.debug('changing screensaver settings');
+
+                this.getStates(
+                    'meta.display.screensaver.*',
+                    (err, states) => {
+
+                        var screensaverState = states[this.namespace + '.meta.display.screensaver.enabled'].val;
+                        var currentMode = 'when_dark';
+                        var currentModeParams = {};
+
+                        if (id.indexOf('timeBased') > -1) {
+                            currentMode = 'time_based';
+                            currentModeParams.enabled = states[this.namespace + '.meta.display.screensaver.modes.timeBased.enabled'].val;
+                            currentModeParams.start_time = states[this.namespace + '.meta.display.screensaver.modes.timeBased.startTime'].val;
+                            currentModeParams.end_time = states[this.namespace + '.meta.display.screensaver.modes.timeBased.endTime'].val;
+                        } else if (id.indexOf('whenDark') > -1) {
+                            currentMode = 'when_dark';
+                            currentModeParams.enabled = states[this.namespace + '.meta.display.screensaver.modes.whenDark.enabled'].val;
+                        }
+
+                        this.buildRequest(
+                            'device/display',
+                            content => {
+                                this.setState('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
+                                this.setState('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
+                                this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
+                                this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.success.data.screensaver.modes.time_based.start_time, ack: true});
+                                this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.success.data.screensaver.modes.time_based.end_time, ack: true});
+                                this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.success.data.screensaver.modes.when_dark.enabled, ack: true});
+                            },
+                            'PUT',
+                            {
+                                screensaver: {
+                                    enabled: screensaverState,
+                                    mode: currentMode,
+                                    mode_params: currentModeParams
+                                }
+                            }
+                        );
+                    }
+                );
             } else if (id.match(/.+\.apps\.[a-z0-9]{32}\.activate$/g)) {
                 this.log.debug('changing to specific app');
 
