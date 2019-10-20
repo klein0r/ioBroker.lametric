@@ -158,9 +158,9 @@ class LaMetric extends utils.Adapter {
                     'meta.display.screensaver.*',
                     (err, states) => {
 
-                        var screensaverState = states[this.namespace + '.meta.display.screensaver.enabled'].val;
-                        var currentMode = 'when_dark';
-                        var currentModeParams = {};
+                        const screensaverState = states[this.namespace + '.meta.display.screensaver.enabled'].val;
+                        const currentModeParams = {};
+                        let currentMode = 'when_dark';
 
                         if (id.indexOf('timeBased') > -1) {
                             currentMode = 'time_based';
@@ -196,19 +196,19 @@ class LaMetric extends utils.Adapter {
             } else if (id.match(/.+\.apps\.[a-z0-9]{32}\.activate$/g)) {
                 this.log.debug('changing to specific app');
 
-                let matches = id.match(/.+\.apps\.([a-z0-9]{32})\.activate$/);
-                let widget = matches[1];
+                const matches = id.match(/.+\.apps\.([a-z0-9]{32})\.activate$/);
+                const widget = matches[1];
 
                 this.getState(
                     'apps.' + widget + '.package',
                     (err, state) => {
-                        let pack = state.val;
+                        const pack = state.val;
 
                         this.log.debug('activating specific widget: ' + widget + ' of package ' + pack);
 
                         this.buildRequest(
                             'device/apps/' + pack + '/widgets/' + widget + '/activate',
-                            content => {},
+                            null,
                             'PUT',
                             null
                         );
@@ -223,8 +223,8 @@ class LaMetric extends utils.Adapter {
 
         if (obj && obj.message && obj.command === 'notification') {
             
-            let notification = obj.message;
-            var data = {};
+            const notification = obj.message;
+            const data = {};
 
             if (notification.priority) {
                 data.priority = notification.priority; // Optional
@@ -238,7 +238,7 @@ class LaMetric extends utils.Adapter {
                 data.lifetime = notification.lifeTime; // Optional
             }
 
-            var dataModel = {
+            const dataModel = {
                 frames: []
             };
 
@@ -246,9 +246,9 @@ class LaMetric extends utils.Adapter {
                 notification.text = [notification.text];
             }
 
-            for (var i = 0; i < notification.text.length; i++) {
+            for (let i = 0; i < notification.text.length; i++) {
                 if (notification.text[i] !== null) {
-                    var frame = {
+                    const frame = {
                         text: notification.text[i]
                     };
     
@@ -361,13 +361,13 @@ class LaMetric extends utils.Adapter {
         this.buildRequest(
             'device/apps',
             content => {
-                let path = 'apps.';
+                const path = 'apps.';
 
-                for (var pack in content) {
-                    var pack = content[pack];
+                for (const p in content) {
+                    const pack = content[p];
 
-                    for (var uuid in pack.widgets) {
-                        var widget = pack.widgets[uuid];
+                    for (const uuid in pack.widgets) {
+                        const widget = pack.widgets[uuid];
 
                         this.setObjectNotExists(path + uuid, {
                             type: 'channel',
@@ -453,7 +453,7 @@ class LaMetric extends utils.Adapter {
     }
 
     buildRequest(service, callback, method, data) {
-        var self = this;
+        const self = this;
 
         if (this.config.lametricIp && this.config.lametricToken) {
             const url = 'http://' + this.config.lametricIp + ':8080/api/v2/' + service;
