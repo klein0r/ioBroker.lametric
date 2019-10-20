@@ -13,7 +13,7 @@ class LaMetric extends utils.Adapter {
             ...options,
             name: 'lametric',
         });
-        
+
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
 
@@ -472,7 +472,10 @@ class LaMetric extends utils.Adapter {
                     }
                 },
                 (error, response, content) => {
-                    self.log.debug('received data (' + response.statusCode + '): ' + JSON.stringify(content));
+                    if (response) {
+                        // Logging
+                        self.log.debug('received data (' + response.statusCode + '): ' + JSON.stringify(content));
+                    }
 
                     if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
                        callback(content);
