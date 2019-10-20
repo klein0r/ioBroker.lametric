@@ -14,30 +14,40 @@
         },
 		"title": "LaMetric Time",
         "titleLang": {
-            "en": "Javascript/Node.js based LaMetric adapter",
-            "de": "Javascript / Node.js basierte LaMetric-Adapter"
+            "en": "LaMetric Time",
+            "de": "LaMetric Time"
         },
         "desc": {
-            "en": "ioBroker lametric Adapter",
-            "de": "ioBroker Lametric Adapter"
+            "en": "Control and manage your LaMetric Time",
+            "de": "Steuere und Verwalte Deine LaMetric Time"
         },
         "authors": [
             "Matthias Kleine <info@haus-automatisierung.com>"
         ],
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "icon": "lametric.png",
-        "materialize": true,
-        "enabled": true,
-        "compact": true,
-        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
-        "keywords": ["lametric", "message", "notification"],
+        "keywords": [
+            "lametric",
+            "hardware",
+            "clock",
+            "message",
+            "notification"
+        ],
         "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "lametric.png",
+        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
+        "enabled": true,
         "readme": "https://github.com/klein0r/ioBroker.lametric/blob/master/README.md",
         "loglevel": "info",
+        "mode": "daemon",
         "type": "hardware",
+        "compact": true,
+        "materialize": true,
         "blockly": true,
-        "messagebox": true
+        "messagebox": true,
+        "dependencies": [
+            { "js-controller": ">=1.4.2" }
+        ]
     },
     "native": {
         "lametricIp": "",
