@@ -118,7 +118,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/apps/next',
-                    content => {},
+                    null,
                     'PUT',
                     null
                 );
@@ -127,7 +127,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/apps/prev',
-                    content => {},
+                    null,
                     'PUT',
                     null
                 );
@@ -478,7 +478,9 @@ class LaMetric extends utils.Adapter {
                     }
 
                     if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
-                       callback(content);
+                        if (callback && typeof callback === 'function') {
+                            callback(content);
+                        }
                     } else if (error) {
                         self.log.error(error);
                     } else {
