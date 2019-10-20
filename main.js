@@ -13,6 +13,9 @@ class LaMetric extends utils.Adapter {
             ...options,
             name: 'lametric',
         });
+        
+        this.refreshStateTimeout = null;
+        this.refreshAppTimeout = null;
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -23,13 +26,8 @@ class LaMetric extends utils.Adapter {
     async onReady() {
         this.subscribeStates('*');
 
-        // Refresh State every Minute
         this.refreshState();
-        setInterval(this.refreshState.bind(this), 60000);
-
-        // Refresh Apps every Hour
         this.refreshApps();
-        setInterval(this.refreshApps.bind(this), 60000 * 60);
     }
 
     onStateChange(id, state) {
@@ -354,6 +352,9 @@ class LaMetric extends utils.Adapter {
             'GET',
             null
         );
+
+        this.log.debug('re-creating refresh state timeout');
+        this.refreshStateTimeout = setTimeout(this.refreshState.bind(this), 60000);
     }
 
     refreshApps() {
@@ -446,9 +447,14 @@ class LaMetric extends utils.Adapter {
             'GET',
             null
         );
+
+        this.log.debug('re-creating refresh app timeout');
+        this.refreshAppTimeout = setTimeout(this.refreshApps.bind(this), 60000 * 60);
     }
 
     buildRequest(service, callback, method, data) {
+        var self = this;
+
         if (this.config.lametricIp && this.config.lametricToken) {
             const url = 'http://' + this.config.lametricIp + ':8080/api/v2/' + service;
 
@@ -466,12 +472,14 @@ class LaMetric extends utils.Adapter {
                     }
                 },
                 (error, response, content) => {
+                    self.log.debug('received data (' + response.statusCode + '): ' + JSON.stringify(content));
+
                     if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
                        callback(content);
                     } else if (error) {
-                        this.log.error(error);
+                        self.log.error(error);
                     } else {
-                        this.log.error('Status Code: ' + response.statusCode + ' / Content: ' + JSON.stringify(content));
+                        self.log.error('Status Code: ' + response.statusCode + ' / Content: ' + JSON.stringify(content));
                     }
                 }
             );
@@ -481,6 +489,16 @@ class LaMetric extends utils.Adapter {
     onUnload(callback) {
         try {
             this.setState('info.connection', false, true);
+
+            if (this.refreshStateTimeout) {
+                this.log.debug('clearing refresh state timeout');
+                clearTimeout(this.refreshStateTimeout);
+            }
+
+            if (this.refreshAppTimeout) {
+                this.log.debug('clearing refresh app timeout');
+                clearTimeout(this.refreshAppTimeout);
+            }
 
             this.log.debug('cleaned everything up...');
             callback();
