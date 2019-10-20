@@ -46,18 +46,30 @@ To show multiple frames, you can also provide an array as message
 
 ## Changelog
 
+### 0.0.6
+
+* (klein0r) switched to setTimeout instead of setInterval, improved logging and fixes eslint complaints
+
+### 0.0.5
+
+* (klein0r) Fixed notification, html, updated github template, enable and disable screensaver
+
 ### 0.0.4
+
 * (klein0r) Refactored blockly sendTo / notifications
 
 ### 0.0.3
+
 * (klein0r) Added app switching support, refactored everything
 * (bluefox) The deletion of the actual shown information was added
 
 ### 0.0.2
+
 * (Sigi74) Change message_value for variables message
 * (Sigi74) Leave sound none
 
 ### 0.0.1
+
 * (klein0r) initial release
 
 ## License
