@@ -516,8 +516,78 @@ class LaMetric extends utils.Adapter {
                                 native: {}
                             });
 
+                        } else if (pack.package == 'com.lametric.stopwatch') {
+
+                            this.setObjectNotExists(path + uuid + '.stopwatch', {
+                                type: 'channel',
+                                common: {
+                                    name: pack.package,
+                                    role: ''
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.stopwatch.start', {
+                                type: 'state',
+                                common: {
+                                    name: 'Start Stopwatch',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.stopwatch.pause', {
+                                type: 'state',
+                                common: {
+                                    name: 'Pause Stopwatch',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.stopwatch.reset', {
+                                type: 'state',
+                                common: {
+                                    name: 'Reset Stopwatch',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                        } else if (pack.package == 'com.lametric.weather') {
+
+                            this.setObjectNotExists(path + uuid + '.weather', {
+                                type: 'channel',
+                                common: {
+                                    name: pack.package,
+                                    role: ''
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.weather.forecast', {
+                                type: 'state',
+                                common: {
+                                    name: 'Weather Forecast',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
                         }
-                        
+
                         // END special Widgets
                     }
                 }
