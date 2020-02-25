@@ -242,6 +242,7 @@ class LaMetric extends utils.Adapter {
                 frames: []
             };
 
+            // Always create an array to make frame handling easier
             if (!Array.isArray(notification.text)) {
                 notification.text = [notification.text];
             }
@@ -268,8 +269,8 @@ class LaMetric extends utils.Adapter {
                 };
             }
 
-            if (notification.cycles) { // Optional
-                dataModel.cycles = notification.cycles;
+            if (notification.cycles) {
+                dataModel.cycles = notification.cycles; // Optional
             }
 
             data.model = dataModel;
@@ -278,12 +279,10 @@ class LaMetric extends utils.Adapter {
                 'device/notifications',
                 content => {
                     this.log.debug('Response: ' + JSON.stringify(content));
-                    if (content && content.success) {
-                        if (obj.callback) {
+                    if (obj.callback) {
+                        if (content && content.success) {
                             this.sendTo(obj.from, obj.command, content.success, obj.callback);
-                        }
-                    } else {
-                        if (obj.callback) {
+                        } else {
                             this.sendTo(obj.from, obj.command, {}, obj.callback);
                         }
                     }

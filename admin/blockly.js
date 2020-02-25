@@ -218,15 +218,25 @@ Blockly.Blocks['lametric'] = {
 };
 
 Blockly.JavaScript['lametric'] = function(block) {
-    var obj = {
-        priority: block.getFieldValue('PRIORITY'),
-        iconType: block.getFieldValue('ICON_TYPE'),
-        lifeTime: parseInt(eval(Blockly.JavaScript.valueToCode(block, 'LIFETIME', Blockly.JavaScript.ORDER_ATOMIC))),
-        icon: eval(Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC)),
-        text: eval(Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC)),
-        sound: block.getFieldValue('SOUND'),
-        cycles: parseInt(eval(Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC)))
-    };
 
-    return 'sendTo("lametric' + block.getFieldValue('INSTANCE') + '", "notification", ' + JSON.stringify(obj) + ');';
+    var priority = block.getFieldValue('PRIORITY');
+    var iconType = block.getFieldValue('ICON_TYPE');
+    var sound = block.getFieldValue('SOUND');
+
+    var lifeTime = parseInt(Blockly.JavaScript.valueToCode(block, 'LIFETIME', Blockly.JavaScript.ORDER_ATOMIC));
+    var icon = Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC);
+    var text = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+    var cycles = parseInt(Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC));
+
+    var objText = [];
+    if (priority) objText.push('priority: "' + priority + '"');
+    if (iconType) objText.push('iconType: "' + iconType + '"');
+    if (sound) objText.push('sound: "' + sound + '"');
+
+    if (lifeTime) objText.push('lifeTime: ' + lifeTime);
+    if (icon) objText.push('icon: ' + icon);
+    if (text) objText.push('text: ' + text);
+    if (cycles) objText.push('cycles: ' + cycles);
+
+    return 'sendTo("lametric' + block.getFieldValue('INSTANCE') + '", "notification", {' + objText.join(',') + '});';
 };

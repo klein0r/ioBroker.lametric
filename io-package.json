@@ -1,8 +1,28 @@
 {
     "common": {
         "name": "lametric",
-        "version": "0.0.6",
+        "version": "0.0.7",
         "news": {
+            "0.0.7": {
+                "en": "fixed blockly",
+                "de": "Blockly-Korrektur"
+            },
+            "0.0.6": {
+                "en": "switched to setTimeout instead of setInterval, improved logging and fixes eslint complaints",
+                "de": "Code aufgeräumt"
+            },
+            "0.0.5": {
+                "en": "Fixed notification, html, updated github template, enable and disable screensaver",
+                "de": "Notification fix, HTML Änderungen, Bildschirmschoner-Support"
+            },
+            "0.0.4": {
+                "en": "Refactored blockly sendTo / notifications",
+                "de": "Refactored Blockly sentTo und Benachrichtigungen"
+            },
+            "0.0.3": {
+                "en": "Added app switching support, refactored everything",
+                "de": "Unterstützung für App-Wechsel hinzugefügt"
+            },
             "0.0.2": {
                 "en": "The deletion of the actual shown information was added",
                 "de": "Die Löschung der tatsächlich angezeigten Informationen wurde hinzugefügt"

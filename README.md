@@ -46,6 +46,10 @@ To show multiple frames, you can also provide an array as message
 
 ## Changelog
 
+### 0.0.7
+
+* (klein0r) fixed blockly
+
 ### 0.0.6
 
 * (klein0r) switched to setTimeout instead of setInterval, improved logging and fixes eslint complaints
