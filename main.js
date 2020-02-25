@@ -193,25 +193,39 @@ class LaMetric extends utils.Adapter {
                         );
                     }
                 );
-            } else if (id.match(/.+\.apps\.[a-z0-9]{32}\.activate$/g)) {
+            } else if (id.match(/.+\.apps\.[a-z0-9]{32}\..*$/g)) {
                 this.log.debug('changing to specific app');
 
-                const matches = id.match(/.+\.apps\.([a-z0-9]{32})\.activate$/);
+                const matches = id.match(/.+\.apps\.([a-z0-9]{32})\.(.*)$/);
                 const widget = matches[1];
+                const action = matches[2];
 
                 this.getState(
                     'apps.' + widget + '.package',
                     (err, state) => {
                         const pack = state.val;
 
-                        this.log.debug('activating specific widget: ' + widget + ' of package ' + pack);
+                        if (action == 'activate') {
+                            this.log.debug('activating specific widget: ' + widget + ' of package ' + pack);
+    
+                            this.buildRequest(
+                                'device/apps/' + pack + '/widgets/' + widget + '/activate',
+                                null,
+                                'PUT',
+                                null
+                            );
+                        } else {
+                            this.log.debug('special action (' + action + '): ' + widget + ' of package ' + pack);
 
-                        this.buildRequest(
-                            'device/apps/' + pack + '/widgets/' + widget + '/activate',
-                            null,
-                            'PUT',
-                            null
-                        );
+                            this.buildRequest(
+                                'device/apps/' + pack + '/widgets/' + widget + '/actions',
+                                null,
+                                'POST',
+                                {
+                                    id: action
+                                }
+                            );
+                        }
                     }
                 );
             }
@@ -440,6 +454,71 @@ class LaMetric extends utils.Adapter {
                             native: {}
                         });
                         this.setState(path + uuid + '.version', {val: pack.version, ack: true});
+                        
+                        // START special Widgets
+                        
+                        if (pack.package == 'com.lametric.radio') {
+
+                            this.setObjectNotExists(path + uuid + '.radio', {
+                                type: 'channel',
+                                common: {
+                                    name: pack.package,
+                                    role: ''
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.radio.play', {
+                                type: 'state',
+                                common: {
+                                    name: 'Play Radio',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.radio.stop', {
+                                type: 'state',
+                                common: {
+                                    name: 'Stop Radio',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.radio.next', {
+                                type: 'state',
+                                common: {
+                                    name: 'Next Radio',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.radio.prev', {
+                                type: 'state',
+                                common: {
+                                    name: 'Prev Radio',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                        }
+                        
+                        // END special Widgets
                     }
                 }
             },
