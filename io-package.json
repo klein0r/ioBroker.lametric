@@ -1,58 +1,89 @@
 {
     "common": {
         "name": "lametric",
-        "version": "0.1.0",
+        "version": "1.0.0",
         "news": {
-            "0.1.0": {
+            "1.0.0": {
+                "en": "Fixed problem with blockly and missing languages",
+                "de": "Problem mit blockartigen und fehlenden Sprachen behoben",
+                "ru": "Исправлена проблема с блочно-отсутствующими языками",
+                "pt": "Corrigido o problema com idiomas bloqueados e ausentes",
+                "nl": "Probleem opgelost met geblokkeerde en ontbrekende talen",
+                "fr": "Correction d'un problème avec les langues bloquées et manquantes",
+                "it": "Risolto il problema con le lingue bloccate e mancanti",
+                "es": "Se corrigió el problema con los idiomas bloqueados y faltantes",
+                "pl": "Naprawiono problem z blokowanymi i brakującymi językami",
+                "zh-cn": "解决了语言阻塞和缺失的问题"
+            },
+            "0.0.7": {
+                "en": "fixed blockly",
+                "de": "Blockly-Korrektur"
+            },
+            "0.0.6": {
+                "en": "switched to setTimeout instead of setInterval, improved logging and fixes eslint complaints",
+                "de": "Code aufgeräumt"
+            },
+            "0.0.5": {
+                "en": "Fixed notification, html, updated github template, enable and disable screensaver",
+                "de": "Notification fix, HTML Änderungen, Bildschirmschoner-Support"
+            },
+            "0.0.4": {
+                "en": "Refactored blockly sendTo / notifications",
+                "de": "Refactored Blockly sentTo und Benachrichtigungen"
+            },
+            "0.0.3": {
+                "en": "Added app switching support, refactored everything",
+                "de": "Unterstützung für App-Wechsel hinzugefügt"
+            },
+            "0.0.2": {
                 "en": "The deletion of the actual shown information was added",
-                "de": "Die Löschung der tatsächlich angezeigten Informationen wurde hinzugefügt",
-                "ru": "Добавлено удаление отображаемой информации.",
-                "pt": "A exclusão das informações exibidas reais foi adicionada",
-                "nl": "De verwijdering van de feitelijk getoonde informatie is toegevoegd",
-                "fr": "La suppression de l'information affichée a été ajoutée",
-                "it": "È stata aggiunta la cancellazione delle informazioni visualizzate effettive",
-                "es": "Se agregó la eliminación de la información real mostrada.",
-                "pl": "Usunięto faktyczne wyświetlane informacje"
+                "de": "Die Löschung der tatsächlich angezeigten Informationen wurde hinzugefügt"
             },
             "0.0.1": {
                 "en": "initial adapter",
                 "de": "Initiale Version"
             }
         },
-		"title": "LaMetric adapter",
+		"title": "LaMetric Time",
         "titleLang": {
-            "en": "Javascript/Node.js based LaMetric adapter",
-            "de": "Javascript / Node.js basierte LaMetric-Adapter"
+            "en": "LaMetric Time",
+            "de": "LaMetric Time"
         },
         "desc": {
-            "en": "ioBroker lametric Adapter",
-            "de": "ioBroker Lametric Adapter"
+            "en": "Control and manage your LaMetric Time",
+            "de": "Steuere und Verwalte Deine LaMetric Time"
         },
         "authors": [
             "Matthias Kleine <info@haus-automatisierung.com>"
         ],
-        "docs": {
-            "en": "docs/en/admin.md",
-            "de": "docs/de/admin.md"
-        },
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "icon": "lametric.png",
-        "materialize": true,
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
-        "keywords": ["lametric", "message", "notification"],
+        "keywords": [
+            "lametric",
+            "hardware",
+            "clock",
+            "message",
+            "notification"
+        ],
         "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "lametric.png",
+        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
+        "enabled": true,
         "readme": "https://github.com/klein0r/ioBroker.lametric/blob/master/README.md",
         "loglevel": "info",
+        "mode": "daemon",
         "type": "hardware",
+        "compact": true,
+        "materialize": true,
         "blockly": true,
-        "messagebox": true
+        "messagebox": true,
+        "dependencies": [
+            { "js-controller": ">=1.4.2" }
+        ]
     },
     "native": {
-        "test1": true,
-        "test2": 42,
-        "mySelect": "auto"
+        "lametricIp": "",
+        "lametricToken": ""
     },
     "objects": [],
     "instanceObjects": [
@@ -68,7 +99,7 @@
           "_id":  "info.connection",
           "type": "state",
           "common": {
-            "role":  "indicator.connected",
+            "role":  "indicator.reachable",
             "name":  "If connected to LaMetric",
             "type":  "boolean",
             "read":  true,
@@ -161,7 +192,8 @@
             "common": {
                 "name": "Audio volume",
                 "type": "number",
-                "role": "value",
+                "role": "level.volume",
+                "unit": "%",
                 "read": true,
                 "write": true
             },
@@ -196,7 +228,7 @@
                 "type": "string",
                 "role": "value",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },
@@ -208,7 +240,7 @@
                 "type": "boolean",
                 "role": "value",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },
@@ -242,7 +274,7 @@
             "common": {
                 "name": "Address",
                 "type": "string",
-                "role": "value",
+                "role": "info.mac",
                 "read": true,
                 "write": false
             },
@@ -263,6 +295,19 @@
             "common": {
                 "name": "Brightness",
                 "type": "number",
+                "role": "level.dimmer",
+                "unit": "%",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.brightnessAuto",
+            "type": "state",
+            "common": {
+                "name": "Auto",
+                "type": "boolean",
                 "role": "value",
                 "read": true,
                 "write": true
@@ -270,7 +315,7 @@
             "native": {}
         },
         {
-            "_id": "meta.display.brightness_mode",
+            "_id": "meta.display.brightnessMode",
             "type": "state",
             "common": {
                 "name": "Brightness mode",
@@ -318,6 +363,114 @@
             "native": {}
         },
         {
+            "_id": "meta.display.screensaver",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Screensaver information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.enabled",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.widget",
+            "type": "state",
+            "common": {
+                "name": "Widget",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Mode information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Time Based"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased.enabled",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased.startTime",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased.endTime",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.whenDark",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "When Dark"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.whenDark.enabled",
+            "type": "state",
+            "common": {
+                "name": "Enabled",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        },
+        {
             "_id": "meta.wifi",
             "type": "channel",
             "common": {
@@ -344,7 +497,7 @@
             "common": {
                 "name": "Address",
                 "type": "string",
-                "role": "value",
+                "role": "info.mac",
                 "read": true,
                 "write": false
             },
@@ -392,7 +545,7 @@
             "common": {
                 "name": "IP",
                 "type": "string",
-                "role": "value",
+                "role": "info.ip",
                 "read": true,
                 "write": false
             },
@@ -429,8 +582,42 @@
                 "name": "Strength",
                 "type": "number",
                 "role": "value",
+                "unit": "%",
                 "read": true,
                 "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "apps",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "App information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "apps.next",
+            "type": "state",
+            "common": {
+                "name": "Next App",
+                "type": "boolean",
+                "role": "button",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "apps.prev",
+            "type": "state",
+            "common": {
+                "name": "Previous App",
+                "type": "boolean",
+                "role": "button",
+                "read": false,
+                "write": true
             },
             "native": {}
         }

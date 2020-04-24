@@ -1,40 +1,55 @@
 {
   "name": "iobroker.lametric",
-  "version": "0.1.0",
-  "description": "ioBroker lametric Adapter",
+  "version": "1.0.0",
+  "description": "ioBroker LaMetric Adapter",
   "author": {
     "name": "Matthias Kleine",
     "email": "info@haus-automatisierung.com"
   },
-  "contributors": [
-    {
-      "name": "Matthias Kleine",
-      "email": "info@haus-automatisierung.com"
-    }
-  ],
   "homepage": "https://github.com/klein0r/ioBroker.lametric",
   "license": "MIT",
   "keywords": [
     "ioBroker",
-    "lametric",
     "Smart Home",
-    "home automation"
+    "home automation",
+    "lametric"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/klein0r/ioBroker.lametric"
   },
   "dependencies": {
-      "request": "^2.88.0"
+    "@iobroker/adapter-core": "^2.3.1",
+    "request": "^2.88.2"
   },
   "devDependencies": {
-    "gulp": "^4.0.0",
-    "mocha": "^5.2.0",
-    "chai": "^4.2.0"
+    "@iobroker/testing": "^2.2.0",
+    "@types/chai": "^4.2.11",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/gulp": "^4.0.6",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.13.2",
+    "@types/proxyquire": "^1.3.28",
+    "@types/sinon": "^9.0.0",
+    "@types/sinon-chai": "^3.2.4",
+    "axios": "^0.19.2",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^6.8.0",
+    "gulp": "^4.0.2",
+    "mocha": "^7.1.1",
+    "proxyquire": "^2.1.3",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0"
   },
   "main": "main.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --exit"
+    "test:js": "mocha --opts test/mocha.custom.opts",
+    "test:package": "mocha test/package --exit",
+    "test:unit": "mocha test/unit --exit",
+    "test:integration": "mocha test/integration --exit",
+    "test": "npm run test:js && npm run test:package",
+    "lint": "eslint"
   },
   "bugs": {
     "url": "https://github.com/klein0r/ioBroker.lametric/issues"
