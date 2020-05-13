@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "0.0.7",
+        "version": "0.0.8",
         "news": {
+            "0.0.8": {
+                "en": "Updated dependencies",
+                "de": "Abhängigkeiten aktualisiert"
+            },
             "0.0.7": {
                 "en": "fixed blockly",
                 "de": "Blockly-Korrektur"
@@ -62,6 +66,8 @@
         "mode": "daemon",
         "type": "hardware",
         "compact": true,
+        "connectionType": "local",
+        "dataSource": "poll",
         "materialize": true,
         "blockly": true,
         "messagebox": true,
