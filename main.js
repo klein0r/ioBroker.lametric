@@ -3,15 +3,16 @@
 /* jslint node: true */
 'use strict';
 
-const utils = require('@iobroker/adapter-core');
-const request = require('request');
+const utils       = require('@iobroker/adapter-core');
+const request     = require('request');
+const adapterName = require('./package.json').name.split('.').pop();
 
 class LaMetric extends utils.Adapter {
 
     constructor(options) {
         super({
             ...options,
-            name: 'lametric',
+            name: adapterName,
         });
 
         this.refreshStateTimeout = null;
@@ -40,7 +41,7 @@ class LaMetric extends utils.Adapter {
                     'device/display',
                     content => {
                         this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
-                        this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode == 'auto', ack: true});
+                        this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
                         this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
                     },
                     'PUT',
@@ -56,7 +57,7 @@ class LaMetric extends utils.Adapter {
                     'device/display',
                     content => {
                         this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
-                        this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode == 'auto', ack: true});
+                        this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
                         this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
                     },
                     'PUT',
@@ -205,7 +206,7 @@ class LaMetric extends utils.Adapter {
                     (err, state) => {
                         const pack = state.val;
 
-                        if (action == 'activate') {
+                        if (action === 'activate') {
                             this.log.debug('activating specific widget: ' + widget + ' of package ' + pack);
     
                             this.buildRequest(
@@ -349,7 +350,7 @@ class LaMetric extends utils.Adapter {
             'device/display',
             content => {
                 this.setState('meta.display.brightness', {val: content.brightness, ack: true});
-                this.setState('meta.display.brightnessAuto', {val: content.brightness_mode == 'auto', ack: true});
+                this.setState('meta.display.brightnessAuto', {val: content.brightness_mode === 'auto', ack: true});
                 this.setState('meta.display.brightnessMode', {val: content.brightness_mode, ack: true});
                 this.setState('meta.display.width', {val: content.width, ack: true});
                 this.setState('meta.display.height', {val: content.height, ack: true});
@@ -367,7 +368,10 @@ class LaMetric extends utils.Adapter {
         );
 
         this.log.debug('re-creating refresh state timeout');
-        this.refreshStateTimeout = setTimeout(this.refreshState.bind(this), 60000);
+        this.refreshStateTimeout = this.refreshStateTimeout || setTimeout(() => {
+            this.refreshStateTimeout = null;
+            this.refreshState();
+        }, 60000);
     }
 
     refreshApps() {
@@ -376,10 +380,10 @@ class LaMetric extends utils.Adapter {
             content => {
                 const path = 'apps.';
 
-                for (const p in content) {
+                Object.keys(content).forEach(p => {
                     const pack = content[p];
 
-                    for (const uuid in pack.widgets) {
+                    Object.keys(pack.widgets).forEach(uuid => {
                         const widget = pack.widgets[uuid];
 
                         this.setObjectNotExists(path + uuid, {
@@ -456,9 +460,7 @@ class LaMetric extends utils.Adapter {
                         this.setState(path + uuid + '.version', {val: pack.version, ack: true});
                         
                         // START special Widgets
-                        
-                        if (pack.package == 'com.lametric.radio') {
-
+                        if (pack.package === 'com.lametric.radio') {
                             this.setObjectNotExists(path + uuid + '.radio', {
                                 type: 'channel',
                                 common: {
@@ -516,7 +518,7 @@ class LaMetric extends utils.Adapter {
                                 native: {}
                             });
 
-                        } else if (pack.package == 'com.lametric.stopwatch') {
+                        } else if (pack.package === 'com.lametric.stopwatch') {
 
                             this.setObjectNotExists(path + uuid + '.stopwatch', {
                                 type: 'channel',
@@ -563,7 +565,7 @@ class LaMetric extends utils.Adapter {
                                 native: {}
                             });
 
-                        } else if (pack.package == 'com.lametric.weather') {
+                        } else if (pack.package === 'com.lametric.weather') {
 
                             this.setObjectNotExists(path + uuid + '.weather', {
                                 type: 'channel',
@@ -589,15 +591,18 @@ class LaMetric extends utils.Adapter {
                         }
 
                         // END special Widgets
-                    }
-                }
+                    });
+                });
             },
             'GET',
             null
         );
 
         this.log.debug('re-creating refresh app timeout');
-        this.refreshAppTimeout = setTimeout(this.refreshApps.bind(this), 60000 * 60);
+        this.refreshAppTimeout = this.refreshAppTimeout || setTimeout(() => {
+            this.refreshAppTimeout = null;
+            this.refreshApps();
+        }, 60000 * 60);
     }
 
     buildRequest(service, callback, method, data) {
@@ -653,7 +658,6 @@ class LaMetric extends utils.Adapter {
                 clearTimeout(this.refreshAppTimeout);
             }
 
-            this.log.debug('cleaned everything up...');
             callback();
         } catch (e) {
             callback();
