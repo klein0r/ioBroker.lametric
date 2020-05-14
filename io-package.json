@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "0.0.8",
+        "version": "0.0.9",
         "news": {
+            "0.0.9": {
+                "en": "Added missing translations",
+                "de": "Fehlende Übersetzungen hinzugefügt"
+            },
             "0.0.8": {
                 "en": "Updated dependencies",
                 "de": "Abhängigkeiten aktualisiert"

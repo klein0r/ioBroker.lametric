@@ -47,6 +47,10 @@ To show multiple frames, you can also provide an array as message
 
 ## Changelog
 
+### 0.0.9
+
+* (klein0r) Added missing translations
+
 ### 0.0.8
 
 * (klein0r) Updated dependencies
