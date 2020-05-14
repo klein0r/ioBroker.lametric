@@ -115,6 +115,7 @@ show();
 ### 0.0.9
 
 * (klein0r) Added missing translations
+* (GermanBluefox) Improved Blockly and main.js
 
 ### 0.0.8
 
