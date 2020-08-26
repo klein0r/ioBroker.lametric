@@ -208,7 +208,7 @@ class LaMetric extends utils.Adapter {
 
                         if (action === 'activate') {
                             this.log.debug('activating specific widget: ' + widget + ' of package ' + pack);
-    
+
                             this.buildRequest(
                                 'device/apps/' + pack + '/widgets/' + widget + '/activate',
                                 null,
@@ -237,7 +237,7 @@ class LaMetric extends utils.Adapter {
         this.log.debug('received message ' + JSON.stringify(obj.message));
 
         if (obj && obj.message && obj.command === 'notification') {
-            
+
             const notification = obj.message;
             const data = {};
 
@@ -267,11 +267,11 @@ class LaMetric extends utils.Adapter {
                     const frame = {
                         text: notification.text[i]
                     };
-    
+
                     if (notification.icon) {
                         frame.icon = notification.icon;
                     }
-    
+
                     dataModel.frames.push(frame);
                 }
             }
@@ -458,7 +458,7 @@ class LaMetric extends utils.Adapter {
                             native: {}
                         });
                         this.setState(path + uuid + '.version', {val: pack.version, ack: true});
-                        
+
                         // START special Widgets
                         if (pack.package === 'com.lametric.radio') {
                             this.setObjectNotExists(path + uuid + '.radio', {
