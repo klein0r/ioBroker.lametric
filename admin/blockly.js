@@ -216,7 +216,7 @@ Blockly.Blocks['lametric'] = {
         this.appendDummyInput('ICON_TYPE')
             .appendField(Blockly.Translate('lametric_icontype'))
             .appendField(new Blockly.FieldDropdown([
-                [Blockly.Translate('lametric_icon_none'), ""],
+                [Blockly.Translate('lametric_icon_none'), "none"],
                 [Blockly.Translate('lametric_icon_info'), "info"],
                 [Blockly.Translate('lametric_icon_alert'), "alert"]
             ]), 'ICON_TYPE');
