@@ -588,6 +588,53 @@ class LaMetric extends utils.Adapter {
                                 native: {}
                             });
 
+                        } else if (pack.package === 'com.lametric.countdown') {
+
+                            this.setObjectNotExists(path + uuid + '.countdown', {
+                                type: 'channel',
+                                common: {
+                                    name: pack.package,
+                                    role: ''
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.countdown.start', {
+                                type: 'state',
+                                common: {
+                                    name: 'Countdown Start',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.countdown.pause', {
+                                type: 'state',
+                                common: {
+                                    name: 'Countdown Pause',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
+                            this.setObjectNotExists(path + uuid + '.countdown.reset', {
+                                type: 'state',
+                                common: {
+                                    name: 'Countdown Reset',
+                                    type: 'boolean',
+                                    role: 'button',
+                                    read: false,
+                                    write: true
+                                },
+                                native: {}
+                            });
+
                         }
 
                         // END special Widgets
