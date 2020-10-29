@@ -3,8 +3,8 @@
 /* jslint node: true */
 'use strict';
 
-const utils       = require('@iobroker/adapter-core');
-const request     = require('request');
+const utils = require('@iobroker/adapter-core');
+const axios = require('axios');
 const adapterName = require('./package.json').name.split('.').pop();
 
 class LaMetric extends utils.Adapter {
@@ -39,7 +39,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    content => {
+                    (content, status) => {
                         this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
                         this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
                         this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
@@ -55,7 +55,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    content => {
+                    (content, status) => {
                         this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
                         this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
                         this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
@@ -70,7 +70,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/audio',
-                    content => {
+                    (content, status) => {
                         this.setState('meta.audio.volume', {val: content.success.data.volume, ack: true});
                     },
                     'PUT',
@@ -83,7 +83,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/bluetooth',
-                    content => {
+                    (content, status) => {
                         this.setState('meta.bluetooth.active', {val: content.success.data.active, ack: true});
                         this.setState('meta.bluetooth.available', {val: content.success.data.available, ack: true});
                         this.setState('meta.bluetooth.discoverable', {val: content.success.data.discoverable, ack: true});
@@ -101,7 +101,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/bluetooth',
-                    content => {
+                    (content, status) => {
                         this.setState('meta.bluetooth.active', {val: content.success.data.active, ack: true});
                         this.setState('meta.bluetooth.available', {val: content.success.data.available, ack: true});
                         this.setState('meta.bluetooth.discoverable', {val: content.success.data.discoverable, ack: true});
@@ -137,7 +137,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    content => {
+                    (content, status) => {
                         this.setState('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
                         this.setState('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
                         this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
@@ -175,7 +175,7 @@ class LaMetric extends utils.Adapter {
 
                         this.buildRequest(
                             'device/display',
-                            content => {
+                            (content, status) => {
                                 this.setState('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
                                 this.setState('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
                                 this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
@@ -292,7 +292,7 @@ class LaMetric extends utils.Adapter {
 
             this.buildRequest(
                 'device/notifications',
-                content => {
+                (content, status) => {
                     this.log.debug('Response: ' + JSON.stringify(content));
                     if (obj.callback) {
                         if (content && content.success) {
@@ -314,7 +314,7 @@ class LaMetric extends utils.Adapter {
 
         this.buildRequest(
             'device',
-            content => {
+            (content, status) => {
                 this.setState('info.connection', true, true);
 
                 this.setState('meta.name', {val: content.name, ack: true});
@@ -348,7 +348,7 @@ class LaMetric extends utils.Adapter {
 
         this.buildRequest(
             'device/display',
-            content => {
+            (content, status) => {
                 this.setState('meta.display.brightness', {val: content.brightness, ack: true});
                 this.setState('meta.display.brightnessAuto', {val: content.brightness_mode === 'auto', ack: true});
                 this.setState('meta.display.brightnessMode', {val: content.brightness_mode, ack: true});
@@ -377,7 +377,7 @@ class LaMetric extends utils.Adapter {
     refreshApps() {
         this.buildRequest(
             'device/apps',
-            content => {
+            (content, status) => {
                 const path = 'apps.';
 
                 Object.keys(content).forEach(p => {
@@ -605,41 +605,51 @@ class LaMetric extends utils.Adapter {
         }, 60000 * 60);
     }
 
-    buildRequest(service, callback, method, data) {
+    async buildRequest(service, callback, method, data) {
+        const url = '/api/v2/' + service;
         const self = this;
 
         if (this.config.lametricIp && this.config.lametricToken) {
-            const url = 'http://' + this.config.lametricIp + ':8080/api/v2/' + service;
-
             this.log.debug('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
 
-            request(
-                {
-                    url: url,
-                    method: method,
-                    json: data ? data : true,
-                    auth: {
-                        user: 'dev',
-                        pass: this.config.lametricToken,
-                        sendImmediately: true
-                    }
+            await axios({
+                method: method,
+                data: data,
+                baseURL: 'http://' + this.config.lametricIp + ':8080',
+                url: url,
+                timeout: 2000,
+                responseType: 'json',
+                auth: {
+                    username: 'dev',
+                    password: this.config.lametricToken
                 },
-                (error, response, content) => {
-                    if (response) {
-                        // Logging
-                        self.log.debug('received data (' + response.statusCode + '): ' + JSON.stringify(content));
-                    }
+                validateStatus: function (status) {
+                    return [200, 201].indexOf(status) > -1;
+                },
+            }).then(
+                function (response) {
+                    this.log.debug('received ' + response.status + ' response from ' + url + ' with content: ' + JSON.stringify(response.data));
 
-                    if (!error && (response.statusCode === 200 || response.statusCode === 201)) {
-                        if (callback && typeof callback === 'function') {
-                            callback(content);
-                        }
-                    } else if (error) {
-                        self.log.error(error);
-                    } else {
-                        self.log.error('Status Code: ' + response.statusCode + ' / Content: ' + JSON.stringify(content));
+                    if (response && callback && typeof callback === 'function') {
+                        callback(response.data, response.status);
                     }
-                }
+                }.bind(this)
+            ).catch(
+                function (error) {
+                    if (error.response) {
+                        // The request was made and the server responded with a status code
+    
+                        this.log.warn('received error ' + error.response.status + ' response from ' + url + ' with content: ' + JSON.stringify(error.response.data));
+                    } else if (error.request) {
+                        // The request was made but no response was received
+                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                        // http.ClientRequest in node.js
+                        this.log.info(error.message);
+                    } else {
+                        // Something happened in setting up the request that triggered an Error
+                        this.log.error(error.message);
+                    }
+                }.bind(this)
             );
         }
     }
