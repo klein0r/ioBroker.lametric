@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "0.0.10",
+        "version": "1.0.0",
         "news": {
+            "1.0.0": {
+                "en": "First stable release",
+                "de": "Erster stable release"
+            },
             "0.0.10": {
                 "en": "Switched to axios lib",
                 "de": "Zu axios library gewechselt"
@@ -81,7 +85,12 @@
         "messagebox": true,
         "dependencies": [
             { "js-controller": ">=1.4.2" }
-        ]
+        ],
+        "plugins": {
+            "sentry": {
+                "dsn": "https://e3a7f6c5e3984bc1819c3e5f67a0257d@sentry.iobroker.net/106"
+            }
+        }
     },
     "native": {
         "lametricIp": "",
