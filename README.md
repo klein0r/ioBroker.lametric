@@ -123,6 +123,7 @@ show();
 
 * (klein0r) First stable release
 * (klein0r) Added iobroker sentry
+* (klein0r) Added brightness and volume limit information (min, max)
 
 ### 0.0.10
 

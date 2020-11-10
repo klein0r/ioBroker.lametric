@@ -41,6 +41,8 @@ class LaMetric extends utils.Adapter {
                     'device/display',
                     (content, status) => {
                         this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
+                        this.setState('meta.display.brightnessMin', {val: content.success.data.brightness_limit.min, ack: true});
+                        this.setState('meta.display.brightnessMax', {val: content.success.data.brightness_limit.max, ack: true});
                         this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
                         this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
                     },
@@ -57,6 +59,8 @@ class LaMetric extends utils.Adapter {
                     'device/display',
                     (content, status) => {
                         this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
+                        this.setState('meta.display.brightnessMin', {val: content.success.data.brightness_limit.min, ack: true});
+                        this.setState('meta.display.brightnessMax', {val: content.success.data.brightness_limit.max, ack: true});
                         this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
                         this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
                     },
@@ -72,6 +76,8 @@ class LaMetric extends utils.Adapter {
                     'device/audio',
                     (content, status) => {
                         this.setState('meta.audio.volume', {val: content.success.data.volume, ack: true});
+                        this.setState('meta.audio.volumeMin', {val: content.success.data.volume_limit.min, ack: true});
+                        this.setState('meta.audio.volumeMax', {val: content.success.data.volume_limit.max, ack: true});
                     },
                     'PUT',
                     {
@@ -324,6 +330,8 @@ class LaMetric extends utils.Adapter {
                 this.setState('meta.mode', {val: content.mode, ack: true});
 
                 this.setState('meta.audio.volume', {val: content.audio.volume, ack: true});
+                this.setState('meta.audio.volumeMin', {val: content.audio.volume_limit.min, ack: true});
+                this.setState('meta.audio.volumeMax', {val: content.audio.volume_limit.max, ack: true});
 
                 this.setState('meta.bluetooth.available', {val: content.bluetooth.available, ack: true});
                 this.setState('meta.bluetooth.name', {val: content.bluetooth.name, ack: true});
@@ -350,8 +358,11 @@ class LaMetric extends utils.Adapter {
             'device/display',
             (content, status) => {
                 this.setState('meta.display.brightness', {val: content.brightness, ack: true});
+                this.setState('meta.display.brightnessMin', {val: content.brightness_limit.min, ack: true});
+                this.setState('meta.display.brightnessMax', {val: content.brightness_limit.max, ack: true});
                 this.setState('meta.display.brightnessAuto', {val: content.brightness_mode === 'auto', ack: true});
                 this.setState('meta.display.brightnessMode', {val: content.brightness_mode, ack: true});
+
                 this.setState('meta.display.width', {val: content.width, ack: true});
                 this.setState('meta.display.height', {val: content.height, ack: true});
                 this.setState('meta.display.type', {val: content.type, ack: true});

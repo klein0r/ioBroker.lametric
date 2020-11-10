@@ -211,6 +211,32 @@
             "native": {}
         },
         {
+            "_id": "meta.audio.volumeMin",
+            "type": "state",
+            "common": {
+                "name": "Audio volume (min)",
+                "type": "number",
+                "role": "level.volume",
+                "unit": "%",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.audio.volumeMax",
+            "type": "state",
+            "common": {
+                "name": "Audio volume (max)",
+                "type": "number",
+                "role": "level.volume",
+                "unit": "%",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "meta.bluetooth",
             "type": "channel",
             "common": {
@@ -310,6 +336,32 @@
                 "unit": "%",
                 "read": true,
                 "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.brightnessMin",
+            "type": "state",
+            "common": {
+                "name": "Brightness (min)",
+                "type": "number",
+                "role": "level.dimmer",
+                "unit": "%",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.brightnessMax",
+            "type": "state",
+            "common": {
+                "name": "Brightness (max)",
+                "type": "number",
+                "role": "level.dimmer",
+                "unit": "%",
+                "read": true,
+                "write": false
             },
             "native": {}
         },
