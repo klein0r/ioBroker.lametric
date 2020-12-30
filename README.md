@@ -135,7 +135,9 @@ show();
 
 ## My Data (DIY)
 
-LaMetric offers an App to poll custom data. This app is called [My Data DIY](https://apps.lametric.com/apps/my_data__diy_/8942).
+LaMetric offers an app (on the integrated app market) to poll custom data. This app is called [My Data DIY](https://apps.lametric.com/apps/my_data__diy_/8942).
+
+### Configuration (with authentication)
 
 1. Install the [Simple API ioBroker Adapter](https://github.com/ioBroker/ioBroker.simple-api)
 2. Create a new ioBroker user called "lametric" with a custom password (e.g. HhX7dZl3Fe)
@@ -148,7 +150,20 @@ LaMetric offers an App to poll custom data. This app is called [My Data DIY](htt
 http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?&user=lametric&pass=HhX7dZl3Fe
 ```
 
-**Ensure to update IP, port, user and password in URL if necessary!**
+**Ensure to update IP, port, user and password in the URL if necessary!**
+
+### Configuration (without authentication)
+
+1. Install the [Simple API ioBroker Adapter](https://github.com/ioBroker/ioBroker.simple-api)
+2. Install this "My Data DIY" App on your LaMetric Time (use Market)
+3. Open the Settings and configure the simple api url (see below)
+4. Go to the adapter configuration and configure the frames with your custom information (icon and text)
+
+```
+http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/
+```
+
+**Ensure to update IP and port in the URL if necessary!**
 
 ## Changelog
 
