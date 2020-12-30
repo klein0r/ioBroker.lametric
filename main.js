@@ -17,7 +17,8 @@ class LaMetric extends utils.Adapter {
 
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
-        this.refreshMyDataDiyTimeout = null;
+
+        this.myDataDiyForeignStates = [];
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -30,10 +31,32 @@ class LaMetric extends utils.Adapter {
 
         this.refreshState();
         this.refreshApps();
-        this.refreshMyDataDIY();
+
+        if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
+            this.collectMyDataDiyForeignStates(this.config.mydatadiy);
+        } else {
+            this.log.debug('My Data (DIY) configuration is not available');
+            this.setState('mydatadiy.obj', {val: {'frames': [{text: 'No Data'}]}, ack: true});
+        }
     }
 
     onStateChange(id, state) {
+        if (id && state && this.myDataDiyForeignStates.filter(item => { return item.id === id; }).length > 0) {
+            this.myDataDiyForeignStates = this.myDataDiyForeignStates.map(item => {
+                if (item.id === id) {
+                    this.log.debug('My Data (DIY) update state value to ' + state.val);
+                    item.val = state.val;
+                }
+
+                return item;
+            });
+
+            this.log.debug('My Data (DIY) list after value update ' + JSON.stringify(this.myDataDiyForeignStates));
+
+            this.refreshMyDataDiy(); // Refresh Output
+        }
+
+        // Handle states of LaMetric adapter
         if (id && state && !state.ack) {
             // No ack = changed by user
             if (id === this.namespace + '.meta.display.brightness') {
@@ -312,7 +335,7 @@ class LaMetric extends utils.Adapter {
 
                 for (let i = 0; i < notification.text.length; i++) {
                     if (Array.isArray(notification.text[i])) {
-                        const numberItems = notification.text[i].filter(item => (typeof item === "number"));
+                        const numberItems = notification.text[i].filter(item => (typeof item === 'number'));
 
                         if (numberItems.length > 0) {
                             dataModel.frames.push({chartData: numberItems});
@@ -323,11 +346,11 @@ class LaMetric extends utils.Adapter {
                         const frame = {
                             text: notification.text[i]
                         };
-    
+
                         if (notification.icon) {
                             frame.icon = notification.icon;
                         }
-    
+
                         dataModel.frames.push(frame);
                     }
                 }
@@ -747,7 +770,7 @@ class LaMetric extends utils.Adapter {
                 function (error) {
                     if (error.response) {
                         // The request was made and the server responded with a status code
-    
+
                         this.log.warn('received error ' + error.response.status + ' response from ' + url + ' with content: ' + JSON.stringify(error.response.data));
                     } else if (error.request) {
                         // The request was made but no response was received
@@ -767,43 +790,68 @@ class LaMetric extends utils.Adapter {
         }
     }
 
-    refreshMyDataDIY() {
-        if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
-            this.log.debug('Collecting My Data (DIY) information');
+    async collectMyDataDiyForeignStates(frames) {
+        this.log.debug('My Data (DIY) collecting states');
 
-            const frames = this.config.mydatadiy.map(f => {
-                f.text = f.text.replace(
-                    /\{([a-zA-Z0-9\.]+)\}/g,
-                    (m, id) => {
-                        this.log.debug('Replacing {' + id + '} in My Data (DIY) frame');
+        const foreignStates = [];
 
-                        let replacedVal = '';
-                        this.getForeignState(id, (err, state) => {
-                            this.log.debug(JSON.stringify(state));
-                            if (state) {
-                                this.log.debug('Found replacement for {' + id + '}: ' + state.val);
-                                replacedVal = state.val;
-                            }
-                        });
-                        return replacedVal;
+        // Collect all IDs in texts
+        frames.forEach(f => {
+            f.text.replace(
+                /\{([a-zA-Z0-9\.]+)\}/g,
+                (m, id) => {
+                    if (foreignStates.indexOf(id) === -1) {
+                        foreignStates.push(id);
                     }
-                );
-                return f;
-            });
+                }
+            );
+        });
 
-            this.log.debug('Updating My Data (DIY) to ' + JSON.stringify(frames));
+        Promise.all(
+            foreignStates.map(
+                async (id) => {
+                    this.log.debug('My Data (DIY) subscribed to state ' + id);
+                    this.subscribeForeignStates(id);
 
-            this.setState('mydatadiy.obj', {val: {"frames": frames}, ack: true});
+                    const data = await this.getForeignStateAsync(id);
 
-            this.log.debug('re-creating my data diy refresh timeout');
-            this.refreshMyDataDiyTimeout = this.refreshMyDataDiyTimeout || setTimeout(() => {
-                this.refreshMyDataDiyTimeout = null;
-                this.refreshMyDataDIY();
-            }, 10000);
-        } else {
-            this.log.debug('My Data (DIY) configuration is not available');
-            this.setState('mydatadiy.obj', {val: {"frames": [{text: "No Data"}]}, ack: true});
-        }
+                    return new Promise(resolve => {
+                        resolve(
+                            {
+                                id: id,
+                                val: data.val
+                            }
+                        );
+                    });
+                }
+            )
+        ).then(data => {
+            this.myDataDiyForeignStates = data;
+
+            this.log.debug('My Data (DIY) found foreign states: ' + JSON.stringify(this.myDataDiyForeignStates));
+            this.refreshMyDataDiy();
+        });
+    }
+
+    async refreshMyDataDiy() {
+        this.log.debug('My Data (DIY) refresh output state with config ' + JSON.stringify(this.config.mydatadiy));
+
+        const clonedFrames = JSON.parse(JSON.stringify(this.config.mydatadiy)); // TODO: Better way to clone?!
+        const newFrames = clonedFrames.map(f => {
+            f.text = f.text.replace(
+                /\{([a-zA-Z0-9\.]+)\}/g,
+                (m, id) => {
+                    this.log.debug('My Data (DIY) replacing {' + id + '} in frame');
+
+                    return this.myDataDiyForeignStates.filter(item => { return item.id === id; })[0].val;
+                }
+            );
+            return f;
+        });
+
+        this.log.debug('My Data (DIY) frame update to ' + JSON.stringify(newFrames));
+
+        this.setState('mydatadiy.obj', {val: {'frames': newFrames}, ack: true});
     }
 
     onUnload(callback) {
@@ -818,11 +866,6 @@ class LaMetric extends utils.Adapter {
             if (this.refreshAppTimeout) {
                 this.log.debug('clearing refresh app timeout');
                 clearTimeout(this.refreshAppTimeout);
-            }
-
-            if (this.refreshMyDataDiyTimeout) {
-                this.log.debug('clearing refresh my data diy timeout');
-                clearTimeout(this.refreshMyDataDiyTimeout);
             }
 
             callback();
