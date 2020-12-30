@@ -97,20 +97,18 @@ Example to show some information cyclic:
 let i = 0;
 function show() {
     console.log('Show ' + i);
-    sendTo('lametric.0', 'send', {
-        "priority": "info",
-        "icon_type": "info",
-        "lifeTime": 10000,
-        "model": {
-        "frames": [
-                {
-                    "icon":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNWRHWFIAAAAySURBVBhXY4AAYdcKk1lngCSUDwHIfAQbzgLqgDCgIqRLwFkQCYQoBAD5EATl4wQMDADhuxQzaDgX0gAAAABJRU5ErkJggg==",
-                    "text":"Hi " + i
-                }
-            ],
-            "cycles": 0
+    sendTo(
+        "lametric.0",
+        "notification",
+        {
+            priority: "info",
+            iconType: "info",
+            lifeTime: 5000,
+            icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjEuNWRHWFIAAAAySURBVBhXY4AAYdcKk1lngCSUDwHIfAQbzgLqgDCgIqRLwFkQCYQoBAD5EATl4wQMDADhuxQzaDgX0gAAAABJRU5ErkJggg==",
+            text: "Hi " + i,
+            cycles: 1
         }
-    });
+    );
     i++;
 }
 setInterval(show, 10000);
