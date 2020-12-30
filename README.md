@@ -117,6 +117,10 @@ show();
 
 ## Changelog
 
+### 1.0.1
+
+* (klein0r) Added chart data support to notification
+
 ### 1.0.0
 
 * (klein0r) First stable release

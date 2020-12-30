@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "news": {
+            "1.0.1": {
+                "en": "Added chart data support to notification",
+                "de": "Graphen in Notifications hinzugefügt"
+            },
             "1.0.0": {
                 "en": "First stable release",
                 "de": "Erster stable release"
