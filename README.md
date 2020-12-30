@@ -54,41 +54,37 @@ To show multiple frames, you can also provide an array as message
 To show the message on your la metric just send a message to this instance with script adapter:
 
 ```
-sendTo('lametric.0', 'send', {
-    "priority": "[info|warning|critical]",
-    "icon_type": "[none|info|alert]",
-    "lifeTime": <milliseconds>,
-    "model": {
-    "frames": [
-         {
-            "icon":"<icon id or base64 encoded binary>",
-            "text":"<text>"
-         },
-         {
-           "icon": 298,
-           "text":"text"
-         },
-         {
-             "icon": 120,
-             "goalData":{
-                 "start": 0,
-                 "current": 50,
-                 "end": 100,
-                 "unit": "%"
-             }
-         },
-         {
-             "chartData": [ <comma separated integer values> ] // [ 1, 2, 3, 4, 5, 6, 7 ]
-         }
-         ],
-         "sound": {
-           "category":"[alarms|notifications]",
-             "id":"<sound_id>",
-             "repeat":<repeat count>
-         },
-         "cycles":<cycle count>
+sendTo(
+    "lametric.0",
+    "notification",
+    {
+        priority: "[info|warning|critical]",
+        iconType: "[none|info|alert]",
+        sound: "<sound from list>",
+        lifeTime: <milliseconds>,
+        icon: "<icon>",
+        text: "<text>",
+        cycles: <cycles>
     }
-});
+);
+```
+
+Example:
+
+```
+sendTo(
+    "lametric.0",
+    "notification",
+    {
+        priority: "info",
+        iconType: "none",
+        sound: "cat",
+        lifeTime: 5000,
+        icon: "i31820",
+        text: "test",
+        cycles: 1
+    }
+);
 ```
 
 Example to show some information cyclic:
