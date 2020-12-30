@@ -2,6 +2,30 @@
 'use strict';
 
 systemDictionary = {
+    "Main Settings": {
+        "en": "Main Settings",
+        "de": "Haupteinstellungen",
+        "ru": "Основные параметры",
+        "pt": "Configurações principais",
+        "nl": "Belangrijkste instellingen",
+        "fr": "Réglages principaux",
+        "it": "Impostazioni principali",
+        "es": "Ajustes principales",
+        "pl": "Ustawienia główne",
+        "zh-cn": "主要设定"
+    },
+    "My Data (DIY)": {
+        "en": "My Data (DIY)",
+        "de": "My Data (DIY)",
+        "ru": "Мои данные (DIY)",
+        "pt": "Meus dados (faça você mesmo)",
+        "nl": "Mijn gegevens (DIY)",
+        "fr": "Mes données (bricolage)",
+        "it": "I miei dati (fai da te)",
+        "es": "Mis datos (bricolaje)",
+        "pl": "Moje dane (DIY)",
+        "zh-cn": "我的资料（DIY）"
+    },
     "IP": {
         "en": "IP-Address",
         "de": "IP Adresse",
@@ -40,7 +64,7 @@ systemDictionary = {
     },
     "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": {
         "en": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>",
-        "de": "Dein persönliches Entwickler-Token - Du kannst es <a href=\"https://developer.lametric.com/\">hier erhalten</a>",
+        "de": "Dein persönliches Entwickler-Token - Du kannst es <a href=\"https://developer.lametric.com/\">hier</a> herausfinden",
         "ru": "Ваш личный токен разработчика - вы можете получить его <a href=\"https://developer.lametric.com/\">здесь</a>",
         "pt": "Seu token de desenvolvedor pessoal - você pode obtê-lo <a href=\"https://developer.lametric.com/\">aqui</a>",
         "nl": "Je persoonlijke ontwikkelaarstoken - je kunt het <a href=\"https://developer.lametric.com/\">hier downloaden</a>",
@@ -49,5 +73,29 @@ systemDictionary = {
         "es": "Tu token de desarrollador personal: puedes obtenerlo <a href=\"https://developer.lametric.com/\">aquí</a>",
         "pl": "Twój osobisty token programisty - możesz go zdobyć <a href=\"https://developer.lametric.com/\">tutaj</a>",
         "zh-cn": "您的个人开发者令牌-您可以<a href=\"https://developer.lametric.com/\">在此处</a>获取"
+    },
+    "Use the SimpleAPI adapter to request these information (see README for details)": {
+        "en": "Use the SimpleAPI adapter to request these information (see README for details)",
+        "de": "Verwende den SimpleAPI-Adapter, um diese Informationen abzurufen (Einzelheiten siehe README-Datei).",
+        "ru": "Используйте адаптер SimpleAPI для запроса этой информации (подробности см. В README)",
+        "pt": "Use o adaptador SimpleAPI para solicitar essas informações (consulte README para obter detalhes)",
+        "nl": "Gebruik de SimpleAPI-adapter om deze informatie op te vragen (zie README voor details)",
+        "fr": "Utilisez l'adaptateur SimpleAPI pour demander ces informations (voir README pour plus de détails)",
+        "it": "Usa l'adattatore SimpleAPI per richiedere queste informazioni (vedi README per i dettagli)",
+        "es": "Utilice el adaptador SimpleAPI para solicitar esta información (consulte README para obtener más detalles)",
+        "pl": "Użyj adaptera SimpleAPI, aby zażądać tych informacji (szczegółowe informacje można znaleźć w pliku README)",
+        "zh-cn": "使用SimpleAPI适配器请求这些信息（有关详细信息，请参阅自述文件）"
+    },
+    "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": {
+        "en": "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>",
+        "de": "Verfügbare Symbole finden Sie <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">hier</a>",
+        "ru": "Вы можете найти доступные значки <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">здесь</a>",
+        "pt": "Você pode encontrar os ícones disponíveis <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">aqui</a>",
+        "nl": "Beschikbare pictogrammen vindt u <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">hier</a>",
+        "fr": "Vous pouvez trouver les icônes disponibles <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">ici</a>",
+        "it": "Puoi trovare le icone disponibili <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">qui</a>",
+        "es": "Puede encontrar los iconos disponibles <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">aquí</a>",
+        "pl": "Dostępne ikony znajdziesz <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">tutaj</a>",
+        "zh-cn": "您可以<a target=\"_blank\" href=\"https://developer.lametric.com/icons\">在此处</a>找到可用的图标"
     }
 };

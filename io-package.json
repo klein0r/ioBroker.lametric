@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "1.0.1",
+        "version": "1.1.0",
         "news": {
+            "1.1.0": {
+                "en": "Added support for My Data (DIY)",
+                "de": "Unterstützung für My Data (DIY) hinzugefügt"
+            },
             "1.0.1": {
                 "en": "Added chart data support to notification",
                 "de": "Graphen in Notifications hinzugefügt"
@@ -687,6 +691,27 @@
                 "role": "button",
                 "read": false,
                 "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "mydatadiy",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "My Data (DIY)"
+            },
+            "native": {}
+        },
+        {
+            "_id": "mydatadiy.obj",
+            "type": "state",
+            "common": {
+                "name": "My Data (DIY) frame data",
+                "type": "string",
+                "role": "json",
+                "read": true,
+                "write": false
             },
             "native": {}
         }

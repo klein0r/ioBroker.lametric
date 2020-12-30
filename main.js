@@ -17,6 +17,7 @@ class LaMetric extends utils.Adapter {
 
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
+        this.refreshMyDataDiyTimeout = null;
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -29,6 +30,7 @@ class LaMetric extends utils.Adapter {
 
         this.refreshState();
         this.refreshApps();
+        this.refreshMyDataDIY();
     }
 
     onStateChange(id, state) {
@@ -765,6 +767,33 @@ class LaMetric extends utils.Adapter {
         }
     }
 
+    refreshMyDataDIY() {
+        if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
+            this.log.debug('Collecting My Data (DIY) information');
+
+            const frames = this.config.mydatadiy;
+            const frameResult = [];
+
+            if (frames.length > 0) {
+                this.log.debug('Updating My Data (DIY) to ' + JSON.stringify(frames));
+
+                this.setState('mydatadiy.obj', {val: {"frames": frames}, ack: true});
+
+                this.log.debug('re-creating my data diy refresh timeout');
+                this.refreshMyDataDiyTimeout = this.refreshMyDataDiyTimeout || setTimeout(() => {
+                    this.refreshMyDataDiyTimeout = null;
+                    this.refreshMyDataDIY();
+                }, 10000);
+            } else {
+                this.log.debug('My Data (DIY) configuration is empty');
+                this.setState('mydatadiy.obj', {val: {"frames": [{text: "No Data"}]}, ack: true});
+            }
+        } else {
+            this.log.debug('My Data (DIY) configuration is not available');
+            this.setState('mydatadiy.obj', {val: {"frames": [{text: "No Data"}]}, ack: true});
+        }
+    }
+
     onUnload(callback) {
         try {
             this.setState('info.connection', false, true);
@@ -777,6 +806,11 @@ class LaMetric extends utils.Adapter {
             if (this.refreshAppTimeout) {
                 this.log.debug('clearing refresh app timeout');
                 clearTimeout(this.refreshAppTimeout);
+            }
+
+            if (this.refreshMyDataDiyTimeout) {
+                this.log.debug('clearing refresh my data diy timeout');
+                clearTimeout(this.refreshMyDataDiyTimeout);
             }
 
             callback();

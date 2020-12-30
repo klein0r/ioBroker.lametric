@@ -37,7 +37,9 @@
                 }
             });
             onChange(false);
-            // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
+
+            values2table('mydatadiy', settings.mydatadiy || [], onChange);
+
             if (M) M.updateTextFields();
         }
 
@@ -53,15 +55,24 @@
                     obj[$this.attr('id')] = $this.val();
                 }
             });
+
+            obj.mydatadiy = table2values('mydatadiy');
+
             callback(obj);
         }
     </script>
 </head>
 <body>
     <div class="m adapter-container">
-        <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s2"><a href="#tab-main" class="translate active">Main Settings</a></li>
+                <li class="tab col s2"><a href="#tab-mydatadiy" class="translate">My Data (DIY)</a></li>
+            </ul>
+        </div>
+        <div id="tab-main" class="col s12 page">
             <div class="row">
-                <div class="input-field col s6">
+                <div class="col s12 m4 l2">
                     <img src="lametric.png" class="logo">
                 </div>
             </div>
@@ -82,6 +93,32 @@
                     <a target="_blank" href="https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-lametric">
                         <img class="ad" src="https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png">
                     </a>
+                </div>
+            </div>
+        </div>
+        <div id="tab-mydatadiy" class="col s12 page">
+            <div class="row">
+                <div class="col s12">
+                    <ul>
+                        <li class="translate">Use the SimpleAPI adapter to request these information (see README for details)</li>
+                        <li class="translate">You can find available icons <a target="_blank" href="https://developer.lametric.com/icons">here</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12" id="mydatadiy">
+                    <a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a>
+                    <div class="table-values-div">
+                        <table class="table-values">
+                            <thead>
+                                <tr>
+                                    <th data-name="icon" style="width: 10%" class="translate">icon</th>
+                                    <th data-name="text" style="width: 80%" class="translate">text</th>
+                                    <th data-buttons="delete" style="width: 10%"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
