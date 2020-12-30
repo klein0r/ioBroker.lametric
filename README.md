@@ -64,16 +64,16 @@ sendTo(
     {
         priority: "[info|warning|critical]",
         iconType: "[none|info|alert]",
-        sound: "<sound from list>",
+        sound: "<string from sound list>",
         lifeTime: <milliseconds>,
         icon: "<icon>",
-        text: "<text>",
-        cycles: <cycles>
+        text: "<string|array>",
+        cycles: <integer>
     }
 );
 ```
 
-Example:
+Example single frame:
 
 ```
 sendTo(
@@ -86,6 +86,24 @@ sendTo(
         lifeTime: 5000,
         icon: "i31820",
         text: "test",
+        cycles: 1
+    }
+);
+```
+
+Example multiple frames:
+
+```
+sendTo(
+    "lametric.0",
+    "notification",
+    {
+        priority: "info",
+        iconType: "none",
+        sound: "cat",
+        lifeTime: 5000,
+        icon: "i31820",
+        text: ["frame 1", "frame 2", "frame 3"],
         cycles: 1
     }
 );
