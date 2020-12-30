@@ -57,7 +57,7 @@ If you want to use chart frames, you have to specify an array of numbers as a fr
 
 To show the message on your la metric just send a message to this instance with script adapter:
 
-```
+```JavaScript
 sendTo(
     "lametric.0",
     "notification",
@@ -75,7 +75,7 @@ sendTo(
 
 Example single frame:
 
-```
+```JavaScript
 sendTo(
     "lametric.0",
     "notification",
@@ -93,7 +93,7 @@ sendTo(
 
 Example multiple frames:
 
-```
+```JavaScript
 sendTo(
     "lametric.0",
     "notification",
@@ -111,7 +111,7 @@ sendTo(
 
 Example to show some information cyclic:
 
-```
+```JavaScript
 let i = 0;
 function show() {
     console.log('Show ' + i);
