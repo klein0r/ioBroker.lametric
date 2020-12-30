@@ -55,7 +55,10 @@ If you want to use chart frames, you have to specify an array of numbers as a fr
 
 ## My Data (DIY)
 
-LaMetric offers an app (on the integrated app market) to poll custom data. This app is called [My Data DIY](https://apps.lametric.com/apps/my_data__diy_/8942).
+LaMetric offers an app (on the integrated app market) to poll custom data. This app is called [My Data DIY](https://apps.lametric.com/apps/my_data__diy_/8942). This adapter creates a new state in the required format.
+You can use the Simple API Adapter to transfer the data to the LaMetric Time.
+
+```ioBroker LaMetric Adapter -> State with Frame information <- Simple API Adapter <- My Data DIY App <- LaMetric```
 
 ### Configuration (with authentication)
 
