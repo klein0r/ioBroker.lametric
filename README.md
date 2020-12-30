@@ -39,15 +39,19 @@ You can read more about notifications here: https://lametric-documentation.readt
 
 Features are limited by the [official API features](https://lametric-documentation.readthedocs.io/en/latest/reference-docs/lametric-time-reference.html).
 
-## Blockly
+## Blockly Examples
 
 You can use a simple string as message, which will be shown as a single frame
 
-![simple](docs/blockly1.png)
+![single frame](docs/blockly1.png)
 
 To show multiple frames, you can also provide an array as message
 
-![simple](docs/blockly2.png)
+![multiple frames](docs/blockly2.png)
+
+If you want to use chart frames, you have to specify an array of numbers as a frame
+
+![chart data frames](docs/blockly3.png)
 
 ## Scripts
 

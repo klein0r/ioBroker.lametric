@@ -239,62 +239,111 @@ class LaMetric extends utils.Adapter {
         }
     }
 
+    /*
+    {
+      "priority": "[info|warning|critical]",
+      "icon_type": "[none|info|alert]",
+      "lifeTime": <milliseconds>,
+      "model": {
+       "frames": [
+        {
+           "icon": "<icon id or base64 encoded binary>",
+           "text": "<text>"
+        },
+        {
+          "icon": 298,
+          "text": "text"
+        },
+        {
+            "icon": 120,
+            "goalData": {
+                "start": 0,
+                "current": 50,
+                "end": 100,
+                "unit": "%"
+            }
+        },
+        {
+            "chartData": [ <comma separated integer values> ]
+        }
+        ],
+        "sound": {
+          "category": "[alarms|notifications]",
+            "id": "<sound_id>",
+            "repeat": <repeat count>
+        },
+        "cycles": <cycle count>
+      }
+    }
+    */
+
     onMessage(obj) {
         this.log.debug('received message ' + JSON.stringify(obj.message));
 
-        if (obj && obj.message && obj.command === 'notification') {
-
-            const notification = obj.message;
+        if (obj && obj.message) {
             const data = {};
 
-            if (notification.priority) {
-                data.priority = notification.priority; // Optional
-            }
+            if (obj.command === 'notification') {
 
-            if (notification.iconType) {
-                data.icon_type = notification.iconType; // Optional
-            }
+                const notification = obj.message;
 
-            if (notification.lifeTime) {
-                data.lifetime = notification.lifeTime; // Optional
-            }
-
-            const dataModel = {
-                frames: []
-            };
-
-            // Always create an array to make frame handling easier
-            if (!Array.isArray(notification.text)) {
-                notification.text = [notification.text];
-            }
-
-            for (let i = 0; i < notification.text.length; i++) {
-                if (notification.text[i] !== null) {
-                    const frame = {
-                        text: notification.text[i]
-                    };
-
-                    if (notification.icon) {
-                        frame.icon = notification.icon;
-                    }
-
-                    dataModel.frames.push(frame);
+                if (notification.priority) {
+                    data.priority = notification.priority; // Optional
                 }
-            }
 
-            if (notification.sound) {
-                dataModel.sound = {
-                    category: notification.sound.indexOf('alarm') > -1 ? 'alarms' : 'notifications',
-                    id: notification.sound,
-                    repeat: 1
+                if (notification.iconType) {
+                    data.icon_type = notification.iconType; // Optional
+                }
+
+                if (notification.lifeTime) {
+                    data.lifetime = notification.lifeTime; // Optional
+                }
+
+                const dataModel = {
+                    frames: []
                 };
-            }
 
-            if (notification.cycles) {
-                dataModel.cycles = notification.cycles; // Optional
-            }
+                // Always create an array to make frame handling easier
+                if (!Array.isArray(notification.text)) {
+                    notification.text = [notification.text];
+                }
 
-            data.model = dataModel;
+                for (let i = 0; i < notification.text.length; i++) {
+                    if (Array.isArray(notification.text[i])) {
+                        const numberItems = notification.text[i].filter(item => (typeof item === "number"));
+
+                        if (numberItems.length > 0) {
+                            dataModel.frames.push({chartData: numberItems});
+                        } else {
+                            this.log.warn('Chart frames should contain numbers (other items are ignored)');
+                        }
+                    } else if (notification.text[i] !== null) {
+                        const frame = {
+                            text: notification.text[i]
+                        };
+    
+                        if (notification.icon) {
+                            frame.icon = notification.icon;
+                        }
+    
+                        dataModel.frames.push(frame);
+                    }
+                }
+
+                if (notification.sound) {
+                    dataModel.sound = {
+                        category: notification.sound.indexOf('alarm') > -1 ? 'alarms' : 'notifications',
+                        id: notification.sound,
+                        repeat: 1
+                    };
+                }
+
+                if (notification.cycles) {
+                    dataModel.cycles = notification.cycles; // Optional
+                }
+
+                data.model = dataModel;
+            }
 
             this.buildRequest(
                 'device/notifications',
