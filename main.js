@@ -771,23 +771,35 @@ class LaMetric extends utils.Adapter {
         if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
             this.log.debug('Collecting My Data (DIY) information');
 
-            const frames = this.config.mydatadiy;
-            const frameResult = [];
+            const frames = this.config.mydatadiy.map(f => {
+                f.text = f.text.replace(
+                    /\{([a-zA-Z0-9\.]+)\}/g,
+                    (m, id) => {
+                        this.log.debug('Replacing {' + id + '} in My Data (DIY) frame');
 
-            if (frames.length > 0) {
-                this.log.debug('Updating My Data (DIY) to ' + JSON.stringify(frames));
+                        let replacedVal = '';
+                        this.getForeignState(id, (err, state) => {
+                            this.log.debug(JSON.stringify(state));
+                            if (state) {
+                                this.log.debug('Found replacement for {' + id + '}: ' + state.val);
+                                replacedVal = state.val;
+                            }
+                        });
+                        return replacedVal;
+                    }
+                );
+                return f;
+            });
 
-                this.setState('mydatadiy.obj', {val: {"frames": frames}, ack: true});
+            this.log.debug('Updating My Data (DIY) to ' + JSON.stringify(frames));
 
-                this.log.debug('re-creating my data diy refresh timeout');
-                this.refreshMyDataDiyTimeout = this.refreshMyDataDiyTimeout || setTimeout(() => {
-                    this.refreshMyDataDiyTimeout = null;
-                    this.refreshMyDataDIY();
-                }, 10000);
-            } else {
-                this.log.debug('My Data (DIY) configuration is empty');
-                this.setState('mydatadiy.obj', {val: {"frames": [{text: "No Data"}]}, ack: true});
-            }
+            this.setState('mydatadiy.obj', {val: {"frames": frames}, ack: true});
+
+            this.log.debug('re-creating my data diy refresh timeout');
+            this.refreshMyDataDiyTimeout = this.refreshMyDataDiyTimeout || setTimeout(() => {
+                this.refreshMyDataDiyTimeout = null;
+                this.refreshMyDataDIY();
+            }, 10000);
         } else {
             this.log.debug('My Data (DIY) configuration is not available');
             this.setState('mydatadiy.obj', {val: {"frames": [{text: "No Data"}]}, ack: true});
