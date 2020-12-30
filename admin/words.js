@@ -88,7 +88,7 @@ systemDictionary = {
     },
     "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": {
         "en": "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>",
-        "de": "Verfügbare Symbole finden Sie <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">hier</a>",
+        "de": "Verfügbare Icons findest Du <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">hier</a>",
         "ru": "Вы можете найти доступные значки <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">здесь</a>",
         "pt": "Você pode encontrar os ícones disponíveis <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">aqui</a>",
         "nl": "Beschikbare pictogrammen vindt u <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">hier</a>",
@@ -97,5 +97,29 @@ systemDictionary = {
         "es": "Puede encontrar los iconos disponibles <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">aquí</a>",
         "pl": "Dostępne ikony znajdziesz <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">tutaj</a>",
         "zh-cn": "您可以<a target=\"_blank\" href=\"https://developer.lametric.com/icons\">在此处</a>找到可用的图标"
+    },
+    "icon": {
+        "en": "icon",
+        "de": "Icon",
+        "ru": "икона",
+        "pt": "ícone",
+        "nl": "icoon",
+        "fr": "icône",
+        "it": "icona",
+        "es": "icono",
+        "pl": "Ikona",
+        "zh-cn": "图标"
+    },
+    "text": {
+        "en": "text",
+        "de": "Text",
+        "ru": "текст",
+        "pt": "texto",
+        "nl": "tekst",
+        "fr": "texte",
+        "it": "testo",
+        "es": "texto",
+        "pl": "tekst",
+        "zh-cn": "文本"
     }
 };

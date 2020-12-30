@@ -65,8 +65,8 @@ You can use the Simple API Adapter to transfer the data to the LaMetric Time.
 1. Install the [Simple API ioBroker Adapter](https://github.com/ioBroker/ioBroker.simple-api)
 2. Create a new ioBroker user called "lametric" with a custom password (e.g. HhX7dZl3Fe)
 3. Add the "lametric" user to the group "users"
-4. Install this "My Data DIY" App on your LaMetric Time (use Market)
-5. Open the Settings and configure the simple api url (see below)
+4. Install this *My Data DIY* App on your LaMetric Time (use Market)
+5. Open the *My Data (DIY)* app settings and configure the simple api url (see below)
 6. Go to the adapter configuration and configure the frames with your custom information (icon and text)
 
 ```
@@ -78,8 +78,8 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?&user=lametric&
 ### Configuration (without authentication)
 
 1. Install the [Simple API ioBroker Adapter](https://github.com/ioBroker/ioBroker.simple-api)
-2. Install this "My Data DIY" App on your LaMetric Time (use Market)
-3. Open the Settings and configure the simple api url (see below)
+2. Install this *My Data DIY* App on your LaMetric Time (use Market)
+3. Open the *My Data (DIY)* app settings and configure the simple api url (see below)
 4. Go to the adapter configuration and configure the frames with your custom information (icon and text)
 
 ```
