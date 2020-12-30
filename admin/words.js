@@ -16,7 +16,7 @@ systemDictionary = {
     },
     "IP address of your LaMetric Time": {
         "en": "IP address of your LaMetric Time",
-        "de": "IP-Adresse Ihrer LaMetric Time",
+        "de": "IP-Adresse Deiner LaMetric Time",
         "ru": "IP-адрес вашего LaMetric Time",
         "pt": "Endereço IP do seu LaMetric Time",
         "nl": "IP-adres van uw LaMetric Time",
@@ -40,7 +40,7 @@ systemDictionary = {
     },
     "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": {
         "en": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>",
-        "de": "Ihr persönliches Entwickler-Token - Sie können es <a href=\"https://developer.lametric.com/\">hier erhalten</a>",
+        "de": "Dein persönliches Entwickler-Token - Du kannst es <a href=\"https://developer.lametric.com/\">hier erhalten</a>",
         "ru": "Ваш личный токен разработчика - вы можете получить его <a href=\"https://developer.lametric.com/\">здесь</a>",
         "pt": "Seu token de desenvolvedor pessoal - você pode obtê-lo <a href=\"https://developer.lametric.com/\">aqui</a>",
         "nl": "Je persoonlijke ontwikkelaarstoken - je kunt het <a href=\"https://developer.lametric.com/\">hier downloaden</a>",
