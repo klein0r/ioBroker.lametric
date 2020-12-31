@@ -88,6 +88,16 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/
 
 **Ensure to update IP and port in the URL if necessary!**
 
+### Frame Configuration
+
+- Use the plus icon to add as many frames as you want
+- Icon: Choose an icon from the [official website](https://developer.lametric.com/icons) and put the ID in the configuration field. **Important: Add an i (for static icons) or an a (for animated icons) as a prefix for that ID. (Example: `i3389`)
+- Text: Just type the text information for the frame. You can use states in curly braces. These information will be replaced with the corresponding value of the state. (Example: `{youtube.0.channels.HausAutomatisierungCom.statistics.subscriberCount} Subscribers`)
+
+Example configuration of 2 frames:
+
+![example frame config](docs/myDataDIYConfig.png)
+
 ## Scripts
 
 To show the message on your la metric just send a message to this instance with script adapter:
@@ -169,6 +179,11 @@ show();
 ```
 
 ## Changelog
+
+### 1.1.1
+
+* (klein0r) Fixed replacement issue for My Data (DIY)
+* (klein0r) Updated README with more configuration details
 
 ### 1.1.0
 

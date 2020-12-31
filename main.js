@@ -798,7 +798,7 @@ class LaMetric extends utils.Adapter {
         // Collect all IDs in texts
         frames.forEach(f => {
             f.text.replace(
-                /\{([a-zA-Z0-9\.]+)\}/g,
+                /\{([_a-zA-Z0-9\.]+)\}/g,
                 (m, id) => {
                     if (foreignStates.indexOf(id) === -1) {
                         foreignStates.push(id);
@@ -839,7 +839,7 @@ class LaMetric extends utils.Adapter {
         const clonedFrames = JSON.parse(JSON.stringify(this.config.mydatadiy)); // TODO: Better way to clone?!
         const newFrames = clonedFrames.map(f => {
             f.text = f.text.replace(
-                /\{([a-zA-Z0-9\.]+)\}/g,
+                /\{([_a-zA-Z0-9\.]+)\}/g,
                 (m, id) => {
                     this.log.debug('My Data (DIY) replacing {' + id + '} in frame');
 
