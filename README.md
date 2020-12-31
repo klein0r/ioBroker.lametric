@@ -12,7 +12,7 @@
 
 [![NPM](https://nodei.co/npm/iobroker.lametric.png?downloads=true)](https://nodei.co/npm/iobroker.lametric/)
 
-This adapter allows you to get status information about your LaMetric Time and to send notifications to it.
+This adapter allows you to get status information about your [LaMetric Time](https://haus-auto.com/p/amz/LaMetricTime) *(Affiliate Link)* and to send notifications to it.
 All you need is the IP address of your device and the api developer key.
 
 ## Configuration
