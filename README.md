@@ -23,10 +23,6 @@ You can get your personal key [here](https://developer.lametric.com/).
 
 ![api-key](docs/apiKey.png)
 
-## Usage
-
-You can read more about notifications here: https://lametric-documentation.readthedocs.io/en/latest/reference-docs/device-notifications.html
-
 ## Features
 
 - Set display brightness (percent, auto-mode/manual-mode)
@@ -34,8 +30,9 @@ You can read more about notifications here: https://lametric-documentation.readt
 - Configure screensaver (enable/disable, time based, when dark)
 - Activate/Deactivate bluetooth and change bluetooth name
 - Switch between apps (next, previous, go to specific app)
-- Send blockly notifications (with configurable priority, sound, icons, text, ...)
-- Control special apps like radio, stopwatch and weather
+- Send notifications with blockly (with configurable priority, sound, icons, text, ...)
+- Control special apps like radio, stopwatch or weather
+- Use *My Data (DIY)* LaMetric App to display persistent information
 
 Features are limited by the [official API features](https://lametric-documentation.readthedocs.io/en/latest/reference-docs/lametric-time-reference.html).
 
