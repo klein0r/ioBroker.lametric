@@ -177,6 +177,10 @@ show();
 
 ## Changelog
 
+### 1.1.2
+
+* (klein0r) Delete app channels if app was deleted on LaMetric
+
 ### 1.1.1
 
 * (klein0r) Fixed replacement issue for My Data (DIY)

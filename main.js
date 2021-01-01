@@ -463,268 +463,305 @@ class LaMetric extends utils.Adapter {
         this.buildRequest(
             'device/apps',
             (content, status) => {
-                const path = 'apps.';
+                this.getChannelsOf(
+                    'apps',
+                    (err, states) => {
+                        const appsAll = [];
+                        const appsKeep = [];
 
-                Object.keys(content).forEach(p => {
-                    const pack = content[p];
+                        // Collect all apps
+                        if (states) {
+                            for (let i = 0; i < states.length; i++) {
+                                const id = this.removeNamespace(states[i]._id);
 
-                    Object.keys(pack.widgets).forEach(uuid => {
-                        const widget = pack.widgets[uuid];
-
-                        this.setObjectNotExists(path + uuid, {
-                            type: 'channel',
-                            common: {
-                                name: 'Widget ' + pack.package + '(' + pack.version + ')',
-                                role: ''
-                            },
-                            native: {}
-                        });
-
-                        this.setObjectNotExists(path + uuid + '.activate', {
-                            type: 'state',
-                            common: {
-                                name: 'Activate',
-                                type: 'boolean',
-                                role: 'button',
-                                read: false,
-                                write: true
-                            },
-                            native: {}
-                        });
-
-                        this.setObjectNotExists(path + uuid + '.index', {
-                            type: 'state',
-                            common: {
-                                name: 'Index',
-                                type: 'number',
-                                role: 'value',
-                                read: true,
-                                write: false
-                            },
-                            native: {}
-                        });
-                        this.setState(path + uuid + '.index', {val: widget.index, ack: true});
-
-                        this.setObjectNotExists(path + uuid + '.package', {
-                            type: 'state',
-                            common: {
-                                name: 'Package',
-                                type: 'string',
-                                role: 'value',
-                                read: true,
-                                write: false
-                            },
-                            native: {}
-                        });
-                        this.setState(path + uuid + '.package', {val: pack.package, ack: true});
-
-                        this.setObjectNotExists(path + uuid + '.vendor', {
-                            type: 'state',
-                            common: {
-                                name: 'Vendor',
-                                type: 'string',
-                                role: 'value',
-                                read: true,
-                                write: false
-                            },
-                            native: {}
-                        });
-                        this.setState(path + uuid + '.vendor', {val: pack.vendor, ack: true});
-
-                        this.setObjectNotExists(path + uuid + '.version', {
-                            type: 'state',
-                            common: {
-                                name: 'Vendor',
-                                type: 'string',
-                                role: 'value',
-                                read: true,
-                                write: false
-                            },
-                            native: {}
-                        });
-                        this.setState(path + uuid + '.version', {val: pack.version, ack: true});
-
-                        // START special Widgets
-                        if (pack.package === 'com.lametric.radio') {
-                            this.setObjectNotExists(path + uuid + '.radio', {
-                                type: 'channel',
-                                common: {
-                                    name: pack.package,
-                                    role: ''
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.radio.play', {
-                                type: 'state',
-                                common: {
-                                    name: 'Play Radio',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.radio.stop', {
-                                type: 'state',
-                                common: {
-                                    name: 'Stop Radio',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.radio.next', {
-                                type: 'state',
-                                common: {
-                                    name: 'Next Radio',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.radio.prev', {
-                                type: 'state',
-                                common: {
-                                    name: 'Prev Radio',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                        } else if (pack.package === 'com.lametric.stopwatch') {
-
-                            this.setObjectNotExists(path + uuid + '.stopwatch', {
-                                type: 'channel',
-                                common: {
-                                    name: pack.package,
-                                    role: ''
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.stopwatch.start', {
-                                type: 'state',
-                                common: {
-                                    name: 'Start Stopwatch',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.stopwatch.pause', {
-                                type: 'state',
-                                common: {
-                                    name: 'Pause Stopwatch',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.stopwatch.reset', {
-                                type: 'state',
-                                common: {
-                                    name: 'Reset Stopwatch',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                        } else if (pack.package === 'com.lametric.weather') {
-
-                            this.setObjectNotExists(path + uuid + '.weather', {
-                                type: 'channel',
-                                common: {
-                                    name: pack.package,
-                                    role: ''
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.weather.forecast', {
-                                type: 'state',
-                                common: {
-                                    name: 'Weather Forecast',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                        } else if (pack.package === 'com.lametric.countdown') {
-
-                            this.setObjectNotExists(path + uuid + '.countdown', {
-                                type: 'channel',
-                                common: {
-                                    name: pack.package,
-                                    role: ''
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.countdown.start', {
-                                type: 'state',
-                                common: {
-                                    name: 'Countdown Start',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.countdown.pause', {
-                                type: 'state',
-                                common: {
-                                    name: 'Countdown Pause',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
-                            this.setObjectNotExists(path + uuid + '.countdown.reset', {
-                                type: 'state',
-                                common: {
-                                    name: 'Countdown Reset',
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true
-                                },
-                                native: {}
-                            });
-
+                                // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
+                                if (id.split('.').length === 2) {
+                                    appsAll.push(id);
+                                }
+                            }
                         }
 
-                        // END special Widgets
-                    });
-                });
+                        const path = 'apps.';
+
+                        // Create new app structure
+                        Object.keys(content).forEach(p => {
+                            const pack = content[p];
+
+                            Object.keys(pack.widgets).forEach(uuid => {
+                                const widget = pack.widgets[uuid];
+
+                                appsKeep.push(path + uuid);
+                                this.log.debug('App found (keep): ' + path + uuid);
+
+                                this.setObjectNotExists(path + uuid, {
+                                    type: 'channel',
+                                    common: {
+                                        name: 'Widget ' + pack.package + '(' + pack.version + ')',
+                                        role: ''
+                                    },
+                                    native: {}
+                                });
+
+                                this.setObjectNotExists(path + uuid + '.activate', {
+                                    type: 'state',
+                                    common: {
+                                        name: 'Activate',
+                                        type: 'boolean',
+                                        role: 'button',
+                                        read: false,
+                                        write: true
+                                    },
+                                    native: {}
+                                });
+
+                                this.setObjectNotExists(path + uuid + '.index', {
+                                    type: 'state',
+                                    common: {
+                                        name: 'Index',
+                                        type: 'number',
+                                        role: 'value',
+                                        read: true,
+                                        write: false
+                                    },
+                                    native: {}
+                                });
+                                this.setState(path + uuid + '.index', {val: widget.index, ack: true});
+
+                                this.setObjectNotExists(path + uuid + '.package', {
+                                    type: 'state',
+                                    common: {
+                                        name: 'Package',
+                                        type: 'string',
+                                        role: 'value',
+                                        read: true,
+                                        write: false
+                                    },
+                                    native: {}
+                                });
+                                this.setState(path + uuid + '.package', {val: pack.package, ack: true});
+
+                                this.setObjectNotExists(path + uuid + '.vendor', {
+                                    type: 'state',
+                                    common: {
+                                        name: 'Vendor',
+                                        type: 'string',
+                                        role: 'value',
+                                        read: true,
+                                        write: false
+                                    },
+                                    native: {}
+                                });
+                                this.setState(path + uuid + '.vendor', {val: pack.vendor, ack: true});
+
+                                this.setObjectNotExists(path + uuid + '.version', {
+                                    type: 'state',
+                                    common: {
+                                        name: 'Vendor',
+                                        type: 'string',
+                                        role: 'value',
+                                        read: true,
+                                        write: false
+                                    },
+                                    native: {}
+                                });
+                                this.setState(path + uuid + '.version', {val: pack.version, ack: true});
+
+                                // START special Widgets
+                                if (pack.package === 'com.lametric.radio') {
+                                    this.setObjectNotExists(path + uuid + '.radio', {
+                                        type: 'channel',
+                                        common: {
+                                            name: pack.package,
+                                            role: ''
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.radio.play', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Play Radio',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.radio.stop', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Stop Radio',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.radio.next', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Next Radio',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.radio.prev', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Prev Radio',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                } else if (pack.package === 'com.lametric.stopwatch') {
+
+                                    this.setObjectNotExists(path + uuid + '.stopwatch', {
+                                        type: 'channel',
+                                        common: {
+                                            name: pack.package,
+                                            role: ''
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.stopwatch.start', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Start Stopwatch',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.stopwatch.pause', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Pause Stopwatch',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.stopwatch.reset', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Reset Stopwatch',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                } else if (pack.package === 'com.lametric.weather') {
+
+                                    this.setObjectNotExists(path + uuid + '.weather', {
+                                        type: 'channel',
+                                        common: {
+                                            name: pack.package,
+                                            role: ''
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.weather.forecast', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Weather Forecast',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                } else if (pack.package === 'com.lametric.countdown') {
+
+                                    this.setObjectNotExists(path + uuid + '.countdown', {
+                                        type: 'channel',
+                                        common: {
+                                            name: pack.package,
+                                            role: ''
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.countdown.start', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Countdown Start',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.countdown.pause', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Countdown Pause',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.countdown.reset', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Countdown Reset',
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                }
+
+                                // END special Widgets
+                            });
+                        });
+
+                        // Delete non existent apps
+                        for (let i = 0; i < appsAll.length; i++) {
+                            const id = appsAll[i];
+
+                            if (appsKeep.indexOf(id) === -1) {
+                                this.delObject(id, {recursive: true}, () => {
+                                    this.log.debug('App deleted: ' + id);
+                                });
+                            }
+                        }
+                    }
+                );
+
+
             },
             'GET',
             null
@@ -852,6 +889,11 @@ class LaMetric extends utils.Adapter {
         this.log.debug('My Data (DIY) frame update to ' + JSON.stringify(newFrames));
 
         this.setState('mydatadiy.obj', {val: {'frames': newFrames}, ack: true});
+    }
+
+    removeNamespace(id) {
+        const re = new RegExp(this.namespace + '*\.', 'g');
+        return id.replace(re, '');
     }
 
     onUnload(callback) {
