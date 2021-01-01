@@ -234,8 +234,8 @@ class LaMetric extends utils.Adapter {
 
                 this.getState(
                     'apps.' + widget + '.package',
-                    (err, state) => {
-                        const pack = state.val;
+                    (err, packState) => {
+                        const pack = packState.val;
 
                         if (action === 'activate') {
                             this.log.debug('activating specific widget: ' + widget + ' of package ' + pack);
@@ -249,13 +249,22 @@ class LaMetric extends utils.Adapter {
                         } else {
                             this.log.debug('special action (' + action + '): ' + widget + ' of package ' + pack);
 
+                            const data = { id: action };
+
+                            // START special Widgets
+                            if (action == 'countdown.configure') {
+                                data.params = {
+                                    duration: state.val,
+                                    start_now: false
+                                };
+                            }
+                            // END special Widgets
+
                             this.buildRequest(
                                 'device/apps/' + pack + '/widgets/' + widget + '/actions',
                                 null,
                                 'POST',
-                                {
-                                    id: action
-                                }
+                                data
                             );
                         }
                     }
@@ -702,6 +711,18 @@ class LaMetric extends utils.Adapter {
                                         common: {
                                             name: pack.package,
                                             role: ''
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.countdown.configure', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Countdown Time (in seconds)',
+                                            type: 'number',
+                                            role: 'value',
+                                            read: true,
+                                            write: true
                                         },
                                         native: {}
                                     });
