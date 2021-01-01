@@ -899,6 +899,7 @@ class LaMetric extends utils.Adapter {
     onUnload(callback) {
         try {
             this.setState('info.connection', false, true);
+            this.setState('mydatadiy.obj', {val: {'frames': [{text: 'Adapter stopped'}]}, ack: true});
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
