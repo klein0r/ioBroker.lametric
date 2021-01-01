@@ -252,12 +252,39 @@ class LaMetric extends utils.Adapter {
                             const data = { id: action };
 
                             // START special Widgets
-                            if (action == 'countdown.configure') {
+
+                            if (action == 'clock.clockface') {
+
+                                if (['weather', 'page_a_day', 'custom', 'none'].indexOf(state.val) > -1) {
+
+                                    data.params = {
+                                        type: state.val
+                                    };
+
+                                } else {
+
+                                    data.params = {
+                                        icon: state.val,
+                                        type: 'custom'
+                                    };
+
+                                }
+
+                                data.activate = true;
+
+                                this.setState(id, {val: state.val, ack: true}); // Confirm state change
+
+                            } else if (action == 'countdown.configure') {
+
                                 data.params = {
                                     duration: state.val,
                                     start_now: false
                                 };
+
+                                this.setState(id, {val: state.val, ack: true}); // Confirm state change
+
                             }
+
                             // END special Widgets
 
                             this.buildRequest(
@@ -576,7 +603,32 @@ class LaMetric extends utils.Adapter {
                                 this.setState(path + uuid + '.version', {val: pack.version, ack: true});
 
                                 // START special Widgets
-                                if (pack.package === 'com.lametric.radio') {
+
+                                if (pack.package === 'com.lametric.clock') {
+
+                                    this.setObjectNotExists(path + uuid + '.clock', {
+                                        type: 'channel',
+                                        common: {
+                                            name: pack.package,
+                                            role: ''
+                                        },
+                                        native: {}
+                                    });
+
+                                    this.setObjectNotExists(path + uuid + '.clock.clockface', {
+                                        type: 'state',
+                                        common: {
+                                            name: 'Clockface (Base64)',
+                                            type: 'string',
+                                            role: 'value',
+                                            read: true,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                } else if (pack.package === 'com.lametric.radio') {
+
                                     this.setObjectNotExists(path + uuid + '.radio', {
                                         type: 'channel',
                                         common: {
