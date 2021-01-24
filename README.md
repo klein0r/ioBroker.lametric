@@ -17,7 +17,7 @@ All you need is the IP address of your device and the api developer key.
 
 ## Configuration
 
-Tested with LaMetric firmware *2.0.28* and *2.1.2* (recommended)
+Tested with LaMetric firmware *2.0.28* and *2.1.3* (recommended)
 
 You can get your personal key [here](https://developer.lametric.com/).
 

@@ -501,7 +501,7 @@ class LaMetric extends utils.Adapter {
             (content, status) => {
                 this.getChannelsOf(
                     'apps',
-                    (err, states) => {
+                    async (err, states) => {
                         const appsAll = [];
                         const appsKeep = [];
 
@@ -520,16 +520,16 @@ class LaMetric extends utils.Adapter {
                         const path = 'apps.';
 
                         // Create new app structure
-                        Object.keys(content).forEach(p => {
+                        for (const p of Object.keys(content)) {
                             const pack = content[p];
 
-                            Object.keys(pack.widgets).forEach(uuid => {
+                            for (const uuid of Object.keys(pack.widgets)) {
                                 const widget = pack.widgets[uuid];
 
                                 appsKeep.push(path + uuid);
                                 this.log.debug('App found (keep): ' + path + uuid);
 
-                                this.setObjectNotExists(path + uuid, {
+                                await this.setObjectNotExistsAsync(path + uuid, {
                                     type: 'channel',
                                     common: {
                                         name: 'Widget ' + pack.package + '(' + pack.version + ')',
@@ -538,7 +538,7 @@ class LaMetric extends utils.Adapter {
                                     native: {}
                                 });
 
-                                this.setObjectNotExists(path + uuid + '.activate', {
+                                await this.setObjectNotExistsAsync(path + uuid + '.activate', {
                                     type: 'state',
                                     common: {
                                         name: 'Activate',
@@ -550,7 +550,7 @@ class LaMetric extends utils.Adapter {
                                     native: {}
                                 });
 
-                                this.setObjectNotExists(path + uuid + '.index', {
+                                await this.setObjectNotExistsAsync(path + uuid + '.index', {
                                     type: 'state',
                                     common: {
                                         name: 'Index',
@@ -563,7 +563,7 @@ class LaMetric extends utils.Adapter {
                                 });
                                 this.setState(path + uuid + '.index', {val: widget.index, ack: true});
 
-                                this.setObjectNotExists(path + uuid + '.package', {
+                                await this.setObjectNotExistsAsync(path + uuid + '.package', {
                                     type: 'state',
                                     common: {
                                         name: 'Package',
@@ -576,7 +576,7 @@ class LaMetric extends utils.Adapter {
                                 });
                                 this.setState(path + uuid + '.package', {val: pack.package, ack: true});
 
-                                this.setObjectNotExists(path + uuid + '.vendor', {
+                                await this.setObjectNotExistsAsync(path + uuid + '.vendor', {
                                     type: 'state',
                                     common: {
                                         name: 'Vendor',
@@ -589,7 +589,7 @@ class LaMetric extends utils.Adapter {
                                 });
                                 this.setState(path + uuid + '.vendor', {val: pack.vendor, ack: true});
 
-                                this.setObjectNotExists(path + uuid + '.version', {
+                                await this.setObjectNotExistsAsync(path + uuid + '.version', {
                                     type: 'state',
                                     common: {
                                         name: 'Vendor',
@@ -606,7 +606,7 @@ class LaMetric extends utils.Adapter {
 
                                 if (pack.package === 'com.lametric.clock') {
 
-                                    this.setObjectNotExists(path + uuid + '.clock', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.clock', {
                                         type: 'channel',
                                         common: {
                                             name: pack.package,
@@ -615,7 +615,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.clock.clockface', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.clock.clockface', {
                                         type: 'state',
                                         common: {
                                             name: 'Clockface (Base64)',
@@ -629,7 +629,7 @@ class LaMetric extends utils.Adapter {
 
                                 } else if (pack.package === 'com.lametric.radio') {
 
-                                    this.setObjectNotExists(path + uuid + '.radio', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.radio', {
                                         type: 'channel',
                                         common: {
                                             name: pack.package,
@@ -638,7 +638,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.radio.play', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.radio.play', {
                                         type: 'state',
                                         common: {
                                             name: 'Play Radio',
@@ -650,7 +650,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.radio.stop', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.radio.stop', {
                                         type: 'state',
                                         common: {
                                             name: 'Stop Radio',
@@ -662,7 +662,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.radio.next', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.radio.next', {
                                         type: 'state',
                                         common: {
                                             name: 'Next Radio',
@@ -674,7 +674,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.radio.prev', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.radio.prev', {
                                         type: 'state',
                                         common: {
                                             name: 'Prev Radio',
@@ -688,7 +688,7 @@ class LaMetric extends utils.Adapter {
 
                                 } else if (pack.package === 'com.lametric.stopwatch') {
 
-                                    this.setObjectNotExists(path + uuid + '.stopwatch', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.stopwatch', {
                                         type: 'channel',
                                         common: {
                                             name: pack.package,
@@ -697,7 +697,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.stopwatch.start', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.stopwatch.start', {
                                         type: 'state',
                                         common: {
                                             name: 'Start Stopwatch',
@@ -709,7 +709,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.stopwatch.pause', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.stopwatch.pause', {
                                         type: 'state',
                                         common: {
                                             name: 'Pause Stopwatch',
@@ -721,7 +721,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.stopwatch.reset', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.stopwatch.reset', {
                                         type: 'state',
                                         common: {
                                             name: 'Reset Stopwatch',
@@ -735,7 +735,7 @@ class LaMetric extends utils.Adapter {
 
                                 } else if (pack.package === 'com.lametric.weather') {
 
-                                    this.setObjectNotExists(path + uuid + '.weather', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.weather', {
                                         type: 'channel',
                                         common: {
                                             name: pack.package,
@@ -744,7 +744,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.weather.forecast', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.weather.forecast', {
                                         type: 'state',
                                         common: {
                                             name: 'Weather Forecast',
@@ -758,7 +758,7 @@ class LaMetric extends utils.Adapter {
 
                                 } else if (pack.package === 'com.lametric.countdown') {
 
-                                    this.setObjectNotExists(path + uuid + '.countdown', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.countdown', {
                                         type: 'channel',
                                         common: {
                                             name: pack.package,
@@ -767,7 +767,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.countdown.configure', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.countdown.configure', {
                                         type: 'state',
                                         common: {
                                             name: 'Countdown Time (in seconds)',
@@ -779,7 +779,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.countdown.start', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.countdown.start', {
                                         type: 'state',
                                         common: {
                                             name: 'Countdown Start',
@@ -791,7 +791,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.countdown.pause', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.countdown.pause', {
                                         type: 'state',
                                         common: {
                                             name: 'Countdown Pause',
@@ -803,7 +803,7 @@ class LaMetric extends utils.Adapter {
                                         native: {}
                                     });
 
-                                    this.setObjectNotExists(path + uuid + '.countdown.reset', {
+                                    await this.setObjectNotExistsAsync(path + uuid + '.countdown.reset', {
                                         type: 'state',
                                         common: {
                                             name: 'Countdown Reset',
@@ -818,8 +818,8 @@ class LaMetric extends utils.Adapter {
                                 }
 
                                 // END special Widgets
-                            });
-                        });
+                            }
+                        }
 
                         // Delete non existent apps
                         for (let i = 0; i < appsAll.length; i++) {
@@ -833,7 +833,6 @@ class LaMetric extends utils.Adapter {
                         }
                     }
                 );
-
 
             },
             'GET',
@@ -869,15 +868,15 @@ class LaMetric extends utils.Adapter {
                     return [200, 201].indexOf(status) > -1;
                 },
             }).then(
-                function (response) {
+                (response) => {
                     this.log.debug('received ' + response.status + ' response from ' + url + ' with content: ' + JSON.stringify(response.data));
 
                     if (response && callback && typeof callback === 'function') {
                         callback(response.data, response.status);
                     }
-                }.bind(this)
+                }
             ).catch(
-                function (error) {
+                (error) => {
                     if (error.response) {
                         // The request was made and the server responded with a status code
 
@@ -895,7 +894,7 @@ class LaMetric extends utils.Adapter {
 
                         this.setState('info.connection', false, true);
                     }
-                }.bind(this)
+                }
             );
         }
     }
@@ -925,13 +924,23 @@ class LaMetric extends utils.Adapter {
 
                     const data = await this.getForeignStateAsync(id);
 
-                    return new Promise(resolve => {
-                        resolve(
-                            {
-                                id: id,
-                                val: data.val
-                            }
-                        );
+                    return new Promise((resolve) => {
+                        if (data) {
+                            resolve(
+                                {
+                                    id: id,
+                                    val: data.val
+                                }
+                            );
+                        } else {
+                            this.log.warn('Unable to get value of state ' + id);
+                            resolve(
+                                {
+                                    id: id,
+                                    val: '<unknown ' + id + '>'
+                                }
+                            );
+                        }
                     });
                 }
             )
