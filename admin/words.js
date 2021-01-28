@@ -121,5 +121,17 @@ systemDictionary = {
         "es": "texto",
         "pl": "tekst",
         "zh-cn": "文本"
+    },
+    "hide if": {
+        "en": "hide if value",
+        "de": "verstecke wenn Wert",
+        "ru": "скрыть, если значение",
+        "pt": "esconda se o valor",
+        "nl": "verbergen als waarde",
+        "fr": "cacher si valeur",
+        "it": "nascondi se valore",
+        "es": "ocultar si valor",
+        "pl": "ukryj, jeśli wartość",
+        "zh-cn": "如果有价值则隐藏"
     }
 };

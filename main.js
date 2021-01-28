@@ -37,7 +37,7 @@ class LaMetric extends utils.Adapter {
             this.collectMyDataDiyForeignStates(this.config.mydatadiy);
         } else {
             this.log.debug('My Data (DIY) configuration is not available');
-            this.setState('mydatadiy.obj', {val: {'frames': [{text: 'No Data'}]}, ack: true});
+            this.setState('mydatadiy.obj', {val: {'frames': [{text: 'No Data', icon: 'a9335'}]}, ack: true});
         }
     }
 
@@ -45,7 +45,7 @@ class LaMetric extends utils.Adapter {
         if (id && state && this.myDataDiyForeignStates.filter(item => { return item.id === id; }).length > 0) {
             this.myDataDiyForeignStates = this.myDataDiyForeignStates.map(item => {
                 if (item.id === id) {
-                    this.log.debug('My Data (DIY) update state value to ' + state.val);
+                    this.log.debug('My Data (DIY) received new value "' + state.val + '" of state: ' + id);
                     item.val = state.val;
                 }
 
@@ -854,12 +854,12 @@ class LaMetric extends utils.Adapter {
         if (this.config.lametricIp && this.config.lametricToken) {
             this.log.debug('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
 
-            await axios({
+            axios({
                 method: method,
                 data: data,
                 baseURL: 'http://' + this.config.lametricIp + ':8080',
                 url: url,
-                timeout: 2000,
+                timeout: 3000,
                 responseType: 'json',
                 auth: {
                     username: 'dev',
@@ -911,30 +911,34 @@ class LaMetric extends utils.Adapter {
                 this.myDataDiyRegex,
                 (m, id) => {
                     if (foreignStates.indexOf(id) === -1) {
+                        this.log.debug('My Data (DIY) found dynamic state: ' + id);
                         foreignStates.push(id);
                     }
                 }
             );
         });
 
+        this.log.debug('My Data (DIY) found ' + foreignStates.length + ' dynamic states');
+
         Promise.all(
             foreignStates.map(
                 async (id) => {
-                    this.log.debug('My Data (DIY) subscribed to state ' + id);
+                    this.log.debug('My Data (DIY) subscribed to state: ' + id);
                     this.subscribeForeignStates(id);
 
-                    const data = await this.getForeignStateAsync(id);
+                    const state = await this.getForeignStateAsync(id);
 
                     return new Promise((resolve) => {
-                        if (data) {
+                        if (state) {
+                            this.log.debug('My Data (DIY) received value "' + state.val + '" of state: ' + id);
                             resolve(
                                 {
                                     id: id,
-                                    val: data.val
+                                    val: state.val
                                 }
                             );
                         } else {
-                            this.log.warn('Unable to get value of state ' + id);
+                            this.log.warn('Unable to get value of state: ' + id);
                             resolve(
                                 {
                                     id: id,
@@ -958,7 +962,7 @@ class LaMetric extends utils.Adapter {
 
         const clonedFrames = JSON.parse(JSON.stringify(this.config.mydatadiy)); // TODO: Better way to clone?!
         const newFrames = clonedFrames.map(f => {
-            f.text = f.text.replace(
+            let replacedText = f.text.replace(
                 this.myDataDiyRegex,
                 (m, id) => {
                     this.log.debug('My Data (DIY) replacing {' + id + '} in frame');
@@ -966,7 +970,28 @@ class LaMetric extends utils.Adapter {
                     return this.myDataDiyForeignStates.filter(item => { return item.id === id; })[0].val;
                 }
             );
-            return f;
+
+            if (Object.prototype.hasOwnProperty.call(f, 'hideif')) {
+                if (f.hideif && f.hideif == replacedText) {
+                    this.log.debug('My Data (DIY) will remove frame because text matches configured hideif: "' + f.hideif + '"');
+                    replacedText = ''; // Will be removed in filter function (see below)
+                }
+            }
+
+            let newObj = {
+                text: replacedText.trim()
+            };
+
+            if (f.icon) {
+                newObj.icon = f.icon;
+            }
+
+            return newObj;
+        }).filter(f => {
+            if (f.text.length == 0) {
+                this.log.debug('My Data (DIY) removed frame');
+            }
+            return f.text.length > 0;
         });
 
         this.log.debug('My Data (DIY) frame update to ' + JSON.stringify(newFrames));
@@ -982,7 +1007,7 @@ class LaMetric extends utils.Adapter {
     onUnload(callback) {
         try {
             this.setState('info.connection', false, true);
-            this.setState('mydatadiy.obj', {val: {'frames': [{text: 'Adapter stopped'}]}, ack: true});
+            this.setState('mydatadiy.obj', {val: {'frames': [{text: 'Adapter stopped', icon: 'a9335'}]}, ack: true});
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
