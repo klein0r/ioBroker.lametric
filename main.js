@@ -911,7 +911,17 @@ class LaMetric extends utils.Adapter {
                 this.myDataDiyRegex,
                 (m, id) => {
                     if (foreignStates.indexOf(id) === -1) {
-                        this.log.debug('My Data (DIY) found dynamic state: ' + id);
+                        this.log.debug('My Data (DIY) found dynamic state in text: ' + id);
+                        foreignStates.push(id);
+                    }
+                }
+            );
+
+            f.icon.replace(
+                this.myDataDiyRegex,
+                (m, id) => {
+                    if (foreignStates.indexOf(id) === -1) {
+                        this.log.debug('My Data (DIY) found dynamic state in icon: ' + id);
                         foreignStates.push(id);
                     }
                 }
@@ -965,7 +975,7 @@ class LaMetric extends utils.Adapter {
             let replacedText = f.text.replace(
                 this.myDataDiyRegex,
                 (m, id) => {
-                    this.log.debug('My Data (DIY) replacing {' + id + '} in frame');
+                    this.log.debug('My Data (DIY) replacing {' + id + '} in frame text');
 
                     return this.myDataDiyForeignStates.filter(item => { return item.id === id; })[0].val;
                 }
@@ -983,7 +993,14 @@ class LaMetric extends utils.Adapter {
             };
 
             if (f.icon) {
-                newObj.icon = f.icon;
+                newObj.icon = f.icon.replace(
+                    this.myDataDiyRegex,
+                    (m, id) => {
+                        this.log.debug('My Data (DIY) replacing {' + id + '} in frame icon');
+
+                        return this.myDataDiyForeignStates.filter(item => { return item.id === id; })[0].val;
+                    }
+                );
             }
 
             return newObj;

@@ -198,6 +198,7 @@ show();
 
 * (klein0r) Added hide if value for My Data (DIY)
 * (klein0r) Remove frames without text from My Data (DIY)
+* (klein0r) Allow dynamic states for My Data (DIY) icons
 
 ### 1.1.3
 
