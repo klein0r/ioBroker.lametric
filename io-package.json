@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "1.2.0",
+        "version": "1.2.1",
         "news": {
+            "1.2.1": {
+                "en": "Extended regex for My Data (DIY)",
+                "de": "Regex für My Data (DIY) erweitert"
+            },
             "1.2.0": {
                 "en": "Added hide if value for My Data (DIY)",
                 "de": "Verstecke wenn Wert für My Data (DIY) hinzugefügt"
@@ -30,46 +34,6 @@
             "1.0.0": {
                 "en": "First stable release",
                 "de": "Erster stable release"
-            },
-            "0.0.10": {
-                "en": "Switched to axios lib",
-                "de": "Zu axios library gewechselt"
-            },
-            "0.0.9": {
-                "en": "Added missing translations",
-                "de": "Fehlende Übersetzungen hinzugefügt"
-            },
-            "0.0.8": {
-                "en": "Updated dependencies",
-                "de": "Abhängigkeiten aktualisiert"
-            },
-            "0.0.7": {
-                "en": "fixed blockly",
-                "de": "Blockly-Korrektur"
-            },
-            "0.0.6": {
-                "en": "switched to setTimeout instead of setInterval, improved logging and fixes eslint complaints",
-                "de": "Code aufgeräumt"
-            },
-            "0.0.5": {
-                "en": "Fixed notification, html, updated github template, enable and disable screensaver",
-                "de": "Notification fix, HTML Änderungen, Bildschirmschoner-Support"
-            },
-            "0.0.4": {
-                "en": "Refactored blockly sendTo / notifications",
-                "de": "Refactored Blockly sentTo und Benachrichtigungen"
-            },
-            "0.0.3": {
-                "en": "Added app switching support, refactored everything",
-                "de": "Unterstützung für App-Wechsel hinzugefügt"
-            },
-            "0.0.2": {
-                "en": "The deletion of the actual shown information was added",
-                "de": "Die Löschung der tatsächlich angezeigten Informationen wurde hinzugefügt"
-            },
-            "0.0.1": {
-                "en": "initial adapter",
-                "de": "Initiale Version"
             }
         },
 		"title": "LaMetric Time",

@@ -18,7 +18,7 @@ class LaMetric extends utils.Adapter {
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
 
-        this.myDataDiyRegex = /\{([_a-zA-Z0-9\.#]+)\}/g;
+        this.myDataDiyRegex = /\{([_-a-zA-Z0-9\.#]+)\}/g;
         this.myDataDiyForeignStates = [];
 
         this.on('ready', this.onReady.bind(this));
@@ -849,7 +849,6 @@ class LaMetric extends utils.Adapter {
 
     async buildRequest(service, callback, method, data) {
         const url = '/api/v2/' + service;
-        const self = this;
 
         if (this.config.lametricIp && this.config.lametricToken) {
             this.log.debug('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
