@@ -18,7 +18,7 @@ class LaMetric extends utils.Adapter {
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
 
-        this.myDataDiyRegex = /\{([_-a-zA-Z0-9\.#]+)\}/g;
+        this.myDataDiyRegex = /\{([_a-zA-Z0-9\.#-]+)\}/g;
         this.myDataDiyForeignStates = [];
 
         this.on('ready', this.onReady.bind(this));
