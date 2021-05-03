@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "1.2.1",
+        "version": "1.3.0",
         "news": {
+            "1.3.0": {
+                "en": "Encrypt sensitive information",
+                "de": "Verschlüsselung von sensiblen Daten"
+            },
             "1.2.1": {
                 "en": "Extended regex for My Data (DIY)",
                 "de": "Regex für My Data (DIY) erweitert"
@@ -82,6 +86,12 @@
             }
         }
     },
+    "protectedNative": [
+        "lametricToken"
+    ],
+    "encryptedNative": [
+        "lametricToken"
+    ],
     "native": {
         "lametricIp": "",
         "lametricToken": ""
