@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "news": {
+            "1.3.1": {
+                "en": "Fixed js-controller warnings",
+                "de": "js-controller Warnungen gefixt"
+            },
             "1.3.0": {
                 "en": "Encrypt sensitive information",
                 "de": "Verschlüsselung von sensiblen Daten"
