@@ -172,9 +172,13 @@ class LaMetric extends utils.Adapter {
                     (content, status) => {
                         this.setState('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
                         this.setState('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
+
                         this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
                         this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.success.data.screensaver.modes.time_based.start_time, ack: true});
+                        this.setState('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_start_time, ack: true});
                         this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.success.data.screensaver.modes.time_based.end_time, ack: true});
+                        this.setState('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_end_time, ack: true});
+
                         this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.success.data.screensaver.modes.when_dark.enabled, ack: true});
                     },
                     'PUT',
@@ -210,9 +214,13 @@ class LaMetric extends utils.Adapter {
                             (content, status) => {
                                 this.setState('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
                                 this.setState('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
+
                                 this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
                                 this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.success.data.screensaver.modes.time_based.start_time, ack: true});
+                                this.setState('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_start_time, ack: true});
                                 this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.success.data.screensaver.modes.time_based.end_time, ack: true});
+                                this.setState('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_end_time, ack: true});
+
                                 this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.success.data.screensaver.modes.when_dark.enabled, ack: true});
                             },
                             'PUT',
@@ -480,9 +488,13 @@ class LaMetric extends utils.Adapter {
 
                 this.setState('meta.display.screensaver.enabled', {val: content.screensaver.enabled, ack: true});
                 this.setState('meta.display.screensaver.widget', {val: content.screensaver.widget, ack: true});
+
                 this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.screensaver.modes.time_based.enabled, ack: true});
                 this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.screensaver.modes.time_based.start_time, ack: true});
+                this.setState('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.screensaver.modes.time_based.local_start_time, ack: true});
                 this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.screensaver.modes.time_based.end_time, ack: true});
+                this.setState('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.screensaver.modes.time_based.local_end_time, ack: true});
+
                 this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.screensaver.modes.when_dark.enabled, ack: true});
             },
             'GET',

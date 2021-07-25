@@ -347,7 +347,7 @@
             "_id": "meta.display.brightnessMin",
             "type": "state",
             "common": {
-                "name": "Brightness (min)",
+                "name": "Brightness Min",
                 "type": "number",
                 "role": "level.dimmer",
                 "unit": "%",
@@ -360,7 +360,7 @@
             "_id": "meta.display.brightnessMax",
             "type": "state",
             "common": {
-                "name": "Brightness (max)",
+                "name": "Brightness Max",
                 "type": "number",
                 "role": "level.dimmer",
                 "unit": "%",
@@ -373,7 +373,7 @@
             "_id": "meta.display.brightnessAuto",
             "type": "state",
             "common": {
-                "name": "Auto",
+                "name": "Brightness Auto",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -385,7 +385,7 @@
             "_id": "meta.display.brightnessMode",
             "type": "state",
             "common": {
-                "name": "Brightness mode",
+                "name": "Brightness Mode",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -434,7 +434,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "Screensaver information"
+                "name": "Screensaver"
             },
             "native": {}
         },
@@ -442,7 +442,7 @@
             "_id": "meta.display.screensaver.enabled",
             "type": "state",
             "common": {
-                "name": "Enabled",
+                "name": "Screensaver Enabled",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -467,7 +467,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "Mode information"
+                "name": "Screensaver Modes"
             },
             "native": {}
         },
@@ -476,7 +476,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "Time Based"
+                "name": "Time Based Screensaver"
             },
             "native": {}
         },
@@ -484,7 +484,7 @@
             "_id": "meta.display.screensaver.modes.timeBased.enabled",
             "type": "state",
             "common": {
-                "name": "Enabled",
+                "name": "Time Based Screensaver Enabled",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -496,7 +496,7 @@
             "_id": "meta.display.screensaver.modes.timeBased.startTime",
             "type": "state",
             "common": {
-                "name": "Enabled",
+                "name": "Time Based Screensaver Start Time",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -505,14 +505,38 @@
             "native": {}
         },
         {
+            "_id": "meta.display.screensaver.modes.timeBased.startTimeLocal",
+            "type": "state",
+            "common": {
+                "name": "Time Based Screensaver Start Time Local",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "meta.display.screensaver.modes.timeBased.endTime",
             "type": "state",
             "common": {
-                "name": "Enabled",
+                "name": "Time Based Screensaver End Time",
                 "type": "string",
                 "role": "value",
                 "read": true,
                 "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.display.screensaver.modes.timeBased.endTimeLocal",
+            "type": "state",
+            "common": {
+                "name": "Time Based Screensaver End Time Local",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
             },
             "native": {}
         },
@@ -521,7 +545,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "When Dark"
+                "name": "When Dark Screensaver"
             },
             "native": {}
         },
@@ -529,7 +553,7 @@
             "_id": "meta.display.screensaver.modes.whenDark.enabled",
             "type": "state",
             "common": {
-                "name": "Enabled",
+                "name": "When Dark Screensaver Enabled",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -550,7 +574,7 @@
             "_id": "meta.wifi.active",
             "type": "state",
             "common": {
-                "name": "Active",
+                "name": "WiFi Active",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -562,7 +586,7 @@
             "_id": "meta.wifi.address",
             "type": "state",
             "common": {
-                "name": "Address",
+                "name": "WiFi Address",
                 "type": "string",
                 "role": "info.mac",
                 "read": true,
@@ -574,7 +598,7 @@
             "_id": "meta.wifi.available",
             "type": "state",
             "common": {
-                "name": "Available",
+                "name": "WiFi Available",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -586,7 +610,7 @@
             "_id": "meta.wifi.encryption",
             "type": "state",
             "common": {
-                "name": "Encryption",
+                "name": "WiFi Encryption",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -598,7 +622,7 @@
             "_id": "meta.wifi.ssid",
             "type": "state",
             "common": {
-                "name": "SSID",
+                "name": "WiFi SSID",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -610,7 +634,7 @@
             "_id": "meta.wifi.ip",
             "type": "state",
             "common": {
-                "name": "IP",
+                "name": "WiFi IP",
                 "type": "string",
                 "role": "info.ip",
                 "read": true,
@@ -622,7 +646,7 @@
             "_id": "meta.wifi.mode",
             "type": "state",
             "common": {
-                "name": "Mode",
+                "name": "WiFi Mode",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -634,7 +658,7 @@
             "_id": "meta.wifi.netmask",
             "type": "state",
             "common": {
-                "name": "Netmask",
+                "name": "WiFi Netmask",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -646,7 +670,7 @@
             "_id": "meta.wifi.strength",
             "type": "state",
             "common": {
-                "name": "Strength",
+                "name": "WiFi Strength",
                 "type": "number",
                 "role": "value",
                 "unit": "%",
