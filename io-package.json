@@ -4,8 +4,8 @@
         "version": "1.3.1",
         "news": {
             "1.3.1": {
-                "en": "Fixed js-controller warnings",
-                "de": "js-controller Warnungen gefixt"
+                "en": "Added local start and end time for screensaver",
+                "de": "Lokale Start- und Endzeit vom Bildschirmschoner"
             },
             "1.3.0": {
                 "en": "Encrypt sensitive information",
@@ -197,7 +197,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "Volume information"
+                "name": "Audio"
             },
             "native": {}
         },
@@ -245,7 +245,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "Bluetooth information"
+                "name": "Bluetooth"
             },
             "native": {}
         },
@@ -253,7 +253,7 @@
             "_id": "meta.bluetooth.available",
             "type": "state",
             "common": {
-                "name": "Available",
+                "name": "Bluetooth Available",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -265,7 +265,7 @@
             "_id": "meta.bluetooth.name",
             "type": "state",
             "common": {
-                "name": "Name",
+                "name": "Bluetooth Name",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -277,7 +277,7 @@
             "_id": "meta.bluetooth.active",
             "type": "state",
             "common": {
-                "name": "Active",
+                "name": "Bluetooth Active",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -289,7 +289,7 @@
             "_id": "meta.bluetooth.discoverable",
             "type": "state",
             "common": {
-                "name": "Discoverable",
+                "name": "Bluetooth Discoverable",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -301,7 +301,7 @@
             "_id": "meta.bluetooth.pairable",
             "type": "state",
             "common": {
-                "name": "Pairable",
+                "name": "Bluetooth Pairable",
                 "type": "boolean",
                 "role": "value",
                 "read": true,
@@ -313,9 +313,54 @@
             "_id": "meta.bluetooth.address",
             "type": "state",
             "common": {
-                "name": "Address",
+                "name": "Bluetooth Address",
                 "type": "string",
                 "role": "info.mac",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.bluetooth.low_energy",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Bluetooth Low Energy"
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.bluetooth.low_energy.active",
+            "type": "state",
+            "common": {
+                "name": "Bluetooth Low Energy Active",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.bluetooth.low_energy.advertising",
+            "type": "state",
+            "common": {
+                "name": "Bluetooth Low Energy Advertising",
+                "type": "boolean",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.bluetooth.low_energy.connectable",
+            "type": "state",
+            "common": {
+                "name": "Bluetooth Low Energy Connectable",
+                "type": "boolean",
+                "role": "value",
                 "read": true,
                 "write": false
             },
@@ -326,7 +371,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "Display information"
+                "name": "Display"
             },
             "native": {}
         },
@@ -566,7 +611,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "WiFi information"
+                "name": "WiFi"
             },
             "native": {}
         },
@@ -684,7 +729,7 @@
             "type": "channel",
             "common": {
                 "role": "",
-                "name": "App information"
+                "name": "Apps"
             },
             "native": {}
         },

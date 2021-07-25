@@ -459,6 +459,10 @@ class LaMetric extends utils.Adapter {
                 this.setState('meta.bluetooth.pairable', {val: content.bluetooth.pairable, ack: true});
                 this.setState('meta.bluetooth.address', {val: content.bluetooth.address, ack: true});
 
+                this.setState('meta.bluetooth.low_energy.active', {val: content.bluetooth.low_energy.active, ack: true});
+                this.setState('meta.bluetooth.low_energy.advertising', {val: content.bluetooth.low_energy.advertising, ack: true});
+                this.setState('meta.bluetooth.low_energy.connectable', {val: content.bluetooth.low_energy.connectable, ack: true});
+
                 this.setState('meta.wifi.active', {val: content.wifi.active, ack: true});
                 this.setState('meta.wifi.address', {val: content.wifi.address, ack: true});
                 this.setState('meta.wifi.available', {val: content.wifi.available, ack: true});

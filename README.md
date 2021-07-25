@@ -196,7 +196,7 @@ show();
 
 ### 1.3.1
 
-* (klein0r) Fixed js-controller warnings
+* (klein0r) Added local start and end time for screensaver
 
 ### 1.3.0
 
