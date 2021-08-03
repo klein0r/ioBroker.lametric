@@ -194,6 +194,10 @@ show();
 
 ## Changelog
 
+### 1.3.2
+
+* (klein0r) Updated dependencies
+
 ### 1.3.1
 
 * (klein0r) Added local start and end time for screensaver
