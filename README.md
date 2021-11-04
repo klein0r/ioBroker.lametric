@@ -202,6 +202,10 @@ show();
 
 ## Changelog
 
+### 1.4.0
+
+* (klein0r) Admin 5 Support
+
 ### 1.3.2
 
 * (klein0r) Updated dependencies

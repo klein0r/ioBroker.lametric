@@ -1,0 +1,13 @@
+{
+    "Developer Token": "Ontwikkelaarstoken",
+    "Hide if": "verbergen als waarde",
+    "IP": "IP adres",
+    "IP address of your LaMetric Time": "IP-adres van uw LaMetric Time",
+    "Icon": "icoon",
+    "My Data (DIY)": "Mijn gegevens (DIY)",
+    "Options": "opties",
+    "Text": "tekst",
+    "Use the SimpleAPI adapter to request these information (see README for details)": "Gebruik de SimpleAPI-adapter om deze informatie op te vragen (zie README voor details)",
+    "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "Beschikbare pictogrammen vindt u <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">hier</a>",
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Je persoonlijke ontwikkelaarstoken - je kunt het <a href=\"https://developer.lametric.com/\">hier downloaden</a>"
+}

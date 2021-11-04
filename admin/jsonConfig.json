@@ -1,0 +1,70 @@
+{
+    "i18n": true,
+    "type": "tabs",
+    "items": {
+        "_options": {
+            "type": "panel",
+            "label": "Options",
+            "items": {
+                "lametricIp": {
+                    "type": "text",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "IP",
+                    "help": "IP address of your LaMetric Time"
+                },
+                "lametricToken": {
+                    "type": "text",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Developer Token",
+                    "help": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>"
+                }
+            }
+        },
+        "_advanced": {
+            "type": "panel",
+            "label": "My Data (DIY)",
+            "items": {
+                "mydatadiy": {
+                    "type": "table",
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "label": "My Data (DIY)",
+                    "items": [
+                        {
+                            "type": "text",
+                            "attr": "icon",
+                            "width": "20%",
+                            "title": "Icon",
+                            "filter": false,
+                            "sort": false,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "attr": "text",
+                            "width": "40%",
+                            "title": "Text",
+                            "filter": false,
+                            "sort": false,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "attr": "hideif",
+                            "width": "40%",
+                            "title": "Hide if",
+                            "filter": false,
+                            "sort": false,
+                            "default": ""
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

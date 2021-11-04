@@ -2,17 +2,17 @@
 'use strict';
 
 systemDictionary = {
-    "Main Settings": {
-        "en": "Main Settings",
-        "de": "Haupteinstellungen",
-        "ru": "Основные параметры",
-        "pt": "Configurações principais",
-        "nl": "Belangrijkste instellingen",
-        "fr": "Réglages principaux",
-        "it": "Impostazioni principali",
-        "es": "Ajustes principales",
-        "pl": "Ustawienia główne",
-        "zh-cn": "主要设定"
+    "Options": {
+        "en": "Options",
+        "de": "Einstellungen",
+        "ru": "Настройки",
+        "pt": "Opções",
+        "nl": "opties",
+        "fr": "Options",
+        "it": "Opzioni",
+        "es": "Opciones",
+        "pl": "Opcje",
+        "zh-cn": "选项"
     },
     "My Data (DIY)": {
         "en": "My Data (DIY)",
@@ -98,8 +98,8 @@ systemDictionary = {
         "pl": "Dostępne ikony znajdziesz <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">tutaj</a>",
         "zh-cn": "您可以<a target=\"_blank\" href=\"https://developer.lametric.com/icons\">在此处</a>找到可用的图标"
     },
-    "icon": {
-        "en": "icon",
+    "Icon": {
+        "en": "Icon",
         "de": "Icon",
         "ru": "икона",
         "pt": "ícone",
@@ -110,8 +110,8 @@ systemDictionary = {
         "pl": "Ikona",
         "zh-cn": "图标"
     },
-    "text": {
-        "en": "text",
+    "Text": {
+        "en": "Text",
         "de": "Text",
         "ru": "текст",
         "pt": "texto",
@@ -122,7 +122,7 @@ systemDictionary = {
         "pl": "tekst",
         "zh-cn": "文本"
     },
-    "hide if": {
+    "Hide if": {
         "en": "hide if value",
         "de": "verstecke wenn Wert",
         "ru": "скрыть, если значение",

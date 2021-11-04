@@ -1,0 +1,13 @@
+{
+    "Developer Token": "Jeton de développeur",
+    "Hide if": "cacher si valeur",
+    "IP": "Adresse IP",
+    "IP address of your LaMetric Time": "Adresse IP de votre LaMetric Time",
+    "Icon": "icône",
+    "My Data (DIY)": "Mes données (bricolage)",
+    "Options": "Options",
+    "Text": "texte",
+    "Use the SimpleAPI adapter to request these information (see README for details)": "Utilisez l'adaptateur SimpleAPI pour demander ces informations (voir README pour plus de détails)",
+    "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "Vous pouvez trouver les icônes disponibles <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">ici</a>",
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Votre jeton de développeur personnel - vous pouvez l'obtenir <a href=\"https://developer.lametric.com/\">ici</a>"
+}

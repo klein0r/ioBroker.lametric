@@ -1,0 +1,13 @@
+{
+    "Developer Token": "Developer Token",
+    "Hide if": "hide if value",
+    "IP": "IP-Address",
+    "IP address of your LaMetric Time": "IP address of your LaMetric Time",
+    "Icon": "Icon",
+    "My Data (DIY)": "My Data (DIY)",
+    "Options": "Options",
+    "Text": "Text",
+    "Use the SimpleAPI adapter to request these information (see README for details)": "Use the SimpleAPI adapter to request these information (see README for details)",
+    "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>",
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>"
+}
