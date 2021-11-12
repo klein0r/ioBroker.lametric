@@ -37,7 +37,7 @@ class LaMetric extends utils.Adapter {
             this.collectMyDataDiyForeignStates(this.config.mydatadiy);
         } else {
             this.log.debug('My Data (DIY) configuration is not available');
-            this.setState('mydatadiy.obj', {val: {'frames': [{text: 'No Data', icon: 'a9335'}]}, ack: true});
+            this.setState('mydatadiy.obj', {val: JSON.stringify({'frames': [{text: 'No Data', icon: 'a9335'}]}), ack: true});
         }
     }
 
@@ -1028,7 +1028,7 @@ class LaMetric extends utils.Adapter {
 
         this.log.debug('My Data (DIY) frame update to ' + JSON.stringify(newFrames));
 
-        this.setState('mydatadiy.obj', {val: {'frames': newFrames}, ack: true});
+        this.setState('mydatadiy.obj', {val: JSON.stringify({'frames': newFrames}), ack: true});
     }
 
     removeNamespace(id) {
@@ -1039,7 +1039,7 @@ class LaMetric extends utils.Adapter {
     onUnload(callback) {
         try {
             this.setState('info.connection', false, true);
-            this.setState('mydatadiy.obj', {val: {'frames': [{text: 'Adapter stopped', icon: 'a9335'}]}, ack: true});
+            this.setState('mydatadiy.obj', {val: JSON.stringify({'frames': [{text: 'Adapter stopped', icon: 'a9335'}]}), ack: true});
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');

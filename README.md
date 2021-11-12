@@ -75,7 +75,7 @@ You can use the Simple API Adapter to transfer the data to the LaMetric Time.
 6. Go to the adapter configuration and configure the frames with your custom information (icon and text)
 
 ```
-http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?&user=lametric&pass=HhX7dZl3Fe
+http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?user=lametric&pass=HhX7dZl3Fe
 ```
 
 **Ensure to update IP, port, user and password in the URL if necessary!**
@@ -201,6 +201,10 @@ show();
 ```
 
 ## Changelog
+
+### 1.4.2
+
+* (klein0r) Fixed myData DIY data type
 
 ### 1.4.1
 

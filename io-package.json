@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "lametric",
-        "version": "1.4.1",
+        "version": "1.4.2",
         "news": {
+            "1.4.2": {
+                "en": "Fixed myData DIY data type",
+                "de": "myData DIY Datentyp korrigiert"
+            },
             "1.4.1": {
                 "en": "Fixed missing translations",
                 "de": "Fehlende Übersetzungen hinzugefügt"
