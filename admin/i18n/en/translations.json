@@ -9,5 +9,6 @@
     "Text": "Text",
     "Use the SimpleAPI adapter to request these information (see README for details)": "Use the SimpleAPI adapter to request these information (see README for details)",
     "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>",
-    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>"
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>",
+    "Use HTTPS": "Use HTTPS"
 }

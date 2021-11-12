@@ -873,12 +873,14 @@ class LaMetric extends utils.Adapter {
         const url = '/api/v2/' + service;
 
         if (this.config.lametricIp && this.config.lametricToken) {
+            const port = this.config.useHttps ? 4343 : 8080;
+
             this.log.debug('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
 
             axios({
                 method: method,
                 data: data,
-                baseURL: 'http://' + this.config.lametricIp + ':8080',
+                baseURL: 'http://' + this.config.lametricIp + ':' + port,
                 url: url,
                 timeout: 3000,
                 responseType: 'json',

@@ -22,6 +22,14 @@
                     "label": "Developer Token",
                     "help": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>"
                 },
+                "useHttps": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Use HTTPS"
+                },
                 "_ioBrokerKursBanner": {
                     "newLine": true,
                     "type": "staticImage",
