@@ -208,6 +208,7 @@ show();
 ### 1.5.0
 
 * (klein0r) Fixed myData DIY data type **(BREAKING CHANGE - requires SimpleAPI 2.6.2 or later to use json parameter)**
+* (klein0r) Added version check
 
 ### 1.4.1
 

@@ -15,6 +15,8 @@ class LaMetric extends utils.Adapter {
             name: adapterName,
         });
 
+        this.supportedVersion = "2.2.2";
+
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
 
@@ -441,6 +443,10 @@ class LaMetric extends utils.Adapter {
             'device',
             (content, status) => {
                 this.setState('info.connection', true, true);
+
+                if (this.isNewerVersion(content.os_version, this.supportedVersion)) {
+                    this.log.warn("You should update your LaMetric Time - supported version of this adapter is " + this.supportedVersion + " (or later). Your current version is " + content.os_version);
+                }
 
                 this.setState('meta.name', {val: content.name, ack: true});
                 this.setState('meta.serial', {val: content.serial_number, ack: true});
@@ -1055,6 +1061,18 @@ class LaMetric extends utils.Adapter {
         } catch (e) {
             callback();
         }
+    }
+
+    isNewerVersion(oldVer, newVer) {
+        const oldParts = oldVer.split('.');
+        const newParts = newVer.split('.');
+        for (var i = 0; i < newParts.length; i++) {
+            const a = ~~newParts[i]; // parse int
+            const b = ~~oldParts[i]; // parse int
+            if (a > b) return true;
+            if (a < b) return false;
+        }
+        return false;
     }
 }
 
