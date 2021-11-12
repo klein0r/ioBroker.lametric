@@ -25,7 +25,7 @@ iobroker add lametric
 
 ## Configuration
 
-Tested with LaMetric firmware *2.2.1* (recommended)
+Tested with LaMetric firmware *2.2.2* (recommended)
 
 You can get your personal key [here](https://developer.lametric.com/).
 
@@ -75,8 +75,11 @@ You can use the Simple API Adapter to transfer the data to the LaMetric Time.
 6. Go to the adapter configuration and configure the frames with your custom information (icon and text)
 
 ```
-http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?user=lametric&pass=HhX7dZl3Fe
+http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json
+http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json&user=lametric&pass=HhX7dZl3Fe
 ```
+
+**Important: use json flag of SimpleAPI Adapter (available since 2.6.2)**
 
 **Ensure to update IP, port, user and password in the URL if necessary!**
 
@@ -202,9 +205,9 @@ show();
 
 ## Changelog
 
-### 1.4.2
+### 1.5.0
 
-* (klein0r) Fixed myData DIY data type
+* (klein0r) Fixed myData DIY data type **(BREAKING CHANGE - requires SimpleAPI 2.6.2 or later to use json parameter)**
 
 ### 1.4.1
 
