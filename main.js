@@ -555,8 +555,7 @@ class LaMetric extends utils.Adapter {
                                 await this.setObjectNotExistsAsync(path + uuid, {
                                     type: 'channel',
                                     common: {
-                                        name: 'Widget ' + pack.package + '(' + pack.version + ')',
-                                        role: ''
+                                        name: 'Widget ' + pack.package + '(' + pack.version + ')'
                                     },
                                     native: {}
                                 });
@@ -564,7 +563,18 @@ class LaMetric extends utils.Adapter {
                                 await this.setObjectNotExistsAsync(path + uuid + '.activate', {
                                     type: 'state',
                                     common: {
-                                        name: 'Activate',
+                                        name: {
+                                            en: 'Activate',
+                                            de: 'aktivieren Sie',
+                                            ru: 'Активировать',
+                                            pt: 'Ativar',
+                                            nl: 'Activeren',
+                                            fr: 'Activer',
+                                            it: 'Attivare',
+                                            es: 'Activar',
+                                            pl: 'Aktywuj',
+                                            'zh-cn': '启用'
+                                        },
                                         type: 'boolean',
                                         role: 'button',
                                         read: false,
@@ -576,7 +586,18 @@ class LaMetric extends utils.Adapter {
                                 await this.setObjectNotExistsAsync(path + uuid + '.index', {
                                     type: 'state',
                                     common: {
-                                        name: 'Index',
+                                        name: {
+                                            en: 'Index',
+                                            de: 'Index',
+                                            ru: 'Показатель',
+                                            pt: 'Índice',
+                                            nl: 'Inhoudsopgave',
+                                            fr: 'Indice',
+                                            it: 'Indice',
+                                            es: 'Índice',
+                                            pl: 'Indeks',
+                                            'zh-cn': '指数'
+                                        },
                                         type: 'number',
                                         role: 'value',
                                         read: true,
@@ -589,7 +610,18 @@ class LaMetric extends utils.Adapter {
                                 await this.setObjectNotExistsAsync(path + uuid + '.package', {
                                     type: 'state',
                                     common: {
-                                        name: 'Package',
+                                        name: {
+                                            en: 'Package',
+                                            de: 'Paket',
+                                            ru: 'Упаковка',
+                                            pt: 'Pacote',
+                                            nl: 'Pakket',
+                                            fr: 'Emballer',
+                                            it: 'Pacchetto',
+                                            es: 'Paquete',
+                                            pl: 'Pakiet',
+                                            'zh-cn': '包裹'
+                                        },
                                         type: 'string',
                                         role: 'value',
                                         read: true,
@@ -602,7 +634,18 @@ class LaMetric extends utils.Adapter {
                                 await this.setObjectNotExistsAsync(path + uuid + '.vendor', {
                                     type: 'state',
                                     common: {
-                                        name: 'Vendor',
+                                        name: {
+                                            en: 'Vendor',
+                                            de: 'Verkäufer',
+                                            ru: 'Продавец',
+                                            pt: 'Fornecedor',
+                                            nl: 'Leverancier',
+                                            fr: 'Vendeur',
+                                            it: 'Venditore',
+                                            es: 'Vendedor',
+                                            pl: 'Sprzedawca',
+                                            'zh-cn': '小贩'
+                                        },
                                         type: 'string',
                                         role: 'value',
                                         read: true,
@@ -615,7 +658,18 @@ class LaMetric extends utils.Adapter {
                                 await this.setObjectNotExistsAsync(path + uuid + '.version', {
                                     type: 'state',
                                     common: {
-                                        name: 'Vendor',
+                                        name: {
+                                            en: 'Version',
+                                            de: 'Ausführung',
+                                            ru: 'Версия',
+                                            pt: 'Versão',
+                                            nl: 'Versie',
+                                            fr: 'Version',
+                                            it: 'Versione',
+                                            es: 'Versión',
+                                            pl: 'Wersja',
+                                            'zh-cn': '版本'
+                                        },
                                         type: 'string',
                                         role: 'value',
                                         read: true,
@@ -632,8 +686,7 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.clock', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package,
-                                            role: ''
+                                            name: pack.package
                                         },
                                         native: {}
                                     });
@@ -641,7 +694,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.clock.clockface', {
                                         type: 'state',
                                         common: {
-                                            name: 'Clockface (Base64)',
+                                            name: {
+                                                en: 'Clockface (Base64)',
+                                                de: 'Zifferblatt (Base64)',
+                                                ru: 'Циферблат (Base64)',
+                                                pt: 'Face do relógio (Base64)',
+                                                nl: 'Wijzerplaat (Base64)',
+                                                fr: 'Cadran d\'horloge (Base64)',
+                                                it: 'Quadrante orologio (Base64)',
+                                                es: 'Esfera de reloj (Base64)',
+                                                pl: 'Tarcza zegara (Base64)',
+                                                'zh-cn': '表盘 (Base64)'
+                                            },
                                             type: 'string',
                                             role: 'value',
                                             read: true,
@@ -655,8 +719,7 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.radio', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package,
-                                            role: ''
+                                            name: pack.package
                                         },
                                         native: {}
                                     });
@@ -664,7 +727,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.radio.play', {
                                         type: 'state',
                                         common: {
-                                            name: 'Play Radio',
+                                            name: {
+                                                en: 'Play Radio',
+                                                de: 'Radio spielen',
+                                                ru: 'Слушать радио',
+                                                pt: 'Tocar rádio',
+                                                nl: 'Radio afspelen',
+                                                fr: 'Écouter la radio',
+                                                it: 'Riproduci radio',
+                                                es: 'Reproducir radio',
+                                                pl: 'Włącz radio',
+                                                'zh-cn': '播放广播'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -676,7 +750,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.radio.stop', {
                                         type: 'state',
                                         common: {
-                                            name: 'Stop Radio',
+                                            name: {
+                                                en: 'Stop Radio',
+                                                de: 'Radio stoppen',
+                                                ru: 'Остановить радио',
+                                                pt: 'Parar Rádio',
+                                                nl: 'Radio stoppen',
+                                                fr: 'Arrêter la radio',
+                                                it: 'Ferma la radio',
+                                                es: 'Detener radio',
+                                                pl: 'Zatrzymaj radio',
+                                                'zh-cn': '停止广播'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -688,7 +773,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.radio.next', {
                                         type: 'state',
                                         common: {
-                                            name: 'Next Radio',
+                                            name: {
+                                                en: 'Next Radio',
+                                                de: 'Nächstes Radio',
+                                                ru: 'Следующее радио',
+                                                pt: 'Next Radio',
+                                                nl: 'volgende radio',
+                                                fr: 'Radio suivante',
+                                                it: 'Prossima Radio',
+                                                es: 'Siguiente radio',
+                                                pl: 'Następne radio',
+                                                'zh-cn': '下一个电台'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -700,7 +796,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.radio.prev', {
                                         type: 'state',
                                         common: {
-                                            name: 'Prev Radio',
+                                            name: {
+                                                en: 'Previous Radio',
+                                                de: 'Vorheriges Radio',
+                                                ru: 'Предыдущее радио',
+                                                pt: 'Rádio Anterior',
+                                                nl: 'Vorige radio',
+                                                fr: 'Radio précédente',
+                                                it: 'Radio precedente',
+                                                es: 'Radio anterior',
+                                                pl: 'Poprzednie radio',
+                                                'zh-cn': '以前的电台'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -714,8 +821,7 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.stopwatch', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package,
-                                            role: ''
+                                            name: pack.package
                                         },
                                         native: {}
                                     });
@@ -723,7 +829,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.stopwatch.start', {
                                         type: 'state',
                                         common: {
-                                            name: 'Start Stopwatch',
+                                            name: {
+                                                en: 'Start Stopwatch',
+                                                de: 'Stoppuhr starten',
+                                                ru: 'Запустить секундомер',
+                                                pt: 'Iniciar cronômetro',
+                                                nl: 'Stopwatch starten',
+                                                fr: 'Démarrer le chronomètre',
+                                                it: 'Avvia cronometro',
+                                                es: 'Iniciar cronómetro',
+                                                pl: 'Uruchom stoper',
+                                                'zh-cn': '启动秒表'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -735,7 +852,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.stopwatch.pause', {
                                         type: 'state',
                                         common: {
-                                            name: 'Pause Stopwatch',
+                                            name: {
+                                                en: 'Pause Stopwatch',
+                                                de: 'Stoppuhr pausieren',
+                                                ru: 'Пауза секундомера',
+                                                pt: 'Pausar cronômetro',
+                                                nl: 'Stopwatch pauzeren',
+                                                fr: 'Suspendre le chronomètre',
+                                                it: 'Metti in pausa il cronometro',
+                                                es: 'Pausar cronómetro',
+                                                pl: 'Wstrzymaj stoper',
+                                                'zh-cn': '暂停秒表'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -747,7 +875,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.stopwatch.reset', {
                                         type: 'state',
                                         common: {
-                                            name: 'Reset Stopwatch',
+                                            name: {
+                                                en: 'Reset Stopwatch',
+                                                de: 'Stoppuhr zurücksetzen',
+                                                ru: 'Сбросить секундомер',
+                                                pt: 'Reiniciar cronômetro',
+                                                nl: 'Stopwatch resetten',
+                                                fr: 'Réinitialiser le chronomètre',
+                                                it: 'Ripristina cronometro',
+                                                es: 'Restablecer cronómetro',
+                                                pl: 'Zresetuj stoper',
+                                                'zh-cn': '重置秒表'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -761,8 +900,7 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.weather', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package,
-                                            role: ''
+                                            name: pack.package
                                         },
                                         native: {}
                                     });
@@ -770,7 +908,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.weather.forecast', {
                                         type: 'state',
                                         common: {
-                                            name: 'Weather Forecast',
+                                            name: {
+                                                en: 'Weather Forecast',
+                                                de: 'Wettervorhersage',
+                                                ru: 'Прогноз погоды',
+                                                pt: 'Previsão do tempo',
+                                                nl: 'Weervoorspelling',
+                                                fr: 'Prévisions météorologiques',
+                                                it: 'Previsioni del tempo',
+                                                es: 'Pronóstico del tiempo',
+                                                pl: 'Prognoza pogody',
+                                                'zh-cn': '天气预报'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -784,8 +933,7 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.countdown', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package,
-                                            role: ''
+                                            name: pack.package
                                         },
                                         native: {}
                                     });
@@ -793,7 +941,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.countdown.configure', {
                                         type: 'state',
                                         common: {
-                                            name: 'Countdown Time (in seconds)',
+                                            name: {
+                                                en: 'Countdown Time',
+                                                de: 'Countdown-Zeit',
+                                                ru: 'Обратный отсчет',
+                                                pt: 'Tempo de contagem regressiva',
+                                                nl: 'Afteltijd',
+                                                fr: 'Temps de compte à rebours',
+                                                it: 'Conto alla rovescia',
+                                                es: 'Tiempo de cuenta regresiva',
+                                                pl: 'Czas odliczania',
+                                                'zh-cn': '倒计时时间'
+                                            },
                                             type: 'number',
                                             role: 'value',
                                             read: true,
@@ -805,7 +964,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.countdown.start', {
                                         type: 'state',
                                         common: {
-                                            name: 'Countdown Start',
+                                            name: {
+                                                en: 'Countdown Start',
+                                                de: 'Countdown-Start',
+                                                ru: 'Обратный отсчет',
+                                                pt: 'Início da contagem regressiva',
+                                                nl: 'Aftellen starten',
+                                                fr: 'Début du compte à rebours',
+                                                it: 'Inizio conto alla rovescia',
+                                                es: 'Inicio de la cuenta regresiva',
+                                                pl: 'Rozpoczęcie odliczania',
+                                                'zh-cn': '倒计时开始'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -817,7 +987,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.countdown.pause', {
                                         type: 'state',
                                         common: {
-                                            name: 'Countdown Pause',
+                                            name: {
+                                                en: 'Countdown Pause',
+                                                de: 'Countdown-Pause',
+                                                ru: 'Обратный отсчет Пауза',
+                                                pt: 'Pausa de contagem regressiva',
+                                                nl: 'Aftellen pauze',
+                                                fr: 'Pause du compte à rebours',
+                                                it: 'Pausa conto alla rovescia',
+                                                es: 'Pausa de cuenta regresiva',
+                                                pl: 'Pauza odliczania',
+                                                'zh-cn': '倒计时暂停'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
@@ -829,7 +1010,18 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.countdown.reset', {
                                         type: 'state',
                                         common: {
-                                            name: 'Countdown Reset',
+                                            name: {
+                                                en: 'Countdown Reset',
+                                                de: 'Countdown-Reset',
+                                                ru: 'Обратный отсчет Сброс',
+                                                pt: 'Reinicialização da contagem regressiva',
+                                                nl: 'Aftellen resetten',
+                                                fr: 'Réinitialisation du compte à rebours',
+                                                it: 'Ripristino conto alla rovescia',
+                                                es: 'Reinicio de la cuenta regresiva',
+                                                pl: 'Resetowanie odliczania',
+                                                'zh-cn': '倒计时重置'
+                                            },
                                             type: 'boolean',
                                             role: 'button',
                                             read: false,
