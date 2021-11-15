@@ -56,7 +56,18 @@
                             "type": "text",
                             "attr": "icon",
                             "width": "20%",
-                            "title": "Icon",
+                            "title": {
+                                "en": "Icon",
+                                "de": "Symbol",
+                                "ru": "Значок",
+                                "pt": "Ícone",
+                                "nl": "Icoon",
+                                "fr": "Icône",
+                                "it": "Icona",
+                                "es": "Icono",
+                                "pl": "Ikona",
+                                "zh-cn": "图标"
+                            },
                             "filter": false,
                             "sort": false,
                             "default": ""
@@ -65,7 +76,18 @@
                             "type": "text",
                             "attr": "text",
                             "width": "40%",
-                            "title": "Text",
+                            "title": {
+                                "en": "Text",
+                                "de": "Text",
+                                "ru": "Текст",
+                                "pt": "Texto",
+                                "nl": "Tekst",
+                                "fr": "Texte",
+                                "it": "Testo",
+                                "es": "Texto",
+                                "pl": "Tekst",
+                                "zh-cn": "文本"
+                            },
                             "filter": false,
                             "sort": false,
                             "default": ""
@@ -74,7 +96,18 @@
                             "type": "text",
                             "attr": "hideif",
                             "width": "40%",
-                            "title": "Hide if",
+                            "title": {
+                                "en": "Hide if value matches",
+                                "de": "Ausblenden, wenn Wert übereinstimmt",
+                                "ru": "Скрыть, если значение совпадает",
+                                "pt": "Ocultar se o valor corresponder",
+                                "nl": "Verbergen als waarde overeenkomt",
+                                "fr": "Masquer si la valeur correspond",
+                                "it": "Nascondi se il valore corrisponde",
+                                "es": "Ocultar si el valor coincide",
+                                "pl": "Ukryj, jeśli wartość pasuje",
+                                "zh-cn": "如果值匹配则隐藏"
+                            },
                             "filter": false,
                             "sort": false,
                             "default": ""
