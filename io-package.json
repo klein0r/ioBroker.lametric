@@ -1109,7 +1109,7 @@
                 "role": "",
                 "name": {
                     "en": "When Dark Screensaver",
-                    "de": "Wenn dunkler Bildschirmschoner",
+                    "de": "Wenn Dunkel Bildschirmschoner",
                     "ru": "Когда темная заставка",
                     "pt": "Protetor de tela quando escuro",
                     "nl": "Wanneer donkere schermbeveiliging",
@@ -1128,7 +1128,7 @@
             "common": {
                 "name": {
                     "en": "When Dark Screensaver Enabled",
-                    "de": "Wenn dunkler Bildschirmschoner aktiviert ist",
+                    "de": "Wenn Dunkel Bildschirmschoner aktiviert ist",
                     "ru": "Когда включена темная заставка",
                     "pt": "Quando protetor de tela escuro ativado",
                     "nl": "Wanneer donkere schermbeveiliging is ingeschakeld",
@@ -1152,7 +1152,7 @@
                 "role": "",
                 "name": {
                     "en": "WiFi",
-                    "de": "W-lan",
+                    "de": "W-LAN",
                     "ru": "Вай фай",
                     "pt": "Wi-fi",
                     "nl": "Wifi",
@@ -1332,7 +1332,7 @@
             "common": {
                 "name": {
                     "en": "WiFi Netmask",
-                    "de": "WLAN-Netzmaske",
+                    "de": "WLAN-Subnetzmaske",
                     "ru": "Маска сети Wi-Fi",
                     "pt": "Máscara de rede WiFi",
                     "nl": "WiFi-netmasker",
@@ -1464,8 +1464,8 @@
             "type": "state",
             "common": {
                 "name": {
-                    "en": "My Data (DIY) frame data",
-                    "de": "Meine Daten (DIY) Rahmendaten",
+                    "en": "My Data (DIY) data",
+                    "de": "Meine Daten (DIY) Daten",
                     "ru": "Данные кадра My Data (DIY)",
                     "pt": "Dados do quadro My Data (DIY)",
                     "nl": "Mijn gegevens (DIY) framegegevens",
