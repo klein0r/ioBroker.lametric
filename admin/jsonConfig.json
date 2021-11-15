@@ -15,7 +15,8 @@
                     "help": "IP address of your LaMetric Time"
                 },
                 "lametricToken": {
-                    "type": "text",
+                    "type": "password",
+                    "visible": true,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
@@ -70,7 +71,7 @@
                             },
                             "filter": false,
                             "sort": false,
-                            "default": ""
+                            "default": "a9335"
                         },
                         {
                             "type": "text",
@@ -90,7 +91,7 @@
                             },
                             "filter": false,
                             "sort": false,
-                            "default": ""
+                            "default": "haus-automatisierung.com"
                         },
                         {
                             "type": "text",
