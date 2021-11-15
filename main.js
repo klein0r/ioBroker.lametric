@@ -584,7 +584,7 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {}
                                 });
-                                this.setStateAsync(path + uuid + '.index', {val: widget.index, ack: true});
+                                await this.setStateAsync(path + uuid + '.index', {val: widget.index, ack: true});
 
                                 await this.setObjectNotExistsAsync(path + uuid + '.package', {
                                     type: 'state',
@@ -597,7 +597,7 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {}
                                 });
-                                this.setStateAsync(path + uuid + '.package', {val: pack.package, ack: true});
+                                await this.setStateAsync(path + uuid + '.package', {val: pack.package, ack: true});
 
                                 await this.setObjectNotExistsAsync(path + uuid + '.vendor', {
                                     type: 'state',
@@ -610,7 +610,7 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {}
                                 });
-                                this.setStateAsync(path + uuid + '.vendor', {val: pack.vendor, ack: true});
+                                await this.setStateAsync(path + uuid + '.vendor', {val: pack.vendor, ack: true});
 
                                 await this.setObjectNotExistsAsync(path + uuid + '.version', {
                                     type: 'state',
@@ -623,7 +623,7 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {}
                                 });
-                                this.setStateAsync(path + uuid + '.version', {val: pack.version, ack: true});
+                                await this.setStateAsync(path + uuid + '.version', {val: pack.version, ack: true});
 
                                 // START special Widgets
 
