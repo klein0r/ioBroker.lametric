@@ -217,6 +217,7 @@ show();
 ### 1.5.1
 
 * (klein0r) Translated all objects
+* (klein0r) Fixed HTTPS option
 
 ### 1.5.0
 
