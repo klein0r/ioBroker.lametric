@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "lametric",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "news": {
+            "1.5.1": {
+                "en": "Translated all objects",
+                "de": "Alle Objekte übersetzt",
+                "ru": "Переведены все объекты",
+                "pt": "Todos os objetos traduzidos",
+                "nl": "Alle objecten vertaald",
+                "fr": "Traduit tous les objets",
+                "it": "Tradotto tutti gli oggetti",
+                "es": "Traducido todos los objetos",
+                "pl": "Przetłumaczono wszystkie obiekty",
+                "zh-cn": "翻译所有对象"
+            },
             "1.5.0": {
                 "en": "Fixed myData DIY data type",
                 "de": "myData DIY Datentyp korrigiert",
