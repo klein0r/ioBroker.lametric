@@ -5,6 +5,7 @@
 
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios');
+const https = require('https')
 const adapterName = require('./package.json').name.split('.').pop();
 
 class LaMetric extends utils.Adapter {
@@ -1065,14 +1066,15 @@ class LaMetric extends utils.Adapter {
         const url = '/api/v2/' + service;
 
         if (this.config.lametricIp && this.config.lametricToken) {
+            const prefix = this.config.useHttps ? 'https' : 'http';
             const port = this.config.useHttps ? 4343 : 8080;
 
-            this.log.debug('sending "' + method + '" request to "' + url + '" with data: ' + JSON.stringify(data));
+            this.log.debug('sending "' + method + '" request to "' + url + '" on port ' + port + ' with data: ' + JSON.stringify(data));
 
             axios({
                 method: method,
                 data: data,
-                baseURL: 'http://' + this.config.lametricIp + ':' + port,
+                baseURL: prefix + '://' + this.config.lametricIp + ':' + port,
                 url: url,
                 timeout: 3000,
                 responseType: 'json',
@@ -1083,6 +1085,11 @@ class LaMetric extends utils.Adapter {
                 validateStatus: function (status) {
                     return [200, 201].indexOf(status) > -1;
                 },
+                httpsAgent: new https.Agent(
+                    {
+                        rejectUnauthorized: false
+                    }
+                )
             }).then(
                 (response) => {
                     this.log.debug('received ' + response.status + ' response from ' + url + ' with content: ' + JSON.stringify(response.data));
