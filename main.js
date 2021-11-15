@@ -39,7 +39,7 @@ class LaMetric extends utils.Adapter {
             this.collectMyDataDiyForeignStates(this.config.mydatadiy);
         } else {
             this.log.debug('My Data (DIY) configuration is not available');
-            this.setState('mydatadiy.obj', {val: JSON.stringify({'frames': [{text: 'No Data', icon: 'a9335'}]}), ack: true});
+            this.setStateAsync('mydatadiy.obj', {val: JSON.stringify({'frames': [{text: 'No Data', icon: 'a9335'}]}), ack: true});
         }
     }
 
@@ -67,12 +67,12 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    (content, status) => {
-                        this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
-                        this.setState('meta.display.brightnessMin', {val: content.success.data.brightness_limit.min, ack: true});
-                        this.setState('meta.display.brightnessMax', {val: content.success.data.brightness_limit.max, ack: true});
-                        this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
-                        this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
+                    async (content, status) => {
+                        await this.setStateAsync('meta.display.brightness', {val: content.success.data.brightness, ack: true});
+                        await this.setStateAsync('meta.display.brightnessMin', {val: content.success.data.brightness_limit.min, ack: true});
+                        await this.setStateAsync('meta.display.brightnessMax', {val: content.success.data.brightness_limit.max, ack: true});
+                        await this.setStateAsync('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
+                        await this.setStateAsync('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
                     },
                     'PUT',
                     {
@@ -85,12 +85,12 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    (content, status) => {
-                        this.setState('meta.display.brightness', {val: content.success.data.brightness, ack: true});
-                        this.setState('meta.display.brightnessMin', {val: content.success.data.brightness_limit.min, ack: true});
-                        this.setState('meta.display.brightnessMax', {val: content.success.data.brightness_limit.max, ack: true});
-                        this.setState('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
-                        this.setState('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
+                    async (content, status) => {
+                        await this.setStateAsync('meta.display.brightness', {val: content.success.data.brightness, ack: true});
+                        await this.setStateAsync('meta.display.brightnessMin', {val: content.success.data.brightness_limit.min, ack: true});
+                        await this.setStateAsync('meta.display.brightnessMax', {val: content.success.data.brightness_limit.max, ack: true});
+                        await this.setStateAsync('meta.display.brightnessAuto', {val: content.success.data.brightness_mode === 'auto', ack: true});
+                        await this.setStateAsync('meta.display.brightnessMode', {val: content.success.data.brightness_mode, ack: true});
                     },
                     'PUT',
                     {
@@ -102,10 +102,10 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/audio',
-                    (content, status) => {
-                        this.setState('meta.audio.volume', {val: content.success.data.volume, ack: true});
-                        this.setState('meta.audio.volumeMin', {val: content.success.data.volume_limit.min, ack: true});
-                        this.setState('meta.audio.volumeMax', {val: content.success.data.volume_limit.max, ack: true});
+                    async (content, status) => {
+                        await this.setStateAsync('meta.audio.volume', {val: content.success.data.volume, ack: true});
+                        await this.setStateAsync('meta.audio.volumeMin', {val: content.success.data.volume_limit.min, ack: true});
+                        await this.setStateAsync('meta.audio.volumeMax', {val: content.success.data.volume_limit.max, ack: true});
                     },
                     'PUT',
                     {
@@ -117,13 +117,13 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/bluetooth',
-                    (content, status) => {
-                        this.setState('meta.bluetooth.active', {val: content.success.data.active, ack: true});
-                        this.setState('meta.bluetooth.available', {val: content.success.data.available, ack: true});
-                        this.setState('meta.bluetooth.discoverable', {val: content.success.data.discoverable, ack: true});
-                        this.setState('meta.bluetooth.address', {val: content.success.data.mac, ack: true});
-                        this.setState('meta.bluetooth.name', {val: content.success.data.name, ack: true});
-                        this.setState('meta.bluetooth.pairable', {val: content.success.data.pairable, ack: true});
+                    async (content, status) => {
+                        await this.setStateAsync('meta.bluetooth.active', {val: content.success.data.active, ack: true});
+                        await this.setStateAsync('meta.bluetooth.available', {val: content.success.data.available, ack: true});
+                        await this.setStateAsync('meta.bluetooth.discoverable', {val: content.success.data.discoverable, ack: true});
+                        await this.setStateAsync('meta.bluetooth.address', {val: content.success.data.mac, ack: true});
+                        await this.setStateAsync('meta.bluetooth.name', {val: content.success.data.name, ack: true});
+                        await this.setStateAsync('meta.bluetooth.pairable', {val: content.success.data.pairable, ack: true});
                     },
                     'PUT',
                     {
@@ -135,13 +135,13 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/bluetooth',
-                    (content, status) => {
-                        this.setState('meta.bluetooth.active', {val: content.success.data.active, ack: true});
-                        this.setState('meta.bluetooth.available', {val: content.success.data.available, ack: true});
-                        this.setState('meta.bluetooth.discoverable', {val: content.success.data.discoverable, ack: true});
-                        this.setState('meta.bluetooth.address', {val: content.success.data.mac, ack: true});
-                        this.setState('meta.bluetooth.name', {val: content.success.data.name, ack: true});
-                        this.setState('meta.bluetooth.pairable', {val: content.success.data.pairable, ack: true});
+                    async (content, status) => {
+                        await this.setStateAsync('meta.bluetooth.active', {val: content.success.data.active, ack: true});
+                        await this.setStateAsync('meta.bluetooth.available', {val: content.success.data.available, ack: true});
+                        await this.setStateAsync('meta.bluetooth.discoverable', {val: content.success.data.discoverable, ack: true});
+                        await this.setStateAsync('meta.bluetooth.address', {val: content.success.data.mac, ack: true});
+                        await this.setStateAsync('meta.bluetooth.name', {val: content.success.data.name, ack: true});
+                        await this.setStateAsync('meta.bluetooth.pairable', {val: content.success.data.pairable, ack: true});
                     },
                     'PUT',
                     {
@@ -171,17 +171,17 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    (content, status) => {
-                        this.setState('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
-                        this.setState('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
+                    async (content, status) => {
+                        await this.setStateAsync('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
+                        await this.setStateAsync('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
 
-                        this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
-                        this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.success.data.screensaver.modes.time_based.start_time, ack: true});
-                        this.setState('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_start_time, ack: true});
-                        this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.success.data.screensaver.modes.time_based.end_time, ack: true});
-                        this.setState('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_end_time, ack: true});
+                        await this.setStateAsync('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
+                        await this.setStateAsync('meta.display.screensaver.modes.timeBased.startTime', {val: content.success.data.screensaver.modes.time_based.start_time, ack: true});
+                        await this.setStateAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_start_time, ack: true});
+                        await this.setStateAsync('meta.display.screensaver.modes.timeBased.endTime', {val: content.success.data.screensaver.modes.time_based.end_time, ack: true});
+                        await this.setStateAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_end_time, ack: true});
 
-                        this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.success.data.screensaver.modes.when_dark.enabled, ack: true});
+                        await this.setStateAsync('meta.display.screensaver.modes.whenDark.enabled', {val: content.success.data.screensaver.modes.when_dark.enabled, ack: true});
                     },
                     'PUT',
                     {
@@ -213,17 +213,17 @@ class LaMetric extends utils.Adapter {
 
                         this.buildRequest(
                             'device/display',
-                            (content, status) => {
-                                this.setState('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
-                                this.setState('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
+                            async (content, status) => {
+                                await this.setStateAsync('meta.display.screensaver.enabled', {val: content.success.data.screensaver.enabled, ack: true});
+                                await this.setStateAsync('meta.display.screensaver.widget', {val: content.success.data.screensaver.widget, ack: true});
 
-                                this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
-                                this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.success.data.screensaver.modes.time_based.start_time, ack: true});
-                                this.setState('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_start_time, ack: true});
-                                this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.success.data.screensaver.modes.time_based.end_time, ack: true});
-                                this.setState('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_end_time, ack: true});
+                                await this.setStateAsync('meta.display.screensaver.modes.timeBased.enabled', {val: content.success.data.screensaver.modes.time_based.enabled, ack: true});
+                                await this.setStateAsync('meta.display.screensaver.modes.timeBased.startTime', {val: content.success.data.screensaver.modes.time_based.start_time, ack: true});
+                                await this.setStateAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_start_time, ack: true});
+                                await this.setStateAsync('meta.display.screensaver.modes.timeBased.endTime', {val: content.success.data.screensaver.modes.time_based.end_time, ack: true});
+                                await this.setStateAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.success.data.screensaver.modes.time_based.local_end_time, ack: true});
 
-                                this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.success.data.screensaver.modes.when_dark.enabled, ack: true});
+                                await this.setStateAsync('meta.display.screensaver.modes.whenDark.enabled', {val: content.success.data.screensaver.modes.when_dark.enabled, ack: true});
                             },
                             'PUT',
                             {
@@ -283,7 +283,7 @@ class LaMetric extends utils.Adapter {
 
                                 data.activate = true;
 
-                                this.setState(id, {val: state.val, ack: true}); // Confirm state change
+                                this.setStateAsync(id, {val: state.val, ack: true}); // Confirm state change
 
                             } else if (action == 'countdown.configure') {
 
@@ -292,7 +292,7 @@ class LaMetric extends utils.Adapter {
                                     start_now: false
                                 };
 
-                                this.setState(id, {val: state.val, ack: true}); // Confirm state change
+                                this.setStateAsync(id, {val: state.val, ack: true}); // Confirm state change
 
                             }
 
@@ -442,42 +442,42 @@ class LaMetric extends utils.Adapter {
         this.buildRequest(
             'device',
             (content, status) => {
-                this.setState('info.connection', true, true);
+                this.setStateAsync('info.connection', true, true);
 
                 if (this.isNewerVersion(content.os_version, this.supportedVersion)) {
                     this.log.warn("You should update your LaMetric Time - supported version of this adapter is " + this.supportedVersion + " (or later). Your current version is " + content.os_version);
                 }
 
-                this.setState('meta.name', {val: content.name, ack: true});
-                this.setState('meta.serial', {val: content.serial_number, ack: true});
-                this.setState('meta.version', {val: content.os_version, ack: true});
-                this.setState('meta.model', {val: content.model, ack: true});
-                this.setState('meta.mode', {val: content.mode, ack: true});
+                this.setStateAsync('meta.name', {val: content.name, ack: true});
+                this.setStateAsync('meta.serial', {val: content.serial_number, ack: true});
+                this.setStateAsync('meta.version', {val: content.os_version, ack: true});
+                this.setStateAsync('meta.model', {val: content.model, ack: true});
+                this.setStateAsync('meta.mode', {val: content.mode, ack: true});
 
-                this.setState('meta.audio.volume', {val: content.audio.volume, ack: true});
-                this.setState('meta.audio.volumeMin', {val: content.audio.volume_limit.min, ack: true});
-                this.setState('meta.audio.volumeMax', {val: content.audio.volume_limit.max, ack: true});
+                this.setStateAsync('meta.audio.volume', {val: content.audio.volume, ack: true});
+                this.setStateAsync('meta.audio.volumeMin', {val: content.audio.volume_limit.min, ack: true});
+                this.setStateAsync('meta.audio.volumeMax', {val: content.audio.volume_limit.max, ack: true});
 
-                this.setState('meta.bluetooth.available', {val: content.bluetooth.available, ack: true});
-                this.setState('meta.bluetooth.name', {val: content.bluetooth.name, ack: true});
-                this.setState('meta.bluetooth.active', {val: content.bluetooth.active, ack: true});
-                this.setState('meta.bluetooth.discoverable', {val: content.bluetooth.discoverable, ack: true});
-                this.setState('meta.bluetooth.pairable', {val: content.bluetooth.pairable, ack: true});
-                this.setState('meta.bluetooth.address', {val: content.bluetooth.address, ack: true});
+                this.setStateAsync('meta.bluetooth.available', {val: content.bluetooth.available, ack: true});
+                this.setStateAsync('meta.bluetooth.name', {val: content.bluetooth.name, ack: true});
+                this.setStateAsync('meta.bluetooth.active', {val: content.bluetooth.active, ack: true});
+                this.setStateAsync('meta.bluetooth.discoverable', {val: content.bluetooth.discoverable, ack: true});
+                this.setStateAsync('meta.bluetooth.pairable', {val: content.bluetooth.pairable, ack: true});
+                this.setStateAsync('meta.bluetooth.address', {val: content.bluetooth.address, ack: true});
 
-                this.setState('meta.bluetooth.low_energy.active', {val: content.bluetooth.low_energy.active, ack: true});
-                this.setState('meta.bluetooth.low_energy.advertising', {val: content.bluetooth.low_energy.advertising, ack: true});
-                this.setState('meta.bluetooth.low_energy.connectable', {val: content.bluetooth.low_energy.connectable, ack: true});
+                this.setStateAsync('meta.bluetooth.low_energy.active', {val: content.bluetooth.low_energy.active, ack: true});
+                this.setStateAsync('meta.bluetooth.low_energy.advertising', {val: content.bluetooth.low_energy.advertising, ack: true});
+                this.setStateAsync('meta.bluetooth.low_energy.connectable', {val: content.bluetooth.low_energy.connectable, ack: true});
 
-                this.setState('meta.wifi.active', {val: content.wifi.active, ack: true});
-                this.setState('meta.wifi.address', {val: content.wifi.address, ack: true});
-                this.setState('meta.wifi.available', {val: content.wifi.available, ack: true});
-                this.setState('meta.wifi.encryption', {val: content.wifi.encryption, ack: true});
-                this.setState('meta.wifi.ssid', {val: content.wifi.essid, ack: true});
-                this.setState('meta.wifi.ip', {val: content.wifi.ip, ack: true});
-                this.setState('meta.wifi.mode', {val: content.wifi.mode, ack: true});
-                this.setState('meta.wifi.netmask', {val: content.wifi.netmask, ack: true});
-                this.setState('meta.wifi.strength', {val: content.wifi.strength, ack: true});
+                this.setStateAsync('meta.wifi.active', {val: content.wifi.active, ack: true});
+                this.setStateAsync('meta.wifi.address', {val: content.wifi.address, ack: true});
+                this.setStateAsync('meta.wifi.available', {val: content.wifi.available, ack: true});
+                this.setStateAsync('meta.wifi.encryption', {val: content.wifi.encryption, ack: true});
+                this.setStateAsync('meta.wifi.ssid', {val: content.wifi.essid, ack: true});
+                this.setStateAsync('meta.wifi.ip', {val: content.wifi.ip, ack: true});
+                this.setStateAsync('meta.wifi.mode', {val: content.wifi.mode, ack: true});
+                this.setStateAsync('meta.wifi.netmask', {val: content.wifi.netmask, ack: true});
+                this.setStateAsync('meta.wifi.strength', {val: content.wifi.strength, ack: true});
             },
             'GET',
             null
@@ -486,26 +486,26 @@ class LaMetric extends utils.Adapter {
         this.buildRequest(
             'device/display',
             (content, status) => {
-                this.setState('meta.display.brightness', {val: content.brightness, ack: true});
-                this.setState('meta.display.brightnessMin', {val: content.brightness_limit.min, ack: true});
-                this.setState('meta.display.brightnessMax', {val: content.brightness_limit.max, ack: true});
-                this.setState('meta.display.brightnessAuto', {val: content.brightness_mode === 'auto', ack: true});
-                this.setState('meta.display.brightnessMode', {val: content.brightness_mode, ack: true});
+                this.setStateAsync('meta.display.brightness', {val: content.brightness, ack: true});
+                this.setStateAsync('meta.display.brightnessMin', {val: content.brightness_limit.min, ack: true});
+                this.setStateAsync('meta.display.brightnessMax', {val: content.brightness_limit.max, ack: true});
+                this.setStateAsync('meta.display.brightnessAuto', {val: content.brightness_mode === 'auto', ack: true});
+                this.setStateAsync('meta.display.brightnessMode', {val: content.brightness_mode, ack: true});
 
-                this.setState('meta.display.width', {val: content.width, ack: true});
-                this.setState('meta.display.height', {val: content.height, ack: true});
-                this.setState('meta.display.type', {val: content.type, ack: true});
+                this.setStateAsync('meta.display.width', {val: content.width, ack: true});
+                this.setStateAsync('meta.display.height', {val: content.height, ack: true});
+                this.setStateAsync('meta.display.type', {val: content.type, ack: true});
 
-                this.setState('meta.display.screensaver.enabled', {val: content.screensaver.enabled, ack: true});
-                this.setState('meta.display.screensaver.widget', {val: content.screensaver.widget, ack: true});
+                this.setStateAsync('meta.display.screensaver.enabled', {val: content.screensaver.enabled, ack: true});
+                this.setStateAsync('meta.display.screensaver.widget', {val: content.screensaver.widget, ack: true});
 
-                this.setState('meta.display.screensaver.modes.timeBased.enabled', {val: content.screensaver.modes.time_based.enabled, ack: true});
-                this.setState('meta.display.screensaver.modes.timeBased.startTime', {val: content.screensaver.modes.time_based.start_time, ack: true});
-                this.setState('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.screensaver.modes.time_based.local_start_time, ack: true});
-                this.setState('meta.display.screensaver.modes.timeBased.endTime', {val: content.screensaver.modes.time_based.end_time, ack: true});
-                this.setState('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.screensaver.modes.time_based.local_end_time, ack: true});
+                this.setStateAsync('meta.display.screensaver.modes.timeBased.enabled', {val: content.screensaver.modes.time_based.enabled, ack: true});
+                this.setStateAsync('meta.display.screensaver.modes.timeBased.startTime', {val: content.screensaver.modes.time_based.start_time, ack: true});
+                this.setStateAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', {val: content.screensaver.modes.time_based.local_start_time, ack: true});
+                this.setStateAsync('meta.display.screensaver.modes.timeBased.endTime', {val: content.screensaver.modes.time_based.end_time, ack: true});
+                this.setStateAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', {val: content.screensaver.modes.time_based.local_end_time, ack: true});
 
-                this.setState('meta.display.screensaver.modes.whenDark.enabled', {val: content.screensaver.modes.when_dark.enabled, ack: true});
+                this.setStateAsync('meta.display.screensaver.modes.whenDark.enabled', {val: content.screensaver.modes.when_dark.enabled, ack: true});
             },
             'GET',
             null
@@ -584,7 +584,7 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {}
                                 });
-                                this.setState(path + uuid + '.index', {val: widget.index, ack: true});
+                                this.setStateAsync(path + uuid + '.index', {val: widget.index, ack: true});
 
                                 await this.setObjectNotExistsAsync(path + uuid + '.package', {
                                     type: 'state',
@@ -597,7 +597,7 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {}
                                 });
-                                this.setState(path + uuid + '.package', {val: pack.package, ack: true});
+                                this.setStateAsync(path + uuid + '.package', {val: pack.package, ack: true});
 
                                 await this.setObjectNotExistsAsync(path + uuid + '.vendor', {
                                     type: 'state',
@@ -610,7 +610,7 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {}
                                 });
-                                this.setState(path + uuid + '.vendor', {val: pack.vendor, ack: true});
+                                this.setStateAsync(path + uuid + '.vendor', {val: pack.vendor, ack: true});
 
                                 await this.setObjectNotExistsAsync(path + uuid + '.version', {
                                     type: 'state',
@@ -623,7 +623,7 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {}
                                 });
-                                this.setState(path + uuid + '.version', {val: pack.version, ack: true});
+                                this.setStateAsync(path + uuid + '.version', {val: pack.version, ack: true});
 
                                 // START special Widgets
 
@@ -911,12 +911,12 @@ class LaMetric extends utils.Adapter {
                         // http.ClientRequest in node.js
                         this.log.info(error.message);
 
-                        this.setState('info.connection', false, true);
+                        this.setStateAsync('info.connection', false, true);
                     } else {
                         // Something happened in setting up the request that triggered an Error
                         this.log.error(error.message);
 
-                        this.setState('info.connection', false, true);
+                        this.setStateAsync('info.connection', false, true);
                     }
                 }
             );
@@ -1036,7 +1036,7 @@ class LaMetric extends utils.Adapter {
 
         this.log.debug('My Data (DIY) frame update to ' + JSON.stringify(newFrames));
 
-        this.setState('mydatadiy.obj', {val: JSON.stringify({'frames': newFrames}), ack: true});
+        this.setStateAsync('mydatadiy.obj', {val: JSON.stringify({'frames': newFrames}), ack: true});
     }
 
     removeNamespace(id) {
@@ -1046,8 +1046,8 @@ class LaMetric extends utils.Adapter {
 
     onUnload(callback) {
         try {
-            this.setState('info.connection', false, true);
-            this.setState('mydatadiy.obj', {val: JSON.stringify({'frames': [{text: 'Adapter stopped', icon: 'a9335'}]}), ack: true});
+            this.setStateAsync('info.connection', false, true);
+            this.setStateAsync('mydatadiy.obj', {val: JSON.stringify({'frames': [{text: 'Adapter stopped', icon: 'a9335'}]}), ack: true});
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
