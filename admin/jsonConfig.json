@@ -15,8 +15,7 @@
                     "help": "IP address of your LaMetric Time"
                 },
                 "lametricToken": {
-                    "type": "password",
-                    "visible": true,
+                    "type": "text",
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
