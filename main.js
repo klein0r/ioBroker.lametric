@@ -1069,7 +1069,7 @@ class LaMetric extends utils.Adapter {
             const prefix = this.config.useHttps ? 'https' : 'http';
             const port = this.config.useHttps ? 4343 : 8080;
 
-            this.log.debug('sending "' + method + '" request to "' + url + '" on port ' + port + ' with data: ' + JSON.stringify(data));
+            this.log.debug('sending "' + method + '" request to "' + url + '" on port ' + port + ' (' + prefix + ') with data: ' + JSON.stringify(data));
 
             axios({
                 method: method,
