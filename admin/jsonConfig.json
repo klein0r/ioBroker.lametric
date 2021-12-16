@@ -19,7 +19,7 @@
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
-                    "label": "Developer Token",
+                    "label": "API Key",
                     "help": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>"
                 },
                 "useHttps": {

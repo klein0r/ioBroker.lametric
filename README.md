@@ -44,6 +44,10 @@ iobroker add lametric
   ### **WORK IN PROGRESS**
 -->
 
+### **WORK IN PROGRESS**
+
+* (klein0r) Updated documentation
+
 ### 1.5.1
 
 * (klein0r) Translated all objects

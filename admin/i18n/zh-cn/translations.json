@@ -1,5 +1,4 @@
 {
-    "Developer Token": "开发者令牌",
     "Hide if": "如果有价值则隐藏",
     "IP": "IP地址",
     "IP address of your LaMetric Time": "您的LaMetric Time的IP地址",
@@ -10,5 +9,6 @@
     "Use the SimpleAPI adapter to request these information (see README for details)": "使用SimpleAPI适配器请求这些信息（有关详细信息，请参阅自述文件）",
     "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "您可以<a target=\"_blank\" href=\"https://developer.lametric.com/icons\">在此处</a>找到可用的图标",
     "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "您的个人开发者令牌-您可以<a href=\"https://developer.lametric.com/\">在此处</a>获取",
-    "Use HTTPS": "使用 HTTPS"
+    "Use HTTPS": "使用 HTTPS",
+    "API Key": "API 密钥"
 }

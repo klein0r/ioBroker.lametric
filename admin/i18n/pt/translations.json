@@ -1,5 +1,4 @@
 {
-    "Developer Token": "Token de desenvolvedor",
     "Hide if": "esconda se o valor",
     "IP": "Endereço de IP",
     "IP address of your LaMetric Time": "Endereço IP do seu LaMetric Time",
@@ -10,5 +9,6 @@
     "Use the SimpleAPI adapter to request these information (see README for details)": "Use o adaptador SimpleAPI para solicitar essas informações (consulte README para obter detalhes)",
     "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "Você pode encontrar os ícones disponíveis <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">aqui</a>",
     "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Seu token de desenvolvedor pessoal - você pode obtê-lo <a href=\"https://developer.lametric.com/\">aqui</a>",
-    "Use HTTPS": "Use HTTPS"
+    "Use HTTPS": "Use HTTPS",
+    "API Key": "Chave API"
 }
