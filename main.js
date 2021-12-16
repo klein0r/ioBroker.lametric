@@ -566,7 +566,7 @@ class LaMetric extends utils.Adapter {
                                     common: {
                                         name: {
                                             en: 'Activate',
-                                            de: 'aktivieren Sie',
+                                            de: 'Aktivieren',
                                             ru: 'Активировать',
                                             pt: 'Ativar',
                                             nl: 'Activeren',
@@ -637,7 +637,7 @@ class LaMetric extends utils.Adapter {
                                     common: {
                                         name: {
                                             en: 'Vendor',
-                                            de: 'Verkäufer',
+                                            de: 'Hersteller',
                                             ru: 'Продавец',
                                             pt: 'Fornecedor',
                                             nl: 'Leverancier',
@@ -661,7 +661,7 @@ class LaMetric extends utils.Adapter {
                                     common: {
                                         name: {
                                             en: 'Version',
-                                            de: 'Ausführung',
+                                            de: 'Version',
                                             ru: 'Версия',
                                             pt: 'Versão',
                                             nl: 'Versie',
@@ -687,9 +687,22 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.clock', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package
+                                            name: {
+                                                en: 'Clock',
+                                                de: 'Uhr',
+                                                ru: 'Часы',
+                                                pt: 'Relógio',
+                                                nl: 'Klok',
+                                                fr: 'Horloge',
+                                                it: 'Orologio',
+                                                es: 'Reloj',
+                                                pl: 'Zegar',
+                                                'zh-cn': '钟'
+                                            }
                                         },
-                                        native: {}
+                                        native: {
+                                            package: pack.package
+                                        }
                                     });
 
                                     await this.setObjectNotExistsAsync(path + uuid + '.clock.clockface', {
@@ -720,9 +733,22 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.radio', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package
+                                            name: {
+                                                en: 'Radio',
+                                                de: 'Radio',
+                                                ru: 'Радио',
+                                                pt: 'Rádio',
+                                                nl: 'Radio',
+                                                fr: 'Radio',
+                                                it: 'Radio',
+                                                es: 'Radio',
+                                                pl: 'Radio',
+                                                'zh-cn': '收音机'
+                                            }
                                         },
-                                        native: {}
+                                        native: {
+                                            package: pack.package
+                                        }
                                     });
 
                                     await this.setObjectNotExistsAsync(path + uuid + '.radio.play', {
@@ -730,7 +756,7 @@ class LaMetric extends utils.Adapter {
                                         common: {
                                             name: {
                                                 en: 'Play Radio',
-                                                de: 'Radio spielen',
+                                                de: 'Radio starten',
                                                 ru: 'Слушать радио',
                                                 pt: 'Tocar rádio',
                                                 nl: 'Radio afspelen',
@@ -822,9 +848,22 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.stopwatch', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package
+                                            name: {
+                                                en: 'Stopwatch',
+                                                de: 'Stoppuhr',
+                                                ru: 'Секундомер',
+                                                pt: 'Cronômetro',
+                                                nl: 'Stopwatch',
+                                                fr: 'Chronomètre',
+                                                it: 'Cronometro',
+                                                es: 'Cronógrafo',
+                                                pl: 'Stoper',
+                                                'zh-cn': '跑表'
+                                            }
                                         },
-                                        native: {}
+                                        native: {
+                                            package: pack.package
+                                        }
                                     });
 
                                     await this.setObjectNotExistsAsync(path + uuid + '.stopwatch.start', {
@@ -901,9 +940,22 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.weather', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package
+                                            name: {
+                                                en: 'Weather',
+                                                de: 'Wetter',
+                                                ru: 'Погода',
+                                                pt: 'Clima',
+                                                nl: 'Weer',
+                                                fr: 'La\'météo',
+                                                it: 'Tempo\'metereologico',
+                                                es: 'Clima',
+                                                pl: 'Pogoda',
+                                                'zh-cn': '天气'
+                                            }
                                         },
-                                        native: {}
+                                        native: {
+                                            package: pack.package
+                                        }
                                     });
 
                                     await this.setObjectNotExistsAsync(path + uuid + '.weather.forecast', {
@@ -934,9 +986,22 @@ class LaMetric extends utils.Adapter {
                                     await this.setObjectNotExistsAsync(path + uuid + '.countdown', {
                                         type: 'channel',
                                         common: {
-                                            name: pack.package
+                                            name: {
+                                                en: 'Countdown',
+                                                de: 'Countdown',
+                                                ru: 'Обратный отсчет',
+                                                pt: 'Contagem regressiva',
+                                                nl: 'Aftellen',
+                                                fr: 'Compte à rebours',
+                                                it: 'Conto alla rovescia',
+                                                es: 'cuenta regresiva',
+                                                pl: 'Odliczanie',
+                                                'zh-cn': '倒数'
+                                            }
                                         },
-                                        native: {}
+                                        native: {
+                                            package: pack.package
+                                        }
                                     });
 
                                     await this.setObjectNotExistsAsync(path + uuid + '.countdown.configure', {
