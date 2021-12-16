@@ -238,15 +238,15 @@ class LaMetric extends utils.Adapter {
                     }
                 );
             } else if (id.match(/.+\.apps\.[a-z0-9]{32}\..*$/g)) {
-                this.log.debug('changing to specific app');
-
                 const matches = id.match(/.+\.apps\.([a-z0-9]{32})\.(.*)$/);
                 const widget = matches[1];
                 const action = matches[2];
 
+                this.log.debug(`running action "${action}" on specific widget "${widget}"`);
+
                 this.getState(
                     'apps.' + widget + '.package',
-                    (err, packState) => {
+                    async (err, packState) => {
                         const pack = packState.val;
 
                         if (action === 'activate') {
@@ -285,7 +285,24 @@ class LaMetric extends utils.Adapter {
                                 data.activate = true;
 
                                 this.setStateAsync(id, {val: state.val, ack: true}); // Confirm state change
+                            /*
+                            } else if (action.indexOf('clock.alarm') === 0) {
 
+                                const clockAlarmStates = await this.getStatesAsync('apps.' + widget + '.clock.alarm.*');
+
+                                const clockAlarmEnabled = (action === 'clock.alarm.enabled') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.enabled'].val;
+                                const clockAlarmTime = (action === 'clock.alarm.time') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.time'].val;
+                                const clockAlarmWithRadio = (action === 'clock.alarm.wake_with_radio') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.wake_with_radio'].val;
+
+                                data.id = 'clock.alarm';
+                                data.params = {
+                                    enabled: clockAlarmEnabled || false,
+                                    time: clockAlarmTime || "10:00:00",
+                                    wake_with_radio: clockAlarmWithRadio || false
+                                };
+
+                                this.setStateAsync(id, {val: state.val, ack: true});
+                            */
                             } else if (action == 'countdown.configure') {
 
                                 data.params = {
@@ -727,6 +744,96 @@ class LaMetric extends utils.Adapter {
                                         },
                                         native: {}
                                     });
+
+                                    /*
+                                    await this.setObjectNotExistsAsync(path + uuid + '.clock.alarm', {
+                                        type: 'channel',
+                                        common: {
+                                            name: {
+                                                en: 'Alarm',
+                                                de: 'Alarm',
+                                                ru: 'Тревога',
+                                                pt: 'Alarme',
+                                                nl: 'Alarm',
+                                                fr: 'Alarme',
+                                                it: 'Allarme',
+                                                es: 'Alarma',
+                                                pl: 'Alarm',
+                                                'zh-cn': '警报'
+                                            }
+                                        },
+                                        native: {}
+                                    });
+
+                                    await this.setObjectNotExistsAsync(path + uuid + '.clock.alarm.enabled', {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Alarm Enabled',
+                                                de: 'Alarm aktiviert',
+                                                ru: 'Тревога включена',
+                                                pt: 'Alarme Habilitado',
+                                                nl: 'Alarm ingeschakeld',
+                                                fr: 'Alarme activée',
+                                                it: 'Allarme abilitato',
+                                                es: 'Alarma habilitada',
+                                                pl: 'Alarm włączony',
+                                                'zh-cn': '警报已启用'
+                                            },
+                                            type: 'boolean',
+                                            role: 'value',
+                                            read: true,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    await this.setObjectNotExistsAsync(path + uuid + '.clock.alarm.time', {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Alarm Time',
+                                                de: 'Weckzeit',
+                                                ru: 'Время будильника',
+                                                pt: 'Hora do alarme',
+                                                nl: 'Alarm tijd',
+                                                fr: 'Heure de l\'alarme',
+                                                it: 'Ora della sveglia',
+                                                es: 'Hora de alarma',
+                                                pl: 'Czas alarmu',
+                                                'zh-cn': '闹钟时间'
+                                            },
+                                            type: 'string',
+                                            role: 'value',
+                                            read: true,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+
+                                    await this.setObjectNotExistsAsync(path + uuid + '.clock.alarm.wake_with_radio', {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'with Radio',
+                                                de: 'mit Radio',
+                                                ru: 'с радио',
+                                                pt: 'com rádio',
+                                                nl: 'met radio',
+                                                fr: 'avec radio',
+                                                it: 'con Radio',
+                                                es: 'con radio',
+                                                pl: 'z radiem',
+                                                'zh-cn': '带收音机'
+                                            },
+                                            type: 'boolean',
+                                            role: 'value',
+                                            read: true,
+                                            write: true
+                                        },
+                                        native: {}
+                                    });
+                                    */
 
                                 } else if (pack.package === 'com.lametric.radio') {
 
