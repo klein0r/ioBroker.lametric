@@ -1,1502 +1,1502 @@
 {
-    "common": {
-        "name": "lametric",
-        "version": "1.5.1",
-        "news": {
-            "1.5.1": {
-                "en": "Translated all objects",
-                "de": "Alle Objekte übersetzt",
-                "ru": "Переведены все объекты",
-                "pt": "Todos os objetos traduzidos",
-                "nl": "Alle objecten vertaald",
-                "fr": "Traduit tous les objets",
-                "it": "Tradotto tutti gli oggetti",
-                "es": "Traducido todos los objetos",
-                "pl": "Przetłumaczono wszystkie obiekty",
-                "zh-cn": "翻译所有对象"
-            },
-            "1.5.0": {
-                "en": "Fixed myData DIY data type",
-                "de": "myData DIY Datentyp korrigiert",
-                "ru": "Исправлен тип данных myData DIY",
-                "pt": "Tipo de dados myData DIY corrigido",
-                "nl": "Vast myData DIY-gegevenstype",
-                "fr": "Type de données myData DIY fixe",
-                "it": "Corretto il tipo di dati myData DIY",
-                "es": "Se corrigió el tipo de datos myData DIY",
-                "pl": "Naprawiono typ danych myData DIY",
-                "zh-cn": "修复了 myData DIY 数据类型"
-            },
-            "1.4.1": {
-                "en": "Fixed missing translations",
-                "de": "Fehlende Übersetzungen hinzugefügt",
-                "ru": "Исправлены отсутствующие переводы",
-                "pt": "Traduções em falta corrigidas",
-                "nl": "Ontbrekende vertalingen verholpen",
-                "fr": "Correction des traductions manquantes",
-                "it": "Risolte le traduzioni mancanti",
-                "es": "Se corrigieron las traducciones faltantes",
-                "pl": "Naprawiono brakujące tłumaczenia",
-                "zh-cn": "修复了丢失的翻译"
-            },
-            "1.4.0": {
-                "en": "Admin 5 Support",
-                "de": "Admin 5 Support",
-                "ru": "Admin 5 Поддержка",
-                "pt": "Suporte Admin 5",
-                "nl": "Beheerder 5 Ondersteuning",
-                "fr": "Assistance administrateur 5",
-                "it": "Supporto amministratore 5",
-                "es": "Soporte Admin 5",
-                "pl": "Wsparcie administratora 5",
-                "zh-cn": "管理员 5 支持"
-            },
-            "1.3.2": {
-                "en": "Updated dependencies",
-                "de": "Abhängigkeiten aktualisiert",
-                "ru": "Обновленные зависимости",
-                "pt": "Dependências atualizadas",
-                "nl": "Bijgewerkte afhankelijkheden",
-                "fr": "Dépendances mises à jour",
-                "it": "Dipendenze aggiornate",
-                "es": "Dependencias actualizadas",
-                "pl": "Zaktualizowane zależności",
-                "zh-cn": "更新的依赖项"
-            },
-            "1.3.1": {
-                "en": "Added local start and end time for screensaver",
-                "de": "Lokale Start- und Endzeit vom Bildschirmschoner",
-                "ru": "Добавлено местное время начала и окончания для заставки",
-                "pt": "Adicionada hora local de início e término para o protetor de tela",
-                "nl": "Lokale start- en eindtijd toegevoegd voor screensaver",
-                "fr": "Ajout de l'heure de début et de fin locale pour l'économiseur d'écran",
-                "it": "Aggiunto l'ora di inizio e di fine locale per lo screensaver",
-                "es": "Se agregó la hora local de inicio y finalización para el protector de pantalla.",
-                "pl": "Dodano lokalny czas rozpoczęcia i zakończenia wygaszacza ekranu",
-                "zh-cn": "为屏幕保护程序添加了本地开始和结束时间"
-            },
-            "1.3.0": {
-                "en": "Encrypt sensitive information",
-                "de": "Verschlüsselung von sensiblen Daten",
-                "ru": "Шифровать конфиденциальную информацию",
-                "pt": "Criptografar informações confidenciais",
-                "nl": "Versleutel gevoelige informatie",
-                "fr": "Crypter les informations sensibles",
-                "it": "Cripta le informazioni sensibili",
-                "es": "Cifre la información confidencial",
-                "pl": "Szyfruj poufne informacje",
-                "zh-cn": "加密敏感信息"
-            }
-        },
-        "title": "LaMetric Time",
-        "titleLang": {
-            "en": "LaMetric Time",
-            "de": "LaMetric Time",
-            "ru": "LaMetric Time",
-            "pt": "Tempo LaMetric",
-            "nl": "Lametrische tijd",
-            "fr": "Temps LaMetric",
-            "it": "LaMetric Time",
-            "es": "Tiempo LaMetric",
-            "pl": "Czas LaMetric",
-            "zh-cn": "LaMetric 时间"
-        },
-        "desc": {
-            "en": "Control and manage your LaMetric Time",
-            "de": "Steuere und Verwalte Deine LaMetric Time",
-            "ru": "Контролируйте свое время LaMetric и управляйте им",
-            "pt": "Controle e gerencie seu LaMetric Time",
-            "nl": "Beheer en beheer uw LaMetric Time",
-            "fr": "Contrôlez et gérez votre LaMetric Time",
-            "it": "Controlla e gestisci il tuo LaMetric Time",
-            "es": "Controle y administre su tiempo LaMetric",
-            "pl": "Kontroluj i zarządzaj swoim czasem LaMetric",
-            "zh-cn": "控制和管理您的 LaMetric 时间"
-        },
-        "authors": [
-            "Matthias Kleine <info@haus-automatisierung.com>"
-        ],
-        "keywords": [
-            "lametric",
-            "hardware",
-            "clock",
-            "message",
-            "notification"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "icon": "lametric.png",
-        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
-        "enabled": true,
-        "readme": "https://github.com/klein0r/ioBroker.lametric/blob/master/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "hardware",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "poll",
-        "blockly": true,
-        "messagebox": true,
-        "adminUI": {
-            "config": "json"
-        },
-        "docs": {
-            "en": "docs/en/basics.md",
-            "de": "docs/de/basics.md"
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.0"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=5.1.28"
-            }
-        ],
-        "plugins": {
-            "sentry": {
-                "dsn": "https://e3a7f6c5e3984bc1819c3e5f67a0257d@sentry.iobroker.net/106"
-            }
-        }
+  "common": {
+    "name": "lametric",
+    "version": "1.5.2",
+    "news": {
+      "1.5.2": {
+        "en": "Updated dependencies\nUpdated documentation",
+        "de": "Aktualisierte Abhängigkeiten\nAktualisierte Dokumentation",
+        "ru": "Обновленные зависимости\nОбновленная документация",
+        "pt": "Dependências atualizadas\nDocumentação atualizada",
+        "nl": "Bijgewerkte afhankelijkheden\nBijgewerkte documentatie",
+        "fr": "Dépendances mises à jour\nDocumentation mise à jour",
+        "it": "Dipendenze aggiornate\nDocumentazione aggiornata",
+        "es": "Dependencias actualizadas\nDocumentación actualizada",
+        "pl": "Zaktualizowane zależności\nZaktualizowana dokumentacja",
+        "zh-cn": "更新的依赖项\n更新文档"
+      },
+      "1.5.1": {
+        "en": "Translated all objects",
+        "de": "Alle Objekte übersetzt",
+        "ru": "Переведены все объекты",
+        "pt": "Todos os objetos traduzidos",
+        "nl": "Alle objecten vertaald",
+        "fr": "Traduit tous les objets",
+        "it": "Tradotto tutti gli oggetti",
+        "es": "Traducido todos los objetos",
+        "pl": "Przetłumaczono wszystkie obiekty",
+        "zh-cn": "翻译所有对象"
+      },
+      "1.5.0": {
+        "en": "Fixed myData DIY data type",
+        "de": "myData DIY Datentyp korrigiert",
+        "ru": "Исправлен тип данных myData DIY",
+        "pt": "Tipo de dados myData DIY corrigido",
+        "nl": "Vast myData DIY-gegevenstype",
+        "fr": "Type de données myData DIY fixe",
+        "it": "Corretto il tipo di dati myData DIY",
+        "es": "Se corrigió el tipo de datos myData DIY",
+        "pl": "Naprawiono typ danych myData DIY",
+        "zh-cn": "修复了 myData DIY 数据类型"
+      },
+      "1.4.1": {
+        "en": "Fixed missing translations",
+        "de": "Fehlende Übersetzungen hinzugefügt",
+        "ru": "Исправлены отсутствующие переводы",
+        "pt": "Traduções em falta corrigidas",
+        "nl": "Ontbrekende vertalingen verholpen",
+        "fr": "Correction des traductions manquantes",
+        "it": "Risolte le traduzioni mancanti",
+        "es": "Se corrigieron las traducciones faltantes",
+        "pl": "Naprawiono brakujące tłumaczenia",
+        "zh-cn": "修复了丢失的翻译"
+      },
+      "1.4.0": {
+        "en": "Admin 5 Support",
+        "de": "Admin 5 Support",
+        "ru": "Admin 5 Поддержка",
+        "pt": "Suporte Admin 5",
+        "nl": "Beheerder 5 Ondersteuning",
+        "fr": "Assistance administrateur 5",
+        "it": "Supporto amministratore 5",
+        "es": "Soporte Admin 5",
+        "pl": "Wsparcie administratora 5",
+        "zh-cn": "管理员 5 支持"
+      },
+      "1.3.2": {
+        "en": "Updated dependencies",
+        "de": "Abhängigkeiten aktualisiert",
+        "ru": "Обновленные зависимости",
+        "pt": "Dependências atualizadas",
+        "nl": "Bijgewerkte afhankelijkheden",
+        "fr": "Dépendances mises à jour",
+        "it": "Dipendenze aggiornate",
+        "es": "Dependencias actualizadas",
+        "pl": "Zaktualizowane zależności",
+        "zh-cn": "更新的依赖项"
+      },
+      "1.3.1": {
+        "en": "Added local start and end time for screensaver",
+        "de": "Lokale Start- und Endzeit vom Bildschirmschoner",
+        "ru": "Добавлено местное время начала и окончания для заставки",
+        "pt": "Adicionada hora local de início e término para o protetor de tela",
+        "nl": "Lokale start- en eindtijd toegevoegd voor screensaver",
+        "fr": "Ajout de l'heure de début et de fin locale pour l'économiseur d'écran",
+        "it": "Aggiunto l'ora di inizio e di fine locale per lo screensaver",
+        "es": "Se agregó la hora local de inicio y finalización para el protector de pantalla.",
+        "pl": "Dodano lokalny czas rozpoczęcia i zakończenia wygaszacza ekranu",
+        "zh-cn": "为屏幕保护程序添加了本地开始和结束时间"
+      }
     },
-    "protectedNative": [
-        "lametricToken"
-    ],
-    "encryptedNative": [
-        "lametricToken"
-    ],
-    "native": {
-        "lametricIp": "",
-        "lametricToken": "",
-        "useHttps": false
+    "title": "LaMetric Time",
+    "titleLang": {
+      "en": "LaMetric Time",
+      "de": "LaMetric Time",
+      "ru": "LaMetric Time",
+      "pt": "Tempo LaMetric",
+      "nl": "Lametrische tijd",
+      "fr": "Temps LaMetric",
+      "it": "LaMetric Time",
+      "es": "Tiempo LaMetric",
+      "pl": "Czas LaMetric",
+      "zh-cn": "LaMetric 时间"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Information",
-                    "de": "Information",
-                    "ru": "Информация",
-                    "pt": "Em formação",
-                    "nl": "Informatie",
-                    "fr": "Informations",
-                    "it": "Informazione",
-                    "es": "Información",
-                    "pl": "Informacja",
-                    "zh-cn": "信息"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.reachable",
-                "name": {
-                    "en": "Connected to LaMetric",
-                    "de": "Verbindung mit LaMetric",
-                    "ru": "При подключении к LaMetric",
-                    "pt": "Se conectado ao LaMetric",
-                    "nl": "Indien verbonden met LaMetric",
-                    "fr": "Si connecté à LaMetric",
-                    "it": "Se connesso a LaMetric",
-                    "es": "Si está conectado a LaMetric",
-                    "pl": "W przypadku połączenia z LaMetric",
-                    "zh-cn": "如果连接到 LaMetric"
-                },
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Meta information",
-                    "de": "Meta-Informationen",
-                    "ru": "Мета информация",
-                    "pt": "Meta informação",
-                    "nl": "Meta informatie",
-                    "fr": "Méta-information",
-                    "it": "Meta informazioni",
-                    "es": "Meta informacion",
-                    "pl": "Metainformacje",
-                    "zh-cn": "元信息"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.name",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Name",
-                    "de": "Name",
-                    "ru": "Имя",
-                    "pt": "Nome",
-                    "nl": "Naam",
-                    "fr": "Nom",
-                    "it": "Nome",
-                    "es": "Nombre",
-                    "pl": "Nazwa",
-                    "zh-cn": "姓名"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.serial",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Serial number",
-                    "de": "Seriennummer",
-                    "ru": "Серийный номер",
-                    "pt": "Número de série",
-                    "nl": "Serienummer",
-                    "fr": "Numéro de série",
-                    "it": "Numero di serie",
-                    "es": "Número de serie",
-                    "pl": "Numer seryjny",
-                    "zh-cn": "序列号"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.version",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "OS Version",
-                    "de": "OS-Version",
-                    "ru": "Версия ОС",
-                    "pt": "Versão do sistema operacional",
-                    "nl": "OS-versie",
-                    "fr": "Version du système d'exploitation",
-                    "it": "Versione del sistema operativo",
-                    "es": "Versión del sistema operativo",
-                    "pl": "Wersja systemu operacyjnego",
-                    "zh-cn": "操作系统版本"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.model",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Model number",
-                    "de": "Modell-Nr",
-                    "ru": "Номер модели",
-                    "pt": "Número do modelo",
-                    "nl": "Modelnummer",
-                    "fr": "Numéro de modèle",
-                    "it": "Numero di modello",
-                    "es": "Número de modelo",
-                    "pl": "Numer modelu",
-                    "zh-cn": "型号"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.mode",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Device mode",
-                    "de": "Gerätemodus",
-                    "ru": "Режим устройства",
-                    "pt": "Modo de dispositivo",
-                    "nl": "Apparaatmodus:",
-                    "fr": "Mode appareil",
-                    "it": "Modalità dispositivo",
-                    "es": "Modo de dispositivo",
-                    "pl": "Tryb urządzenia",
-                    "zh-cn": "设备模式"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.audio",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Audio",
-                    "de": "Audio",
-                    "ru": "Аудио",
-                    "pt": "Áudio",
-                    "nl": "Audio",
-                    "fr": "l'audio",
-                    "it": "Audio",
-                    "es": "Audio",
-                    "pl": "Audio",
-                    "zh-cn": "声音的"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.audio.volume",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Audio volume",
-                    "de": "Audiolautstärke",
-                    "ru": "Громкость звука",
-                    "pt": "Volume de áudio",
-                    "nl": "Audiovolume",
-                    "fr": "Volume sonore",
-                    "it": "Volume audio",
-                    "es": "Volumen de audio",
-                    "pl": "Głośność dźwięku",
-                    "zh-cn": "音量"
-                },
-                "type": "number",
-                "role": "level.volume",
-                "unit": "%",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.audio.volumeMin",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Audio volume (min)",
-                    "de": "Audiolautstärke (min)",
-                    "ru": "Громкость звука (мин.)",
-                    "pt": "Volume de áudio (min)",
-                    "nl": "Audiovolume (min)",
-                    "fr": "Volume sonore (min)",
-                    "it": "Volume audio (min)",
-                    "es": "Volumen de audio (min)",
-                    "pl": "Głośność dźwięku (min)",
-                    "zh-cn": "音频音量（分钟）"
-                },
-                "type": "number",
-                "role": "level.volume",
-                "unit": "%",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.audio.volumeMax",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Audio volume (max)",
-                    "de": "Audiolautstärke (max.)",
-                    "ru": "Громкость звука (макс.)",
-                    "pt": "Volume de áudio (máximo)",
-                    "nl": "Audiovolume (max.)",
-                    "fr": "Volume sonore (max)",
-                    "it": "Volume audio (massimo)",
-                    "es": "Volumen de audio (máx.)",
-                    "pl": "Głośność dźwięku (maks.)",
-                    "zh-cn": "音频音量（最大）"
-                },
-                "type": "number",
-                "role": "level.volume",
-                "unit": "%",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Bluetooth",
-                    "de": "Bluetooth",
-                    "ru": "блютуз",
-                    "pt": "Bluetooth",
-                    "nl": "Bluetooth",
-                    "fr": "Bluetooth",
-                    "it": "Bluetooth",
-                    "es": "Bluetooth",
-                    "pl": "Bluetooth",
-                    "zh-cn": "蓝牙"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.available",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Available",
-                    "de": "Bluetooth verfügbar",
-                    "ru": "Bluetooth доступен",
-                    "pt": "Bluetooth disponível",
-                    "nl": "Bluetooth beschikbaar",
-                    "fr": "Bluetooth disponible",
-                    "it": "Bluetooth disponibile",
-                    "es": "Bluetooth disponible",
-                    "pl": "Dostępny Bluetooth",
-                    "zh-cn": "蓝牙可用"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.name",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Name",
-                    "de": "Bluetooth-Name",
-                    "ru": "Имя Bluetooth",
-                    "pt": "Nome Bluetooth",
-                    "nl": "Bluetooth-naam",
-                    "fr": "Nom Bluetooth",
-                    "it": "Nome Bluetooth",
-                    "es": "Nombre de Bluetooth",
-                    "pl": "Nazwa Bluetooth",
-                    "zh-cn": "蓝牙名称"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.active",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Active",
-                    "de": "Bluetooth aktiv",
-                    "ru": "Bluetooth активен",
-                    "pt": "Bluetooth ativo",
-                    "nl": "Bluetooth actief",
-                    "fr": "Bluetooth actif",
-                    "it": "Bluetooth attivo",
-                    "es": "Bluetooth activo",
-                    "pl": "Bluetooth aktywny",
-                    "zh-cn": "蓝牙有源"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.discoverable",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Discoverable",
-                    "de": "Bluetooth erkennbar",
-                    "ru": "Обнаружение Bluetooth",
-                    "pt": "Bluetooth detectável",
-                    "nl": "Bluetooth detecteerbaar",
-                    "fr": "Bluetooth détectable",
-                    "it": "Rilevabile Bluetooth",
-                    "es": "Bluetooth detectable",
-                    "pl": "Wykrywalny przez Bluetooth",
-                    "zh-cn": "蓝牙可发现"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.pairable",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Pairable",
-                    "de": "Bluetooth koppelbar",
-                    "ru": "Bluetooth Pairable",
-                    "pt": "Bluetooth emparelhável",
-                    "nl": "Bluetooth-koppelbaar",
-                    "fr": "Bluetooth appairable",
-                    "it": "Bluetooth abbinabile",
-                    "es": "Bluetooth emparejable",
-                    "pl": "Możliwość parowania przez Bluetooth",
-                    "zh-cn": "蓝牙配对"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.address",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Address",
-                    "de": "Bluetooth-Adresse",
-                    "ru": "Адрес Bluetooth",
-                    "pt": "Endereço Bluetooth",
-                    "nl": "Bluetooth-adres",
-                    "fr": "Adresse Bluetooth",
-                    "it": "Indirizzo Bluetooth",
-                    "es": "Dirección de Bluetooth",
-                    "pl": "Adres Bluetooth",
-                    "zh-cn": "蓝牙地址"
-                },
-                "type": "string",
-                "role": "info.mac",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.low_energy",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Bluetooth Low Energy",
-                    "de": "Bluetooth Low Energy",
-                    "ru": "Bluetooth с низким энергопотреблением",
-                    "pt": "Bluetooth de baixa energia",
-                    "nl": "Bluetooth lage energie",
-                    "fr": "Bluetooth à faible consommation d'énergie",
-                    "it": "Bluetooth a bassa energia",
-                    "es": "Bluetooth de baja energía",
-                    "pl": "Niska energia Bluetooth",
-                    "zh-cn": "低功耗蓝牙"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.low_energy.active",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Low Energy Active",
-                    "de": "Bluetooth Low Energy Aktiv",
-                    "ru": "Bluetooth с низким энергопотреблением, активный",
-                    "pt": "Bluetooth de baixa energia ativo",
-                    "nl": "Bluetooth Lage Energie Actief",
-                    "fr": "Bluetooth à faible consommation d'énergie actif",
-                    "it": "Bluetooth a basso consumo energetico attivo",
-                    "es": "Bluetooth de baja energía activo",
-                    "pl": "Aktywny Bluetooth Low Energy",
-                    "zh-cn": "低功耗蓝牙有源"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.low_energy.advertising",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Low Energy Advertising",
-                    "de": "Bluetooth Low Energy Auffindbar",
-                    "ru": "Bluetooth с низким энергопотреблением",
-                    "pt": "Publicidade de Bluetooth de baixa energia",
-                    "nl": "Bluetooth Low Energy-advertenties",
-                    "fr": "Publicité Bluetooth Low Energy",
-                    "it": "Pubblicità Bluetooth a basso consumo energetico",
-                    "es": "Publicidad Bluetooth Low Energy",
-                    "pl": "Reklama Bluetooth o niskiej energii",
-                    "zh-cn": "蓝牙低功耗广告"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.bluetooth.low_energy.connectable",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Bluetooth Low Energy Connectable",
-                    "de": "Bluetooth Low Energy verbindbar",
-                    "ru": "Возможность подключения по Bluetooth с низким энергопотреблением",
-                    "pt": "Bluetooth conectável de baixa energia",
-                    "nl": "Bluetooth Low Energy aansluitbaar",
-                    "fr": "Bluetooth à faible consommation d'énergie connectable",
-                    "it": "Bluetooth a bassa energia collegabile",
-                    "es": "Bluetooth de baja energía conectable",
-                    "pl": "Możliwość podłączenia Bluetooth Low Energy",
-                    "zh-cn": "蓝牙低功耗可连接"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Display",
-                    "de": "Anzeige",
-                    "ru": "Отображать",
-                    "pt": "Exibição",
-                    "nl": "Weergave",
-                    "fr": "Affichage",
-                    "it": "Schermo",
-                    "es": "Monitor",
-                    "pl": "Wyświetlacz",
-                    "zh-cn": "展示"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.brightness",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Brightness",
-                    "de": "Helligkeit",
-                    "ru": "Яркость",
-                    "pt": "Brilho",
-                    "nl": "Helderheid",
-                    "fr": "Luminosité",
-                    "it": "Luminosità",
-                    "es": "Brillo",
-                    "pl": "Jasność",
-                    "zh-cn": "亮度"
-                },
-                "type": "number",
-                "role": "level.dimmer",
-                "unit": "%",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.brightnessMin",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Brightness Min",
-                    "de": "Helligkeit Min",
-                    "ru": "Яркость Мин.",
-                    "pt": "Brilho Mín",
-                    "nl": "Helderheid Min",
-                    "fr": "Luminosité minimale",
-                    "it": "Luminosità Min",
-                    "es": "Brillo mínimo",
-                    "pl": "Minimalna jasność",
-                    "zh-cn": "亮度最小值"
-                },
-                "type": "number",
-                "role": "level.dimmer",
-                "unit": "%",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.brightnessMax",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Brightness Max",
-                    "de": "Helligkeit Max",
-                    "ru": "Яркость Макс.",
-                    "pt": "Brilho máximo",
-                    "nl": "Helderheid Max",
-                    "fr": "Luminosité maximale",
-                    "it": "Luminosità massima",
-                    "es": "Brillo máximo",
-                    "pl": "Maksymalna jasność",
-                    "zh-cn": "最大亮度"
-                },
-                "type": "number",
-                "role": "level.dimmer",
-                "unit": "%",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.brightnessAuto",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Brightness Auto",
-                    "de": "Helligkeit Auto",
-                    "ru": "Яркость Авто",
-                    "pt": "Brilho Automático",
-                    "nl": "Helderheid Auto",
-                    "fr": "Luminosité Automatique",
-                    "it": "Luminosità automatica",
-                    "es": "Brillo automático",
-                    "pl": "Jasność Auto",
-                    "zh-cn": "亮度自动"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.brightnessMode",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Brightness Mode",
-                    "de": "Helligkeitsmodus",
-                    "ru": "Режим яркости",
-                    "pt": "Modo de Brilho",
-                    "nl": "Helderheidsmodus",
-                    "fr": "Mode de luminosité",
-                    "it": "Modalità luminosità",
-                    "es": "Modo de brillo",
-                    "pl": "Tryb jasności",
-                    "zh-cn": "亮度模式"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.width",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Width",
-                    "de": "Breite",
-                    "ru": "Ширина",
-                    "pt": "Largura",
-                    "nl": "Breedte",
-                    "fr": "Largeur",
-                    "it": "Larghezza",
-                    "es": "Ancho",
-                    "pl": "Szerokość",
-                    "zh-cn": "宽度"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.height",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Height",
-                    "de": "Höhe",
-                    "ru": "Рост",
-                    "pt": "Altura",
-                    "nl": "Hoogte",
-                    "fr": "Hauteur",
-                    "it": "Altezza",
-                    "es": "Altura",
-                    "pl": "Wzrost",
-                    "zh-cn": "高度"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.type",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Type",
-                    "de": "Typ",
-                    "ru": "Тип",
-                    "pt": "Modelo",
-                    "nl": "Type",
-                    "fr": "Taper",
-                    "it": "Tipo",
-                    "es": "Escribe",
-                    "pl": "Rodzaj",
-                    "zh-cn": "类型"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Screensaver",
-                    "de": "Bildschirmschoner",
-                    "ru": "Заставка",
-                    "pt": "Protetor de tela",
-                    "nl": "Screensaver",
-                    "fr": "Économiseur d'écran",
-                    "it": "Salvaschermo",
-                    "es": "Protector de pantalla",
-                    "pl": "Wygaszacz ekranu",
-                    "zh-cn": "屏幕保护程序"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.enabled",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Screensaver Enabled",
-                    "de": "Bildschirmschoner aktiviert",
-                    "ru": "Заставка включена",
-                    "pt": "Protetor de tela ativado",
-                    "nl": "Schermbeveiliging ingeschakeld",
-                    "fr": "Économiseur d'écran activé",
-                    "it": "Salvaschermo abilitato",
-                    "es": "Salvapantallas habilitado",
-                    "pl": "Włączony wygaszacz ekranu",
-                    "zh-cn": "启用屏幕保护程序"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.widget",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Widget",
-                    "de": "Widget",
-                    "ru": "Виджет",
-                    "pt": "Ferramenta",
-                    "nl": "Widget",
-                    "fr": "Widget",
-                    "it": "Aggeggio",
-                    "es": "Widget",
-                    "pl": "Widżet",
-                    "zh-cn": "小工具"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Screensaver Modes",
-                    "de": "Bildschirmschoner-Modi",
-                    "ru": "Режимы заставки",
-                    "pt": "Modos de proteção de tela",
-                    "nl": "Schermbeveiligingsmodi",
-                    "fr": "Modes économiseur d'écran",
-                    "it": "Modalità salvaschermo",
-                    "es": "Modos de salvapantallas",
-                    "pl": "Tryby wygaszacza ekranu",
-                    "zh-cn": "屏保模式"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes.timeBased",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Time Based Screensaver",
-                    "de": "Zeitbasierter Bildschirmschoner",
-                    "ru": "Заставка по времени",
-                    "pt": "Time Based Screensaver",
-                    "nl": "Op tijd gebaseerde screensaver",
-                    "fr": "Économiseur d'écran basé sur le temps",
-                    "it": "Salvaschermo basato sul tempo",
-                    "es": "Salvapantallas basado en tiempo",
-                    "pl": "Wygaszacz ekranu oparty na czasie",
-                    "zh-cn": "基于时间的屏幕保护程序"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes.timeBased.enabled",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Time Based Screensaver Enabled",
-                    "de": "Zeitbasierter Bildschirmschoner aktiviert",
-                    "ru": "Заставка на основе времени включена",
-                    "pt": "Protetor de tela baseado em tempo habilitado",
-                    "nl": "Op tijd gebaseerde screensaver ingeschakeld",
-                    "fr": "Économiseur d'écran basé sur le temps activé",
-                    "it": "Screensaver basato sul tempo abilitato",
-                    "es": "Protector de pantalla basado en tiempo habilitado",
-                    "pl": "Włączony wygaszacz ekranu oparty na czasie",
-                    "zh-cn": "启用基于时间的屏幕保护程序"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes.timeBased.startTime",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Time Based Screensaver Start Time",
-                    "de": "Startzeit des zeitbasierten Bildschirmschoners",
-                    "ru": "Время начала заставки на основе времени",
-                    "pt": "Hora de início do protetor de tela com base em tempo",
-                    "nl": "Op tijd gebaseerde starttijd screensaver",
-                    "fr": "Heure de début de l'économiseur d'écran basé sur le temps",
-                    "it": "Ora di inizio dello screensaver basato sul tempo",
-                    "es": "Hora de inicio del salvapantallas en función del tiempo",
-                    "pl": "Czas rozpoczęcia wygaszacza ekranu na podstawie czasu",
-                    "zh-cn": "基于时间的屏幕保护程序开始时间"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes.timeBased.startTimeLocal",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Time Based Screensaver Start Time Local",
-                    "de": "Zeitbasierter Bildschirmschoner Startzeit Lokal",
-                    "ru": "Заставка на основе времени Время начала Местное",
-                    "pt": "Time Based Screensaver Start Time Local",
-                    "nl": "Op tijd gebaseerde screensaver Starttijd Lokaal",
-                    "fr": "Heure de début de l'économiseur d'écran basé sur l'heure Locale",
-                    "it": "Ora di inizio del salvaschermo basato sul tempo Local",
-                    "es": "Hora de inicio del salvapantallas basado en el tiempo Local",
-                    "pl": "Czas rozpoczęcia wygaszacza ekranu w oparciu o czas Lokalny",
-                    "zh-cn": "基于时间的屏幕保护程序开始时间本地"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes.timeBased.endTime",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Time Based Screensaver End Time",
-                    "de": "Zeitbasierter Bildschirmschoner Endzeit",
-                    "ru": "Время окончания заставки на основе времени",
-                    "pt": "Tempo de término do protetor de tela baseado em tempo",
-                    "nl": "Eindtijd screensaver op basis van tijd",
-                    "fr": "Heure de fin de l'économiseur d'écran basé sur le temps",
-                    "it": "Ora di fine del salvaschermo basato sul tempo",
-                    "es": "Hora de finalización del salvapantallas en función del tiempo",
-                    "pl": "Czas zakończenia wygaszacza ekranu na podstawie czasu",
-                    "zh-cn": "基于时间的屏幕保护程序结束时间"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes.timeBased.endTimeLocal",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Time Based Screensaver End Time Local",
-                    "de": "Zeitbasierter Bildschirmschoner Endzeit Lokal",
-                    "ru": "Заставка на основе времени Время окончания Местное время",
-                    "pt": "Time Based Screensaver End Time Local",
-                    "nl": "Op tijd gebaseerde screensaver Eindtijd Lokaal",
-                    "fr": "Économiseur d'écran basé sur l'heure Heure de fin Locale",
-                    "it": "Salvaschermo basato sul tempo Ora di fine locale",
-                    "es": "Hora de finalización del salvapantallas basado en el tiempo Local",
-                    "pl": "Czas zakończenia wygaszacza ekranu na podstawie czasu Lokalny",
-                    "zh-cn": "基于时间的屏幕保护程序结束时间本地"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes.whenDark",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "When Dark Screensaver",
-                    "de": "Wenn Dunkel Bildschirmschoner",
-                    "ru": "Когда темная заставка",
-                    "pt": "Protetor de tela quando escuro",
-                    "nl": "Wanneer donkere schermbeveiliging",
-                    "fr": "Quand sombre économiseur d'écran",
-                    "it": "Quando il salvaschermo è scuro",
-                    "es": "When Dark Screensaver",
-                    "pl": "Gdy ciemny wygaszacz ekranu",
-                    "zh-cn": "当黑暗的屏幕保护程序"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.display.screensaver.modes.whenDark.enabled",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "When Dark Screensaver Enabled",
-                    "de": "Wenn Dunkel Bildschirmschoner aktiviert ist",
-                    "ru": "Когда включена темная заставка",
-                    "pt": "Quando protetor de tela escuro ativado",
-                    "nl": "Wanneer donkere schermbeveiliging is ingeschakeld",
-                    "fr": "Lorsque l'économiseur d'écran sombre est activé",
-                    "it": "Quando lo screensaver scuro è abilitato",
-                    "es": "Cuando el protector de pantalla oscuro está habilitado",
-                    "pl": "Gdy włączony jest ciemny wygaszacz ekranu",
-                    "zh-cn": "启用暗屏保护程序时"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "WiFi",
-                    "de": "W-LAN",
-                    "ru": "Вай фай",
-                    "pt": "Wi-fi",
-                    "nl": "Wifi",
-                    "fr": "Wifi",
-                    "it": "Wifi",
-                    "es": "Wifi",
-                    "pl": "Wi-Fi",
-                    "zh-cn": "无线上网"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.active",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi Active",
-                    "de": "WLAN aktiv",
-                    "ru": "WiFi активен",
-                    "pt": "WiFi ativo",
-                    "nl": "WiFi actief",
-                    "fr": "Wi-Fi actif",
-                    "it": "Wi-Fi attivo",
-                    "es": "WiFi activo",
-                    "pl": "Wi-Fi aktywne",
-                    "zh-cn": "无线上网"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.address",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi Address",
-                    "de": "WLAN-Adresse",
-                    "ru": "Адрес Wi-Fi",
-                    "pt": "Endereço WiFi",
-                    "nl": "WiFi-adres",
-                    "fr": "Adresse Wi-Fi",
-                    "it": "Indirizzo WiFi",
-                    "es": "Dirección WiFi",
-                    "pl": "Adres Wi-Fi",
-                    "zh-cn": "无线地址"
-                },
-                "type": "string",
-                "role": "info.mac",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.available",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi Available",
-                    "de": "WLAN verfügbar",
-                    "ru": "Доступен Wi-Fi",
-                    "pt": "WiFi disponível",
-                    "nl": "WiFi beschikbaar",
-                    "fr": "Wi-Fi disponible",
-                    "it": "Wi-Fi disponibile",
-                    "es": "WiFi disponible",
-                    "pl": "Dostępne WiFi",
-                    "zh-cn": "可用无线网络"
-                },
-                "type": "boolean",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.encryption",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi Encryption",
-                    "de": "WLAN-Verschlüsselung",
-                    "ru": "Шифрование WiFi",
-                    "pt": "Criptografia WiFi",
-                    "nl": "WiFi-codering",
-                    "fr": "Cryptage Wi-Fi",
-                    "it": "Crittografia WiFi",
-                    "es": "Cifrado WiFi",
-                    "pl": "Szyfrowanie Wi-Fi",
-                    "zh-cn": "WiFi加密"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.ssid",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi SSID",
-                    "de": "WLAN-SSID",
-                    "ru": "Wi-Fi SSID",
-                    "pt": "SSID WiFi",
-                    "nl": "WiFi-SSID",
-                    "fr": "Wi-Fi SSID",
-                    "it": "SSID Wi-Fi",
-                    "es": "SSID WiFi",
-                    "pl": "Wi-Fi SSID",
-                    "zh-cn": "无线SSID"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.ip",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi IP",
-                    "de": "WLAN-IP",
-                    "ru": "WiFi IP",
-                    "pt": "IP WiFi",
-                    "nl": "WiFi-IP",
-                    "fr": "IP Wi-Fi",
-                    "it": "IP WiFi",
-                    "es": "IP WiFi",
-                    "pl": "IP Wi-Fi",
-                    "zh-cn": "无线IP"
-                },
-                "type": "string",
-                "role": "info.ip",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.mode",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi Mode",
-                    "de": "WLAN-Modus",
-                    "ru": "Режим Wi-Fi",
-                    "pt": "Modo WiFi",
-                    "nl": "WiFi-modus",
-                    "fr": "Mode Wi-Fi",
-                    "it": "Modalità Wi-Fi",
-                    "es": "Modo WiFi",
-                    "pl": "Tryb Wi-Fi",
-                    "zh-cn": "无线模式"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.netmask",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi Netmask",
-                    "de": "WLAN-Subnetzmaske",
-                    "ru": "Маска сети Wi-Fi",
-                    "pt": "Máscara de rede WiFi",
-                    "nl": "WiFi-netmasker",
-                    "fr": "Masque de réseau Wi-Fi",
-                    "it": "Maschera di rete WiFi",
-                    "es": "Máscara de red WiFi",
-                    "pl": "Maska sieci Wi-Fi",
-                    "zh-cn": "无线网络掩码"
-                },
-                "type": "string",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.wifi.strength",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi Strength",
-                    "de": "WLAN-Stärke",
-                    "ru": "Мощность Wi-Fi",
-                    "pt": "Força WiFi",
-                    "nl": "WiFi-sterkte",
-                    "fr": "Puissance Wi-Fi",
-                    "it": "Potenza Wi-Fi",
-                    "es": "Fuerza de WiFi",
-                    "pl": "Siła Wi-Fi",
-                    "zh-cn": "WiFi强度"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "%",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "apps",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "Apps",
-                    "de": "Apps",
-                    "ru": "Программы",
-                    "pt": "Apps",
-                    "nl": "Apps",
-                    "fr": "applications",
-                    "it": "App",
-                    "es": "Aplicaciones",
-                    "pl": "Aplikacje",
-                    "zh-cn": "应用"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "apps.next",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Next App",
-                    "de": "Nächste App",
-                    "ru": "Следующее приложение",
-                    "pt": "Próximo aplicativo",
-                    "nl": "Volgende app",
-                    "fr": "Application suivante",
-                    "it": "App successiva",
-                    "es": "Siguiente aplicación",
-                    "pl": "Następna aplikacja",
-                    "zh-cn": "下一个应用"
-                },
-                "type": "boolean",
-                "role": "button",
-                "read": false,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "apps.prev",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Previous App",
-                    "de": "Vorherige App",
-                    "ru": "Предыдущее приложение",
-                    "pt": "App anterior",
-                    "nl": "Vorige app",
-                    "fr": "Application précédente",
-                    "it": "App precedente",
-                    "es": "Aplicación anterior",
-                    "pl": "Poprzednia aplikacja",
-                    "zh-cn": "上一个应用"
-                },
-                "type": "boolean",
-                "role": "button",
-                "read": false,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "mydatadiy",
-            "type": "channel",
-            "common": {
-                "role": "",
-                "name": {
-                    "en": "My Data (DIY)",
-                    "de": "Meine Daten (DIY)",
-                    "ru": "Мои данные (сделай сам)",
-                    "pt": "Meus dados (faça você mesmo)",
-                    "nl": "Mijn gegevens (doe-het-zelf)",
-                    "fr": "Mes données (bricolage)",
-                    "it": "I miei dati (fai da te)",
-                    "es": "Mis datos (bricolaje)",
-                    "pl": "Moje dane (zrób to sam)",
-                    "zh-cn": "我的数据（DIY）"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "mydatadiy.obj",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "My Data (DIY) data",
-                    "de": "Meine Daten (DIY) Daten",
-                    "ru": "Данные кадра My Data (DIY)",
-                    "pt": "Dados do quadro My Data (DIY)",
-                    "nl": "Mijn gegevens (DIY) framegegevens",
-                    "fr": "Données du cadre Mes données (DIY)",
-                    "it": "Dati del telaio I miei dati (fai-da-te)",
-                    "es": "Datos del marco de My Data (DIY)",
-                    "pl": "Dane ramki Moje dane (DIY)",
-                    "zh-cn": "我的数据 (DIY) 帧数据"
-                },
-                "type": "string",
-                "role": "json",
-                "read": true,
-                "write": false
-            },
-            "native": {}
+    "desc": {
+      "en": "Control and manage your LaMetric Time",
+      "de": "Steuere und Verwalte Deine LaMetric Time",
+      "ru": "Контролируйте свое время LaMetric и управляйте им",
+      "pt": "Controle e gerencie seu LaMetric Time",
+      "nl": "Beheer en beheer uw LaMetric Time",
+      "fr": "Contrôlez et gérez votre LaMetric Time",
+      "it": "Controlla e gestisci il tuo LaMetric Time",
+      "es": "Controle y administre su tiempo LaMetric",
+      "pl": "Kontroluj i zarządzaj swoim czasem LaMetric",
+      "zh-cn": "控制和管理您的 LaMetric 时间"
+    },
+    "authors": [
+      "Matthias Kleine <info@haus-automatisierung.com>"
+    ],
+    "keywords": [
+      "lametric",
+      "hardware",
+      "clock",
+      "message",
+      "notification"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "icon": "lametric.png",
+    "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
+    "enabled": true,
+    "readme": "https://github.com/klein0r/ioBroker.lametric/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "hardware",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "blockly": true,
+    "messagebox": true,
+    "adminUI": {
+      "config": "json"
+    },
+    "docs": {
+      "en": "docs/en/basics.md",
+      "de": "docs/de/basics.md"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=3.3.0"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=5.1.28"
+      }
+    ],
+    "plugins": {
+      "sentry": {
+        "dsn": "https://e3a7f6c5e3984bc1819c3e5f67a0257d@sentry.iobroker.net/106"
+      }
+    }
+  },
+  "protectedNative": [
+    "lametricToken"
+  ],
+  "encryptedNative": [
+    "lametricToken"
+  ],
+  "native": {
+    "lametricIp": "",
+    "lametricToken": "",
+    "useHttps": false
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Information",
+          "de": "Information",
+          "ru": "Информация",
+          "pt": "Em formação",
+          "nl": "Informatie",
+          "fr": "Informations",
+          "it": "Informazione",
+          "es": "Información",
+          "pl": "Informacja",
+          "zh-cn": "信息"
         }
-    ]
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.reachable",
+        "name": {
+          "en": "Connected to LaMetric",
+          "de": "Verbindung mit LaMetric",
+          "ru": "При подключении к LaMetric",
+          "pt": "Se conectado ao LaMetric",
+          "nl": "Indien verbonden met LaMetric",
+          "fr": "Si connecté à LaMetric",
+          "it": "Se connesso a LaMetric",
+          "es": "Si está conectado a LaMetric",
+          "pl": "W przypadku połączenia z LaMetric",
+          "zh-cn": "如果连接到 LaMetric"
+        },
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Meta information",
+          "de": "Meta-Informationen",
+          "ru": "Мета информация",
+          "pt": "Meta informação",
+          "nl": "Meta informatie",
+          "fr": "Méta-information",
+          "it": "Meta informazioni",
+          "es": "Meta informacion",
+          "pl": "Metainformacje",
+          "zh-cn": "元信息"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.name",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Name",
+          "de": "Name",
+          "ru": "Имя",
+          "pt": "Nome",
+          "nl": "Naam",
+          "fr": "Nom",
+          "it": "Nome",
+          "es": "Nombre",
+          "pl": "Nazwa",
+          "zh-cn": "姓名"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.serial",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Serial number",
+          "de": "Seriennummer",
+          "ru": "Серийный номер",
+          "pt": "Número de série",
+          "nl": "Serienummer",
+          "fr": "Numéro de série",
+          "it": "Numero di serie",
+          "es": "Número de serie",
+          "pl": "Numer seryjny",
+          "zh-cn": "序列号"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.version",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "OS Version",
+          "de": "OS-Version",
+          "ru": "Версия ОС",
+          "pt": "Versão do sistema operacional",
+          "nl": "OS-versie",
+          "fr": "Version du système d'exploitation",
+          "it": "Versione del sistema operativo",
+          "es": "Versión del sistema operativo",
+          "pl": "Wersja systemu operacyjnego",
+          "zh-cn": "操作系统版本"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.model",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Model number",
+          "de": "Modell-Nr",
+          "ru": "Номер модели",
+          "pt": "Número do modelo",
+          "nl": "Modelnummer",
+          "fr": "Numéro de modèle",
+          "it": "Numero di modello",
+          "es": "Número de modelo",
+          "pl": "Numer modelu",
+          "zh-cn": "型号"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.mode",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Device mode",
+          "de": "Gerätemodus",
+          "ru": "Режим устройства",
+          "pt": "Modo de dispositivo",
+          "nl": "Apparaatmodus:",
+          "fr": "Mode appareil",
+          "it": "Modalità dispositivo",
+          "es": "Modo de dispositivo",
+          "pl": "Tryb urządzenia",
+          "zh-cn": "设备模式"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.audio",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Audio",
+          "de": "Audio",
+          "ru": "Аудио",
+          "pt": "Áudio",
+          "nl": "Audio",
+          "fr": "l'audio",
+          "it": "Audio",
+          "es": "Audio",
+          "pl": "Audio",
+          "zh-cn": "声音的"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.audio.volume",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Audio volume",
+          "de": "Audiolautstärke",
+          "ru": "Громкость звука",
+          "pt": "Volume de áudio",
+          "nl": "Audiovolume",
+          "fr": "Volume sonore",
+          "it": "Volume audio",
+          "es": "Volumen de audio",
+          "pl": "Głośność dźwięku",
+          "zh-cn": "音量"
+        },
+        "type": "number",
+        "role": "level.volume",
+        "unit": "%",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.audio.volumeMin",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Audio volume (min)",
+          "de": "Audiolautstärke (min)",
+          "ru": "Громкость звука (мин.)",
+          "pt": "Volume de áudio (min)",
+          "nl": "Audiovolume (min)",
+          "fr": "Volume sonore (min)",
+          "it": "Volume audio (min)",
+          "es": "Volumen de audio (min)",
+          "pl": "Głośność dźwięku (min)",
+          "zh-cn": "音频音量（分钟）"
+        },
+        "type": "number",
+        "role": "level.volume",
+        "unit": "%",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.audio.volumeMax",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Audio volume (max)",
+          "de": "Audiolautstärke (max.)",
+          "ru": "Громкость звука (макс.)",
+          "pt": "Volume de áudio (máximo)",
+          "nl": "Audiovolume (max.)",
+          "fr": "Volume sonore (max)",
+          "it": "Volume audio (massimo)",
+          "es": "Volumen de audio (máx.)",
+          "pl": "Głośność dźwięku (maks.)",
+          "zh-cn": "音频音量（最大）"
+        },
+        "type": "number",
+        "role": "level.volume",
+        "unit": "%",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Bluetooth",
+          "de": "Bluetooth",
+          "ru": "блютуз",
+          "pt": "Bluetooth",
+          "nl": "Bluetooth",
+          "fr": "Bluetooth",
+          "it": "Bluetooth",
+          "es": "Bluetooth",
+          "pl": "Bluetooth",
+          "zh-cn": "蓝牙"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.available",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Available",
+          "de": "Bluetooth verfügbar",
+          "ru": "Bluetooth доступен",
+          "pt": "Bluetooth disponível",
+          "nl": "Bluetooth beschikbaar",
+          "fr": "Bluetooth disponible",
+          "it": "Bluetooth disponibile",
+          "es": "Bluetooth disponible",
+          "pl": "Dostępny Bluetooth",
+          "zh-cn": "蓝牙可用"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.name",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Name",
+          "de": "Bluetooth-Name",
+          "ru": "Имя Bluetooth",
+          "pt": "Nome Bluetooth",
+          "nl": "Bluetooth-naam",
+          "fr": "Nom Bluetooth",
+          "it": "Nome Bluetooth",
+          "es": "Nombre de Bluetooth",
+          "pl": "Nazwa Bluetooth",
+          "zh-cn": "蓝牙名称"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Active",
+          "de": "Bluetooth aktiv",
+          "ru": "Bluetooth активен",
+          "pt": "Bluetooth ativo",
+          "nl": "Bluetooth actief",
+          "fr": "Bluetooth actif",
+          "it": "Bluetooth attivo",
+          "es": "Bluetooth activo",
+          "pl": "Bluetooth aktywny",
+          "zh-cn": "蓝牙有源"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.discoverable",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Discoverable",
+          "de": "Bluetooth erkennbar",
+          "ru": "Обнаружение Bluetooth",
+          "pt": "Bluetooth detectável",
+          "nl": "Bluetooth detecteerbaar",
+          "fr": "Bluetooth détectable",
+          "it": "Rilevabile Bluetooth",
+          "es": "Bluetooth detectable",
+          "pl": "Wykrywalny przez Bluetooth",
+          "zh-cn": "蓝牙可发现"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.pairable",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Pairable",
+          "de": "Bluetooth koppelbar",
+          "ru": "Bluetooth Pairable",
+          "pt": "Bluetooth emparelhável",
+          "nl": "Bluetooth-koppelbaar",
+          "fr": "Bluetooth appairable",
+          "it": "Bluetooth abbinabile",
+          "es": "Bluetooth emparejable",
+          "pl": "Możliwość parowania przez Bluetooth",
+          "zh-cn": "蓝牙配对"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.address",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Address",
+          "de": "Bluetooth-Adresse",
+          "ru": "Адрес Bluetooth",
+          "pt": "Endereço Bluetooth",
+          "nl": "Bluetooth-adres",
+          "fr": "Adresse Bluetooth",
+          "it": "Indirizzo Bluetooth",
+          "es": "Dirección de Bluetooth",
+          "pl": "Adres Bluetooth",
+          "zh-cn": "蓝牙地址"
+        },
+        "type": "string",
+        "role": "info.mac",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.low_energy",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Bluetooth Low Energy",
+          "de": "Bluetooth Low Energy",
+          "ru": "Bluetooth с низким энергопотреблением",
+          "pt": "Bluetooth de baixa energia",
+          "nl": "Bluetooth lage energie",
+          "fr": "Bluetooth à faible consommation d'énergie",
+          "it": "Bluetooth a bassa energia",
+          "es": "Bluetooth de baja energía",
+          "pl": "Niska energia Bluetooth",
+          "zh-cn": "低功耗蓝牙"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.low_energy.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Low Energy Active",
+          "de": "Bluetooth Low Energy Aktiv",
+          "ru": "Bluetooth с низким энергопотреблением, активный",
+          "pt": "Bluetooth de baixa energia ativo",
+          "nl": "Bluetooth Lage Energie Actief",
+          "fr": "Bluetooth à faible consommation d'énergie actif",
+          "it": "Bluetooth a basso consumo energetico attivo",
+          "es": "Bluetooth de baja energía activo",
+          "pl": "Aktywny Bluetooth Low Energy",
+          "zh-cn": "低功耗蓝牙有源"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.low_energy.advertising",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Low Energy Advertising",
+          "de": "Bluetooth Low Energy Auffindbar",
+          "ru": "Bluetooth с низким энергопотреблением",
+          "pt": "Publicidade de Bluetooth de baixa energia",
+          "nl": "Bluetooth Low Energy-advertenties",
+          "fr": "Publicité Bluetooth Low Energy",
+          "it": "Pubblicità Bluetooth a basso consumo energetico",
+          "es": "Publicidad Bluetooth Low Energy",
+          "pl": "Reklama Bluetooth o niskiej energii",
+          "zh-cn": "蓝牙低功耗广告"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.bluetooth.low_energy.connectable",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Bluetooth Low Energy Connectable",
+          "de": "Bluetooth Low Energy verbindbar",
+          "ru": "Возможность подключения по Bluetooth с низким энергопотреблением",
+          "pt": "Bluetooth conectável de baixa energia",
+          "nl": "Bluetooth Low Energy aansluitbaar",
+          "fr": "Bluetooth à faible consommation d'énergie connectable",
+          "it": "Bluetooth a bassa energia collegabile",
+          "es": "Bluetooth de baja energía conectable",
+          "pl": "Możliwość podłączenia Bluetooth Low Energy",
+          "zh-cn": "蓝牙低功耗可连接"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Display",
+          "de": "Anzeige",
+          "ru": "Отображать",
+          "pt": "Exibição",
+          "nl": "Weergave",
+          "fr": "Affichage",
+          "it": "Schermo",
+          "es": "Monitor",
+          "pl": "Wyświetlacz",
+          "zh-cn": "展示"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.brightness",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness",
+          "de": "Helligkeit",
+          "ru": "Яркость",
+          "pt": "Brilho",
+          "nl": "Helderheid",
+          "fr": "Luminosité",
+          "it": "Luminosità",
+          "es": "Brillo",
+          "pl": "Jasność",
+          "zh-cn": "亮度"
+        },
+        "type": "number",
+        "role": "level.dimmer",
+        "unit": "%",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.brightnessMin",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness Min",
+          "de": "Helligkeit Min",
+          "ru": "Яркость Мин.",
+          "pt": "Brilho Mín",
+          "nl": "Helderheid Min",
+          "fr": "Luminosité minimale",
+          "it": "Luminosità Min",
+          "es": "Brillo mínimo",
+          "pl": "Minimalna jasność",
+          "zh-cn": "亮度最小值"
+        },
+        "type": "number",
+        "role": "level.dimmer",
+        "unit": "%",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.brightnessMax",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness Max",
+          "de": "Helligkeit Max",
+          "ru": "Яркость Макс.",
+          "pt": "Brilho máximo",
+          "nl": "Helderheid Max",
+          "fr": "Luminosité maximale",
+          "it": "Luminosità massima",
+          "es": "Brillo máximo",
+          "pl": "Maksymalna jasność",
+          "zh-cn": "最大亮度"
+        },
+        "type": "number",
+        "role": "level.dimmer",
+        "unit": "%",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.brightnessAuto",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness Auto",
+          "de": "Helligkeit Auto",
+          "ru": "Яркость Авто",
+          "pt": "Brilho Automático",
+          "nl": "Helderheid Auto",
+          "fr": "Luminosité Automatique",
+          "it": "Luminosità automatica",
+          "es": "Brillo automático",
+          "pl": "Jasność Auto",
+          "zh-cn": "亮度自动"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.brightnessMode",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness Mode",
+          "de": "Helligkeitsmodus",
+          "ru": "Режим яркости",
+          "pt": "Modo de Brilho",
+          "nl": "Helderheidsmodus",
+          "fr": "Mode de luminosité",
+          "it": "Modalità luminosità",
+          "es": "Modo de brillo",
+          "pl": "Tryb jasności",
+          "zh-cn": "亮度模式"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.width",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Width",
+          "de": "Breite",
+          "ru": "Ширина",
+          "pt": "Largura",
+          "nl": "Breedte",
+          "fr": "Largeur",
+          "it": "Larghezza",
+          "es": "Ancho",
+          "pl": "Szerokość",
+          "zh-cn": "宽度"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.height",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Height",
+          "de": "Höhe",
+          "ru": "Рост",
+          "pt": "Altura",
+          "nl": "Hoogte",
+          "fr": "Hauteur",
+          "it": "Altezza",
+          "es": "Altura",
+          "pl": "Wzrost",
+          "zh-cn": "高度"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.type",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Type",
+          "de": "Typ",
+          "ru": "Тип",
+          "pt": "Modelo",
+          "nl": "Type",
+          "fr": "Taper",
+          "it": "Tipo",
+          "es": "Escribe",
+          "pl": "Rodzaj",
+          "zh-cn": "类型"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Screensaver",
+          "de": "Bildschirmschoner",
+          "ru": "Заставка",
+          "pt": "Protetor de tela",
+          "nl": "Screensaver",
+          "fr": "Économiseur d'écran",
+          "it": "Salvaschermo",
+          "es": "Protector de pantalla",
+          "pl": "Wygaszacz ekranu",
+          "zh-cn": "屏幕保护程序"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.enabled",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Screensaver Enabled",
+          "de": "Bildschirmschoner aktiviert",
+          "ru": "Заставка включена",
+          "pt": "Protetor de tela ativado",
+          "nl": "Schermbeveiliging ingeschakeld",
+          "fr": "Économiseur d'écran activé",
+          "it": "Salvaschermo abilitato",
+          "es": "Salvapantallas habilitado",
+          "pl": "Włączony wygaszacz ekranu",
+          "zh-cn": "启用屏幕保护程序"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.widget",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Widget",
+          "de": "Widget",
+          "ru": "Виджет",
+          "pt": "Ferramenta",
+          "nl": "Widget",
+          "fr": "Widget",
+          "it": "Aggeggio",
+          "es": "Widget",
+          "pl": "Widżet",
+          "zh-cn": "小工具"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Screensaver Modes",
+          "de": "Bildschirmschoner-Modi",
+          "ru": "Режимы заставки",
+          "pt": "Modos de proteção de tela",
+          "nl": "Schermbeveiligingsmodi",
+          "fr": "Modes économiseur d'écran",
+          "it": "Modalità salvaschermo",
+          "es": "Modos de salvapantallas",
+          "pl": "Tryby wygaszacza ekranu",
+          "zh-cn": "屏保模式"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes.timeBased",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Time Based Screensaver",
+          "de": "Zeitbasierter Bildschirmschoner",
+          "ru": "Заставка по времени",
+          "pt": "Time Based Screensaver",
+          "nl": "Op tijd gebaseerde screensaver",
+          "fr": "Économiseur d'écran basé sur le temps",
+          "it": "Salvaschermo basato sul tempo",
+          "es": "Salvapantallas basado en tiempo",
+          "pl": "Wygaszacz ekranu oparty na czasie",
+          "zh-cn": "基于时间的屏幕保护程序"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes.timeBased.enabled",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Time Based Screensaver Enabled",
+          "de": "Zeitbasierter Bildschirmschoner aktiviert",
+          "ru": "Заставка на основе времени включена",
+          "pt": "Protetor de tela baseado em tempo habilitado",
+          "nl": "Op tijd gebaseerde screensaver ingeschakeld",
+          "fr": "Économiseur d'écran basé sur le temps activé",
+          "it": "Screensaver basato sul tempo abilitato",
+          "es": "Protector de pantalla basado en tiempo habilitado",
+          "pl": "Włączony wygaszacz ekranu oparty na czasie",
+          "zh-cn": "启用基于时间的屏幕保护程序"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes.timeBased.startTime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Time Based Screensaver Start Time",
+          "de": "Startzeit des zeitbasierten Bildschirmschoners",
+          "ru": "Время начала заставки на основе времени",
+          "pt": "Hora de início do protetor de tela com base em tempo",
+          "nl": "Op tijd gebaseerde starttijd screensaver",
+          "fr": "Heure de début de l'économiseur d'écran basé sur le temps",
+          "it": "Ora di inizio dello screensaver basato sul tempo",
+          "es": "Hora de inicio del salvapantallas en función del tiempo",
+          "pl": "Czas rozpoczęcia wygaszacza ekranu na podstawie czasu",
+          "zh-cn": "基于时间的屏幕保护程序开始时间"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes.timeBased.startTimeLocal",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Time Based Screensaver Start Time Local",
+          "de": "Zeitbasierter Bildschirmschoner Startzeit Lokal",
+          "ru": "Заставка на основе времени Время начала Местное",
+          "pt": "Time Based Screensaver Start Time Local",
+          "nl": "Op tijd gebaseerde screensaver Starttijd Lokaal",
+          "fr": "Heure de début de l'économiseur d'écran basé sur l'heure Locale",
+          "it": "Ora di inizio del salvaschermo basato sul tempo Local",
+          "es": "Hora de inicio del salvapantallas basado en el tiempo Local",
+          "pl": "Czas rozpoczęcia wygaszacza ekranu w oparciu o czas Lokalny",
+          "zh-cn": "基于时间的屏幕保护程序开始时间本地"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes.timeBased.endTime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Time Based Screensaver End Time",
+          "de": "Zeitbasierter Bildschirmschoner Endzeit",
+          "ru": "Время окончания заставки на основе времени",
+          "pt": "Tempo de término do protetor de tela baseado em tempo",
+          "nl": "Eindtijd screensaver op basis van tijd",
+          "fr": "Heure de fin de l'économiseur d'écran basé sur le temps",
+          "it": "Ora di fine del salvaschermo basato sul tempo",
+          "es": "Hora de finalización del salvapantallas en función del tiempo",
+          "pl": "Czas zakończenia wygaszacza ekranu na podstawie czasu",
+          "zh-cn": "基于时间的屏幕保护程序结束时间"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes.timeBased.endTimeLocal",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Time Based Screensaver End Time Local",
+          "de": "Zeitbasierter Bildschirmschoner Endzeit Lokal",
+          "ru": "Заставка на основе времени Время окончания Местное время",
+          "pt": "Time Based Screensaver End Time Local",
+          "nl": "Op tijd gebaseerde screensaver Eindtijd Lokaal",
+          "fr": "Économiseur d'écran basé sur l'heure Heure de fin Locale",
+          "it": "Salvaschermo basato sul tempo Ora di fine locale",
+          "es": "Hora de finalización del salvapantallas basado en el tiempo Local",
+          "pl": "Czas zakończenia wygaszacza ekranu na podstawie czasu Lokalny",
+          "zh-cn": "基于时间的屏幕保护程序结束时间本地"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes.whenDark",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "When Dark Screensaver",
+          "de": "Wenn Dunkel Bildschirmschoner",
+          "ru": "Когда темная заставка",
+          "pt": "Protetor de tela quando escuro",
+          "nl": "Wanneer donkere schermbeveiliging",
+          "fr": "Quand sombre économiseur d'écran",
+          "it": "Quando il salvaschermo è scuro",
+          "es": "When Dark Screensaver",
+          "pl": "Gdy ciemny wygaszacz ekranu",
+          "zh-cn": "当黑暗的屏幕保护程序"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.display.screensaver.modes.whenDark.enabled",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "When Dark Screensaver Enabled",
+          "de": "Wenn Dunkel Bildschirmschoner aktiviert ist",
+          "ru": "Когда включена темная заставка",
+          "pt": "Quando protetor de tela escuro ativado",
+          "nl": "Wanneer donkere schermbeveiliging is ingeschakeld",
+          "fr": "Lorsque l'économiseur d'écran sombre est activé",
+          "it": "Quando lo screensaver scuro è abilitato",
+          "es": "Cuando el protector de pantalla oscuro está habilitado",
+          "pl": "Gdy włączony jest ciemny wygaszacz ekranu",
+          "zh-cn": "启用暗屏保护程序时"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "WiFi",
+          "de": "W-LAN",
+          "ru": "Вай фай",
+          "pt": "Wi-fi",
+          "nl": "Wifi",
+          "fr": "Wifi",
+          "it": "Wifi",
+          "es": "Wifi",
+          "pl": "Wi-Fi",
+          "zh-cn": "无线上网"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi Active",
+          "de": "WLAN aktiv",
+          "ru": "WiFi активен",
+          "pt": "WiFi ativo",
+          "nl": "WiFi actief",
+          "fr": "Wi-Fi actif",
+          "it": "Wi-Fi attivo",
+          "es": "WiFi activo",
+          "pl": "Wi-Fi aktywne",
+          "zh-cn": "无线上网"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.address",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi Address",
+          "de": "WLAN-Adresse",
+          "ru": "Адрес Wi-Fi",
+          "pt": "Endereço WiFi",
+          "nl": "WiFi-adres",
+          "fr": "Adresse Wi-Fi",
+          "it": "Indirizzo WiFi",
+          "es": "Dirección WiFi",
+          "pl": "Adres Wi-Fi",
+          "zh-cn": "无线地址"
+        },
+        "type": "string",
+        "role": "info.mac",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.available",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi Available",
+          "de": "WLAN verfügbar",
+          "ru": "Доступен Wi-Fi",
+          "pt": "WiFi disponível",
+          "nl": "WiFi beschikbaar",
+          "fr": "Wi-Fi disponible",
+          "it": "Wi-Fi disponibile",
+          "es": "WiFi disponible",
+          "pl": "Dostępne WiFi",
+          "zh-cn": "可用无线网络"
+        },
+        "type": "boolean",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.encryption",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi Encryption",
+          "de": "WLAN-Verschlüsselung",
+          "ru": "Шифрование WiFi",
+          "pt": "Criptografia WiFi",
+          "nl": "WiFi-codering",
+          "fr": "Cryptage Wi-Fi",
+          "it": "Crittografia WiFi",
+          "es": "Cifrado WiFi",
+          "pl": "Szyfrowanie Wi-Fi",
+          "zh-cn": "WiFi加密"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.ssid",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi SSID",
+          "de": "WLAN-SSID",
+          "ru": "Wi-Fi SSID",
+          "pt": "SSID WiFi",
+          "nl": "WiFi-SSID",
+          "fr": "Wi-Fi SSID",
+          "it": "SSID Wi-Fi",
+          "es": "SSID WiFi",
+          "pl": "Wi-Fi SSID",
+          "zh-cn": "无线SSID"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.ip",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi IP",
+          "de": "WLAN-IP",
+          "ru": "WiFi IP",
+          "pt": "IP WiFi",
+          "nl": "WiFi-IP",
+          "fr": "IP Wi-Fi",
+          "it": "IP WiFi",
+          "es": "IP WiFi",
+          "pl": "IP Wi-Fi",
+          "zh-cn": "无线IP"
+        },
+        "type": "string",
+        "role": "info.ip",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.mode",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi Mode",
+          "de": "WLAN-Modus",
+          "ru": "Режим Wi-Fi",
+          "pt": "Modo WiFi",
+          "nl": "WiFi-modus",
+          "fr": "Mode Wi-Fi",
+          "it": "Modalità Wi-Fi",
+          "es": "Modo WiFi",
+          "pl": "Tryb Wi-Fi",
+          "zh-cn": "无线模式"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.netmask",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi Netmask",
+          "de": "WLAN-Subnetzmaske",
+          "ru": "Маска сети Wi-Fi",
+          "pt": "Máscara de rede WiFi",
+          "nl": "WiFi-netmasker",
+          "fr": "Masque de réseau Wi-Fi",
+          "it": "Maschera di rete WiFi",
+          "es": "Máscara de red WiFi",
+          "pl": "Maska sieci Wi-Fi",
+          "zh-cn": "无线网络掩码"
+        },
+        "type": "string",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.wifi.strength",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi Strength",
+          "de": "WLAN-Stärke",
+          "ru": "Мощность Wi-Fi",
+          "pt": "Força WiFi",
+          "nl": "WiFi-sterkte",
+          "fr": "Puissance Wi-Fi",
+          "it": "Potenza Wi-Fi",
+          "es": "Fuerza de WiFi",
+          "pl": "Siła Wi-Fi",
+          "zh-cn": "WiFi强度"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "%",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "apps",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "Apps",
+          "de": "Apps",
+          "ru": "Программы",
+          "pt": "Apps",
+          "nl": "Apps",
+          "fr": "applications",
+          "it": "App",
+          "es": "Aplicaciones",
+          "pl": "Aplikacje",
+          "zh-cn": "应用"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "apps.next",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Next App",
+          "de": "Nächste App",
+          "ru": "Следующее приложение",
+          "pt": "Próximo aplicativo",
+          "nl": "Volgende app",
+          "fr": "Application suivante",
+          "it": "App successiva",
+          "es": "Siguiente aplicación",
+          "pl": "Następna aplikacja",
+          "zh-cn": "下一个应用"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "apps.prev",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Previous App",
+          "de": "Vorherige App",
+          "ru": "Предыдущее приложение",
+          "pt": "App anterior",
+          "nl": "Vorige app",
+          "fr": "Application précédente",
+          "it": "App precedente",
+          "es": "Aplicación anterior",
+          "pl": "Poprzednia aplikacja",
+          "zh-cn": "上一个应用"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "mydatadiy",
+      "type": "channel",
+      "common": {
+        "role": "",
+        "name": {
+          "en": "My Data (DIY)",
+          "de": "Meine Daten (DIY)",
+          "ru": "Мои данные (сделай сам)",
+          "pt": "Meus dados (faça você mesmo)",
+          "nl": "Mijn gegevens (doe-het-zelf)",
+          "fr": "Mes données (bricolage)",
+          "it": "I miei dati (fai da te)",
+          "es": "Mis datos (bricolaje)",
+          "pl": "Moje dane (zrób to sam)",
+          "zh-cn": "我的数据（DIY）"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "mydatadiy.obj",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "My Data (DIY) data",
+          "de": "Meine Daten (DIY) Daten",
+          "ru": "Данные кадра My Data (DIY)",
+          "pt": "Dados do quadro My Data (DIY)",
+          "nl": "Mijn gegevens (DIY) framegegevens",
+          "fr": "Données du cadre Mes données (DIY)",
+          "it": "Dati del telaio I miei dati (fai-da-te)",
+          "es": "Datos del marco de My Data (DIY)",
+          "pl": "Dane ramki Moje dane (DIY)",
+          "zh-cn": "我的数据 (DIY) 帧数据"
+        },
+        "type": "string",
+        "role": "json",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    }
+  ]
 }
