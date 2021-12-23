@@ -43,6 +43,11 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+* (klein0r) Updated dependencies
+
 ### 1.5.2 (2021-12-23)
 
 * (klein0r) Updated dependencies
