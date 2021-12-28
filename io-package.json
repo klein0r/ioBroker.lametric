@@ -93,13 +93,13 @@
       "en": "LaMetric Time",
       "de": "LaMetric Time",
       "ru": "LaMetric Time",
-      "pt": "Tempo LaMetric",
-      "nl": "Lametrische tijd",
-      "fr": "Temps LaMetric",
+      "pt": "LaMetric Time",
+      "nl": "LaMetric Time",
+      "fr": "LaMetric Time",
       "it": "LaMetric Time",
-      "es": "Tiempo LaMetric",
-      "pl": "Czas LaMetric",
-      "zh-cn": "LaMetric 时间"
+      "es": "LaMetric Time",
+      "pl": "LaMetric Time",
+      "zh-cn": "LaMetric Time"
     },
     "desc": {
       "en": "Control and manage your LaMetric Time",
