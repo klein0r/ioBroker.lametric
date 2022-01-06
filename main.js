@@ -5,7 +5,7 @@
 
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios');
-const https = require('https')
+const https = require('https');
 const adapterName = require('./package.json').name.split('.').pop();
 
 class LaMetric extends utils.Adapter {
