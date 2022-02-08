@@ -39,32 +39,33 @@ class LaMetric extends utils.Adapter {
         if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
             this.collectMyDataDiyForeignStates(this.config.mydatadiy);
         } else {
-            this.log.debug('My Data (DIY) configuration is not available');
-            this.setStateAsync('mydatadiy.obj', {val: JSON.stringify({'frames': [{text: 'No Data', icon: 'a9335'}]}), ack: true});
+            this.log.debug('[mydatadiy] configuration not available');
+            this.setStateAsync('mydatadiy.obj', {val: JSON.stringify({'frames': [{text: 'No data', icon: 'a9335'}]}), ack: true});
         }
     }
 
     onStateChange(id, state) {
+        // Check if changed state is in my data diy state list
         if (id && state && this.myDataDiyForeignStates.filter(item => { return item.id === id; }).length > 0) {
             this.myDataDiyForeignStates = this.myDataDiyForeignStates.map(item => {
                 if (item.id === id) {
-                    this.log.debug('My Data (DIY) received new value "' + state.val + '" of state: ' + id);
+                    this.log.debug(`[mydatadiy] onStateChange - received new value "${state.val}" of state: ${id}`);
                     item.val = state.val;
                 }
 
                 return item;
             });
 
-            this.log.debug('My Data (DIY) list after value update ' + JSON.stringify(this.myDataDiyForeignStates));
+            this.log.debug(`[mydatadiy] onStateChange - list after value update ${JSON.stringify(this.myDataDiyForeignStates)}`);
 
-            this.refreshMyDataDiy(); // Refresh Output
+            this.refreshMyDataDiy(); // refresh output
         }
 
         // Handle states of LaMetric adapter
         if (id && state && !state.ack) {
             // No ack = changed by user
             if (id === this.namespace + '.meta.display.brightness') {
-                this.log.debug('changing brightness to ' + state.val);
+                this.log.debug(`changing brightness to ${state.val}`);
 
                 this.buildRequest(
                     'device/display',
@@ -82,7 +83,7 @@ class LaMetric extends utils.Adapter {
                     }
                 );
             } else if (id === this.namespace + '.meta.display.brightnessAuto') {
-                this.log.debug('changing auto brightness mode to ' + state.val);
+                this.log.debug(`changing auto brightness mode to ${state.val}`);
 
                 this.buildRequest(
                     'device/display',
@@ -99,7 +100,7 @@ class LaMetric extends utils.Adapter {
                     }
                 );
             } else if (id === this.namespace + '.meta.audio.volume') {
-                this.log.debug('changing volume to ' + state.val);
+                this.log.debug(`changing volume to ${state.val}`);
 
                 this.buildRequest(
                     'device/audio',
@@ -114,7 +115,7 @@ class LaMetric extends utils.Adapter {
                     }
                 );
             } else if (id === this.namespace + '.meta.bluetooth.active') {
-                this.log.debug('changing bluetooth state to ' + state.val);
+                this.log.debug(`changing bluetooth state to ${state.val}`);
 
                 this.buildRequest(
                     'device/bluetooth',
@@ -132,7 +133,7 @@ class LaMetric extends utils.Adapter {
                     }
                 );
             } else if (id === this.namespace + '.meta.bluetooth.name') {
-                this.log.debug('changing bluetooth name to ' + state.val);
+                this.log.debug(`changing bluetooth name to ${state.val}`);
 
                 this.buildRequest(
                     'device/bluetooth',
@@ -150,7 +151,7 @@ class LaMetric extends utils.Adapter {
                     }
                 );
             } else if (id === this.namespace + '.apps.next') {
-                this.log.debug('changing to next app');
+                this.log.debug('switching to next app');
 
                 this.buildRequest(
                     'device/apps/next',
@@ -159,7 +160,7 @@ class LaMetric extends utils.Adapter {
                     null
                 );
             } else if (id === this.namespace + '.apps.prev') {
-                this.log.debug('changing to previous app');
+                this.log.debug('switching to previous app');
 
                 this.buildRequest(
                     'device/apps/prev',
@@ -168,7 +169,7 @@ class LaMetric extends utils.Adapter {
                     null
                 );
             } else if (id === this.namespace + '.meta.display.screensaver.enabled') {
-                this.log.debug('changing screensaver state to ' + state.val);
+                this.log.debug(`changing screensaver state to ${state.val}`);
 
                 this.buildRequest(
                     'device/display',
@@ -242,86 +243,88 @@ class LaMetric extends utils.Adapter {
                 const widget = matches[1];
                 const action = matches[2];
 
-                this.log.debug(`running action "${action}" on specific widget "${widget}"`);
+                this.log.debug(`[widget] running action "${action}" on "${widget}"`);
 
                 this.getState(
                     'apps.' + widget + '.package',
                     async (err, packState) => {
-                        const pack = packState.val;
+                        if (!err && packState && typeof packState === 'object') {
+                            const pack = packState.val;
 
-                        if (action === 'activate') {
-                            this.log.debug('activating specific widget: ' + widget + ' of package ' + pack);
+                            if (action === 'activate') {
+                                this.log.debug(`[widget] activating "${widget}" of package "${pack}"`);
 
-                            this.buildRequest(
-                                'device/apps/' + pack + '/widgets/' + widget + '/activate',
-                                null,
-                                'PUT',
-                                null
-                            );
-                        } else {
-                            this.log.debug('special action (' + action + '): ' + widget + ' of package ' + pack);
+                                this.buildRequest(
+                                    'device/apps/' + pack + '/widgets/' + widget + '/activate',
+                                    null,
+                                    'PUT',
+                                    null
+                                );
+                            } else {
+                                this.log.debug(`[widget] running special action "${action}" on "${widget}" of package "${pack}"`);
 
-                            const data = { id: action };
+                                const data = { id: action };
 
-                            // START special Widgets
+                                // START special Widgets
 
-                            if (action == 'clock.clockface') {
+                                if (action == 'clock.clockface') {
 
-                                if (['weather', 'page_a_day', 'custom', 'none'].indexOf(state.val) > -1) {
+                                    if (['weather', 'page_a_day', 'custom', 'none'].indexOf(state.val) > -1) {
 
+                                        data.params = {
+                                            type: state.val
+                                        };
+
+                                    } else {
+
+                                        data.params = {
+                                            icon: state.val,
+                                            type: 'custom'
+                                        };
+
+                                    }
+
+                                    data.activate = true;
+
+                                    this.setStateAsync(id, {val: state.val, ack: true}); // Confirm state change
+                                /*
+                                } else if (action.indexOf('clock.alarm') === 0) {
+
+                                    const clockAlarmStates = await this.getStatesAsync('apps.' + widget + '.clock.alarm.*');
+
+                                    const clockAlarmEnabled = (action === 'clock.alarm.enabled') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.enabled'].val;
+                                    const clockAlarmTime = (action === 'clock.alarm.time') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.time'].val;
+                                    const clockAlarmWithRadio = (action === 'clock.alarm.wake_with_radio') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.wake_with_radio'].val;
+
+                                    data.id = 'clock.alarm';
                                     data.params = {
-                                        type: state.val
+                                        enabled: clockAlarmEnabled || false,
+                                        time: clockAlarmTime || "10:00:00",
+                                        wake_with_radio: clockAlarmWithRadio || false
                                     };
 
-                                } else {
+                                    this.setStateAsync(id, {val: state.val, ack: true});
+                                */
+                                } else if (action == 'countdown.configure') {
 
                                     data.params = {
-                                        icon: state.val,
-                                        type: 'custom'
+                                        duration: state.val,
+                                        start_now: false
                                     };
+
+                                    this.setStateAsync(id, {val: state.val, ack: true}); // Confirm state change
 
                                 }
 
-                                data.activate = true;
+                                // END special Widgets
 
-                                this.setStateAsync(id, {val: state.val, ack: true}); // Confirm state change
-                            /*
-                            } else if (action.indexOf('clock.alarm') === 0) {
-
-                                const clockAlarmStates = await this.getStatesAsync('apps.' + widget + '.clock.alarm.*');
-
-                                const clockAlarmEnabled = (action === 'clock.alarm.enabled') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.enabled'].val;
-                                const clockAlarmTime = (action === 'clock.alarm.time') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.time'].val;
-                                const clockAlarmWithRadio = (action === 'clock.alarm.wake_with_radio') ? state.val : clockAlarmStates[this.namespace + '.apps.' + widget + '.clock.alarm.wake_with_radio'].val;
-
-                                data.id = 'clock.alarm';
-                                data.params = {
-                                    enabled: clockAlarmEnabled || false,
-                                    time: clockAlarmTime || "10:00:00",
-                                    wake_with_radio: clockAlarmWithRadio || false
-                                };
-
-                                this.setStateAsync(id, {val: state.val, ack: true});
-                            */
-                            } else if (action == 'countdown.configure') {
-
-                                data.params = {
-                                    duration: state.val,
-                                    start_now: false
-                                };
-
-                                this.setStateAsync(id, {val: state.val, ack: true}); // Confirm state change
-
+                                this.buildRequest(
+                                    'device/apps/' + pack + '/widgets/' + widget + '/actions',
+                                    null,
+                                    'POST',
+                                    data
+                                );
                             }
-
-                            // END special Widgets
-
-                            this.buildRequest(
-                                'device/apps/' + pack + '/widgets/' + widget + '/actions',
-                                null,
-                                'POST',
-                                data
-                            );
                         }
                     }
                 );
@@ -568,7 +571,7 @@ class LaMetric extends utils.Adapter {
                                 const widget = pack.widgets[uuid];
 
                                 appsKeep.push(path + uuid);
-                                this.log.debug('App found (keep): ' + path + uuid);
+                                this.log.debug(`[apps] found (keep): ${path}${uuid}`);
 
                                 await this.setObjectNotExistsAsync(path + uuid, {
                                     type: 'channel',
@@ -1215,7 +1218,7 @@ class LaMetric extends utils.Adapter {
 
                             if (appsKeep.indexOf(id) === -1) {
                                 this.delObject(id, {recursive: true}, () => {
-                                    this.log.debug('App deleted: ' + id);
+                                    this.log.debug(`[apps] deleted: ${id}`);
                                 });
                             }
                         }
@@ -1227,7 +1230,7 @@ class LaMetric extends utils.Adapter {
             null
         );
 
-        this.log.debug('re-creating refresh app timeout');
+        this.log.debug('[apps] re-creating refresh timeout');
         this.refreshAppTimeout = this.refreshAppTimeout || setTimeout(() => {
             this.refreshAppTimeout = null;
             this.refreshApps();
@@ -1241,7 +1244,7 @@ class LaMetric extends utils.Adapter {
             const prefix = this.config.useHttps ? 'https' : 'http';
             const port = this.config.useHttps ? 4343 : 8080;
 
-            this.log.debug('sending "' + method + '" request to "' + url + '" on port ' + port + ' (' + prefix + ') with data: ' + JSON.stringify(data));
+            this.log.debug(`sending "${method}" request to "${url}" with ${prefix} on port ${port} with data: ${JSON.stringify(data)}`);
 
             axios({
                 method: method,
@@ -1264,7 +1267,7 @@ class LaMetric extends utils.Adapter {
                 )
             }).then(
                 (response) => {
-                    this.log.debug('received ' + response.status + ' response from ' + url + ' with content: ' + JSON.stringify(response.data));
+                    this.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
 
                     if (response && callback && typeof callback === 'function') {
                         callback(response.data, response.status);
@@ -1275,7 +1278,7 @@ class LaMetric extends utils.Adapter {
                     if (error.response) {
                         // The request was made and the server responded with a status code
 
-                        this.log.warn('received error ' + error.response.status + ' response from ' + url + ' with content: ' + JSON.stringify(error.response.data));
+                        this.log.warn(`received error ${error.response.status} response from "${url}" with content: ${JSON.stringify(error.response.data)}`);
                     } else if (error.request) {
                         // The request was made but no response was received
                         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
@@ -1295,7 +1298,7 @@ class LaMetric extends utils.Adapter {
     }
 
     async collectMyDataDiyForeignStates(frames) {
-        this.log.debug('My Data (DIY) collecting states');
+        this.log.debug('[mydatadiy] collecting states');
 
         const foreignStates = [];
 
@@ -1305,7 +1308,7 @@ class LaMetric extends utils.Adapter {
                 this.myDataDiyRegex,
                 (m, id) => {
                     if (foreignStates.indexOf(id) === -1) {
-                        this.log.debug('My Data (DIY) found dynamic state in text: ' + id);
+                        this.log.debug(`[mydatadiy] found dynamic state in text: ${id}`);
                         foreignStates.push(id);
                     }
                 }
@@ -1315,26 +1318,26 @@ class LaMetric extends utils.Adapter {
                 this.myDataDiyRegex,
                 (m, id) => {
                     if (foreignStates.indexOf(id) === -1) {
-                        this.log.debug('My Data (DIY) found dynamic state in icon: ' + id);
+                        this.log.debug(`[mydatadiy] found dynamic state in icon: ${id}`);
                         foreignStates.push(id);
                     }
                 }
             );
         });
 
-        this.log.debug('My Data (DIY) found ' + foreignStates.length + ' dynamic states');
+        this.log.debug(`[mydatadiy] found ${foreignStates.length} dynamic states: ${JSON.stringify(foreignStates)}`);
 
         Promise.all(
             foreignStates.map(
                 async (id) => {
-                    this.log.debug('My Data (DIY) subscribed to state: ' + id);
                     this.subscribeForeignStates(id);
+                    this.log.debug(`[mydatadiy] subscribed to foreign state: ${id}`);
 
                     const state = await this.getForeignStateAsync(id);
 
                     return new Promise((resolve) => {
                         if (state) {
-                            this.log.debug('My Data (DIY) received value "' + state.val + '" of state: ' + id);
+                            this.log.debug(`[mydatadiy] received value "${state.val}" of state: ${id}`);
                             resolve(
                                 {
                                     id: id,
@@ -1342,7 +1345,7 @@ class LaMetric extends utils.Adapter {
                                 }
                             );
                         } else {
-                            this.log.warn('Unable to get value of state: ' + id);
+                            this.log.warn(`[mydatadiy] unable to get value of state: ${id}`);
                             resolve(
                                 {
                                     id: id,
@@ -1356,29 +1359,31 @@ class LaMetric extends utils.Adapter {
         ).then(data => {
             this.myDataDiyForeignStates = data;
 
-            this.log.debug('My Data (DIY) found foreign states: ' + JSON.stringify(this.myDataDiyForeignStates));
+            this.log.debug(`[mydatadiy] found foreign states: ${JSON.stringify(this.myDataDiyForeignStates)}`);
             this.refreshMyDataDiy();
         });
     }
 
     async refreshMyDataDiy() {
-        this.log.debug('My Data (DIY) refresh output state with config ' + JSON.stringify(this.config.mydatadiy));
+        this.log.debug(`[mydatadiy] refresh output state with config: ${JSON.stringify(this.config.mydatadiy)}`);
 
         const clonedFrames = JSON.parse(JSON.stringify(this.config.mydatadiy)); // TODO: Better way to clone?!
         const newFrames = clonedFrames.map(f => {
             let replacedText = f.text.replace(
                 this.myDataDiyRegex,
                 (m, id) => {
-                    this.log.debug('My Data (DIY) replacing {' + id + '} in frame text');
+                    const newVal = this.myDataDiyForeignStates.filter(item => { return item.id === id; })[0].val;
 
-                    return this.myDataDiyForeignStates.filter(item => { return item.id === id; })[0].val;
+                    this.log.debug(`[mydatadiy] replacing "${id}" in frame text with "${newVal}"`);
+
+                    return newVal;
                 }
             );
 
             if (Object.prototype.hasOwnProperty.call(f, 'hideif')) {
                 if (f.hideif && f.hideif == replacedText) {
-                    this.log.debug('My Data (DIY) will remove frame because text matches configured hideif: "' + f.hideif + '"');
-                    replacedText = ''; // Will be removed in filter function (see below)
+                    this.log.debug(`[mydatadiy] removing frame because text matches configured hideif: "${f.hideif }"`);
+                    replacedText = ''; // will be removed in filter function (see below)
                 }
             }
 
@@ -1390,9 +1395,11 @@ class LaMetric extends utils.Adapter {
                 newObj.icon = f.icon.replace(
                     this.myDataDiyRegex,
                     (m, id) => {
-                        this.log.debug('My Data (DIY) replacing {' + id + '} in frame icon');
+                        const newVal = this.myDataDiyForeignStates.filter(item => { return item.id === id; })[0].val;
 
-                        return this.myDataDiyForeignStates.filter(item => { return item.id === id; })[0].val;
+                        this.log.debug(`[mydatadiy] replacing "${id}" in frame text with "${newVal}"`);
+
+                        return newVal;
                     }
                 );
             }
@@ -1400,12 +1407,12 @@ class LaMetric extends utils.Adapter {
             return newObj;
         }).filter(f => {
             if (f.text.length == 0) {
-                this.log.debug('My Data (DIY) removed frame');
+                this.log.debug(`[mydatadiy] removed frame with empty text`);
             }
             return f.text.length > 0;
         });
 
-        this.log.debug('My Data (DIY) frame update to ' + JSON.stringify(newFrames));
+        this.log.debug(`[mydatadiy] completed - frame update to ${JSON.stringify(newFrames)}`);
 
         this.setStateAsync('mydatadiy.obj', {val: JSON.stringify({'frames': newFrames}), ack: true});
     }

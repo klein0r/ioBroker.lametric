@@ -46,6 +46,7 @@ iobroker add lametric
 
 ### **WORK IN PROGRESS**
 
+* (klein0r) Updated log messages and error handling
 * (klein0r) Updated dependencies
 
 ### 1.5.2 (2021-12-23)
