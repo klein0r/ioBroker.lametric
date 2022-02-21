@@ -644,7 +644,7 @@ class LaMetric extends utils.Adapter {
                                             'zh-cn': '包裹'
                                         },
                                         type: 'string',
-                                        role: 'value',
+                                        role: 'text',
                                         read: true,
                                         write: false
                                     },
@@ -668,7 +668,7 @@ class LaMetric extends utils.Adapter {
                                             'zh-cn': '小贩'
                                         },
                                         type: 'string',
-                                        role: 'value',
+                                        role: 'text',
                                         read: true,
                                         write: false
                                     },
@@ -692,7 +692,7 @@ class LaMetric extends utils.Adapter {
                                             'zh-cn': '版本'
                                         },
                                         type: 'string',
-                                        role: 'value',
+                                        role: 'text',
                                         read: true,
                                         write: false
                                     },
@@ -741,7 +741,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '表盘 (Base64)'
                                             },
                                             type: 'string',
-                                            role: 'value',
+                                            role: 'state',
                                             read: true,
                                             write: true
                                         },
@@ -784,7 +784,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '警报已启用'
                                             },
                                             type: 'boolean',
-                                            role: 'value',
+                                            role: 'switch.enable',
                                             read: true,
                                             write: true
                                         },
@@ -807,7 +807,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '闹钟时间'
                                             },
                                             type: 'string',
-                                            role: 'value',
+                                            role: 'state',
                                             read: true,
                                             write: true
                                         },
@@ -830,7 +830,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '带收音机'
                                             },
                                             type: 'boolean',
-                                            role: 'value',
+                                            role: 'switch.enable',
                                             read: true,
                                             write: true
                                         },

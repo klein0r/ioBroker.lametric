@@ -45,6 +45,7 @@ iobroker add lametric
 -->
 ### **WORK IN PROGRESS**
 
+* (klein0r) Updated state roles
 * (klein0r) Added hint for Admin 4 configuration
 
 ### 1.5.3 (2022-02-08)

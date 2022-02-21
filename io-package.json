@@ -196,7 +196,6 @@
       "_id": "info.connection",
       "type": "state",
       "common": {
-        "role": "indicator.reachable",
         "name": {
           "en": "Connected to LaMetric",
           "de": "Verbindung mit LaMetric",
@@ -209,6 +208,7 @@
           "pl": "W przypadku połączenia z LaMetric",
           "zh-cn": "如果连接到 LaMetric"
         },
+        "role": "indicator.reachable",
         "type": "boolean",
         "read": true,
         "write": false,
@@ -253,7 +253,7 @@
           "zh-cn": "姓名"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -276,7 +276,7 @@
           "zh-cn": "序列号"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -299,7 +299,7 @@
           "zh-cn": "操作系统版本"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -322,7 +322,7 @@
           "zh-cn": "型号"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -345,7 +345,7 @@
           "zh-cn": "设备模式"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -480,7 +480,7 @@
           "zh-cn": "蓝牙可用"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "indicator",
         "read": true,
         "write": false
       },
@@ -503,7 +503,7 @@
           "zh-cn": "蓝牙名称"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": true
       },
@@ -526,7 +526,7 @@
           "zh-cn": "蓝牙有源"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "switch.enable",
         "read": true,
         "write": true
       },
@@ -549,7 +549,7 @@
           "zh-cn": "蓝牙可发现"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "indicator",
         "read": true,
         "write": false
       },
@@ -572,7 +572,7 @@
           "zh-cn": "蓝牙配对"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "indicator",
         "read": true,
         "write": false
       },
@@ -638,7 +638,7 @@
           "zh-cn": "低功耗蓝牙有源"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "indicator",
         "read": true,
         "write": false
       },
@@ -661,7 +661,7 @@
           "zh-cn": "蓝牙低功耗广告"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "indicator",
         "read": true,
         "write": false
       },
@@ -684,7 +684,7 @@
           "zh-cn": "蓝牙低功耗可连接"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "indicator",
         "read": true,
         "write": false
       },
@@ -799,7 +799,7 @@
           "zh-cn": "亮度自动"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "switch.enable",
         "read": true,
         "write": true
       },
@@ -822,7 +822,7 @@
           "zh-cn": "亮度模式"
         },
         "type": "string",
-        "role": "value",
+        "role": "state",
         "read": true,
         "write": false
       },
@@ -891,7 +891,7 @@
           "zh-cn": "类型"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -934,7 +934,7 @@
           "zh-cn": "启用屏幕保护程序"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "switch.enable",
         "read": true,
         "write": true
       },
@@ -957,7 +957,7 @@
           "zh-cn": "小工具"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -1020,7 +1020,7 @@
           "zh-cn": "启用基于时间的屏幕保护程序"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "switch.enable",
         "read": true,
         "write": true
       },
@@ -1043,7 +1043,7 @@
           "zh-cn": "基于时间的屏幕保护程序开始时间"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": true
       },
@@ -1066,7 +1066,7 @@
           "zh-cn": "基于时间的屏幕保护程序开始时间本地"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -1089,7 +1089,7 @@
           "zh-cn": "基于时间的屏幕保护程序结束时间"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": true
       },
@@ -1112,7 +1112,7 @@
           "zh-cn": "基于时间的屏幕保护程序结束时间本地"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -1155,7 +1155,7 @@
           "zh-cn": "启用暗屏保护程序时"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "switch.enable",
         "read": true,
         "write": true
       },
@@ -1198,7 +1198,7 @@
           "zh-cn": "无线上网"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "indicator",
         "read": true,
         "write": false
       },
@@ -1244,7 +1244,7 @@
           "zh-cn": "可用无线网络"
         },
         "type": "boolean",
-        "role": "value",
+        "role": "indicator",
         "read": true,
         "write": false
       },
@@ -1267,7 +1267,7 @@
           "zh-cn": "WiFi加密"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -1290,7 +1290,7 @@
           "zh-cn": "无线SSID"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -1336,7 +1336,7 @@
           "zh-cn": "无线模式"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
@@ -1359,7 +1359,7 @@
           "zh-cn": "无线网络掩码"
         },
         "type": "string",
-        "role": "value",
+        "role": "text",
         "read": true,
         "write": false
       },
