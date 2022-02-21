@@ -136,6 +136,7 @@
     "dataSource": "poll",
     "blockly": true,
     "messagebox": true,
+    "materialize": true,
     "adminUI": {
       "config": "json"
     },
