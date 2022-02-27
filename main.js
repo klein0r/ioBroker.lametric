@@ -371,7 +371,7 @@ class LaMetric extends utils.Adapter {
     */
 
     onMessage(obj) {
-        this.log.debug('received message ' + JSON.stringify(obj.message));
+        this.log.debug(`[onMessage] received message: ${JSON.stringify(obj.message)}`);
 
         if (obj && obj.message) {
             const data = {};

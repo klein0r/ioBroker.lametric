@@ -45,6 +45,6 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json
 - Symbol: Wähle ein Symbol von der [offiziellen Webseite](https://developer.lametric.com/icons) und füge die ID in das Feld ein. **Wichtig: Nutze ein i (für statische Sybole) oder ein a (für animierte Symbole) als Präfix der ID (Beispiel: `i3389`)**
 - Text: Tippe einen beliebigen anzuzeigenden Text ein. Du kannst Informatioenn aus Datenpunkten abfragem, indem Du deren ID in geschweifte Klammern angibst. An dieser Stelle wird dann der aktuelle Wert der Datenpunkte eingesetzt. (Beispiel: `{youtube.0.channels.HausAutomatisierungCom.statistics.subscriberCount} Subscribers`)
 
-Beispielkonfiguration von 3 Frames:
+Beispielkonfiguration von einigen Frames:
 
-![example frame config](./myDataDIYConfig.png)
+![example frame config](./my-data-diy.png)

@@ -45,6 +45,6 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json
 - Icon: Choose an icon from the [official website](https://developer.lametric.com/icons) and put the ID in the configuration field. **Important: Add an i (for static icons) or an a (for animated icons) as a prefix for that ID. (Example: `i3389`)**
 - Text: Just type the text information for the frame. You can use states in curly braces. These information will be replaced with the corresponding value of the state. (Example: `{youtube.0.channels.HausAutomatisierungCom.statistics.subscriberCount} Subscribers`)
 
-Example configuration of 3 frames:
+Example configuration of some frames:
 
-![example frame config](./myDataDIYConfig.png)
+![example frame config](./my-data-diy.png)
