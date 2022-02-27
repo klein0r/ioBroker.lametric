@@ -45,6 +45,8 @@ iobroker add lametric
 -->
 ### **WORK IN PROGRESS**
 
+* (klein0r) Allow german umlauts in My Data DIY objects
+* (klein0r) Updated documentation
 * (klein0r) Updated state roles
 * (klein0r) Added hint for Admin 4 configuration
 
