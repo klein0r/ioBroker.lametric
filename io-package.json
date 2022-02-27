@@ -141,8 +141,20 @@
       "config": "json"
     },
     "docs": {
-      "en": "docs/en/basics.md",
-      "de": "docs/de/basics.md"
+      "en": [
+        "docs/en/basics.md",
+        "docs/en/apps.md",
+        "docs/en/my-data-diy.md",
+        "docs/en/notifications.md",
+        "docs/en/blockly.md"
+      ],
+      "de": [
+        "docs/de/basics.md",
+        "docs/de/apps.md",
+        "docs/de/my-data-diy.md",
+        "docs/de/notifications.md",
+        "docs/de/blockly.md"
+      ]
     },
     "dependencies": [
       {
