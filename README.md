@@ -43,7 +43,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.6.0 (2022-02-27)
 
 * (klein0r) Allow german umlauts in My Data DIY objects
 * (klein0r) Updated documentation
