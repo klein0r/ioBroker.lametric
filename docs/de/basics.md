@@ -10,7 +10,7 @@
 
 Du bekommst deinen Geräte-Schlüssel (API-Key) [hier](https://developer.lametric.com/user/devices).
 
-![api-key](./api-key.png)
+![api-key](./img/api-key.png)
 
 ## Features
 
