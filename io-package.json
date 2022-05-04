@@ -181,7 +181,8 @@
   "native": {
     "lametricIp": "",
     "lametricToken": "",
-    "useHttps": false
+    "useHttps": false,
+    "mydatadiy": []
   },
   "objects": [],
   "instanceObjects": [
