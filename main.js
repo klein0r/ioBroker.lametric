@@ -17,6 +17,7 @@ class LaMetric extends utils.Adapter {
         });
 
         this.supportedVersion = '2.2.2';
+        this.displayedVersionWarning = false;
 
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
@@ -465,8 +466,9 @@ class LaMetric extends utils.Adapter {
             (content, status) => {
                 this.setStateAsync('info.connection', true, true);
 
-                if (this.isNewerVersion(content.os_version, this.supportedVersion)) {
-                    this.log.warn('You should update your LaMetric Time - supported version of this adapter is ' + this.supportedVersion + ' (or later). Your current version is ' + content.os_version);
+                if (this.isNewerVersion(content.os_version, this.supportedVersion) && !this.displayedVersionWarning) {
+                    this.log.warn(`You should update your LaMetric Time - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.os_version}`);
+                    this.displayedVersionWarning = true; // Just show once
                 }
 
                 this.setStateAsync('meta.name', {val: content.name, ack: true});
