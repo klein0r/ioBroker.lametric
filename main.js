@@ -21,7 +21,7 @@ class LaMetric extends utils.Adapter {
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
 
-        this.myDataDiyRegex = /\{([_a-zA-ZäÄüÜöÖ0-9\.#-]+)\}/gu;
+        this.myDataDiyRegex = /\{([_a-zA-ZäÄüÜöÖ0-9.#-]+)\}/gu;
         this.myDataDiyForeignStates = [];
 
         this.on('ready', this.onReady.bind(this));
@@ -75,7 +75,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    async (content, status) => {
+                    async (content) => {
                         await this.setStateAsync('meta.display.brightness', { val: content.success.data.brightness, ack: true });
                         await this.setStateAsync('meta.display.brightnessMin', { val: content.success.data.brightness_limit.min, ack: true });
                         await this.setStateAsync('meta.display.brightnessMax', { val: content.success.data.brightness_limit.max, ack: true });
@@ -93,7 +93,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    async (content, status) => {
+                    async (content) => {
                         await this.setStateAsync('meta.display.brightness', { val: content.success.data.brightness, ack: true });
                         await this.setStateAsync('meta.display.brightnessMin', { val: content.success.data.brightness_limit.min, ack: true });
                         await this.setStateAsync('meta.display.brightnessMax', { val: content.success.data.brightness_limit.max, ack: true });
@@ -110,7 +110,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/audio',
-                    async (content, status) => {
+                    async (content) => {
                         await this.setStateAsync('meta.audio.volume', { val: content.success.data.volume, ack: true });
                         await this.setStateAsync('meta.audio.volumeMin', { val: content.success.data.volume_limit.min, ack: true });
                         await this.setStateAsync('meta.audio.volumeMax', { val: content.success.data.volume_limit.max, ack: true });
@@ -125,7 +125,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/bluetooth',
-                    async (content, status) => {
+                    async (content) => {
                         await this.setStateAsync('meta.bluetooth.active', { val: content.success.data.active, ack: true });
                         await this.setStateAsync('meta.bluetooth.available', { val: content.success.data.available, ack: true });
                         await this.setStateAsync('meta.bluetooth.discoverable', { val: content.success.data.discoverable, ack: true });
@@ -143,7 +143,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/bluetooth',
-                    async (content, status) => {
+                    async (content) => {
                         await this.setStateAsync('meta.bluetooth.active', { val: content.success.data.active, ack: true });
                         await this.setStateAsync('meta.bluetooth.available', { val: content.success.data.available, ack: true });
                         await this.setStateAsync('meta.bluetooth.discoverable', { val: content.success.data.discoverable, ack: true });
@@ -169,7 +169,7 @@ class LaMetric extends utils.Adapter {
 
                 this.buildRequest(
                     'device/display',
-                    async (content, status) => {
+                    async (content) => {
                         await this.setStateAsync('meta.display.screensaver.enabled', { val: content.success.data.screensaver.enabled, ack: true });
                         await this.setStateAsync('meta.display.screensaver.widget', { val: content.success.data.screensaver.widget, ack: true });
 
@@ -208,7 +208,7 @@ class LaMetric extends utils.Adapter {
 
                     this.buildRequest(
                         'device/display',
-                        async (content, status) => {
+                        async (content) => {
                             await this.setStateAsync('meta.display.screensaver.enabled', { val: content.success.data.screensaver.enabled, ack: true });
                             await this.setStateAsync('meta.display.screensaver.widget', { val: content.success.data.screensaver.widget, ack: true });
 
@@ -411,7 +411,7 @@ class LaMetric extends utils.Adapter {
 
             this.buildRequest(
                 'device/notifications',
-                (content, status) => {
+                (content) => {
                     this.log.debug('Response: ' + JSON.stringify(content));
                     if (obj.callback) {
                         if (content && content.success) {
@@ -432,7 +432,7 @@ class LaMetric extends utils.Adapter {
 
         this.buildRequest(
             'device',
-            (content, status) => {
+            (content) => {
                 this.setStateAsync('info.connection', true, true);
 
                 if (this.isNewerVersion(content.os_version, this.supportedVersion) && !this.displayedVersionWarning) {
@@ -477,7 +477,7 @@ class LaMetric extends utils.Adapter {
 
         this.buildRequest(
             'device/display',
-            (content, status) => {
+            (content) => {
                 this.setStateAsync('meta.display.brightness', { val: content.brightness, ack: true });
                 this.setStateAsync('meta.display.brightnessMin', { val: content.brightness_limit.min, ack: true });
                 this.setStateAsync('meta.display.brightnessMax', { val: content.brightness_limit.max, ack: true });
@@ -515,7 +515,7 @@ class LaMetric extends utils.Adapter {
     refreshApps() {
         this.buildRequest(
             'device/apps',
-            (content, status) => {
+            (content) => {
                 this.getChannelsOf('apps', async (err, states) => {
                     const appsAll = [];
                     const appsKeep = [];
