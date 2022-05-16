@@ -75,7 +75,7 @@
                         {
                             "type": "text",
                             "attr": "text",
-                            "width": "40%",
+                            "width": "30%",
                             "title": {
                                 "en": "Text",
                                 "de": "Text",
@@ -95,7 +95,7 @@
                         {
                             "type": "text",
                             "attr": "hideif",
-                            "width": "40%",
+                            "width": "30%",
                             "title": {
                                 "en": "Hide if value matches",
                                 "de": "Ausblenden, wenn Wert übereinstimmt",
@@ -111,6 +111,26 @@
                             "filter": false,
                             "sort": false,
                             "default": ""
+                        },
+                        {
+                            "type": "number",
+                            "attr": "duration",
+                            "width": "20%",
+                            "title": {
+                                "en": "Duration (sec)",
+                                "de": "Dauer (Sek.)",
+                                "ru": "Продолжительность (сек)",
+                                "pt": "Duração (s)",
+                                "nl": "Duur (sec)",
+                                "fr": "Durée (sec)",
+                                "it": "Durata (sec)",
+                                "es": "Duración (seg)",
+                                "pl": "Czas trwania (s)",
+                                "zh-cn": "持续时间（秒）"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": 5
                         }
                     ]
                 }
