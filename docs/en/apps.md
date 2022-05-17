@@ -6,6 +6,12 @@
 
 You can control some apps with custom information.
 
+- [Alarm Clock](https://apps.lametric.com/apps/alarm_clock/68)
+- [Stop Watch](https://apps.lametric.com/apps/stopwatch/71)
+- [Timer](https://apps.lametric.com/apps/timer/72)
+- [Radio](https://apps.lametric.com/apps/radio/70)
+- [Weather](https://apps.lametric.com/apps/weather/69)
+
 ### clock.clockface
 
 Allowed values are:
