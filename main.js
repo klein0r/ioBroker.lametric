@@ -269,7 +269,7 @@ class LaMetric extends utils.Adapter {
 
                                 data.activate = true;
 
-                                await this.setStateAsync(id, { val: state.val, ack: true }); // Confirm state change
+                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true }); // Confirm state change
                             } else if (action.indexOf('clock.alarm') === 0) {
                                 const caStates = await this.getStatesAsync(`apps.${widget}.clock.alarm.*`);
 
@@ -295,7 +295,7 @@ class LaMetric extends utils.Adapter {
                                     start_now: false,
                                 };
 
-                                await this.setStateAsync(id, { val: state.val, ack: true }); // Confirm state change
+                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true }); // Confirm state change
                             }
 
                             // END special Widgets
