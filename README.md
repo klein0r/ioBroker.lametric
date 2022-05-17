@@ -46,6 +46,7 @@ iobroker add lametric
 
 NodeJS 14.x is required (NodeJS 12.x is EOL)
 
+* (klein0r) Added states for clock alarm widget configuration
 * (klein0r) Added duration for My Data DIY frame configuration
 * (klein0r) Updated LaMetric firmware version recommendation to 2.2.3
 * (klein0r) Updated dependencies
