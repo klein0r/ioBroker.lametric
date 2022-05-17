@@ -70,8 +70,10 @@ class LaMetric extends utils.Adapter {
 
         // Handle states of LaMetric adapter
         if (id && state && !state.ack) {
+            const idNoNamespace = this.removeNamespace(id);
+
             // No ack = changed by user
-            if (id === this.namespace + '.meta.display.brightness') {
+            if (idNoNamespace === 'meta.display.brightness') {
                 this.log.debug(`changing brightness to ${state.val}`);
 
                 this.buildRequest(
@@ -89,7 +91,7 @@ class LaMetric extends utils.Adapter {
                         brightness_mode: 'manual',
                     },
                 );
-            } else if (id === this.namespace + '.meta.display.brightnessAuto') {
+            } else if (idNoNamespace === 'meta.display.brightnessAuto') {
                 this.log.debug(`changing auto brightness mode to ${state.val}`);
 
                 this.buildRequest(
@@ -106,7 +108,7 @@ class LaMetric extends utils.Adapter {
                         brightness_mode: state.val ? 'auto' : 'manual',
                     },
                 );
-            } else if (id === this.namespace + '.meta.audio.volume') {
+            } else if (idNoNamespace === 'meta.audio.volume') {
                 this.log.debug(`changing volume to ${state.val}`);
 
                 this.buildRequest(
@@ -121,7 +123,7 @@ class LaMetric extends utils.Adapter {
                         volume: state.val,
                     },
                 );
-            } else if (id === this.namespace + '.meta.bluetooth.active') {
+            } else if (idNoNamespace === 'meta.bluetooth.active') {
                 this.log.debug(`changing bluetooth state to ${state.val}`);
 
                 this.buildRequest(
@@ -139,7 +141,7 @@ class LaMetric extends utils.Adapter {
                         active: state.val,
                     },
                 );
-            } else if (id === this.namespace + '.meta.bluetooth.name') {
+            } else if (idNoNamespace === 'meta.bluetooth.name') {
                 this.log.debug(`changing bluetooth name to ${state.val}`);
 
                 this.buildRequest(
@@ -157,15 +159,15 @@ class LaMetric extends utils.Adapter {
                         name: state.val,
                     },
                 );
-            } else if (id === this.namespace + '.apps.next') {
+            } else if (idNoNamespace === 'apps.next') {
                 this.log.debug('switching to next app');
 
                 this.buildRequest('device/apps/next', null, 'PUT', null);
-            } else if (id === this.namespace + '.apps.prev') {
+            } else if (idNoNamespace === 'apps.prev') {
                 this.log.debug('switching to previous app');
 
                 this.buildRequest('device/apps/prev', null, 'PUT', null);
-            } else if (id === this.namespace + '.meta.display.screensaver.enabled') {
+            } else if (idNoNamespace === 'meta.display.screensaver.enabled') {
                 this.log.debug(`changing screensaver state to ${state.val}`);
 
                 this.buildRequest(
@@ -189,22 +191,22 @@ class LaMetric extends utils.Adapter {
                         },
                     },
                 );
-            } else if (id.indexOf(this.namespace + '.meta.display.screensaver.modes.') > -1) {
+            } else if (idNoNamespace.indexOf('meta.display.screensaver.modes.') === 0) {
                 this.log.debug('changing screensaver settings');
 
                 this.getStates('meta.display.screensaver.*', (err, states) => {
-                    const screensaverState = states[this.namespace + '.meta.display.screensaver.enabled'].val;
+                    const screensaverEnabledState = states?.[`${this.namespace}.meta.display.screensaver.enabled`]?.val;
                     const currentModeParams = {};
                     let currentMode = 'when_dark';
 
-                    if (id.indexOf('timeBased') > -1) {
+                    if (idNoNamespace.indexOf('timeBased') > -1) {
                         currentMode = 'time_based';
-                        currentModeParams.enabled = states[this.namespace + '.meta.display.screensaver.modes.timeBased.enabled'].val;
-                        currentModeParams.start_time = states[this.namespace + '.meta.display.screensaver.modes.timeBased.startTime'].val;
-                        currentModeParams.end_time = states[this.namespace + '.meta.display.screensaver.modes.timeBased.endTime'].val;
-                    } else if (id.indexOf('whenDark') > -1) {
+                        currentModeParams.enabled = states?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.enabled`]?.val ?? false;
+                        currentModeParams.start_time = states?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.startTime`]?.val ?? '23:00:00';
+                        currentModeParams.end_time = states?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.endTime`]?.val ?? '08:00:00';
+                    } else if (idNoNamespace.indexOf('whenDark') > -1) {
                         currentMode = 'when_dark';
-                        currentModeParams.enabled = states[this.namespace + '.meta.display.screensaver.modes.whenDark.enabled'].val;
+                        currentModeParams.enabled = states?.[`${this.namespace}.meta.display.screensaver.modes.whenDark.enabled`]?.val ?? false;
                     }
 
                     this.buildRequest(
@@ -224,7 +226,7 @@ class LaMetric extends utils.Adapter {
                         'PUT',
                         {
                             screensaver: {
-                                enabled: screensaverState,
+                                enabled: screensaverEnabledState ?? false,
                                 mode: currentMode,
                                 mode_params: currentModeParams,
                             },
