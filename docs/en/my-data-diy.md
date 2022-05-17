@@ -44,6 +44,7 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json
 - Use the plus icon to add as many frames as you want
 - Icon: Choose an icon from the [official website](https://developer.lametric.com/icons) and put the ID in the configuration field. **Important: Add an i (for static icons) or an a (for animated icons) as a prefix for that ID. (Example: `i3389`)**
 - Text: Just type the text information for the frame. You can use states in curly braces. These information will be replaced with the corresponding value of the state. (Example: `{youtube.0.channels.HausAutomatisierungCom.statistics.subscriberCount} Subscribers`)
+- Duration: Specifies how long the frame should be displayed (default = 5 seconds)
 
 Example configuration of some frames:
 
