@@ -12,7 +12,9 @@ You can control some apps with custom information.
 - [Radio](https://apps.lametric.com/apps/radio/70)
 - [Weather](https://apps.lametric.com/apps/weather/69)
 
-### clock.clockface
+### Alarm Clock
+
+**clock.clockface**
 
 Allowed values are:
 
@@ -21,6 +23,20 @@ Allowed values are:
 
 Example: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAOklEQVQYlWNUVFBgwAeYcEncv//gP04FMEmsCmCSiooKjHAFMEF0SRQTsEnCFcAE0SUZGBgYGAl5EwA+6RhuHb9bggAAAABJRU5ErkJggg==`
 
-### countdown.configure
+**clock.alarm.enabled**
 
-Allowed value: Time in seconds
+Activate or deactivate alarm
+
+**clock.alarm.time**
+
+Alarm time with format ``HH:MM:SS`` - e.g. ``10:00:00`` or ``10:00``
+
+**clock.alarm.wake_with_radio**
+
+Wake with radio instead of alarm
+
+### Timer
+
+**countdown.configure**
+
+Time in seconds

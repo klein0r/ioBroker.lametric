@@ -12,7 +12,9 @@ Einige Apps lassen sich mit Zusatzinformationen versehen oder steuern.
 - [Radio](https://apps.lametric.com/apps/radio/70)
 - [Weather](https://apps.lametric.com/apps/weather/69)
 
-### clock.clockface
+### Alarm Clock
+
+**clock.clockface**
 
 Gültige Werte sind
 
@@ -21,6 +23,21 @@ Gültige Werte sind
 
 Beispiel: `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAOklEQVQYlWNUVFBgwAeYcEncv//gP04FMEmsCmCSiooKjHAFMEF0SRQTsEnCFcAE0SUZGBgYGAl5EwA+6RhuHb9bggAAAABJRU5ErkJggg==`
 
-### countdown.configure
+**clock.alarm.enabled**
 
-Erlaubte Werte: Zeit in Sekunden
+Alarm aktivieren oder deaktivieren
+
+**clock.alarm.time**
+
+Uhrzeit im Format ``HH:MM:SS`` - z.B. ``10:00:00`` oder ``10:00``
+
+**clock.alarm.wake_with_radio**
+
+Mit Radio statt alarm wecken
+
+### Timer
+
+**countdown.configure**
+
+Zeit in Sekunden
+
