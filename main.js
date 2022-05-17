@@ -15,7 +15,7 @@ class LaMetric extends utils.Adapter {
             name: adapterName,
         });
 
-        this.supportedVersion = '2.2.2';
+        this.supportedVersion = '2.2.3';
         this.displayedVersionWarning = false;
 
         this.refreshStateTimeout = null;
@@ -45,10 +45,11 @@ class LaMetric extends utils.Adapter {
     }
 
     onStateChange(id, state) {
-        // Check if changed state is in my data diy state list
+        // Check if changed (ack) state is in my data diy state list
         if (
             id &&
             state &&
+            state.ack &&
             this.myDataDiyForeignStates.filter((item) => {
                 return item.id === id;
             }).length > 0
