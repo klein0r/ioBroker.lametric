@@ -15,7 +15,7 @@ Es können verschiedene API Adapter genutzt werden, um Daten zur *LaMetric Time*
 
 ```ioBroker LaMetric Adapter -> State with Frame information <- REST API Adapter <- My Data DIY App <- LaMetric```
 
-#### Konfiguration (mit Authentisierung)
+#### Konfiguration (mit Authentifizierung)
 
 1. Installiere den [REST API ioBroker Adapter](https://github.com/ioBroker/ioBroker.rest-api)
 2. Erstelle einen neuen ioBroker-Nutzer mit dem Namen ``lametric`` und einem eigenen Passwort (z.B. ``HhX7dZl3Fe``)
@@ -32,7 +32,7 @@ http://lametric:HhX7dZl3Fe@172.16.0.219:8093/v1/state/lametric.0.mydatadiy.obj/p
 
 ```ioBroker LaMetric Adapter -> State with Frame information <- Simple API Adapter <- My Data DIY App <- LaMetric```
 
-#### Konfiguration (mit Authentisierung)
+#### Konfiguration (mit Authentifizierung)
 
 1. Installiere den [Simple API ioBroker Adapter](https://github.com/ioBroker/ioBroker.simple-api)
 2. Erstelle einen neuen ioBroker-Nutzer mit dem Namen ``lametric`` und einem eigenen Passwort (z.B. ``HhX7dZl3Fe``)
@@ -49,7 +49,7 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json&user=lamet
 
 **Stelle sicher, dass die IP, der Port, Benutzername und Passwort in der URL korrekt sind!**
 
-#### Konfiguration (ohne Authentisierung)
+#### Konfiguration (ohne Authentifizierung)
 
 1. Installiere den [Simple API ioBroker Adapter](https://github.com/ioBroker/ioBroker.simple-api)
 2. Installiere die App *My Data DIY* über den App-Store auf deiner *LaMetric Time*
