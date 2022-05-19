@@ -28,6 +28,8 @@ Different API Adapters can be used to transfer the data to the *LaMetric Time*:
 http://lametric:HhX7dZl3Fe@172.16.0.219:8093/v1/state/lametric.0.mydatadiy.obj/plain?extraPlain=true
 ```
 
+**Replace example IP, port, user and password in the URL!**
+
 ### Simple API Adapter
 
 ```ioBroker LaMetric Adapter -> State with Frame information <- Simple API Adapter <- My Data DIY App <- LaMetric```
@@ -47,7 +49,7 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json&user=lamet
 
 **Important: use json flag of SimpleAPI Adapter (available since version 2.6.2)**
 
-**Ensure to update IP, port, user and password in the URL if necessary!**
+**Replace example IP, port, user and password in the URL!**
 
 #### Configuration (without authentication)
 
@@ -60,7 +62,9 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json&user=lamet
 http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json
 ```
 
-**Ensure to update IP and port in the URL if necessary!**
+**Important: use json flag of SimpleAPI Adapter (available since version 2.6.2)**
+
+**Replace example IP (and port) in the URL!**
 
 ### Frame Configuration
 
