@@ -49,23 +49,26 @@ class LaMetric extends utils.Adapter {
         if (
             id &&
             state &&
-            state.ack &&
             this.myDataDiyForeignStates.filter((item) => {
                 return item.id === id;
             }).length > 0
         ) {
-            this.myDataDiyForeignStates = this.myDataDiyForeignStates.map((item) => {
-                if (item.id === id) {
-                    this.log.debug(`[mydatadiy] onStateChange - received new value "${state.val}" of state: ${id}`);
-                    item.val = state.val;
-                }
+            if (state.ack) {
+                this.myDataDiyForeignStates = this.myDataDiyForeignStates.map((item) => {
+                    if (item.id === id) {
+                        this.log.debug(`[mydatadiy] onStateChange - received new value "${state.val}" of state "${id}"`);
+                        item.val = state.val;
+                    }
 
-                return item;
-            });
+                    return item;
+                });
 
-            this.log.debug(`[mydatadiy] onStateChange - list after value update ${JSON.stringify(this.myDataDiyForeignStates)}`);
+                this.log.debug(`[mydatadiy] onStateChange - list after value update ${JSON.stringify(this.myDataDiyForeignStates)}`);
 
-            this.refreshMyDataDiy(); // refresh output
+                this.refreshMyDataDiy(); // refresh output
+            } else {
+                this.log.debug(`[mydatadiy] onStateChange - ignored new value "${state.val}" of state "${id}" (ack = false)`);
+            }
         }
 
         // Handle states of LaMetric adapter
@@ -1268,14 +1271,14 @@ class LaMetric extends utils.Adapter {
         frames.forEach((f) => {
             f.text.replace(this.myDataDiyRegex, (m, id) => {
                 if (foreignStates.indexOf(id) === -1) {
-                    this.log.debug(`[mydatadiy] found dynamic state in text: ${id}`);
+                    this.log.debug(`[mydatadiy] found dynamic state in text with id "${id}"`);
                     foreignStates.push(id);
                 }
             });
 
             f.icon.replace(this.myDataDiyRegex, (m, id) => {
                 if (foreignStates.indexOf(id) === -1) {
-                    this.log.debug(`[mydatadiy] found dynamic state in icon: ${id}`);
+                    this.log.debug(`[mydatadiy] found dynamic state in icon with id "${id}"`);
                     foreignStates.push(id);
                 }
             });
@@ -1286,19 +1289,19 @@ class LaMetric extends utils.Adapter {
         Promise.all(
             foreignStates.map(async (id) => {
                 this.subscribeForeignStates(id);
-                this.log.debug(`[mydatadiy] subscribed to foreign state: ${id}`);
+                this.log.debug(`[mydatadiy] subscribed to foreign state "${id}"`);
 
                 const state = await this.getForeignStateAsync(id);
 
                 return new Promise((resolve) => {
                     if (state) {
-                        this.log.debug(`[mydatadiy] received value "${state.val}" of state: ${id}`);
+                        this.log.debug(`[mydatadiy] received value "${state.val}" of state "${id}"`);
                         resolve({
                             id: id,
                             val: state.val,
                         });
                     } else {
-                        this.log.warn(`[mydatadiy] unable to get value of state: ${id}`);
+                        this.log.warn(`[mydatadiy] unable to get value of state "${id}"`);
                         resolve({
                             id: id,
                             val: `<unknown ${id}>`,
