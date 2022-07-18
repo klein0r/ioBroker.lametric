@@ -44,6 +44,10 @@ class LaMetric extends utils.Adapter {
         }
     }
 
+    /**
+     * @param {string} id
+     * @param {ioBroker.State | null | undefined} state
+     */
     onStateChange(id, state) {
         // Check if changed (ack) state is in my data diy state list
         if (
@@ -349,6 +353,9 @@ class LaMetric extends utils.Adapter {
     }
     */
 
+    /**
+     * @param {ioBroker.Message} obj
+     */
     onMessage(obj) {
         this.log.debug(`[onMessage] received message: ${JSON.stringify(obj.message)}`);
 
@@ -1376,6 +1383,9 @@ class LaMetric extends utils.Adapter {
         return id.replace(re, '');
     }
 
+    /**
+     * @param {() => void} callback
+     */
     onUnload(callback) {
         try {
             this.setStateAsync('info.connection', false, true);
