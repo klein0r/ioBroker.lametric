@@ -183,11 +183,13 @@ class LaMetric extends utils.Adapter {
                         await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.success.data.screensaver.enabled, ack: true });
                         await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.success.data.screensaver.widget, ack: true });
 
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: content.success.data.screensaver.modes.time_based.enabled, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: content.success.data.screensaver.modes.time_based.start_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: content.success.data.screensaver.modes.time_based.local_start_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: content.success.data.screensaver.modes.time_based.end_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: content.success.data.screensaver.modes.time_based.local_end_time, ack: true });
+                        const timeBasedObj = content.success.data.screensaver.modes.time_based;
+
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: timeBasedObj.enabled, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: timeBasedObj.start_time, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: timeBasedObj.local_start_time, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: timeBasedObj.end_time, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: timeBasedObj.local_end_time, ack: true });
 
                         await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.success.data.screensaver.modes.when_dark.enabled, ack: true });
                     },
@@ -222,11 +224,13 @@ class LaMetric extends utils.Adapter {
                             await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.success.data.screensaver.enabled, ack: true });
                             await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.success.data.screensaver.widget, ack: true });
 
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: content.success.data.screensaver.modes.time_based.enabled, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: content.success.data.screensaver.modes.time_based.start_time, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: content.success.data.screensaver.modes.time_based.local_start_time, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: content.success.data.screensaver.modes.time_based.end_time, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: content.success.data.screensaver.modes.time_based.local_end_time, ack: true });
+                            const timeBasedObj = content.success.data.screensaver.modes.time_based;
+
+                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: timeBasedObj.enabled, ack: true });
+                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: timeBasedObj.start_time, ack: true });
+                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: timeBasedObj.local_start_time, ack: true });
+                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: timeBasedObj.end_time, ack: true });
+                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: timeBasedObj.local_end_time, ack: true });
 
                             await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.success.data.screensaver.modes.when_dark.enabled, ack: true });
                         },
