@@ -53,6 +53,11 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Minor optimizations
+* (klein0r) Updated LaMetric firmware version recommendation to 2.2.4
+
 ### 2.0.0 (2022-05-17)
 
 NodeJS 14.x is required (NodeJS 12.x is EOL)

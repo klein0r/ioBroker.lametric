@@ -4,7 +4,7 @@
 
 ## Anforderungen
 
-- _LaMetric Time_ mit Firmware _2.2.3_ (oder neuer)
+- _LaMetric Time_ mit Firmware _2.2.4_ (oder neuer)
 
 [Firmware-Changelog](https://firmware.lametric.com)
 
