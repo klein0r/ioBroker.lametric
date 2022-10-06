@@ -31,7 +31,7 @@ class LaMetric extends utils.Adapter {
     }
 
     async onReady() {
-        this.subscribeStates('*');
+        await this.subscribeStatesAsync('*');
 
         this.refreshState();
         this.refreshApps();
@@ -40,7 +40,7 @@ class LaMetric extends utils.Adapter {
             this.collectMyDataDiyForeignStates(this.config.mydatadiy);
         } else {
             this.log.debug('[mydatadiy] configuration not available');
-            this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'No data', icon: 'a9335' }] }), ack: true });
+            this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'No config', icon: 'a9335' }] }), ack: true });
         }
     }
 
@@ -1193,9 +1193,8 @@ class LaMetric extends utils.Adapter {
                         const id = appsAll[i];
 
                         if (appsKeep.indexOf(id) === -1) {
-                            this.delObject(id, { recursive: true }, () => {
-                                this.log.debug(`[apps] deleted: ${id}`);
-                            });
+                            await this.delObjectAsync(id, { recursive: true });
+                            this.log.debug(`[apps] deleted: ${id}`);
                         }
                     }
                 });
