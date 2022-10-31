@@ -246,8 +246,8 @@ class LaMetric extends utils.Adapter {
                 });
             } else if (id.match(/.+\.apps\.[a-z0-9]{32}\..*$/g)) {
                 const matches = id.match(/.+\.apps\.([a-z0-9]{32})\.(.*)$/);
-                const widget = matches[1];
-                const action = matches[2];
+                const widget = matches ? matches[1] : undefined;
+                const action = matches ? matches[2] : undefined;
 
                 this.log.debug(`[widget] running action "${action}" on "${widget}"`);
 
