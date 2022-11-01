@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.1.0 (2022-11-01)
 
 NodeJS 14.5 is required
 
@@ -90,11 +90,6 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 
 * (klein0r) Updated dependencies
 * (klein0r) Updated documentation
-
-### 1.5.1
-
-* (klein0r) Translated all objects
-* (klein0r) Fixed HTTPS option
 
 ## License
 
