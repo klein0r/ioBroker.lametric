@@ -1114,6 +1114,7 @@ class LaMetric extends utils.Adapter {
                                         role: 'value',
                                         read: true,
                                         write: true,
+                                        unit: 'sec',
                                     },
                                     native: {},
                                 });
