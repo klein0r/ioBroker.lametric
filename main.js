@@ -1352,7 +1352,7 @@ class LaMetric extends utils.Adapter {
 
                 const newObj = {
                     text: replacedText.trim(),
-                    duration: f?.duration ?? 5,
+                    duration: f?.duration ? f.duration * 1000 : 5000,
                 };
 
                 if (f.icon) {
