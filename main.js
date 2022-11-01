@@ -15,7 +15,7 @@ class LaMetric extends utils.Adapter {
             name: adapterName,
         });
 
-        this.supportedVersion = '2.2.4';
+        this.supportedVersion = '2.3.0';
         this.displayedVersionWarning = false;
 
         this.refreshStateTimeout = null;
