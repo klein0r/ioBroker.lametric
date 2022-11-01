@@ -2,25 +2,42 @@
 
 # ioBroker.lametric
 
-## My Data (DIY) *(version > 1.1.0)*
+## My Data (DIY) *(Adapter-Version >= 1.1.0 notwendig)*
 
 *LaMetric* bietet (über den integrierten App-Store) eine zusätzliche App an, um eigene Informationen darzustellen. Diese App heißt [My Data DIY](https://apps.lametric.com/apps/my_data__diy_/8942). Dieser Adapter erstellt einen Datenpunkt im erforderlichen Format.
 
 Es können verschiedene API Adapter genutzt werden, um Daten zur *LaMetric Time* zu übertragen:
 
-- REST API Adapter (empfohlen)
+- Web Adapter (empfohlen) *(Adapter-Version > 2.1.0 notwendig)*
+- REST API Adapter
 - Simple API Adapter
+
+### Web Adapter
+
+```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- Web Adapter <- My Data DIY App <- LaMetric```
+
+1. Installiere den [Web ioBroker Adapter](https://github.com/ioBroker/ioBroker.web)
+2. Erstelle eine neue Instanz des Web-Adapters (z.B. ``web.0``)
+3. Konfiguriere den Port der neuen Web-Instanz (z.B. ``8082``)
+4. Installiere die App *My Data DIY* über den App-Store auf Deiner *LaMetric Time*
+5. Öffne die Einstellungen der *My Data (DIY)* App und konfiguriere die URL des REST API Adapters (siehe unten)
+6. Gehe in die Adaptereinstellungen und füge neue Frames mit deinen eigenen Informationen hinzu (siehe nächster Abschnitt)
+7. Vergiss nicht, die zuvor konfigurierte Web-Instanz auszuwählen!
+
+```
+http://172.16.0.219:8082/lametric.0/
+```
 
 ### REST API Adapter
 
-```ioBroker LaMetric Adapter -> State with Frame information <- REST API Adapter <- My Data DIY App <- LaMetric```
+```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- REST API Adapter <- My Data DIY App <- LaMetric```
 
 #### Konfiguration (mit Authentifizierung)
 
 1. Installiere den [REST API ioBroker Adapter](https://github.com/ioBroker/ioBroker.rest-api)
 2. Erstelle einen neuen ioBroker-Nutzer mit dem Namen ``lametric`` und einem eigenen Passwort (z.B. ``HhX7dZl3Fe``)
 3. Füge den neuen ``lametric``-Nutzer zur Gruppe ``users`` hinzu
-4. Installiere die App *My Data DIY* über den App-Store auf deiner *LaMetric Time*
+4. Installiere die App *My Data DIY* über den App-Store auf Deiner *LaMetric Time*
 5. Öffne die Einstellungen der *My Data (DIY)* App und konfiguriere die URL des REST API Adapters (siehe unten)
 6. Gehe in die Adaptereinstellungen und füge neue Frames mit deinen eigenen Informationen hinzu (siehe nächster Abschnitt)
 
@@ -32,14 +49,14 @@ http://lametric:HhX7dZl3Fe@172.16.0.219:8093/v1/state/lametric.0.mydatadiy.obj/p
 
 ### Simple API Adapter
 
-```ioBroker LaMetric Adapter -> State with Frame information <- Simple API Adapter <- My Data DIY App <- LaMetric```
+```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- Simple API Adapter <- My Data DIY App <- LaMetric```
 
 #### Konfiguration (mit Authentifizierung)
 
 1. Installiere den [Simple API ioBroker Adapter](https://github.com/ioBroker/ioBroker.simple-api)
 2. Erstelle einen neuen ioBroker-Nutzer mit dem Namen ``lametric`` und einem eigenen Passwort (z.B. ``HhX7dZl3Fe``)
 3. Füge den neuen ``lametric``-Nutzer zur Gruppe ``users`` hinzu
-4. Installiere die App *My Data DIY* über den App-Store auf deiner *LaMetric Time*
+4. Installiere die App *My Data DIY* über den App-Store auf Deiner *LaMetric Time*
 5. Öffne die Einstellungen der *My Data (DIY)* App und konfiguriere die URL des Simple API Adapters (siehe unten)
 6. Gehe in die Adaptereinstellungen und füge neue Frames mit deinen eigenen Informationen hinzu (siehe nächster Abschnitt)
 
@@ -54,7 +71,7 @@ http://172.16.0.219:8087/getPlainValue/lametric.0.mydatadiy.obj/?json&user=lamet
 #### Konfiguration (ohne Authentifizierung)
 
 1. Installiere den [Simple API ioBroker Adapter](https://github.com/ioBroker/ioBroker.simple-api)
-2. Installiere die App *My Data DIY* über den App-Store auf deiner *LaMetric Time*
+2. Installiere die App *My Data DIY* über den App-Store auf Deiner *LaMetric Time*
 3. Öffne die Einstellungen der *My Data (DIY)* App und konfiguriere die URL des Simple API Adapters (siehe unten)
 4. Gehe in die Adaptereinstellungen und füge neue Frames mit deinen eigenen Informationen hinzu (siehe nächster Abschnitt)
 
