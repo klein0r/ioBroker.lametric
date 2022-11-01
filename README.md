@@ -57,6 +57,7 @@ iobroker add lametric
 
 * (klein0r) Minor optimizations
 * (klein0r) Updated LaMetric firmware version recommendation to 2.2.4
+* (klein0r) Dropped Admin 5 support
 
 ### 2.0.0 (2022-05-17)
 
