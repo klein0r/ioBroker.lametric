@@ -126,7 +126,7 @@
     "platform": "Javascript/Node.js",
     "icon": "lametric.png",
     "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.lametric/master/admin/lametric.png",
-    "enabled": true,
+    "enabled": false,
     "readme": "https://github.com/klein0r/ioBroker.lametric/blob/master/README.md",
     "loglevel": "info",
     "mode": "daemon",
