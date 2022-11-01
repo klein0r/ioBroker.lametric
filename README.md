@@ -58,6 +58,7 @@ iobroker add lametric
 NodeJS 14.5 is required
 
 * (klein0r) Added web extension to get My Data DIY object
+* (klein0r) Allow colon in My Data DIY object ID
 * (klein0r) Fixed duration of My Data DIY frames (milliseconds)
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.0
 * (klein0r) Dropped Admin 5 support
