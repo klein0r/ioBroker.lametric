@@ -136,6 +136,7 @@
     "dataSource": "poll",
     "blockly": true,
     "messagebox": true,
+    "webExtension": "lib/web.js",
     "adminUI": {
       "config": "json"
     },

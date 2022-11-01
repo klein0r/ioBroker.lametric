@@ -55,9 +55,10 @@ iobroker add lametric
 -->
 ### **WORK IN PROGRESS**
 
-* (klein0r) Minor optimizations
+* (klein0r) Added web extension to get My Data DIY object
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.0
 * (klein0r) Dropped Admin 5 support
+* (klein0r) Minor optimizations
 
 ### 2.0.0 (2022-05-17)
 
