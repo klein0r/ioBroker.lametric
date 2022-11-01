@@ -2,8 +2,18 @@
 
 # ioBroker.lametric
 
+## Inhaltsverzeichnis
+
+- [Apps](apps.md)
+- [Blockly](blockly.md)
+- [My Data DIY](my-data-diy.md)
+- [Notifications](notifications.md)
+
 ## Anforderungen
 
+- nodejs 14.5 (oder neuer)
+- js-controller 4.0.15 (oder neuer)
+- Admin Adapter 6.0.0 (oder neuer)
 - _LaMetric Time_ mit Firmware _2.3.0_ (oder neuer)
 
 [Firmware-Changelog](https://firmware.lametric.com)
@@ -26,10 +36,3 @@ Du bekommst deinen Geräte-Schlüssel (API-Key) [hier](https://developer.lametri
 - Nutzung der _My Data (DIY)_ LaMetric App um regelmäßig Informationen darzustellen
 
 Alle Funktionen sind nur durch die [offizielle API](https://lametric-documentation.readthedocs.io/en/latest/reference-docs/lametric-time-reference.html) limitiert.
-
-## Inhaltsverzeichnis
-
-- [Apps](apps.md)
-- [Blockly](blockly.md)
-- [My Data DIY](my-data-diy.md)
-- [Notifications](notifications.md)

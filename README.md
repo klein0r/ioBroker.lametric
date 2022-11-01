@@ -55,6 +55,8 @@ iobroker add lametric
 -->
 ### **WORK IN PROGRESS**
 
+NodeJS 14.5 is required
+
 * (klein0r) Added web extension to get My Data DIY object
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.0
 * (klein0r) Dropped Admin 5 support

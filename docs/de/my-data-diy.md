@@ -6,15 +6,15 @@
 
 *LaMetric* bietet (über den integrierten App-Store) eine zusätzliche App an, um eigene Informationen darzustellen. Diese App heißt [My Data DIY](https://apps.lametric.com/apps/my_data__diy_/8942). Dieser Adapter erstellt einen Datenpunkt im erforderlichen Format.
 
-Es können verschiedene API Adapter genutzt werden, um Daten zur *LaMetric Time* zu übertragen:
+Es können verschiedene Adapter genutzt werden, um diese Daten zur *LaMetric Time* zu übertragen:
 
 - Web Adapter (empfohlen) *(Adapter-Version > 2.1.0 notwendig)*
 - REST API Adapter
 - Simple API Adapter
 
-### Web Adapter
+### Web Adapter (empfohlen)
 
-```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- Web Adapter <- My Data DIY App <- LaMetric```
+```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- ioBroker Web Adapter <- My Data DIY App <- LaMetric```
 
 1. Installiere den [Web ioBroker Adapter](https://github.com/ioBroker/ioBroker.web)
 2. Erstelle eine neue Instanz des Web-Adapters (z.B. ``web.0``)
@@ -30,7 +30,7 @@ http://172.16.0.219:8082/lametric.0/
 
 ### REST API Adapter
 
-```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- REST API Adapter <- My Data DIY App <- LaMetric```
+```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- ioBroker REST API Adapter <- My Data DIY App <- LaMetric```
 
 #### Konfiguration (mit Authentifizierung)
 
@@ -49,7 +49,7 @@ http://lametric:HhX7dZl3Fe@172.16.0.219:8093/v1/state/lametric.0.mydatadiy.obj/p
 
 ### Simple API Adapter
 
-```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- Simple API Adapter <- My Data DIY App <- LaMetric```
+```ioBroker LaMetric Adapter -> Zustand mit Frame-Informationen <- ioBroker Simple API Adapter <- My Data DIY App <- LaMetric```
 
 #### Konfiguration (mit Authentifizierung)
 

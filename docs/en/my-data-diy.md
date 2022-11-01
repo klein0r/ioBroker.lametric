@@ -6,15 +6,15 @@
 
 *LaMetric* offers an app (on the integrated app market) to poll custom data. This app is called [My Data DIY](https://apps.lametric.com/apps/my_data__diy_/8942). This adapter creates a new state in the required format.
 
-Different API Adapters can be used to transfer the data to the *LaMetric Time*:
+Different adapters can be used to transfer these data to the *LaMetric Time*:
 
 - Web Adapter (recommended) *(Adapter version >= 2.1.0 required)*
 - REST API Adapter
 - Simple API Adapter
 
-### Web Adapter
+### Web Adapter (recommended)
 
-```ioBroker LaMetric Adapter -> State with frame information <- Web Adapter <- My Data DIY App <- LaMetric```
+```ioBroker LaMetric Adapter -> State with frame information <- ioBroker Web Adapter <- My Data DIY App <- LaMetric```
 
 1. Install the [Web ioBroker Adapter](https://github.com/ioBroker/ioBroker.web)
 2. Create a new instance of the web adapter (e.g. ``web.0``)
@@ -30,7 +30,7 @@ http://172.16.0.219:8082/lametric.0/
 
 ### REST API Adapter
 
-```ioBroker LaMetric Adapter -> State with frame information <- REST API Adapter <- My Data DIY App <- LaMetric```
+```ioBroker LaMetric Adapter -> State with frame information <- ioBroker REST API Adapter <- My Data DIY App <- LaMetric```
 
 #### Configuration (with authentication)
 
@@ -49,7 +49,7 @@ http://lametric:HhX7dZl3Fe@172.16.0.219:8093/v1/state/lametric.0.mydatadiy.obj/p
 
 ### Simple API Adapter
 
-```ioBroker LaMetric Adapter -> State with frame information <- Simple API Adapter <- My Data DIY App <- LaMetric```
+```ioBroker LaMetric Adapter -> State with frame information <- ioBroker Simple API Adapter <- My Data DIY App <- LaMetric```
 
 #### Configuration (with authentication)
 
