@@ -10,5 +10,7 @@
     "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "Вы можете найти доступные значки <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">здесь</a>",
     "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Ваш личный токен разработчика - вы можете получить его <a href=\"https://developer.lametric.com/\">здесь</a>",
     "Use HTTPS": "Использовать HTTPS",
-    "API Key": "Ключ API"
+    "API Key": "Ключ API",
+    "Web adapter instance": "Экземпляр веб-адаптера",
+    "Can be used to request the configured data": "Может использоваться для запроса сконфигурированных данных"
 }

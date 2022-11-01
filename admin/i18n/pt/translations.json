@@ -10,5 +10,7 @@
     "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "Você pode encontrar os ícones disponíveis <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">aqui</a>",
     "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Seu token de desenvolvedor pessoal - você pode obtê-lo <a href=\"https://developer.lametric.com/\">aqui</a>",
     "Use HTTPS": "Use HTTPS",
-    "API Key": "Chave API"
+    "API Key": "Chave API",
+    "Web adapter instance": "Instância do adaptador da Web",
+    "Can be used to request the configured data": "Pode ser usado para solicitar os dados configurados"
 }

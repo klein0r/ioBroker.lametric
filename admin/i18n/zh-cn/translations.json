@@ -10,5 +10,7 @@
     "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "您可以<a target=\"_blank\" href=\"https://developer.lametric.com/icons\">在此处</a>找到可用的图标",
     "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "您的个人开发者令牌-您可以<a href=\"https://developer.lametric.com/\">在此处</a>获取",
     "Use HTTPS": "使用 HTTPS",
-    "API Key": "API 密钥"
+    "API Key": "API 密钥",
+    "Web adapter instance": "Web 适配器实例",
+    "Can be used to request the configured data": "可用于请求配置的数据"
 }

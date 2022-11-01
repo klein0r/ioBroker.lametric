@@ -1,0 +1,16 @@
+{
+    "Hide if": "приховати значення якщо",
+    "IP": "IP-адреса",
+    "IP address of your LaMetric Time": "IP-адреса вашого LaMetric Time",
+    "Icon": "значок",
+    "My Data (DIY)": "Мої дані (DIY)",
+    "Options": "Опції",
+    "Text": "текст",
+    "Use the SimpleAPI adapter to request these information (see README for details)": "Використовуйте адаптер SimpleAPI, щоб запитати цю інформацію (докладніше див. README)",
+    "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "Ви можете знайти доступні значки <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">тут</a>",
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Ваш особистий маркер розробника - ви можете отримати його <a href=\"https://developer.lametric.com/\">тут</a>",
+    "Use HTTPS": "Використовуйте HTTPS",
+    "API Key": "Ключ API",
+    "Web adapter instance": "Примірник веб-адаптера",
+    "Can be used to request the configured data": "Можна використовувати для запиту налаштованих даних"
+}

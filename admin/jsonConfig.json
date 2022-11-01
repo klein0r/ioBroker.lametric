@@ -133,6 +133,16 @@
                             "default": 5
                         }
                     ]
+                },
+                "webInstance": {
+                    "newLine": true,
+                    "type": "instance",
+                    "adapter": "web",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Web adapter instance",
+                    "help": "Can be used to request the configured data"
                 }
             }
         }
