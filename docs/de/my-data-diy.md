@@ -8,7 +8,7 @@
 
 Es können verschiedene Adapter genutzt werden, um diese Daten zur *LaMetric Time* zu übertragen:
 
-- Web Adapter (empfohlen) *(Adapter-Version > 2.1.0 notwendig)*
+- Web Adapter (empfohlen) *(Adapter-Version >= 2.1.0 notwendig)*
 - REST API Adapter
 - Simple API Adapter
 
