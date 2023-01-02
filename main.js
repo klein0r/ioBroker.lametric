@@ -692,6 +692,31 @@ class LaMetric extends utils.Adapter {
                             });
                             await this.setStateChangedAsync(`${appPath}.${uuid}.version`, { val: pack.version, ack: true });
 
+                            await this.setObjectNotExistsAsync(`${appPath}.${uuid}.visible`, {
+                                type: 'state',
+                                common: {
+                                    name: {
+                                        en: 'Visible',
+                                        de: 'Sichtbar',
+                                        ru: 'Видимый',
+                                        pt: 'Visível',
+                                        nl: 'Vertaling:',
+                                        fr: 'Visible',
+                                        it: 'Visibile',
+                                        es: 'Visible',
+                                        pl: 'Widoczny',
+                                        uk: 'Вибрані',
+                                        'zh-cn': '不可抗辩',
+                                    },
+                                    type: 'boolean',
+                                    role: 'indicator',
+                                    read: true,
+                                    write: false,
+                                },
+                                native: {},
+                            });
+                            await this.setStateChangedAsync(`${appPath}.${uuid}.visible`, { val: widget.visible, ack: true });
+
                             // START special Widgets
 
                             if (pack.package === 'com.lametric.clock') {
