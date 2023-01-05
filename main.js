@@ -366,7 +366,7 @@ class LaMetric extends utils.Adapter {
         if (obj && obj.message) {
             const data = {};
 
-            if (obj.command === 'notification') {
+            if (obj.command === 'notification' && typeof obj.message === 'object') {
                 const notification = obj.message;
 
                 if (notification.priority) {
@@ -417,6 +417,16 @@ class LaMetric extends utils.Adapter {
                         category: notification.sound.indexOf('alarm') > -1 ? 'alarms' : 'notifications',
                         id: notification.sound,
                         repeat: 1,
+                    };
+                } else if (notification.soundUrl) {
+                    dataModel.sound = {
+                        url: notification.soundUrl,
+                        type: 'mp3',
+                        fallback: {
+                            // Default fallback - not configurable
+                            category: 'notifications',
+                            id: 'bicycle',
+                        },
                     };
                 }
 

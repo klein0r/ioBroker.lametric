@@ -55,8 +55,9 @@ iobroker add lametric
 -->
 ### **WORK IN PROGRESS**
 
-* (klein0r) Updated LaMetric firmware version recommendation to 2.3.3
+* (klein0r) Added custom sound feature (mp3 via url)
 * (klein0r) Added visible state of widgets
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.3
 
 ### 2.1.0 (2022-11-01)
 
