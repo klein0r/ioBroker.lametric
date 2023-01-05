@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "news": {
+      "2.2.0": {
+        "en": "Added custom sound feature (mp3 via url)\nAdded visible state of widgets\nUpdated LaMetric firmware version recommendation to 2.3.3",
+        "de": "Hinzugefügt benutzerdefinierte Sound-Funktion (mp3 via url)\nHinzugefügt sichtbarer Zustand der Widgets\nAktualisierte LaMetric Firmware Version Empfehlung auf 2.3.3",
+        "ru": "Добавлена настройка звука (mp3 через url)\nДобавлен видимое состояние виджетов\nОбновленная рекомендация LaMetric прошивки до 2.3.3",
+        "pt": "Adicionado recurso de som personalizado (mp3 via url)\nAdicionado estado visível de widgets\nRecomendação de versão de firmware LaMetric atualizada para 2.3.3",
+        "nl": "Gevoegd gebruikelijk geluidsbeeld (mp3 via urine)\nVermeld zichtbare toestand van widgets\nUpdate LaMetric firmaware aanbeveling aan 2,3,3",
+        "fr": "Fonction acoustique personnalisée (mp3 via url)\nAjout de l'état visible des widgets\nMise à jour de la recommandation de version du firmware LaMetric au 2.3.3",
+        "it": "Aggiunta funzionalità audio personalizzata (mp3 via url)\nAggiunto stato visibile di widgets\nRaccomandazione di versione firmware LaMetric aggiornata a 2.3.3",
+        "es": "Función de sonido personalizada (mp3 vía url)\nEstado visible añadido de los widgets\nRecomendación actualizada de la versión de firmware de LaMetric a 2.3.3",
+        "pl": "Dodrukowane dźwiękowe dźwięki (m3) poprzez url\nWidgets\nRekomendowana wersja LaMetrics rekomenduje 2.3.3 wersję oprogramowania",
+        "uk": "Додано користувацькі функції звуку (mp3 через URL)\nДодано видимий стан віджетів\nОновлено рекомендацію прошивки LaMetric до 2.3.3",
+        "zh-cn": "添加有习俗的特征(通过url)\n添加了令人发指的明显情况\n最新版的《拉梅特科学家》建议2.3"
+      },
       "2.1.0": {
         "en": "NodeJS 14.5 is required\n\n* Added web extension to get My Data DIY object\n* Allow colon in My Data DIY object ID\n* Fixed duration of My Data DIY frames (milliseconds)\n* Updated LaMetric firmware version recommendation to 2.3.0\n* Dropped Admin 5 support\n* Minor optimizations",
         "de": "NodeJS 14.5 ist erforderlich\n\n* Hinzugefügt Web-Erweiterung, um meine Daten DIY-Objekt zu erhalten\n* Erlauben Sie Kolon in Meine Daten DIY Objekt-ID\n* Feste Dauer Meiner Daten DIY-Rahmen (Millisekunden)\n* Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.0\n* Dropped Admin 5 Unterstützung\n* Kleine Optimierungen",
@@ -80,19 +93,6 @@
         "pl": "Przetłumaczono wszystkie obiekty",
         "zh-cn": "翻译所有对象",
         "uk": "Перекладено всі об'єкти"
-      },
-      "1.5.0": {
-        "en": "Fixed myData DIY data type",
-        "de": "myData DIY Datentyp korrigiert",
-        "ru": "Исправлен тип данных myData DIY",
-        "pt": "Tipo de dados myData DIY corrigido",
-        "nl": "Vast myData DIY-gegevenstype",
-        "fr": "Type de données myData DIY fixe",
-        "it": "Corretto il tipo di dati myData DIY",
-        "es": "Se corrigió el tipo de datos myData DIY",
-        "pl": "Naprawiono typ danych myData DIY",
-        "zh-cn": "修复了 myData DIY 数据类型",
-        "uk": "Виправлено тип даних myData DIY"
       }
     },
     "titleLang": {

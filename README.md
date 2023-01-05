@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.2.0 (2023-01-05)
 
 * (klein0r) Added custom sound feature (mp3 via url)
 * (klein0r) Added visible state of widgets
@@ -91,11 +91,6 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 
 * (klein0r) Updated log messages and error handling
 * (klein0r) Updated dependencies
-
-### 1.5.2 (2021-12-23)
-
-* (klein0r) Updated dependencies
-* (klein0r) Updated documentation
 
 ## License
 

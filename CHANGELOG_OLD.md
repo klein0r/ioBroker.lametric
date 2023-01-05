@@ -1,4 +1,9 @@
 # Older changes
+## 1.5.2 (2021-12-23)
+
+* (klein0r) Updated dependencies
+* (klein0r) Updated documentation
+
 ## 1.5.1
 
 * (klein0r) Translated all objects
