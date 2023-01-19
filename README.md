@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.2.1 (2023-01-19)
 
 * (klein0r) Format number values for My Data DIY
 
@@ -90,11 +90,6 @@ NodeJS 14.x is required (NodeJS 12.x is EOL)
 * (klein0r) Updated documentation
 * (klein0r) Updated state roles
 * (klein0r) Added hint for Admin 4 configuration
-
-### 1.5.3 (2022-02-08)
-
-* (klein0r) Updated log messages and error handling
-* (klein0r) Updated dependencies
 
 ## License
 

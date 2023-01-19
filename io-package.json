@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "news": {
+      "2.2.1": {
+        "en": "Format number values for My Data DIY",
+        "de": "Formatnummernwerte für My Data DIY",
+        "ru": "Формат значения номера для My Data DIY",
+        "pt": "Formatar valores de número para meus dados DIY",
+        "nl": "Format nummerwaarden voor My Data DIY",
+        "fr": "Format des valeurs de nombre pour My Data DIY",
+        "it": "Formattare i valori numerici per il mio DIY dati",
+        "es": "Valores del número de formato para mi DIY de datos",
+        "pl": "Format Numbers for My Data DIY (ang.)",
+        "uk": "Формат значень номеру для My Data DIY",
+        "zh-cn": "我数据数据数字数值"
+      },
       "2.2.0": {
         "en": "Added custom sound feature (mp3 via url)\nAdded visible state of widgets\nUpdated LaMetric firmware version recommendation to 2.3.3",
         "de": "Hinzugefügt benutzerdefinierte Sound-Funktion (mp3 via url)\nHinzugefügt sichtbarer Zustand der Widgets\nAktualisierte LaMetric Firmware Version Empfehlung auf 2.3.3",
@@ -80,19 +93,6 @@
         "pl": "Zaktualizowane zależności\nZaktualizowana dokumentacja",
         "zh-cn": "更新的依赖项\n更新文档",
         "uk": "Оновлені залежності\nОновлена ​​документація"
-      },
-      "1.5.1": {
-        "en": "Translated all objects",
-        "de": "Alle Objekte übersetzt",
-        "ru": "Переведены все объекты",
-        "pt": "Todos os objetos traduzidos",
-        "nl": "Alle objecten vertaald",
-        "fr": "Traduit tous les objets",
-        "it": "Tradotto tutti gli oggetti",
-        "es": "Traducido todos los objetos",
-        "pl": "Przetłumaczono wszystkie obiekty",
-        "zh-cn": "翻译所有对象",
-        "uk": "Перекладено всі об'єкти"
       }
     },
     "titleLang": {

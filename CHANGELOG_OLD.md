@@ -1,4 +1,9 @@
 # Older changes
+## 1.5.3 (2022-02-08)
+
+* (klein0r) Updated log messages and error handling
+* (klein0r) Updated dependencies
+
 ## 1.5.2 (2021-12-23)
 
 * (klein0r) Updated dependencies
