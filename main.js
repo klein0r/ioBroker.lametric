@@ -1393,11 +1393,9 @@ class LaMetric extends utils.Adapter {
                     return newVal;
                 });
 
-                if (Object.prototype.hasOwnProperty.call(f, 'hideif')) {
-                    if (f.hideif && f.hideif == replacedText) {
-                        this.log.debug(`[mydatadiy] removing frame because text matches configured hideif: "${f.hideif}"`);
-                        replacedText = ''; // will be removed in filter function (see below)
-                    }
+                if (f?.hideif && f.hideif == replacedText) {
+                    this.log.debug(`[mydatadiy] removing frame because text matches configured hideif: "${f.hideif}"`);
+                    replacedText = ''; // will be removed in filter function (see below)
                 }
 
                 const newObj = {
@@ -1443,7 +1441,7 @@ class LaMetric extends utils.Adapter {
                 }
 
                 newVal = this.formatValue(val, countDecimals);
-                this.log.error(`[mydatadiy] formatted value of "${id}" from ${val} to ${newVal} (${countDecimals} decimals)`);
+                this.log.debug(`[mydatadiy] formatted value of "${id}" from ${val} to ${newVal} (${countDecimals} decimals)`);
             }
         }
 
