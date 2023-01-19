@@ -53,6 +53,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Format number values for My Data DIY
+
 ### 2.2.0 (2023-01-05)
 
 * (klein0r) Added custom sound feature (mp3 via url)

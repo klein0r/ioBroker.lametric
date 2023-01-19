@@ -1,6 +1,3 @@
-/* jshint -W097 */
-/* jshint strict: false */
-/* jslint node: true */
 'use strict';
 
 const utils = require('@iobroker/adapter-core');
@@ -23,6 +20,7 @@ class LaMetric extends utils.Adapter {
 
         this.myDataDiyRegex = /\{([_:a-zA-ZäÄüÜöÖ0-9.#-]+)\}/gu;
         this.myDataDiyForeignStates = [];
+        this.myDataDiyNumberStates = [];
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -61,7 +59,7 @@ class LaMetric extends utils.Adapter {
                 this.myDataDiyForeignStates = this.myDataDiyForeignStates.map((item) => {
                     if (item.id === id) {
                         this.log.debug(`[mydatadiy] onStateChange - received new value "${state.val}" of state "${id}"`);
-                        item.val = state.val;
+                        item.val = this.formatMyDataDiyValue(id, state.val);
                     }
 
                     return item;
@@ -71,7 +69,7 @@ class LaMetric extends utils.Adapter {
 
                 this.refreshMyDataDiy(); // refresh output
             } else {
-                this.log.debug(`[mydatadiy] onStateChange - ignored new value "${state.val}" of state "${id}" (ack = false)`);
+                this.log.debug(`[mydatadiy] onStateChange - ignored value "${state.val}" of state "${id}" (ack = false)`);
             }
         }
 
@@ -1333,26 +1331,42 @@ class LaMetric extends utils.Adapter {
         this.log.debug(`[mydatadiy] found ${foreignStates.length} dynamic states: ${JSON.stringify(foreignStates)}`);
 
         Promise.all(
-            foreignStates.map(async (id) => {
-                this.subscribeForeignStates(id);
-                this.log.debug(`[mydatadiy] subscribed to foreign state "${id}"`);
-
-                const state = await this.getForeignStateAsync(id);
-
+            foreignStates.map((id) => {
                 return new Promise((resolve) => {
-                    if (state) {
-                        this.log.debug(`[mydatadiy] received value "${state.val}" of state "${id}"`);
-                        resolve({
-                            id: id,
-                            val: state.val,
+                    this.getForeignObjectAsync(id)
+                        .then((object) => {
+                            if (object && object.type == 'state') {
+                                this.subscribeForeignStates(id);
+                                this.log.debug(`[mydatadiy] subscribed to foreign state "${id}" (${object.common?.type})`);
+
+                                if (object.common?.type == 'number') {
+                                    this.myDataDiyNumberStates.push(id);
+                                }
+
+                                return this.getForeignStateAsync(id);
+                            } else {
+                                throw new Error(`Invalid object (type ${object?.type || 'unknown'})`);
+                            }
+                        })
+                        .then((state) => {
+                            if (state) {
+                                this.log.debug(`[mydatadiy] received value "${state.val}" of state "${id}" (ack: ${state.ack})`);
+
+                                resolve({
+                                    id: id,
+                                    val: this.formatMyDataDiyValue(id, state.val),
+                                });
+                            } else {
+                                throw new Error('Invalid state (maybe empty?)');
+                            }
+                        })
+                        .catch((err) => {
+                            this.log.warn(`[mydatadiy] unable to get value of "${id}": ${err}`);
+                            resolve({
+                                id: id,
+                                val: `<error ${id}: ${err}>`,
+                            });
                         });
-                    } else {
-                        this.log.warn(`[mydatadiy] unable to get value of state "${id}"`);
-                        resolve({
-                            id: id,
-                            val: `<unknown ${id}>`,
-                        });
-                    }
                 });
             }),
         ).then((data) => {
@@ -1415,6 +1429,25 @@ class LaMetric extends utils.Adapter {
         this.log.debug(`[mydatadiy] completed - frame update to ${JSON.stringify(newFrames)}`);
 
         this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: newFrames }), ack: true });
+    }
+
+    formatMyDataDiyValue(id, val) {
+        let newVal = val;
+
+        if (this.myDataDiyNumberStates.includes(id)) {
+            if (val % 1 !== 0) {
+                let countDecimals = val.toString().split('.')[1].length || 2;
+
+                if (countDecimals > 3) {
+                    countDecimals = 3; // limit
+                }
+
+                newVal = this.formatValue(val, countDecimals);
+                this.log.error(`[mydatadiy] formatted value of "${id}" from ${val} to ${newVal} (${countDecimals} decimals)`);
+            }
+        }
+
+        return newVal;
     }
 
     removeNamespace(id) {
