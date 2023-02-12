@@ -165,6 +165,18 @@
                     "lg": 6,
                     "label": "Web adapter instance",
                     "help": "Can be used to request the configured data"
+                },
+                "_webInstanceUrl": {
+                    "type": "textSendTo",
+                    "container": "text",
+                    "copyToClipboard": true,
+                    "alsoDependsOn": ["webInstance"],
+                    "command": "getWebUrl",
+                    "jsonData": "{\"webInstance\": \"${data.webInstance}\"}",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Url for My Data (DIY) app"
                 }
             }
         }

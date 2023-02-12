@@ -3,7 +3,7 @@
     "IP": "Айпи адрес",
     "IP address of your LaMetric Time": "IP-адрес вашего LaMetric Time",
     "Icon": "икона",
-    "My Data (DIY)": "Мои данные (DIY)",
+    "My Data (DIY)": "My Data (DIY)",
     "Options": "Настройки",
     "Text": "текст",
     "Use the SimpleAPI adapter to request these information (see README for details)": "Используйте адаптер SimpleAPI для запроса этой информации (подробности см. В README)",
@@ -12,5 +12,6 @@
     "Use HTTPS": "Использовать HTTPS",
     "API Key": "Ключ API",
     "Web adapter instance": "Экземпляр веб-адаптера",
-    "Can be used to request the configured data": "Может использоваться для запроса сконфигурированных данных"
+    "Can be used to request the configured data": "Может использоваться для запроса сконфигурированных данных",
+    "Url for My Data (DIY) app": "URL для приложения My Data (DIY)"
 }

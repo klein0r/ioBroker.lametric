@@ -453,6 +453,24 @@ class LaMetric extends utils.Adapter {
                     'POST',
                     data,
                 );
+            } else if (obj.command === 'getWebUrl' && typeof obj.message === 'object') {
+                if (obj.message?.webInstance) {
+                    this.log.debug(`[onMessage] Try to get instance configuration of system.adapter.${obj.message.webInstance}`);
+
+                    this.getForeignObjectAsync(`system.adapter.${obj.message.webInstance}`)
+                        .then((webObj) => {
+                            const protocol = webObj?.native?.secure ? 'https' : 'http';
+                            const bind = webObj?.native?.bind;
+                            const port = webObj?.native?.port;
+
+                            this.sendTo(obj.from, obj.command, `${protocol}://${bind}:${port}/${this.namespace}/`, obj.callback);
+                        })
+                        .catch((err) => {
+                            this.sendTo(obj.from, obj.command, `Error: ${err}`, obj.callback);
+                        });
+                } else {
+                    this.sendTo(obj.from, obj.command, 'Please select a web instance for url preview', obj.callback);
+                }
             } else {
                 this.log.error(`[onMessage] Received incomplete message via "sendTo"`);
 

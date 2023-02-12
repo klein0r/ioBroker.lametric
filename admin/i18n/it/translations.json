@@ -3,7 +3,7 @@
     "IP": "Indirizzo IP",
     "IP address of your LaMetric Time": "Indirizzo IP di LaMetric Time",
     "Icon": "icona",
-    "My Data (DIY)": "I miei dati (fai da te)",
+    "My Data (DIY)": "My Data (DIY)",
     "Options": "Opzioni",
     "Text": "testo",
     "Use the SimpleAPI adapter to request these information (see README for details)": "Usa l'adattatore SimpleAPI per richiedere queste informazioni (vedi README per i dettagli)",
@@ -12,5 +12,6 @@
     "Use HTTPS": "Usa HTTPS",
     "API Key": "Chiave API",
     "Web adapter instance": "Istanza dell'adattatore Web",
-    "Can be used to request the configured data": "Può essere utilizzato per richiedere i dati configurati"
+    "Can be used to request the configured data": "Può essere utilizzato per richiedere i dati configurati",
+    "Url for My Data (DIY) app": "URL per l'app My Data (DIY)"
 }

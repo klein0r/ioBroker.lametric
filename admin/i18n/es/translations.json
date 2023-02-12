@@ -12,5 +12,6 @@
     "Use HTTPS": "Usar HTTPS",
     "API Key": "Clave API",
     "Web adapter instance": "Instancia de adaptador web",
-    "Can be used to request the configured data": "Se puede utilizar para solicitar los datos configurados"
+    "Can be used to request the configured data": "Se puede utilizar para solicitar los datos configurados",
+    "Url for My Data (DIY) app": "Url para la aplicación My Data (DIY)"
 }
