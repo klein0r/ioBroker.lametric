@@ -56,6 +56,7 @@ iobroker add lametric
 ### **WORK IN PROGRESS**
 
 * (klein0r) Fixed message responses
+* (klein0r) Added icon button to instance configuration
 
 ### 2.2.1 (2023-01-19)
 

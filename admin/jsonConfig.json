@@ -45,6 +45,28 @@
             "type": "panel",
             "label": "My Data (DIY)",
             "items": {
+                "_iconsLink": {
+                    "type": "staticLink",
+                    "href": "https://developer.lametric.com/icons",
+                    "label": {
+                        "en": "Search for available icons on this website",
+                        "de": "Suche nach verfügbaren Icons auf dieser Website",
+                        "ru": "Поиск доступных иконок на этом сайте",
+                        "pt": "Pesquisar ícones disponíveis neste site",
+                        "nl": "Zoek naar beschikbare iconen op deze website",
+                        "fr": "Rechercher des icônes disponibles sur ce site",
+                        "it": "Cerca le icone disponibili su questo sito",
+                        "es": "Buscar iconos disponibles en este sitio web",
+                        "pl": "Poszukiwanie dostępnych ikon na tej stronie",
+                        "uk": "Пошук іконок на сайті",
+                        "zh-cn": "本网站可供使用的词汇"
+                    },
+                    "button": true,
+                    "icon": "info",
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
+                },
                 "mydatadiy": {
                     "type": "table",
                     "sm": 12,
