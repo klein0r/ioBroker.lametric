@@ -362,9 +362,9 @@ class LaMetric extends utils.Adapter {
         this.log.debug(`[onMessage] received message: ${JSON.stringify(obj.message)}`);
 
         if (obj && obj.message) {
-            const data = {};
-
+            // Notification
             if (obj.command === 'notification' && typeof obj.message === 'object') {
+                const data = {};
                 const notification = obj.message;
 
                 if (notification.priority) {
@@ -435,24 +435,33 @@ class LaMetric extends utils.Adapter {
                 data.model = dataModel;
 
                 this.log.debug(`[onMessage] Notification data: ${JSON.stringify(data)}`);
-            }
 
-            this.buildRequest(
-                'device/notifications',
-                (content) => {
-                    this.log.debug(`[onMessage] Response: ${JSON.stringify(content)}`);
+                this.buildRequest(
+                    'device/notifications',
+                    (content) => {
+                        this.log.debug(`[onMessage] Notification response: ${JSON.stringify(content)}`);
 
-                    if (obj.callback) {
-                        if (content && content.success) {
-                            this.sendTo(obj.from, obj.command, content.success, obj.callback);
-                        } else {
-                            this.sendTo(obj.from, obj.command, {}, obj.callback);
+                        // Confirm message
+                        if (obj.callback) {
+                            if (content && content.success) {
+                                this.sendTo(obj.from, obj.command, content.success, obj.callback);
+                            } else {
+                                this.sendTo(obj.from, obj.command, { error: 'failed' }, obj.callback);
+                            }
                         }
-                    }
-                },
-                'POST',
-                data,
-            );
+                    },
+                    'POST',
+                    data,
+                );
+            } else {
+                this.log.error(`[onMessage] Received incomplete message via "sendTo"`);
+
+                if (obj.callback) {
+                    this.sendTo(obj.from, obj.command, { error: 'Incomplete message' }, obj.callback);
+                }
+            }
+        } else if (obj.callback) {
+            this.sendTo(obj.from, obj.command, { error: 'Invalid message' }, obj.callback);
         }
     }
 

@@ -262,5 +262,5 @@ Blockly.JavaScript['lametric'] = function (block) {
     text && objText.push('text: ' + text);
     cycles && objText.push('cycles: ' + cycles);
 
-    return 'sendTo("lametric' + block.getFieldValue('INSTANCE') + '", "notification", {' + objText.join(',') + '});';
+    return 'sendTo("lametric' + block.getFieldValue('INSTANCE') + '", "notification", {' + objText.join(', ') + '});';
 };
