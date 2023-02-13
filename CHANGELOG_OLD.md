@@ -1,4 +1,11 @@
 # Older changes
+## 1.6.0 (2022-02-27)
+
+* (klein0r) Allow german umlauts in My Data DIY objects
+* (klein0r) Updated documentation
+* (klein0r) Updated state roles
+* (klein0r) Added hint for Admin 4 configuration
+
 ## 1.5.3 (2022-02-08)
 
 * (klein0r) Updated log messages and error handling
