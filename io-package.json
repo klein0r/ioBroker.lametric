@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "news": {
+      "2.3.1": {
+        "en": "Update My Data DIY when object changes data type",
+        "de": "Meine Daten aktualisieren DIY, wenn Objekt Datentyp ändert",
+        "ru": "Обновить мои данные DIY когда объект меняет тип данных",
+        "pt": "Atualizar meus dados DIY quando o objeto muda o tipo de dados",
+        "nl": "Update My Data DIY als object data type verandert",
+        "fr": "Mettre à jour mes données DIY lorsque l'objet modifie le type de données",
+        "it": "Aggiorna i miei dati DIY quando l'oggetto cambia tipo di dati",
+        "es": "Actualizar mis datos DIY cuando el objeto cambia el tipo de datos",
+        "pl": "Update My Data DIY, gdy obiekt zmienia typ danych",
+        "uk": "Оновлення даних DIY при зміні даних об'єкта",
+        "zh-cn": "我的最新资料 数据类型变化"
+      },
       "2.3.0": {
         "en": "Fixed message responses\nAdded icon button to instance configuration\nAdded preview for web url in instance configuration",
         "de": "Feste Nachrichtenantworten\nHinzufügen von Symbol-Taste zur Instanz-Konfiguration\nVorschau für Web url in der Konfiguration hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Zezwalaj na niemieckie umlauty w obiektach My Data DIY\nZaktualizowana dokumentacja\nZaktualizowane role stanowe\nDodano wskazówkę dotyczącą konfiguracji Admin 4",
         "uk": "Дозволити німецькі умляути в об’єктах DIY «Мої дані».\nОновлена ​​документація\nОновлені ролі стану\nДодано підказку для конфігурації Admin 4",
         "zh-cn": "允许在“我的数据”DIY 对象中使用德语变音符号\n更新的文档\n更新了状态角色\n添加了 Admin 4 配置的提示"
-      },
-      "1.5.3": {
-        "en": "Updated log messages and error handling\nUpdated dependencies",
-        "de": "Protokollmeldungen und Fehlerbehandlung aktualisiert\nAktualisierte Abhängigkeiten",
-        "ru": "Обновлены сообщения журнала и обработка ошибок\nОбновленные зависимости",
-        "pt": "Mensagens de log atualizadas e tratamento de erros\nDependências atualizadas",
-        "nl": "Bijgewerkte logberichten en foutafhandeling\nBijgewerkte afhankelijkheden",
-        "fr": "Mise à jour des messages de journal et de la gestion des erreurs\nDépendances mises à jour",
-        "it": "Messaggi di registro aggiornati e gestione degli errori\nDipendenze aggiornate",
-        "es": "Mensajes de registro actualizados y manejo de errores\nDependencias actualizadas",
-        "pl": "Zaktualizowane komunikaty dziennika i obsługa błędów\nZaktualizowane zależności",
-        "uk": "Оновлені повідомлення журналу та обробка помилок\nОновлені залежності",
-        "zh-cn": "更新了日志消息和错误处理\n更新的依赖项"
       }
     },
     "titleLang": {

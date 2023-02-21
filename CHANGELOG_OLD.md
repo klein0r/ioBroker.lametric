@@ -1,4 +1,14 @@
 # Older changes
+## 2.0.0 (2022-05-17)
+
+NodeJS 14.x is required (NodeJS 12.x is EOL)
+
+* (klein0r) Added states for clock alarm widget configuration
+* (klein0r) Added duration for My Data DIY frame configuration
+* (klein0r) Updated LaMetric firmware version recommendation to 2.2.3
+* (klein0r) Updated dependencies
+* (klein0r) Updated depedency for js-controller to 4.0.15
+
 ## 1.6.0 (2022-02-27)
 
 * (klein0r) Allow german umlauts in My Data DIY objects

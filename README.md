@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.3.1 (2023-02-21)
 
 * (klein0r) Update My Data DIY when object changes data type
 
@@ -83,16 +83,6 @@ NodeJS 14.5 is required
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.0
 * (klein0r) Dropped Admin 5 support
 * (klein0r) Minor optimizations
-
-### 2.0.0 (2022-05-17)
-
-NodeJS 14.x is required (NodeJS 12.x is EOL)
-
-* (klein0r) Added states for clock alarm widget configuration
-* (klein0r) Added duration for My Data DIY frame configuration
-* (klein0r) Updated LaMetric firmware version recommendation to 2.2.3
-* (klein0r) Updated dependencies
-* (klein0r) Updated depedency for js-controller to 4.0.15
 
 ## License
 
