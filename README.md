@@ -53,6 +53,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Update My Data DIY when object changes data type
+
 ### 2.3.0 (2023-02-13)
 
 * (klein0r) Fixed message responses
