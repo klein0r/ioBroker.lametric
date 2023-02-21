@@ -1447,7 +1447,7 @@ class LaMetric extends utils.Adapter {
     refreshMyDataDiy() {
         this.log.debug(`[mydatadiy] refresh output state with config: ${JSON.stringify(this.config.mydatadiy)}`);
 
-        const clonedFrames = JSON.parse(JSON.stringify(this.config.mydatadiy)); // TODO: Better way to clone?!
+        const clonedFrames = JSON.parse(JSON.stringify(this.config.mydatadiy)); // TODO: Better way to clone?! structuredClone in nodejs 17
         const newFrames = clonedFrames
             .map((f) => {
                 let replacedText = f.text.replace(this.myDataDiyRegex, (m, id) => {
