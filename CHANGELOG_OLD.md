@@ -1,4 +1,15 @@
 # Older changes
+## 2.1.0 (2022-11-01)
+
+NodeJS 14.5 is required
+
+* (klein0r) Added web extension to get My Data DIY object
+* (klein0r) Allow colon in My Data DIY object ID
+* (klein0r) Fixed duration of My Data DIY frames (milliseconds)
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.0
+* (klein0r) Dropped Admin 5 support
+* (klein0r) Minor optimizations
+
 ## 2.0.0 (2022-05-17)
 
 NodeJS 14.x is required (NodeJS 12.x is EOL)

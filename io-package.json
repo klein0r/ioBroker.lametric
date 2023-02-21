@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "2.3.1",
+    "version": "2.3.2",
     "news": {
+      "2.3.2": {
+        "en": "Optimized setState logic",
+        "de": "Optimiertes Set Staatliche Logik",
+        "ru": "Оптимизированный набор Государственная логика",
+        "pt": "Conjunto otimizado Lógica do Estado",
+        "nl": "Optimistische set Staatslogica",
+        "fr": "Set optimisé State logic",
+        "it": "Set ottimizzato La logica dello Stato",
+        "es": "Set optimizado State logic",
+        "pl": "Zbiór optymistyczny logika państwowa",
+        "uk": "Оптимізований набір Державна логіка",
+        "zh-cn": "全球化 国家逻辑"
+      },
       "2.3.1": {
         "en": "Update My Data DIY when object changes data type",
         "de": "Meine Daten aktualisieren DIY, wenn Objekt Datentyp ändert",
@@ -80,19 +93,6 @@
         "pl": "NodeJS 14.x jest wymagany (NodeJS 12.x to EOL)\n\n* Dodano stany do konfiguracji widżetu alarmu zegara\n* Dodano czas trwania konfiguracji ramki Moje dane DIY\n* Zaktualizowano rekomendację wersji oprogramowania LaMetric do wersji 2.2.3\n* Zaktualizowane zależności\n* Zaktualizowano zależność dla kontrolera js do 4.0.15",
         "uk": "Потрібен NodeJS 14.x (NodeJS 12.x є EOL)\n\n* Додано стани для конфігурації віджета будильника\n* Додано тривалість конфігурації кадру My Data DIY\n* Оновлено рекомендовану версію мікропрограми LaMetric до 2.2.3\n* Оновлені залежності\n* Оновлено залежності для js-контролера до 4.0.15",
         "zh-cn": "需要 NodeJS 14.x（NodeJS 12.x 已停产）\n\n* 添加了时钟闹钟小部件配置的状态\n* 增加了 My Data DIY 框架配置的持续时间\n* 将 LaMetric 固件版本推荐更新至 2.2.3\n* 更新依赖\n* 将 js-controller 的依赖更新到 4.0.15"
-      },
-      "1.6.0": {
-        "en": "Allow german umlauts in My Data DIY objects\nUpdated documentation\nUpdated state roles\nAdded hint for Admin 4 configuration",
-        "de": "Deutsche Umlaute in Eigene Daten DIY-Objekten zulassen\nAktualisierte Dokumentation\nStatusrollen aktualisiert\nHinweis für die Konfiguration von Admin 4 hinzugefügt",
-        "ru": "Разрешить немецкие умлауты в объектах \"Мои данные\" \"Сделай сам\"\nОбновленная документация\nОбновлены роли состояния\nДобавлена подсказка для конфигурации Admin 4",
-        "pt": "Permitir tremas alemães em objetos DIY My Data\nDocumentação atualizada\nFunções de estado atualizadas\nAdicionada dica para configuração do Admin 4",
-        "nl": "Duitse umlauts toestaan in My Data DIY-objecten\nBijgewerkte documentatie\nBijgewerkte statusrollen\nHint toegevoegd voor configuratie van Admin 4",
-        "fr": "Autoriser les trémas allemands dans les objets My Data DIY\nDocumentation mise à jour\nRôles d'état mis à jour\nAjout d'un indice pour la configuration d'Admin 4",
-        "it": "Consenti dieresi tedesche negli oggetti My Data DIY\nDocumentazione aggiornata\nRuoli statali aggiornati\nAggiunto suggerimento per la configurazione dell'amministratore 4",
-        "es": "Permitir diéresis en alemán en objetos de bricolaje de My Data\nDocumentación actualizada\nRoles de estado actualizados\nSugerencia agregada para la configuración de Admin 4",
-        "pl": "Zezwalaj na niemieckie umlauty w obiektach My Data DIY\nZaktualizowana dokumentacja\nZaktualizowane role stanowe\nDodano wskazówkę dotyczącą konfiguracji Admin 4",
-        "uk": "Дозволити німецькі умляути в об’єктах DIY «Мої дані».\nОновлена ​​документація\nОновлені ролі стану\nДодано підказку для конфігурації Admin 4",
-        "zh-cn": "允许在“我的数据”DIY 对象中使用德语变音符号\n更新的文档\n更新了状态角色\n添加了 Admin 4 配置的提示"
       }
     },
     "titleLang": {

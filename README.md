@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.3.2 (2023-02-21)
 
 * (klein0r) Optimized setState logic
 
@@ -76,17 +76,6 @@ iobroker add lametric
 * (klein0r) Added custom sound feature (mp3 via url)
 * (klein0r) Added visible state of widgets
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.3
-
-### 2.1.0 (2022-11-01)
-
-NodeJS 14.5 is required
-
-* (klein0r) Added web extension to get My Data DIY object
-* (klein0r) Allow colon in My Data DIY object ID
-* (klein0r) Fixed duration of My Data DIY frames (milliseconds)
-* (klein0r) Updated LaMetric firmware version recommendation to 2.3.0
-* (klein0r) Dropped Admin 5 support
-* (klein0r) Minor optimizations
 
 ## License
 
