@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.4.0 (2023-05-10)
 
 * (klein0r) Allow to change device mode via state (manual, auto, kiosk, schedule)
 * (klein0r) Added state for available firmware update
@@ -76,12 +76,6 @@ iobroker add lametric
 ### 2.2.1 (2023-01-19)
 
 * (klein0r) Format number values for My Data DIY
-
-### 2.2.0 (2023-01-05)
-
-* (klein0r) Added custom sound feature (mp3 via url)
-* (klein0r) Added visible state of widgets
-* (klein0r) Updated LaMetric firmware version recommendation to 2.3.3
 
 ## License
 

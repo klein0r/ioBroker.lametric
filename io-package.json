@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "2.3.2",
+    "version": "2.4.0",
     "news": {
+      "2.4.0": {
+        "en": "Allow to change device mode via state (manual, auto, kiosk, schedule)\nAdded state for available firmware update\nUpdated LaMetric firmware version recommendation to 2.3.5",
+        "de": "Erlauben Sie, den Gerätemodus über den Zustand zu ändern (manuell, auto, kiosk, Zeitplan)\nHinzugefügt Zustand für verfügbare Firmware-Update\nAktualisierte LaMetric Firmware Version Empfehlung auf 2.3.5",
+        "ru": "Разрешить изменить режим устройства через состояние (ручной, авто, киоск, расписание)\nДобавлено состояние для доступного обновления прошивки\nОбновленная рекомендация LaMetric прошивки версии 2.3.5",
+        "pt": "Permitir alterar o modo de dispositivo via estado (manual, auto, quiosque, cronograma)\nEstado adicionado para atualização de firmware disponível\nRecomendação de versão de firmware LaMetric atualizada para 2.3.5",
+        "nl": "Sta toe apparatuur te veranderen via staat (manuele, auto, kiosk, schema)\nVertaling:\nUpdate LaMetric firmaware aanbeveling aan 2,3,5",
+        "fr": "Permettre de modifier le mode de périphérique via l'état (manuel, auto, kiosque, horaire)\nÉtat ajouté pour la mise à jour du firmware disponible\nMise à jour de la recommandation de version du firmware LaMetric au 2.3.5",
+        "it": "Consentire di modificare la modalità del dispositivo tramite stato (manuale, auto, chiosco, programma)\nStato aggiunto per l'aggiornamento firmware disponibile\nRaccomandazione di versione firmware LaMetric aggiornata a 2.3.5",
+        "es": "Permitir cambiar el modo de dispositivo a través del estado (manual, auto, quiosco, horario)\nEstado añadido para actualización de firmware disponible\nRecomendación actualizada de la versión de firmware de LaMetric a 2.3.5",
+        "pl": "Obok zmiany trybu urządzenia poprzez stan (manual, auto, kiosk, schedule)\nWstępny stan do aktualizacji oprogramowania\nRekomendowana wersja oprogramowania LaMetric rekomenduje 2.3,5",
+        "uk": "Дозволяє змінити режим пристрою через стан (ручний, авто, kiosk, розклад)\nДодано стан для доступного оновлення мікропрограми\nОновлено рекомендацію прошивки LaMetric до 2.3.5",
+        "zh-cn": "允许通过国家(个人、汽车、 kiosk,时间表)改变装置方式\nA. 增加可用软件更新的国家\n最新版的《拉马斯科学家》建议2.3.5"
+      },
       "2.3.2": {
         "en": "Optimized setState logic",
         "de": "Optimiertes Set Staatliche Logik",
@@ -80,19 +93,6 @@
         "pl": "NodeJS 14,5\n\nAdded Web extension to get My Data DIY object (ang.)\nAllow colon in My Data DIY object IDY (ang.)\n* Fixed length of My Data DIY frames (milliseconds) (ang.)\n* Updated LaMetric Firmware rekomenduje 2.3.0\n* Dropped Admin 5 support\n* Minor optymalizacja",
         "uk": "NodeJS 14.5 необхідний\n\n* Додано розширення веб для отримання об'єкту My Data DIY\n* Дозвольна колонка в ідентифікаторі об'єкта My Data DIY\n* Фіксована тривалість рамок My Data DIY (milliсекунди)\n* Оновлено рекомендацію прошивки LaMetric до 2.3.0\n* Підтримка Dropped Admin 5\n* Мінорні оптимізації",
         "zh-cn": "第14.5号申诉要求\n\n* 增加网站,以获得我的数据数据数据指标\n* 允许在我的数据数据中查出,IDY物体\n* 数据数据库的固定期限(米利斯)\n* 最新版的《拉梅克科学家》建议23.0\n* Dro Admin 5支助\n* 采矿优化"
-      },
-      "2.0.0": {
-        "en": "NodeJS 14.x is required (NodeJS 12.x is EOL)\n\n* Added states for clock alarm widget configuration\n* Added duration for My Data DIY frame configuration\n* Updated LaMetric firmware version recommendation to 2.2.3\n* Updated dependencies\n* Updated depedency for js-controller to 4.0.15",
-        "de": "NodeJS 14.x ist erforderlich (NodeJS 12.x ist EOL)\n\n* Zustände für die Konfiguration des Wecker-Widgets hinzugefügt\n* Dauer für My Data DIY Rahmenkonfiguration hinzugefügt\n* Aktualisierte Versionsempfehlung der LaMetric-Firmware auf 2.2.3\n* Aktualisierte Abhängigkeiten\n* Abhängigkeit für js-controller auf 4.0.15 aktualisiert",
-        "ru": "Требуется NodeJS 14.x (NodeJS 12.x является EOL)\n\n* Добавлены состояния для конфигурации виджета будильника\n* Добавлена продолжительность для конфигурации фрейма My Data DIY.\n* Обновлена рекомендация версии прошивки LaMetric до 2.2.3.\n* Обновлены зависимости\n* Обновлена зависимость js-контроллера до версии 4.0.15.",
-        "pt": "NodeJS 14.x é necessário (NodeJS 12.x é EOL)\n\n* Adicionados estados para configuração de widget de alarme de relógio\n* Duração adicionada para a configuração do quadro My Data DIY\n* Recomendação de versão de firmware LaMetric atualizada para 2.2.3\n* Dependências atualizadas\n* Dependência atualizada para js-controller para 4.0.15",
-        "nl": "NodeJS 14.x is vereist (NodeJS 12.x is EOL)\n\n* Status toegevoegd voor configuratie van klokalarmwidgets\n* Duur toegevoegd voor My Data DIY-frameconfiguratie\n* Aanbeveling voor LaMetric-firmwareversie bijgewerkt naar 2.2.3\n* Bijgewerkte afhankelijkheden\n* Afhankelijkheid voor js-controller bijgewerkt naar 4.0.15",
-        "fr": "NodeJS 14.x est requis (NodeJS 12.x est EOL)\n\n* États ajoutés pour la configuration du widget d'alarme d'horloge\n* Ajout de la durée pour la configuration du cadre My Data DIY\n* Mise à jour de la recommandation de version du micrologiciel LaMetric vers 2.2.3\n* Dépendances mises à jour\n* Mise à jour de la dépendance pour js-controller vers 4.0.15",
-        "it": "NodeJS 14.x è richiesto (NodeJS 12.x è EOL)\n\n* Aggiunti stati per la configurazione del widget della sveglia\n* Aggiunta durata per la configurazione del frame My Data DIY\n* Aggiornata la versione del firmware LaMetric consigliata a 2.2.3\n* Dipendenze aggiornate\n* Aggiornata la dipendenza per js-controller a 4.0.15",
-        "es": "Se requiere NodeJS 14.x (NodeJS 12.x es EOL)\n\n* Estados agregados para la configuración del widget de alarma de reloj\n* Duración agregada para la configuración del marco DIY My Data\n* Se actualizó la recomendación de versión de firmware de LaMetric a 2.2.3\n* Dependencias actualizadas\n* Dependencia actualizada para js-controller a 4.0.15",
-        "pl": "NodeJS 14.x jest wymagany (NodeJS 12.x to EOL)\n\n* Dodano stany do konfiguracji widżetu alarmu zegara\n* Dodano czas trwania konfiguracji ramki Moje dane DIY\n* Zaktualizowano rekomendację wersji oprogramowania LaMetric do wersji 2.2.3\n* Zaktualizowane zależności\n* Zaktualizowano zależność dla kontrolera js do 4.0.15",
-        "uk": "Потрібен NodeJS 14.x (NodeJS 12.x є EOL)\n\n* Додано стани для конфігурації віджета будильника\n* Додано тривалість конфігурації кадру My Data DIY\n* Оновлено рекомендовану версію мікропрограми LaMetric до 2.2.3\n* Оновлені залежності\n* Оновлено залежності для js-контролера до 4.0.15",
-        "zh-cn": "需要 NodeJS 14.x（NodeJS 12.x 已停产）\n\n* 添加了时钟闹钟小部件配置的状态\n* 增加了 My Data DIY 框架配置的持续时间\n* 将 LaMetric 固件版本推荐更新至 2.2.3\n* 更新依赖\n* 将 js-controller 的依赖更新到 4.0.15"
       }
     },
     "titleLang": {
@@ -342,7 +342,7 @@
           "es": "Versión OS disponible para actualización",
           "pl": "Wersja OS dostępna dla aktualizacji",
           "uk": "Версія OS доступна для оновлення",
-          "zh-cn": "OS Version available for最新情况"        
+          "zh-cn": "OS Version available for最新情况"
         },
         "type": "string",
         "role": "text",

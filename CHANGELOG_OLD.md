@@ -1,4 +1,10 @@
 # Older changes
+## 2.2.0 (2023-01-05)
+
+* (klein0r) Added custom sound feature (mp3 via url)
+* (klein0r) Added visible state of widgets
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.3
+
 ## 2.1.0 (2022-11-01)
 
 NodeJS 14.5 is required
