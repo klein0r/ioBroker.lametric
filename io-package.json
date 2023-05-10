@@ -328,6 +328,30 @@
       "native": {}
     },
     {
+      "_id": "meta.versionUpdate",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "OS Version available for update",
+          "de": "OS Version verfügbar für Update",
+          "ru": "Версия ОС доступна для обновления",
+          "pt": "Versão do sistema operacional disponível para atualização",
+          "nl": "OS Version beschikbaar voor update",
+          "fr": "Version OS disponible pour la mise à jour",
+          "it": "Versione OS disponibile per l'aggiornamento",
+          "es": "Versión OS disponible para actualización",
+          "pl": "Wersja OS dostępna dla aktualizacji",
+          "uk": "Версія OS доступна для оновлення",
+          "zh-cn": "OS Version available for最新情况"        
+        },
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
       "_id": "meta.model",
       "type": "state",
       "common": {

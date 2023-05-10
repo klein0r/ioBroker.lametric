@@ -56,6 +56,7 @@ iobroker add lametric
 ### **WORK IN PROGRESS**
 
 * (klein0r) Allow to change device mode via state (manual, auto, kiosk, schedule)
+* (klein0r) Added state for available firmware update
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.5
 
 ### 2.3.2 (2023-02-21)

@@ -551,6 +551,7 @@ class LaMetric extends utils.Adapter {
                 await this.setStateChangedAsync('meta.name', { val: content.name, ack: true });
                 await this.setStateChangedAsync('meta.serial', { val: content.serial_number, ack: true });
                 await this.setStateChangedAsync('meta.version', { val: content.os_version, ack: true });
+                await this.setStateChangedAsync('meta.versionUpdate', { val: content?.update_available?.version ?? '-', ack: true });
                 await this.setStateChangedAsync('meta.model', { val: content.model, ack: true });
                 await this.setStateChangedAsync('meta.mode', { val: content.mode, ack: true });
 
