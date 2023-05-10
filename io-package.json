@@ -369,7 +369,13 @@
         "type": "string",
         "role": "text",
         "read": true,
-        "write": false
+        "write": true,
+        "states": {
+          "manual": "manual",
+          "auto": "auto",
+          "schedule": "schedule",
+          "kiosk": "kiosk"
+        }
       },
       "native": {}
     },

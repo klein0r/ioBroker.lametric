@@ -85,7 +85,20 @@ class LaMetric extends utils.Adapter {
             const idNoNamespace = this.removeNamespace(id);
 
             // No ack = changed by user
-            if (idNoNamespace === 'meta.display.brightness') {
+            if (idNoNamespace === 'meta.mode') {
+                this.log.debug(`changing device mode to ${state.val}`);
+
+                this.buildRequest(
+                    'device',
+                    async (content) => {
+                        await this.setStateChangedAsync('meta.mode', { val: content.success.data.mode, ack: true });
+                    },
+                    'PUT',
+                    {
+                        mode: state.val,
+                    },
+                );
+            } else if (idNoNamespace === 'meta.display.brightness') {
                 this.log.debug(`changing brightness to ${state.val}`);
 
                 this.buildRequest(
