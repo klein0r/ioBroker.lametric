@@ -2,7 +2,7 @@
 
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios').default;
-const https = require('https');
+const https = require('node:https');
 const adapterName = require('./package.json').name.split('.').pop();
 
 class LaMetric extends utils.Adapter {
@@ -218,7 +218,7 @@ class LaMetric extends utils.Adapter {
                         },
                     },
                 );
-            } else if (idNoNamespace.indexOf('meta.display.screensaver.modes.') === 0) {
+            } else if (idNoNamespace.startsWith('meta.display.screensaver.modes.')) {
                 this.log.debug('changing screensaver settings');
 
                 this.getStates('meta.display.screensaver.*', (err, states) => {

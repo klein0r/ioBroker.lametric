@@ -318,6 +318,7 @@
           "it": "Versione del sistema operativo",
           "es": "Versión del sistema operativo",
           "pl": "Wersja systemu operacyjnego",
+          "uk": "Версія OS",
           "zh-cn": "操作系统版本"
         },
         "type": "string",
@@ -1456,6 +1457,7 @@
           "it": "App",
           "es": "Aplicaciones",
           "pl": "Aplikacje",
+          "uk": "Програми",
           "zh-cn": "应用"
         }
       },
@@ -1475,6 +1477,7 @@
           "it": "App successiva",
           "es": "Siguiente aplicación",
           "pl": "Następna aplikacja",
+          "uk": "Додаток",
           "zh-cn": "下一个应用"
         },
         "type": "boolean",
@@ -1498,6 +1501,7 @@
           "it": "App precedente",
           "es": "Aplicación anterior",
           "pl": "Poprzednia aplikacja",
+          "uk": "Попередній додаток",
           "zh-cn": "上一个应用"
         },
         "type": "boolean",

@@ -17,7 +17,7 @@ Blockly.Translate =
     };
 
 /// --- SendTo lametric --------------------------------------------------
-Blockly.Words['lametric'] = { en: 'LaMetric', de: 'LaMetric' };
+Blockly.Words['lametric'] = { en: 'LaMetric Notification', de: 'LaMetric Notification' };
 Blockly.Words['lametric_icon'] = { en: 'icon', de: 'Icon' };
 Blockly.Words['lametric_icontype'] = { en: 'icon type', de: 'Icon-Typ' };
 Blockly.Words['lametric_lifetime'] = { en: 'life time (ms)', de: 'Lebenszeit (ms)' };
@@ -95,7 +95,7 @@ Blockly.Sendto.blocks['lametric'] =
     '     </value>' +
     '     <value name="MESSAGE">' +
     '         <shadow type="text">' +
-    '             <field name="TEXT">Example Text</field>' +
+    '             <field name="TEXT">haus-automatisierung.com</field>' +
     '         </shadow>' +
     '     </value>' +
     '     <value name="SOUND">' +
@@ -262,5 +262,5 @@ Blockly.JavaScript['lametric'] = function (block) {
     text && objText.push('text: ' + text);
     cycles && objText.push('cycles: ' + cycles);
 
-    return 'sendTo("lametric' + block.getFieldValue('INSTANCE') + '", "notification", {' + objText.join(', ') + '});';
+    return 'sendTo("lametric' + block.getFieldValue('INSTANCE') + '", "notification", { ' + objText.join(', ') + ' }, (res) => { if (res && res.error) { console.error(res.error); } });';
 };
