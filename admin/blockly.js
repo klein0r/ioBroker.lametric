@@ -247,20 +247,20 @@ Blockly.JavaScript['lametric'] = function (block) {
     const iconType = block.getFieldValue('ICON_TYPE');
     const sound = block.getFieldValue('SOUND');
 
-    const lifeTime = parseInt(Blockly.JavaScript.valueToCode(block, 'LIFETIME', Blockly.JavaScript.ORDER_ATOMIC));
+    const lifeTime = Blockly.JavaScript.valueToCode(block, 'LIFETIME', Blockly.JavaScript.ORDER_ATOMIC);
     const icon = Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC);
     const text = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
-    const cycles = parseInt(Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC));
+    const cycles = Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC);
 
     const objText = [];
     priority && objText.push('priority: "' + priority + '"');
     iconType && objText.push('iconType: "' + iconType + '"');
     sound && objText.push('sound: "' + sound + '"');
 
-    lifeTime && objText.push('lifeTime: ' + lifeTime);
+    lifeTime && objText.push('lifeTime: parseInt(' + lifeTime + ')');
     icon && objText.push('icon: ' + icon);
     text && objText.push('text: ' + text);
-    cycles && objText.push('cycles: ' + cycles);
+    cycles && objText.push('cycles: parseInt(' + cycles + ')');
 
-    return 'sendTo("lametric' + block.getFieldValue('INSTANCE') + '", "notification", { ' + objText.join(', ') + ' }, (res) => { if (res && res.error) { console.error(res.error); } });';
+    return `sendTo('lametric${block.getFieldValue('INSTANCE')}', 'notification', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
 };

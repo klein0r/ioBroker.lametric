@@ -12,7 +12,7 @@ class LaMetric extends utils.Adapter {
             name: adapterName,
         });
 
-        this.supportedVersion = '2.3.5';
+        this.supportedVersion = '2.3.5'; // https://firmware.lametric.com
         this.displayedVersionWarning = false;
 
         this.refreshStateTimeout = null;
