@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.4.1 (2023-06-10)
 
 * (klein0r) Blockly bugfix
 
@@ -76,10 +76,6 @@ iobroker add lametric
 * (klein0r) Fixed message responses
 * (klein0r) Added icon button to instance configuration
 * (klein0r) Added preview for web url in instance configuration
-
-### 2.2.1 (2023-01-19)
-
-* (klein0r) Format number values for My Data DIY
 
 ## License
 

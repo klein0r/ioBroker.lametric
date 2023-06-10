@@ -1,4 +1,8 @@
 # Older changes
+## 2.2.1 (2023-01-19)
+
+* (klein0r) Format number values for My Data DIY
+
 ## 2.2.0 (2023-01-05)
 
 * (klein0r) Added custom sound feature (mp3 via url)

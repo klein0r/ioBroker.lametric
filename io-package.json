@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "2.4.0",
+    "version": "2.4.1",
     "news": {
+      "2.4.1": {
+        "en": "Blockly bugfix",
+        "de": "Blockiertes Bugfix",
+        "ru": "Блочный багфикс",
+        "pt": "Bloqueio de bugfix",
+        "nl": "Blockly bugfix",
+        "fr": "Blockly bugfix",
+        "it": "Bloccare bugfix",
+        "es": "Bloqueo bugfix",
+        "pl": "Śledczy",
+        "uk": "Виправлення помилок",
+        "zh-cn": "B. 锁定的软禁"
+      },
       "2.4.0": {
         "en": "Allow to change device mode via state (manual, auto, kiosk, schedule)\nAdded state for available firmware update\nUpdated LaMetric firmware version recommendation to 2.3.5",
         "de": "Erlauben Sie, den Gerätemodus über den Zustand zu ändern (manuell, auto, kiosk, Zeitplan)\nHinzugefügt Zustand für verfügbare Firmware-Update\nAktualisierte LaMetric Firmware Version Empfehlung auf 2.3.5",
@@ -80,19 +93,6 @@
         "pl": "Dodrukowane dźwiękowe dźwięki (m3) poprzez url\nWidgets\nRekomendowana wersja LaMetrics rekomenduje 2.3.3 wersję oprogramowania",
         "uk": "Додано користувацькі функції звуку (mp3 через URL)\nДодано видимий стан віджетів\nОновлено рекомендацію прошивки LaMetric до 2.3.3",
         "zh-cn": "添加有习俗的特征(通过url)\n添加了令人发指的明显情况\n最新版的《拉梅特科学家》建议2.3"
-      },
-      "2.1.0": {
-        "en": "NodeJS 14.5 is required\n\n* Added web extension to get My Data DIY object\n* Allow colon in My Data DIY object ID\n* Fixed duration of My Data DIY frames (milliseconds)\n* Updated LaMetric firmware version recommendation to 2.3.0\n* Dropped Admin 5 support\n* Minor optimizations",
-        "de": "NodeJS 14.5 ist erforderlich\n\n* Hinzugefügt Web-Erweiterung, um meine Daten DIY-Objekt zu erhalten\n* Erlauben Sie Kolon in Meine Daten DIY Objekt-ID\n* Feste Dauer Meiner Daten DIY-Rahmen (Millisekunden)\n* Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.0\n* Dropped Admin 5 Unterstützung\n* Kleine Optimierungen",
-        "ru": "NodeJS 14.5 требуется\n\n* Добавлено расширение сайта, чтобы получить мой объект DIY данных\n* Разрешить колонию в My Data DIY объект ID\n* Фиксированная продолжительность Мои данные DIY фреймы (миллисекунды)\n* Обновленная рекомендация версии LaMetric прошивки до 2.3.0\n* Dropped Admin 5 поддержка\n* Незначительные оптимизации",
-        "pt": "NodeJS 14.5 é necessário\n\n* Adicionado extensão web para obter My Data objeto DIY\n* Permitir cólon em Meu Dados ID de objeto DIY\n* Duração fixa de meus dados molduras DIY (milissegundos)\n* Recomendação de versão de firmware LaMetric atualizada para 2.3.0\n* Suporte de Admin 5 Dropped\n* Otimizações menores",
-        "nl": "NodeJS 14.5 is vereist\n\n♪ Added web extension to get my Data DIY object\nID\nVertaling:\nVertaling:\n♪ Dropped Admin 5 support\n♪ Minor optimiss ♪",
-        "fr": "NodeJS 14.5 est nécessaire\n\n* Ajout de l'extension web pour obtenir l'objet My Data DIY\n* Permettre le côlon dans l'identifiant de l'objet Mes données DIY\n* Durée fixe des cadres de données DIY (millisecondes)\n* Mise à jour de la recommandation de version du firmware LaMetric à 2.3.0\n* Soutien Dropped Admin 5\n* Optimisations mineures",
-        "it": "NodeJS 14.5 è richiesto\n\n* Aggiunto estensione web per ottenere My Data DIY oggetto\n* Consentire il colon nel mio ID oggetto DIY dati\n* Durata fissa dei miei frame DIY dati (millisecondi)\n* Raccomandazione di versione firmware LaMetric aggiornata a 2.3.0\n* Sostegno di amministrazione goccia 5\n* Ottimizzazioni minori",
-        "es": "NodeJS 14.5 es necesario\n\n* Ampliación web agregada para obtener mi objeto DIY de datos\n* Permitir el colon en mis datos DIY objeto ID\n* Duración fija de Mis marcos DIY de datos (milliseconds)\n* Recomendación actualizada de la versión de firmware de LaMetric a 2.3.0\n* Soporte de Admin 5\n* Optimizaciones menores",
-        "pl": "NodeJS 14,5\n\nAdded Web extension to get My Data DIY object (ang.)\nAllow colon in My Data DIY object IDY (ang.)\n* Fixed length of My Data DIY frames (milliseconds) (ang.)\n* Updated LaMetric Firmware rekomenduje 2.3.0\n* Dropped Admin 5 support\n* Minor optymalizacja",
-        "uk": "NodeJS 14.5 необхідний\n\n* Додано розширення веб для отримання об'єкту My Data DIY\n* Дозвольна колонка в ідентифікаторі об'єкта My Data DIY\n* Фіксована тривалість рамок My Data DIY (milliсекунди)\n* Оновлено рекомендацію прошивки LaMetric до 2.3.0\n* Підтримка Dropped Admin 5\n* Мінорні оптимізації",
-        "zh-cn": "第14.5号申诉要求\n\n* 增加网站,以获得我的数据数据数据指标\n* 允许在我的数据数据中查出,IDY物体\n* 数据数据库的固定期限(米利斯)\n* 最新版的《拉梅克科学家》建议23.0\n* Dro Admin 5支助\n* 采矿优化"
       }
     },
     "titleLang": {
