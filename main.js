@@ -39,7 +39,6 @@ class LaMetric extends utils.Adapter {
         await this.subscribeStatesAsync('*');
 
         this.refreshState();
-        this.refreshApps();
 
         if (!this.config.lametricIp || !this.config.lametricToken) {
             this.log.error(`IP address and/or token not configured - please check instance configuration and restart`);
@@ -273,7 +272,7 @@ class LaMetric extends utils.Adapter {
                     .catch((error) => {
                         this.log.warn(`(device) Unable to execute action: ${error}`);
                     });
-            } else if (id.match(/.+\.apps\.[a-z0-9]{32}\..*$/g)) {
+            } else if (idNoNamespace.startsWith('apps.')) {
                 const matches = id.match(/.+\.apps\.([a-z0-9]{32})\.(.*)$/);
                 const widget = matches ? matches[1] : undefined;
                 const action = matches ? matches[2] : undefined;
@@ -281,7 +280,7 @@ class LaMetric extends utils.Adapter {
                 this.log.debug(`[widget] running action "${action}" on "${widget}"`);
 
                 const packState = await this.getStateAsync(`apps.${widget}.package`);
-                if (packState) {
+                if (action && packState) {
                     const pack = packState.val;
 
                     if (action === 'activate') {
@@ -312,7 +311,7 @@ class LaMetric extends utils.Adapter {
                             data.activate = true;
 
                             await this.setStateAsync(idNoNamespace, { val: state.val, ack: true }); // Confirm state change
-                        } else if (action.indexOf('clock.alarm') === 0) {
+                        } else if (action.startsWith('clock.alarm')) {
                             const caStates = await this.getStatesAsync(`apps.${widget}.clock.alarm.*`);
 
                             this.log.debug(`[widget] current clock.alarm states: ${JSON.stringify(caStates)}`);
@@ -342,7 +341,7 @@ class LaMetric extends utils.Adapter {
 
                         // END special Widgets
 
-                        this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/actions`, 'POST').catch((error) => {
+                        this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/actions`, 'POST', data).catch((error) => {
                             this.log.warn(`(device/apps/${pack}/widgets/${widget}/actions) Unable to execute action: ${error}`);
                         });
                     }
@@ -560,6 +559,8 @@ class LaMetric extends utils.Adapter {
             if (connection) {
                 // API was offline - refresh all states
                 this.log.debug('API is online');
+
+                this.refreshApps();
             } else {
                 this.log.debug('API is offline');
             }
