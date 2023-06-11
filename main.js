@@ -15,6 +15,10 @@ class LaMetric extends utils.Adapter {
         this.supportedVersion = '2.3.5'; // https://firmware.lametric.com
         this.displayedVersionWarning = false;
 
+        this.prefix = 'http';
+        this.port = 8080;
+
+        this.apiConnected = false;
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
 
@@ -30,10 +34,24 @@ class LaMetric extends utils.Adapter {
     }
 
     async onReady() {
+        this.setApiConnected(false);
+
         await this.subscribeStatesAsync('*');
 
         this.refreshState();
         this.refreshApps();
+
+        if (!this.config.lametricIp || !this.config.lametricToken) {
+            this.log.error(`IP address and/or token not configured - please check instance configuration and restart`);
+            return;
+        } else {
+            if (this.config.useHttps) {
+                this.prefix = 'https';
+                this.port = 4343;
+            }
+
+            this.log.info(`Starting - connecting to ${this.prefix}://${this.config.lametricIp}:${this.port}`);
+        }
 
         if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
             this.collectMyDataDiyForeignStates(this.config.mydatadiy);
@@ -179,17 +197,15 @@ class LaMetric extends utils.Adapter {
             } else if (idNoNamespace === 'apps.next') {
                 this.log.debug('switching to next app');
 
-                this.buildRequestAsync('device/apps/next', 'PUT')
-                    .catch((error) => {
-                        this.log.warn(`(device/apps/next) Unable to execute action: ${error}`);
-                    });
+                this.buildRequestAsync('device/apps/next', 'PUT').catch((error) => {
+                    this.log.warn(`(device/apps/next) Unable to execute action: ${error}`);
+                });
             } else if (idNoNamespace === 'apps.prev') {
                 this.log.debug('switching to previous app');
 
-                this.buildRequestAsync('device/apps/prev', 'PUT')
-                    .catch((error) => {
-                        this.log.warn(`(device/apps/prev) Unable to execute action: ${error}`);
-                    });
+                this.buildRequestAsync('device/apps/prev', 'PUT').catch((error) => {
+                    this.log.warn(`(device/apps/prev) Unable to execute action: ${error}`);
+                });
             } else if (idNoNamespace === 'meta.display.screensaver.enabled') {
                 this.log.debug(`changing screensaver state to ${state.val}`);
 
@@ -237,8 +253,7 @@ class LaMetric extends utils.Adapter {
                             mode: currentMode,
                             mode_params: currentModeParams,
                         },
-                    },
-                    )
+                    })
                         .then(async (response) => {
                             const content = response.data;
 
@@ -273,10 +288,9 @@ class LaMetric extends utils.Adapter {
                         if (action === 'activate') {
                             this.log.debug(`[widget] activating "${widget}" of package "${pack}"`);
 
-                            this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/activate`, 'PUT')
-                                .catch((error) => {
-                                    this.log.warn(`(device/apps/${pack}/widgets/${widget}/activate) Unable to execute action: ${error}`);
-                                });
+                            this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/activate`, 'PUT').catch((error) => {
+                                this.log.warn(`(device/apps/${pack}/widgets/${widget}/activate) Unable to execute action: ${error}`);
+                            });
                         } else {
                             this.log.debug(`[widget] running special action "${action}" on "${widget}" of package "${pack}"`);
 
@@ -329,10 +343,9 @@ class LaMetric extends utils.Adapter {
 
                             // END special Widgets
 
-                            this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/actions`, 'POST')
-                                .catch((error) => {
-                                    this.log.warn(`(device/apps/${pack}/widgets/${widget}/actions) Unable to execute action: ${error}`);
-                                });
+                            this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/actions`, 'POST').catch((error) => {
+                                this.log.warn(`(device/apps/${pack}/widgets/${widget}/actions) Unable to execute action: ${error}`);
+                            });
                         }
                     }
                 });
@@ -541,6 +554,20 @@ class LaMetric extends utils.Adapter {
         }
     }
 
+    async setApiConnected(connection) {
+        if (connection !== this.apiConnected) {
+            this.setStateChangedAsync('info.connection', { val: connection, ack: true });
+            this.apiConnected = connection;
+
+            if (connection) {
+                // API was offline - refresh all states
+                this.log.debug('API is online');
+            } else {
+                this.log.debug('API is offline');
+            }
+        }
+    }
+
     refreshState() {
         this.log.debug('refreshing device state');
 
@@ -548,7 +575,7 @@ class LaMetric extends utils.Adapter {
             .then(async (response) => {
                 const content = response.data;
 
-                await this.setStateAsync('info.connection', { val: true, ack: true });
+                this.setApiConnected(true);
 
                 if (this.isNewerVersion(content.os_version, this.supportedVersion) && !this.displayedVersionWarning) {
                     this.log.warn(`You should update your LaMetric Time - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.os_version}`);
@@ -586,38 +613,39 @@ class LaMetric extends utils.Adapter {
                 await this.setStateChangedAsync('meta.wifi.mode', { val: content.wifi.mode, ack: true });
                 await this.setStateChangedAsync('meta.wifi.netmask', { val: content.wifi.netmask, ack: true });
                 await this.setStateChangedAsync('meta.wifi.strength', { val: content.wifi.strength, ack: true });
+
+                this.buildRequestAsync('device/display', 'GET')
+                    .then(async (response) => {
+                        const content = response.data;
+
+                        await this.setStateChangedAsync('meta.display.brightness', { val: content.brightness, ack: true });
+                        await this.setStateChangedAsync('meta.display.brightnessMin', { val: content.brightness_limit.min, ack: true });
+                        await this.setStateChangedAsync('meta.display.brightnessMax', { val: content.brightness_limit.max, ack: true });
+                        await this.setStateChangedAsync('meta.display.brightnessAuto', { val: content.brightness_mode === 'auto', ack: true });
+                        await this.setStateChangedAsync('meta.display.brightnessMode', { val: content.brightness_mode, ack: true });
+
+                        await this.setStateChangedAsync('meta.display.width', { val: content.width, ack: true });
+                        await this.setStateChangedAsync('meta.display.height', { val: content.height, ack: true });
+                        await this.setStateChangedAsync('meta.display.type', { val: content.type, ack: true });
+
+                        await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.screensaver.enabled, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.screensaver.widget, ack: true });
+
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: content.screensaver.modes.time_based.enabled, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: content.screensaver.modes.time_based.start_time, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: content.screensaver.modes.time_based.local_start_time, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: content.screensaver.modes.time_based.end_time, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: content.screensaver.modes.time_based.local_end_time, ack: true });
+
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.screensaver.modes.when_dark.enabled, ack: true });
+                    })
+                    .catch((error) => {
+                        this.log.warn(`(device) Unable to execute action: ${error}`);
+                    });
             })
             .catch((error) => {
                 this.log.warn(`(device) Unable to execute action: ${error}`);
-            });
-
-        this.buildRequestAsync('device/display', 'GET')
-            .then(async (response) => {
-                const content = response.data;
-
-                await this.setStateChangedAsync('meta.display.brightness', { val: content.brightness, ack: true });
-                await this.setStateChangedAsync('meta.display.brightnessMin', { val: content.brightness_limit.min, ack: true });
-                await this.setStateChangedAsync('meta.display.brightnessMax', { val: content.brightness_limit.max, ack: true });
-                await this.setStateChangedAsync('meta.display.brightnessAuto', { val: content.brightness_mode === 'auto', ack: true });
-                await this.setStateChangedAsync('meta.display.brightnessMode', { val: content.brightness_mode, ack: true });
-
-                await this.setStateChangedAsync('meta.display.width', { val: content.width, ack: true });
-                await this.setStateChangedAsync('meta.display.height', { val: content.height, ack: true });
-                await this.setStateChangedAsync('meta.display.type', { val: content.type, ack: true });
-
-                await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.screensaver.enabled, ack: true });
-                await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.screensaver.widget, ack: true });
-
-                await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: content.screensaver.modes.time_based.enabled, ack: true });
-                await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: content.screensaver.modes.time_based.start_time, ack: true });
-                await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: content.screensaver.modes.time_based.local_start_time, ack: true });
-                await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: content.screensaver.modes.time_based.end_time, ack: true });
-                await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: content.screensaver.modes.time_based.local_end_time, ack: true });
-
-                await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.screensaver.modes.when_dark.enabled, ack: true });
-            })
-            .catch((error) => {
-                this.log.warn(`(device) Unable to execute action: ${error}`);
+                this.setApiConnected(false);
             });
 
         this.log.debug('re-creating refresh state timeout');
@@ -630,360 +658,61 @@ class LaMetric extends utils.Adapter {
     }
 
     refreshApps() {
-        this.buildRequestAsync('device/apps', 'GET')
-            .then(async (response) => {
-                const content = response.data;
+        if (this.apiConnected) {
+            this.buildRequestAsync('device/apps', 'GET')
+                .then(async (response) => {
+                    const content = response.data;
 
-                const appPath = 'apps';
+                    const appPath = 'apps';
 
-                this.getChannelsOf(appPath, async (err, states) => {
-                    const appsAll = [];
-                    const appsKeep = [];
+                    this.getChannelsOf(appPath, async (err, states) => {
+                        const appsAll = [];
+                        const appsKeep = [];
 
-                    // Collect all apps
-                    if (states) {
-                        for (let i = 0; i < states.length; i++) {
-                            const id = this.removeNamespace(states[i]._id);
+                        // Collect all apps
+                        if (states) {
+                            for (let i = 0; i < states.length; i++) {
+                                const id = this.removeNamespace(states[i]._id);
 
-                            // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
-                            if (id.split('.').length === 2) {
-                                appsAll.push(id);
+                                // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
+                                if (id.split('.').length === 2) {
+                                    appsAll.push(id);
+                                }
                             }
                         }
-                    }
 
-                    // Create new app structure
-                    for (const p of Object.keys(content)) {
-                        const pack = content[p];
+                        // Create new app structure
+                        for (const p of Object.keys(content)) {
+                            const pack = content[p];
 
-                        for (const uuid of Object.keys(pack.widgets)) {
-                            const widget = pack.widgets[uuid];
+                            for (const uuid of Object.keys(pack.widgets)) {
+                                const widget = pack.widgets[uuid];
 
-                            appsKeep.push(`${appPath}.${uuid}`);
-                            this.log.debug(`[apps] found (keep): ${appPath}.${uuid}`);
+                                appsKeep.push(`${appPath}.${uuid}`);
+                                this.log.debug(`[apps] found (keep): ${appPath}.${uuid}`);
 
-                            await this.extendObjectAsync(`${appPath}.${uuid}`, {
-                                type: 'channel',
-                                common: {
-                                    name: `Widget ${pack.package} (${pack.version})`,
-                                },
-                                native: {},
-                            });
-
-                            await this.extendObjectAsync(`${appPath}.${uuid}.activate`, {
-                                type: 'state',
-                                common: {
-                                    name: {
-                                        en: 'Activate',
-                                        de: 'Aktivieren',
-                                        ru: 'Активировать',
-                                        pt: 'Ativar',
-                                        nl: 'Activeren',
-                                        fr: 'Activer',
-                                        it: 'Attivare',
-                                        es: 'Activar',
-                                        pl: 'Aktywuj',
-                                        'zh-cn': '启用',
-                                    },
-                                    type: 'boolean',
-                                    role: 'button',
-                                    read: false,
-                                    write: true,
-                                },
-                                native: {},
-                            });
-
-                            await this.setObjectNotExistsAsync(`${appPath}.${uuid}.index`, {
-                                type: 'state',
-                                common: {
-                                    name: {
-                                        en: 'Index',
-                                        de: 'Index',
-                                        ru: 'Показатель',
-                                        pt: 'Índice',
-                                        nl: 'Inhoudsopgave',
-                                        fr: 'Indice',
-                                        it: 'Indice',
-                                        es: 'Índice',
-                                        pl: 'Indeks',
-                                        'zh-cn': '指数',
-                                    },
-                                    type: 'number',
-                                    role: 'value',
-                                    read: true,
-                                    write: false,
-                                },
-                                native: {},
-                            });
-                            await this.setStateChangedAsync(`${appPath}.${uuid}.index`, { val: widget.index, ack: true });
-
-                            await this.setObjectNotExistsAsync(`${appPath}.${uuid}.package`, {
-                                type: 'state',
-                                common: {
-                                    name: {
-                                        en: 'Package',
-                                        de: 'Paket',
-                                        ru: 'Упаковка',
-                                        pt: 'Pacote',
-                                        nl: 'Pakket',
-                                        fr: 'Emballer',
-                                        it: 'Pacchetto',
-                                        es: 'Paquete',
-                                        pl: 'Pakiet',
-                                        'zh-cn': '包裹',
-                                    },
-                                    type: 'string',
-                                    role: 'text',
-                                    read: true,
-                                    write: false,
-                                },
-                                native: {},
-                            });
-                            await this.setStateChangedAsync(`${appPath}.${uuid}.package`, { val: pack.package, ack: true });
-
-                            await this.setObjectNotExistsAsync(`${appPath}.${uuid}.vendor`, {
-                                type: 'state',
-                                common: {
-                                    name: {
-                                        en: 'Vendor',
-                                        de: 'Hersteller',
-                                        ru: 'Продавец',
-                                        pt: 'Fornecedor',
-                                        nl: 'Leverancier',
-                                        fr: 'Vendeur',
-                                        it: 'Venditore',
-                                        es: 'Vendedor',
-                                        pl: 'Sprzedawca',
-                                        'zh-cn': '小贩',
-                                    },
-                                    type: 'string',
-                                    role: 'text',
-                                    read: true,
-                                    write: false,
-                                },
-                                native: {},
-                            });
-                            await this.setStateChangedAsync(`${appPath}.${uuid}.vendor`, { val: pack.vendor, ack: true });
-
-                            await this.setObjectNotExistsAsync(`${appPath}.${uuid}.version`, {
-                                type: 'state',
-                                common: {
-                                    name: {
-                                        en: 'Version',
-                                        de: 'Version',
-                                        ru: 'Версия',
-                                        pt: 'Versão',
-                                        nl: 'Versie',
-                                        fr: 'Version',
-                                        it: 'Versione',
-                                        es: 'Versión',
-                                        pl: 'Wersja',
-                                        'zh-cn': '版本',
-                                    },
-                                    type: 'string',
-                                    role: 'text',
-                                    read: true,
-                                    write: false,
-                                },
-                                native: {},
-                            });
-                            await this.setStateChangedAsync(`${appPath}.${uuid}.version`, { val: pack.version, ack: true });
-
-                            await this.setObjectNotExistsAsync(`${appPath}.${uuid}.visible`, {
-                                type: 'state',
-                                common: {
-                                    name: {
-                                        en: 'Visible',
-                                        de: 'Sichtbar',
-                                        ru: 'Видимый',
-                                        pt: 'Visível',
-                                        nl: 'Vertaling:',
-                                        fr: 'Visible',
-                                        it: 'Visibile',
-                                        es: 'Visible',
-                                        pl: 'Widoczny',
-                                        uk: 'Вибрані',
-                                        'zh-cn': '不可抗辩',
-                                    },
-                                    type: 'boolean',
-                                    role: 'indicator',
-                                    read: true,
-                                    write: false,
-                                },
-                                native: {},
-                            });
-                            await this.setStateChangedAsync(`${appPath}.${uuid}.visible`, { val: widget.visible, ack: true });
-
-                            // START special Widgets
-
-                            if (pack.package === 'com.lametric.clock') {
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock`, {
+                                await this.extendObjectAsync(`${appPath}.${uuid}`, {
                                     type: 'channel',
                                     common: {
-                                        name: {
-                                            en: 'Clock',
-                                            de: 'Uhr',
-                                            ru: 'Часы',
-                                            pt: 'Relógio',
-                                            nl: 'Klok',
-                                            fr: 'Horloge',
-                                            it: 'Orologio',
-                                            es: 'Reloj',
-                                            pl: 'Zegar',
-                                            'zh-cn': '钟',
-                                        },
-                                    },
-                                    native: {
-                                        package: pack.package,
-                                    },
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.clockface`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Clockface (Base64)',
-                                            de: 'Zifferblatt (Base64)',
-                                            ru: 'Циферблат (Base64)',
-                                            pt: 'Face do relógio (Base64)',
-                                            nl: 'Wijzerplaat (Base64)',
-                                            fr: "Cadran d'horloge (Base64)",
-                                            it: 'Quadrante orologio (Base64)',
-                                            es: 'Esfera de reloj (Base64)',
-                                            pl: 'Tarcza zegara (Base64)',
-                                            'zh-cn': '表盘 (Base64)',
-                                        },
-                                        type: 'string',
-                                        role: 'state',
-                                        read: true,
-                                        write: true,
+                                        name: `Widget ${pack.package} (${pack.version})`,
                                     },
                                     native: {},
                                 });
 
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.alarm`, {
-                                    type: 'channel',
-                                    common: {
-                                        name: {
-                                            en: 'Alarm',
-                                            de: 'Alarm',
-                                            ru: 'Тревога',
-                                            pt: 'Alarme',
-                                            nl: 'Alarm',
-                                            fr: 'Alarme',
-                                            it: 'Allarme',
-                                            es: 'Alarma',
-                                            pl: 'Alarm',
-                                            'zh-cn': '警报',
-                                        },
-                                    },
-                                    native: {},
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.alarm.enabled`, {
+                                await this.extendObjectAsync(`${appPath}.${uuid}.activate`, {
                                     type: 'state',
                                     common: {
                                         name: {
-                                            en: 'Alarm Enabled',
-                                            de: 'Alarm aktiviert',
-                                            ru: 'Тревога включена',
-                                            pt: 'Alarme Habilitado',
-                                            nl: 'Alarm ingeschakeld',
-                                            fr: 'Alarme activée',
-                                            it: 'Allarme abilitato',
-                                            es: 'Alarma habilitada',
-                                            pl: 'Alarm włączony',
-                                            'zh-cn': '警报已启用',
-                                        },
-                                        type: 'boolean',
-                                        role: 'switch.enable',
-                                        read: true,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.alarm.time`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Alarm Time',
-                                            de: 'Weckzeit',
-                                            ru: 'Время будильника',
-                                            pt: 'Hora do alarme',
-                                            nl: 'Alarm tijd',
-                                            fr: "Heure de l'alarme",
-                                            it: 'Ora della sveglia',
-                                            es: 'Hora de alarma',
-                                            pl: 'Czas alarmu',
-                                            'zh-cn': '闹钟时间',
-                                        },
-                                        type: 'string',
-                                        role: 'state',
-                                        read: true,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.alarm.wake_with_radio`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'with Radio',
-                                            de: 'mit Radio',
-                                            ru: 'с радио',
-                                            pt: 'com rádio',
-                                            nl: 'met radio',
-                                            fr: 'avec radio',
-                                            it: 'con Radio',
-                                            es: 'con radio',
-                                            pl: 'z radiem',
-                                            'zh-cn': '带收音机',
-                                        },
-                                        type: 'boolean',
-                                        role: 'switch.enable',
-                                        read: true,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-                            } else if (pack.package === 'com.lametric.radio') {
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio`, {
-                                    type: 'channel',
-                                    common: {
-                                        name: {
-                                            en: 'Radio',
-                                            de: 'Radio',
-                                            ru: 'Радио',
-                                            pt: 'Rádio',
-                                            nl: 'Radio',
-                                            fr: 'Radio',
-                                            it: 'Radio',
-                                            es: 'Radio',
-                                            pl: 'Radio',
-                                            'zh-cn': '收音机',
-                                        },
-                                    },
-                                    native: {
-                                        package: pack.package,
-                                    },
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio.play`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Play Radio',
-                                            de: 'Radio starten',
-                                            ru: 'Слушать радио',
-                                            pt: 'Tocar rádio',
-                                            nl: 'Radio afspelen',
-                                            fr: 'Écouter la radio',
-                                            it: 'Riproduci radio',
-                                            es: 'Reproducir radio',
-                                            pl: 'Włącz radio',
-                                            'zh-cn': '播放广播',
+                                            en: 'Activate',
+                                            de: 'Aktivieren',
+                                            ru: 'Активировать',
+                                            pt: 'Ativar',
+                                            nl: 'Activeren',
+                                            fr: 'Activer',
+                                            it: 'Attivare',
+                                            es: 'Activar',
+                                            pl: 'Aktywuj',
+                                            'zh-cn': '启用',
                                         },
                                         type: 'boolean',
                                         role: 'button',
@@ -993,350 +722,651 @@ class LaMetric extends utils.Adapter {
                                     native: {},
                                 });
 
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio.stop`, {
+                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.index`, {
                                     type: 'state',
                                     common: {
                                         name: {
-                                            en: 'Stop Radio',
-                                            de: 'Radio stoppen',
-                                            ru: 'Остановить радио',
-                                            pt: 'Parar Rádio',
-                                            nl: 'Radio stoppen',
-                                            fr: 'Arrêter la radio',
-                                            it: 'Ferma la radio',
-                                            es: 'Detener radio',
-                                            pl: 'Zatrzymaj radio',
-                                            'zh-cn': '停止广播',
-                                        },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio.next`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Next Radio',
-                                            de: 'Nächstes Radio',
-                                            ru: 'Следующее радио',
-                                            pt: 'Next Radio',
-                                            nl: 'volgende radio',
-                                            fr: 'Radio suivante',
-                                            it: 'Prossima Radio',
-                                            es: 'Siguiente radio',
-                                            pl: 'Następne radio',
-                                            'zh-cn': '下一个电台',
-                                        },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio.prev`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Previous Radio',
-                                            de: 'Vorheriges Radio',
-                                            ru: 'Предыдущее радио',
-                                            pt: 'Rádio Anterior',
-                                            nl: 'Vorige radio',
-                                            fr: 'Radio précédente',
-                                            it: 'Radio precedente',
-                                            es: 'Radio anterior',
-                                            pl: 'Poprzednie radio',
-                                            'zh-cn': '以前的电台',
-                                        },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-                            } else if (pack.package === 'com.lametric.stopwatch') {
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.stopwatch`, {
-                                    type: 'channel',
-                                    common: {
-                                        name: {
-                                            en: 'Stopwatch',
-                                            de: 'Stoppuhr',
-                                            ru: 'Секундомер',
-                                            pt: 'Cronômetro',
-                                            nl: 'Stopwatch',
-                                            fr: 'Chronomètre',
-                                            it: 'Cronometro',
-                                            es: 'Cronógrafo',
-                                            pl: 'Stoper',
-                                            'zh-cn': '跑表',
-                                        },
-                                    },
-                                    native: {
-                                        package: pack.package,
-                                    },
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.stopwatch.start`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Start Stopwatch',
-                                            de: 'Stoppuhr starten',
-                                            ru: 'Запустить секундомер',
-                                            pt: 'Iniciar cronômetro',
-                                            nl: 'Stopwatch starten',
-                                            fr: 'Démarrer le chronomètre',
-                                            it: 'Avvia cronometro',
-                                            es: 'Iniciar cronómetro',
-                                            pl: 'Uruchom stoper',
-                                            'zh-cn': '启动秒表',
-                                        },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.stopwatch.pause`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Pause Stopwatch',
-                                            de: 'Stoppuhr pausieren',
-                                            ru: 'Пауза секундомера',
-                                            pt: 'Pausar cronômetro',
-                                            nl: 'Stopwatch pauzeren',
-                                            fr: 'Suspendre le chronomètre',
-                                            it: 'Metti in pausa il cronometro',
-                                            es: 'Pausar cronómetro',
-                                            pl: 'Wstrzymaj stoper',
-                                            'zh-cn': '暂停秒表',
-                                        },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.stopwatch.reset`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Reset Stopwatch',
-                                            de: 'Stoppuhr zurücksetzen',
-                                            ru: 'Сбросить секундомер',
-                                            pt: 'Reiniciar cronômetro',
-                                            nl: 'Stopwatch resetten',
-                                            fr: 'Réinitialiser le chronomètre',
-                                            it: 'Ripristina cronometro',
-                                            es: 'Restablecer cronómetro',
-                                            pl: 'Zresetuj stoper',
-                                            'zh-cn': '重置秒表',
-                                        },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-                            } else if (pack.package === 'com.lametric.weather') {
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.weather`, {
-                                    type: 'channel',
-                                    common: {
-                                        name: {
-                                            en: 'Weather',
-                                            de: 'Wetter',
-                                            ru: 'Погода',
-                                            pt: 'Clima',
-                                            nl: 'Weer',
-                                            fr: "La'météo",
-                                            it: "Tempo'metereologico",
-                                            es: 'Clima',
-                                            pl: 'Pogoda',
-                                            'zh-cn': '天气',
-                                        },
-                                    },
-                                    native: {
-                                        package: pack.package,
-                                    },
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.weather.forecast`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Weather Forecast',
-                                            de: 'Wettervorhersage',
-                                            ru: 'Прогноз погоды',
-                                            pt: 'Previsão do tempo',
-                                            nl: 'Weervoorspelling',
-                                            fr: 'Prévisions météorologiques',
-                                            it: 'Previsioni del tempo',
-                                            es: 'Pronóstico del tiempo',
-                                            pl: 'Prognoza pogody',
-                                            'zh-cn': '天气预报',
-                                        },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
-                                    },
-                                    native: {},
-                                });
-                            } else if (pack.package === 'com.lametric.countdown') {
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown`, {
-                                    type: 'channel',
-                                    common: {
-                                        name: {
-                                            en: 'Countdown',
-                                            de: 'Countdown',
-                                            ru: 'Обратный отсчет',
-                                            pt: 'Contagem regressiva',
-                                            nl: 'Aftellen',
-                                            fr: 'Compte à rebours',
-                                            it: 'Conto alla rovescia',
-                                            es: 'cuenta regresiva',
-                                            pl: 'Odliczanie',
-                                            'zh-cn': '倒数',
-                                        },
-                                    },
-                                    native: {
-                                        package: pack.package,
-                                    },
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown.configure`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Countdown Time',
-                                            de: 'Countdown-Zeit',
-                                            ru: 'Обратный отсчет',
-                                            pt: 'Tempo de contagem regressiva',
-                                            nl: 'Afteltijd',
-                                            fr: 'Temps de compte à rebours',
-                                            it: 'Conto alla rovescia',
-                                            es: 'Tiempo de cuenta regresiva',
-                                            pl: 'Czas odliczania',
-                                            'zh-cn': '倒计时时间',
+                                            en: 'Index',
+                                            de: 'Index',
+                                            ru: 'Показатель',
+                                            pt: 'Índice',
+                                            nl: 'Inhoudsopgave',
+                                            fr: 'Indice',
+                                            it: 'Indice',
+                                            es: 'Índice',
+                                            pl: 'Indeks',
+                                            'zh-cn': '指数',
                                         },
                                         type: 'number',
                                         role: 'value',
                                         read: true,
-                                        write: true,
-                                        unit: 'sec',
+                                        write: false,
                                     },
                                     native: {},
                                 });
+                                await this.setStateChangedAsync(`${appPath}.${uuid}.index`, { val: widget.index, ack: true });
 
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown.start`, {
+                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.package`, {
                                     type: 'state',
                                     common: {
                                         name: {
-                                            en: 'Countdown Start',
-                                            de: 'Countdown-Start',
-                                            ru: 'Обратный отсчет',
-                                            pt: 'Início da contagem regressiva',
-                                            nl: 'Aftellen starten',
-                                            fr: 'Début du compte à rebours',
-                                            it: 'Inizio conto alla rovescia',
-                                            es: 'Inicio de la cuenta regresiva',
-                                            pl: 'Rozpoczęcie odliczania',
-                                            'zh-cn': '倒计时开始',
+                                            en: 'Package',
+                                            de: 'Paket',
+                                            ru: 'Упаковка',
+                                            pt: 'Pacote',
+                                            nl: 'Pakket',
+                                            fr: 'Emballer',
+                                            it: 'Pacchetto',
+                                            es: 'Paquete',
+                                            pl: 'Pakiet',
+                                            'zh-cn': '包裹',
                                         },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
+                                        type: 'string',
+                                        role: 'text',
+                                        read: true,
+                                        write: false,
                                     },
                                     native: {},
                                 });
+                                await this.setStateChangedAsync(`${appPath}.${uuid}.package`, { val: pack.package, ack: true });
 
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown.pause`, {
+                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.vendor`, {
                                     type: 'state',
                                     common: {
                                         name: {
-                                            en: 'Countdown Pause',
-                                            de: 'Countdown-Pause',
-                                            ru: 'Обратный отсчет Пауза',
-                                            pt: 'Pausa de contagem regressiva',
-                                            nl: 'Aftellen pauze',
-                                            fr: 'Pause du compte à rebours',
-                                            it: 'Pausa conto alla rovescia',
-                                            es: 'Pausa de cuenta regresiva',
-                                            pl: 'Pauza odliczania',
-                                            'zh-cn': '倒计时暂停',
+                                            en: 'Vendor',
+                                            de: 'Hersteller',
+                                            ru: 'Продавец',
+                                            pt: 'Fornecedor',
+                                            nl: 'Leverancier',
+                                            fr: 'Vendeur',
+                                            it: 'Venditore',
+                                            es: 'Vendedor',
+                                            pl: 'Sprzedawca',
+                                            'zh-cn': '小贩',
                                         },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
+                                        type: 'string',
+                                        role: 'text',
+                                        read: true,
+                                        write: false,
                                     },
                                     native: {},
                                 });
+                                await this.setStateChangedAsync(`${appPath}.${uuid}.vendor`, { val: pack.vendor, ack: true });
 
-                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown.reset`, {
+                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.version`, {
                                     type: 'state',
                                     common: {
                                         name: {
-                                            en: 'Countdown Reset',
-                                            de: 'Countdown-Reset',
-                                            ru: 'Обратный отсчет Сброс',
-                                            pt: 'Reinicialização da contagem regressiva',
-                                            nl: 'Aftellen resetten',
-                                            fr: 'Réinitialisation du compte à rebours',
-                                            it: 'Ripristino conto alla rovescia',
-                                            es: 'Reinicio de la cuenta regresiva',
-                                            pl: 'Resetowanie odliczania',
-                                            'zh-cn': '倒计时重置',
+                                            en: 'Version',
+                                            de: 'Version',
+                                            ru: 'Версия',
+                                            pt: 'Versão',
+                                            nl: 'Versie',
+                                            fr: 'Version',
+                                            it: 'Versione',
+                                            es: 'Versión',
+                                            pl: 'Wersja',
+                                            'zh-cn': '版本',
                                         },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
+                                        type: 'string',
+                                        role: 'text',
+                                        read: true,
+                                        write: false,
                                     },
                                     native: {},
                                 });
+                                await this.setStateChangedAsync(`${appPath}.${uuid}.version`, { val: pack.version, ack: true });
+
+                                await this.setObjectNotExistsAsync(`${appPath}.${uuid}.visible`, {
+                                    type: 'state',
+                                    common: {
+                                        name: {
+                                            en: 'Visible',
+                                            de: 'Sichtbar',
+                                            ru: 'Видимый',
+                                            pt: 'Visível',
+                                            nl: 'Vertaling:',
+                                            fr: 'Visible',
+                                            it: 'Visibile',
+                                            es: 'Visible',
+                                            pl: 'Widoczny',
+                                            uk: 'Вибрані',
+                                            'zh-cn': '不可抗辩',
+                                        },
+                                        type: 'boolean',
+                                        role: 'indicator',
+                                        read: true,
+                                        write: false,
+                                    },
+                                    native: {},
+                                });
+                                await this.setStateChangedAsync(`${appPath}.${uuid}.visible`, { val: widget.visible, ack: true });
+
+                                // START special Widgets
+
+                                if (pack.package === 'com.lametric.clock') {
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock`, {
+                                        type: 'channel',
+                                        common: {
+                                            name: {
+                                                en: 'Clock',
+                                                de: 'Uhr',
+                                                ru: 'Часы',
+                                                pt: 'Relógio',
+                                                nl: 'Klok',
+                                                fr: 'Horloge',
+                                                it: 'Orologio',
+                                                es: 'Reloj',
+                                                pl: 'Zegar',
+                                                'zh-cn': '钟',
+                                            },
+                                        },
+                                        native: {
+                                            package: pack.package,
+                                        },
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.clockface`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Clockface (Base64)',
+                                                de: 'Zifferblatt (Base64)',
+                                                ru: 'Циферблат (Base64)',
+                                                pt: 'Face do relógio (Base64)',
+                                                nl: 'Wijzerplaat (Base64)',
+                                                fr: "Cadran d'horloge (Base64)",
+                                                it: 'Quadrante orologio (Base64)',
+                                                es: 'Esfera de reloj (Base64)',
+                                                pl: 'Tarcza zegara (Base64)',
+                                                'zh-cn': '表盘 (Base64)',
+                                            },
+                                            type: 'string',
+                                            role: 'state',
+                                            read: true,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.alarm`, {
+                                        type: 'channel',
+                                        common: {
+                                            name: {
+                                                en: 'Alarm',
+                                                de: 'Alarm',
+                                                ru: 'Тревога',
+                                                pt: 'Alarme',
+                                                nl: 'Alarm',
+                                                fr: 'Alarme',
+                                                it: 'Allarme',
+                                                es: 'Alarma',
+                                                pl: 'Alarm',
+                                                'zh-cn': '警报',
+                                            },
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.alarm.enabled`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Alarm Enabled',
+                                                de: 'Alarm aktiviert',
+                                                ru: 'Тревога включена',
+                                                pt: 'Alarme Habilitado',
+                                                nl: 'Alarm ingeschakeld',
+                                                fr: 'Alarme activée',
+                                                it: 'Allarme abilitato',
+                                                es: 'Alarma habilitada',
+                                                pl: 'Alarm włączony',
+                                                'zh-cn': '警报已启用',
+                                            },
+                                            type: 'boolean',
+                                            role: 'switch.enable',
+                                            read: true,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.alarm.time`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Alarm Time',
+                                                de: 'Weckzeit',
+                                                ru: 'Время будильника',
+                                                pt: 'Hora do alarme',
+                                                nl: 'Alarm tijd',
+                                                fr: "Heure de l'alarme",
+                                                it: 'Ora della sveglia',
+                                                es: 'Hora de alarma',
+                                                pl: 'Czas alarmu',
+                                                'zh-cn': '闹钟时间',
+                                            },
+                                            type: 'string',
+                                            role: 'state',
+                                            read: true,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.clock.alarm.wake_with_radio`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'with Radio',
+                                                de: 'mit Radio',
+                                                ru: 'с радио',
+                                                pt: 'com rádio',
+                                                nl: 'met radio',
+                                                fr: 'avec radio',
+                                                it: 'con Radio',
+                                                es: 'con radio',
+                                                pl: 'z radiem',
+                                                'zh-cn': '带收音机',
+                                            },
+                                            type: 'boolean',
+                                            role: 'switch.enable',
+                                            read: true,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+                                } else if (pack.package === 'com.lametric.radio') {
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio`, {
+                                        type: 'channel',
+                                        common: {
+                                            name: {
+                                                en: 'Radio',
+                                                de: 'Radio',
+                                                ru: 'Радио',
+                                                pt: 'Rádio',
+                                                nl: 'Radio',
+                                                fr: 'Radio',
+                                                it: 'Radio',
+                                                es: 'Radio',
+                                                pl: 'Radio',
+                                                'zh-cn': '收音机',
+                                            },
+                                        },
+                                        native: {
+                                            package: pack.package,
+                                        },
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio.play`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Play Radio',
+                                                de: 'Radio starten',
+                                                ru: 'Слушать радио',
+                                                pt: 'Tocar rádio',
+                                                nl: 'Radio afspelen',
+                                                fr: 'Écouter la radio',
+                                                it: 'Riproduci radio',
+                                                es: 'Reproducir radio',
+                                                pl: 'Włącz radio',
+                                                'zh-cn': '播放广播',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio.stop`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Stop Radio',
+                                                de: 'Radio stoppen',
+                                                ru: 'Остановить радио',
+                                                pt: 'Parar Rádio',
+                                                nl: 'Radio stoppen',
+                                                fr: 'Arrêter la radio',
+                                                it: 'Ferma la radio',
+                                                es: 'Detener radio',
+                                                pl: 'Zatrzymaj radio',
+                                                'zh-cn': '停止广播',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio.next`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Next Radio',
+                                                de: 'Nächstes Radio',
+                                                ru: 'Следующее радио',
+                                                pt: 'Next Radio',
+                                                nl: 'volgende radio',
+                                                fr: 'Radio suivante',
+                                                it: 'Prossima Radio',
+                                                es: 'Siguiente radio',
+                                                pl: 'Następne radio',
+                                                'zh-cn': '下一个电台',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.radio.prev`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Previous Radio',
+                                                de: 'Vorheriges Radio',
+                                                ru: 'Предыдущее радио',
+                                                pt: 'Rádio Anterior',
+                                                nl: 'Vorige radio',
+                                                fr: 'Radio précédente',
+                                                it: 'Radio precedente',
+                                                es: 'Radio anterior',
+                                                pl: 'Poprzednie radio',
+                                                'zh-cn': '以前的电台',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+                                } else if (pack.package === 'com.lametric.stopwatch') {
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.stopwatch`, {
+                                        type: 'channel',
+                                        common: {
+                                            name: {
+                                                en: 'Stopwatch',
+                                                de: 'Stoppuhr',
+                                                ru: 'Секундомер',
+                                                pt: 'Cronômetro',
+                                                nl: 'Stopwatch',
+                                                fr: 'Chronomètre',
+                                                it: 'Cronometro',
+                                                es: 'Cronógrafo',
+                                                pl: 'Stoper',
+                                                'zh-cn': '跑表',
+                                            },
+                                        },
+                                        native: {
+                                            package: pack.package,
+                                        },
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.stopwatch.start`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Start Stopwatch',
+                                                de: 'Stoppuhr starten',
+                                                ru: 'Запустить секундомер',
+                                                pt: 'Iniciar cronômetro',
+                                                nl: 'Stopwatch starten',
+                                                fr: 'Démarrer le chronomètre',
+                                                it: 'Avvia cronometro',
+                                                es: 'Iniciar cronómetro',
+                                                pl: 'Uruchom stoper',
+                                                'zh-cn': '启动秒表',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.stopwatch.pause`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Pause Stopwatch',
+                                                de: 'Stoppuhr pausieren',
+                                                ru: 'Пауза секундомера',
+                                                pt: 'Pausar cronômetro',
+                                                nl: 'Stopwatch pauzeren',
+                                                fr: 'Suspendre le chronomètre',
+                                                it: 'Metti in pausa il cronometro',
+                                                es: 'Pausar cronómetro',
+                                                pl: 'Wstrzymaj stoper',
+                                                'zh-cn': '暂停秒表',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.stopwatch.reset`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Reset Stopwatch',
+                                                de: 'Stoppuhr zurücksetzen',
+                                                ru: 'Сбросить секундомер',
+                                                pt: 'Reiniciar cronômetro',
+                                                nl: 'Stopwatch resetten',
+                                                fr: 'Réinitialiser le chronomètre',
+                                                it: 'Ripristina cronometro',
+                                                es: 'Restablecer cronómetro',
+                                                pl: 'Zresetuj stoper',
+                                                'zh-cn': '重置秒表',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+                                } else if (pack.package === 'com.lametric.weather') {
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.weather`, {
+                                        type: 'channel',
+                                        common: {
+                                            name: {
+                                                en: 'Weather',
+                                                de: 'Wetter',
+                                                ru: 'Погода',
+                                                pt: 'Clima',
+                                                nl: 'Weer',
+                                                fr: "La'météo",
+                                                it: "Tempo'metereologico",
+                                                es: 'Clima',
+                                                pl: 'Pogoda',
+                                                'zh-cn': '天气',
+                                            },
+                                        },
+                                        native: {
+                                            package: pack.package,
+                                        },
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.weather.forecast`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Weather Forecast',
+                                                de: 'Wettervorhersage',
+                                                ru: 'Прогноз погоды',
+                                                pt: 'Previsão do tempo',
+                                                nl: 'Weervoorspelling',
+                                                fr: 'Prévisions météorologiques',
+                                                it: 'Previsioni del tempo',
+                                                es: 'Pronóstico del tiempo',
+                                                pl: 'Prognoza pogody',
+                                                'zh-cn': '天气预报',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+                                } else if (pack.package === 'com.lametric.countdown') {
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown`, {
+                                        type: 'channel',
+                                        common: {
+                                            name: {
+                                                en: 'Countdown',
+                                                de: 'Countdown',
+                                                ru: 'Обратный отсчет',
+                                                pt: 'Contagem regressiva',
+                                                nl: 'Aftellen',
+                                                fr: 'Compte à rebours',
+                                                it: 'Conto alla rovescia',
+                                                es: 'cuenta regresiva',
+                                                pl: 'Odliczanie',
+                                                'zh-cn': '倒数',
+                                            },
+                                        },
+                                        native: {
+                                            package: pack.package,
+                                        },
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown.configure`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Countdown Time',
+                                                de: 'Countdown-Zeit',
+                                                ru: 'Обратный отсчет',
+                                                pt: 'Tempo de contagem regressiva',
+                                                nl: 'Afteltijd',
+                                                fr: 'Temps de compte à rebours',
+                                                it: 'Conto alla rovescia',
+                                                es: 'Tiempo de cuenta regresiva',
+                                                pl: 'Czas odliczania',
+                                                'zh-cn': '倒计时时间',
+                                            },
+                                            type: 'number',
+                                            role: 'value',
+                                            read: true,
+                                            write: true,
+                                            unit: 'sec',
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown.start`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Countdown Start',
+                                                de: 'Countdown-Start',
+                                                ru: 'Обратный отсчет',
+                                                pt: 'Início da contagem regressiva',
+                                                nl: 'Aftellen starten',
+                                                fr: 'Début du compte à rebours',
+                                                it: 'Inizio conto alla rovescia',
+                                                es: 'Inicio de la cuenta regresiva',
+                                                pl: 'Rozpoczęcie odliczania',
+                                                'zh-cn': '倒计时开始',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown.pause`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Countdown Pause',
+                                                de: 'Countdown-Pause',
+                                                ru: 'Обратный отсчет Пауза',
+                                                pt: 'Pausa de contagem regressiva',
+                                                nl: 'Aftellen pauze',
+                                                fr: 'Pause du compte à rebours',
+                                                it: 'Pausa conto alla rovescia',
+                                                es: 'Pausa de cuenta regresiva',
+                                                pl: 'Pauza odliczania',
+                                                'zh-cn': '倒计时暂停',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+
+                                    await this.setObjectNotExistsAsync(`${appPath}.${uuid}.countdown.reset`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Countdown Reset',
+                                                de: 'Countdown-Reset',
+                                                ru: 'Обратный отсчет Сброс',
+                                                pt: 'Reinicialização da contagem regressiva',
+                                                nl: 'Aftellen resetten',
+                                                fr: 'Réinitialisation du compte à rebours',
+                                                it: 'Ripristino conto alla rovescia',
+                                                es: 'Reinicio de la cuenta regresiva',
+                                                pl: 'Resetowanie odliczania',
+                                                'zh-cn': '倒计时重置',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {},
+                                    });
+                                }
+
+                                // END special Widgets
                             }
-
-                            // END special Widgets
                         }
-                    }
 
-                    // Delete non existent apps
-                    for (let i = 0; i < appsAll.length; i++) {
-                        const id = appsAll[i];
+                        // Delete non existent apps
+                        for (let i = 0; i < appsAll.length; i++) {
+                            const id = appsAll[i];
 
-                        if (appsKeep.indexOf(id) === -1) {
-                            await this.delObjectAsync(id, { recursive: true });
-                            this.log.debug(`[apps] deleted: ${id}`);
+                            if (appsKeep.indexOf(id) === -1) {
+                                await this.delObjectAsync(id, { recursive: true });
+                                this.log.debug(`[apps] deleted: ${id}`);
+                            }
                         }
-                    }
+                    });
+                })
+                .catch((error) => {
+                    this.log.warn(`(device/apps) Unable to execute action: ${error}`);
                 });
-            })
-            .catch((error) => {
-                this.log.warn(`(device/apps) Unable to execute action: ${error}`);
-            });
 
-        this.log.debug('[apps] re-creating refresh timeout');
-        this.refreshAppTimeout =
-            this.refreshAppTimeout ||
-            setTimeout(() => {
-                this.refreshAppTimeout = null;
-                this.refreshApps();
-            }, 60000 * 60);
+            this.log.debug('[apps] re-creating refresh timeout');
+            this.refreshAppTimeout =
+                this.refreshAppTimeout ||
+                setTimeout(() => {
+                    this.refreshAppTimeout = null;
+                    this.refreshApps();
+                }, 60000 * 60);
+        }
     }
 
     buildRequestAsync(service, method, data) {
@@ -1344,19 +1374,16 @@ class LaMetric extends utils.Adapter {
             const url = `/api/v2/${service}`;
 
             if (this.config.lametricIp && this.config.lametricToken) {
-                const prefix = this.config.useHttps ? 'https' : 'http';
-                const port = this.config.useHttps ? 4343 : 8080;
-
                 if (data) {
-                    this.log.debug(`sending "${method}" request to "${url}" with ${prefix} on port ${port} with data: ${JSON.stringify(data)}`);
+                    this.log.debug(`sending "${method}" request to "${url}" with ${this.prefix} on port ${this.port} with data: ${JSON.stringify(data)}`);
                 } else {
-                    this.log.debug(`sending "${method}" request to "${url}" with ${prefix} on port ${port} without data`);
+                    this.log.debug(`sending "${method}" request to "${url}" with ${this.prefix} on port ${this.port} without data`);
                 }
 
                 axios({
                     method: method,
                     data: data,
-                    baseURL: `${prefix}://${this.config.lametricIp}:${port}`,
+                    baseURL: `${this.prefix}://${this.config.lametricIp}:${this.port}`,
                     url: url,
                     timeout: 3000,
                     responseType: 'json',
@@ -1558,7 +1585,7 @@ class LaMetric extends utils.Adapter {
      */
     onUnload(callback) {
         try {
-            this.setStateAsync('info.connection', { val: false, ack: true });
+            this.setApiConnected(false);
             this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'Adapter stopped', icon: 'a9335' }] }), ack: true });
 
             if (this.refreshStateTimeout) {
