@@ -650,7 +650,7 @@ class LaMetric extends utils.Adapter {
         this.log.debug('re-creating refresh state timeout');
         this.refreshStateTimeout =
             this.refreshStateTimeout ||
-            setTimeout(() => {
+            this.setTimeout(() => {
                 this.refreshStateTimeout = null;
                 this.refreshState();
             }, 60000);
@@ -1360,7 +1360,7 @@ class LaMetric extends utils.Adapter {
             this.log.debug('[apps] re-creating refresh timeout');
             this.refreshAppTimeout =
                 this.refreshAppTimeout ||
-                setTimeout(() => {
+                this.setTimeout(() => {
                     this.refreshAppTimeout = null;
                     this.refreshApps();
                 }, 60000 * 60);
@@ -1588,12 +1588,12 @@ class LaMetric extends utils.Adapter {
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
-                clearTimeout(this.refreshStateTimeout);
+                this.clearTimeout(this.refreshStateTimeout);
             }
 
             if (this.refreshAppTimeout) {
                 this.log.debug('clearing refresh app timeout');
-                clearTimeout(this.refreshAppTimeout);
+                this.clearTimeout(this.refreshAppTimeout);
             }
 
             callback();
