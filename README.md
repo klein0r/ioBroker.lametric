@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.4.2 (2023-09-08)
 
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.6
 
@@ -74,12 +74,6 @@ iobroker add lametric
 ### 2.3.1 (2023-02-21)
 
 * (klein0r) Update My Data DIY when object changes data type
-
-### 2.3.0 (2023-02-13)
-
-* (klein0r) Fixed message responses
-* (klein0r) Added icon button to instance configuration
-* (klein0r) Added preview for web url in instance configuration
 
 ## License
 

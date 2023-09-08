@@ -1,4 +1,10 @@
 # Older changes
+## 2.3.0 (2023-02-13)
+
+* (klein0r) Fixed message responses
+* (klein0r) Added icon button to instance configuration
+* (klein0r) Added preview for web url in instance configuration
+
 ## 2.2.1 (2023-01-19)
 
 * (klein0r) Format number values for My Data DIY
