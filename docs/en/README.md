@@ -16,7 +16,7 @@
 - Admin Adapter 6.0.0 (or later)
 - _LaMetric Time_ with firmware _2.3.6_ (_3.0.16_ on the 2022 model) (or later)
 
-[Firmware-Changelog](https://firmware.lametric.com)
+[Firmware-Changelog](https://firmware.lametric.com) [Firmware-Changelog Time2](https://firmware.lametric.com/?product=time2)
 
 ## Configuration
 
