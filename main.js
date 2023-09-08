@@ -37,29 +37,34 @@ class LaMetric extends utils.Adapter {
     }
 
     async onReady() {
-        await this.setApiConnected(false);
+        try {
+            await this.setApiConnected(false);
+            await this.subscribeStatesAsync('*');
+            await this.refreshState();
 
-        await this.subscribeStatesAsync('*');
+            if (!this.config.lametricIp || !this.config.lametricToken) {
+                this.log.error(`IP address and/or token not configured - please check instance configuration and restart`);
+                typeof this.terminate === 'function' ? this.terminate(11) : process.exit(11);
+                return;
+            } else {
+                if (this.config.useHttps) {
+                    this.prefix = 'https';
+                    this.port = 4343;
+                }
 
-        await this.refreshState();
-
-        if (!this.config.lametricIp || !this.config.lametricToken) {
-            this.log.error(`IP address and/or token not configured - please check instance configuration and restart`);
-            return;
-        } else {
-            if (this.config.useHttps) {
-                this.prefix = 'https';
-                this.port = 4343;
+                this.log.info(`Starting - connecting to ${this.prefix}://${this.config.lametricIp}:${this.port}`);
             }
 
-            this.log.info(`Starting - connecting to ${this.prefix}://${this.config.lametricIp}:${this.port}`);
-        }
-
-        if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
-            this.collectMyDataDiyForeignStates(this.config.mydatadiy);
-        } else {
-            this.log.info('[mydatadiy] configuration not available - skipping');
-            await this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'No config', icon: 'a9335' }] }), ack: true });
+            if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
+                this.collectMyDataDiyForeignStates(this.config.mydatadiy);
+            } else {
+                this.log.info('[mydatadiy] configuration not available - skipping');
+                await this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'No config', icon: 'a9335' }] }), ack: true });
+            }
+        } catch (err) {
+            this.log.error(`Error on startup: ${err}`);
+            typeof this.terminate === 'function' ? this.terminate(11) : process.exit(11);
+            return;
         }
     }
 
