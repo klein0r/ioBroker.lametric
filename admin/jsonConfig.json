@@ -156,26 +156,50 @@
                         }
                     ]
                 },
-                "webInstance": {
+                "type": {
                     "newLine": true,
+                    "type": "select",
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "options": [
+                        {
+                            "label": "push",
+                            "value": "push"
+                        },
+                        {
+                            "label": "poll",
+                            "value": "poll"
+                        }
+                    ],
+                    "default": "push",
+                    "label": "Type",
+                    "help": "Push changes to device (or poll via web service)",
+                    "helpLink": "https://github.com/klein0r/ioBroker.lametric/blob/master/docs/en/my-data-diy.md"
+                },
+                "webInstance": {
                     "type": "instance",
+                    "hidden": "data.type !== 'poll'",
                     "adapter": "web",
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 4,
+                    "lg": 4,
                     "label": "Web adapter instance",
                     "help": "Can be used to request the configured data"
                 },
                 "_webInstanceUrl": {
                     "type": "textSendTo",
+                    "hidden": "data.type !== 'poll'",
                     "container": "text",
                     "copyToClipboard": true,
-                    "alsoDependsOn": ["webInstance"],
-                    "command": "getWebUrl",
+                    "alsoDependsOn": [
+                        "webInstance"
+                    ],
+                    "command": "getPollingUrl",
                     "jsonData": "{\"webInstance\": \"${data.webInstance}\"}",
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 4,
+                    "lg": 4,
                     "label": "Url for My Data (DIY) app"
                 }
             }

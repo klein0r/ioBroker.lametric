@@ -53,6 +53,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added push option for My Data DIY
+
 ### 2.4.2 (2023-09-08)
 
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.6

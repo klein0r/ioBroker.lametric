@@ -13,5 +13,7 @@
     "API Key": "API Key",
     "Web adapter instance": "Web adapter instance",
     "Can be used to request the configured data": "Can be used to request the configured data",
-    "Url for My Data (DIY) app": "Url for My Data (DIY) app"
+    "Url for My Data (DIY) app": "Url for My Data (DIY) app",
+    "Type": "Type",
+    "Push changes to device (or poll via web service)": "Push changes to device (or poll via web service)"
 }

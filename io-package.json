@@ -191,7 +191,8 @@
     "lametricIp": "",
     "lametricToken": "",
     "useHttps": false,
-    "mydatadiy": []
+    "mydatadiy": [],
+    "type": "push"
   },
   "objects": [],
   "instanceObjects": [
