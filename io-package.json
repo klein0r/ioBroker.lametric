@@ -1513,6 +1513,30 @@
       "native": {}
     },
     {
+      "_id": "apps.reload",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Reload Apps",
+          "de": "Apps neu laden",
+          "ru": "Перезагрузить приложения",
+          "pt": "Recarregar aplicativos",
+          "nl": "Herladen App",
+          "fr": "Recharger les applications",
+          "it": "App di ricarica",
+          "es": "Reload Apps",
+          "pl": "Reload App (ang.)",
+          "uk": "Завантаження додатків",
+          "zh-cn": "复制"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
       "_id": "mydatadiy",
       "type": "channel",
       "common": {
