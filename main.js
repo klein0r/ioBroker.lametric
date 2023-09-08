@@ -685,10 +685,13 @@ class LaMetric extends utils.Adapter {
                 this.log.debug('[apps] re-creating refresh timeout');
                 this.refreshAppTimeout =
                     this.refreshAppTimeout ||
-                    this.setTimeout(() => {
-                        this.refreshAppTimeout = null;
-                        this.refreshApps();
-                    }, 60 * 60 * 1000);
+                    this.setTimeout(
+                        () => {
+                            this.refreshAppTimeout = null;
+                            this.refreshApps();
+                        },
+                        60 * 60 * 1000,
+                    );
 
                 this.buildRequestAsync('device/apps', 'GET')
                     .then(async (response) => {
