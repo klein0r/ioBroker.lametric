@@ -56,6 +56,7 @@ iobroker add lametric
 ### **WORK IN PROGRESS**
 
 * (klein0r) Added push option for My Data DIY
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.6 (3.0.16)
 
 ### 2.4.2 (2023-09-08)
 

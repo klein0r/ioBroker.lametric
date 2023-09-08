@@ -15,6 +15,7 @@ class LaMetric extends utils.Adapter {
         });
 
         this.supportedVersion = '2.3.6'; // https://firmware.lametric.com
+        this.supportedVersionSa8 = '3.0.16'; https://firmware.lametric.com/?product=time2
         this.displayedVersionWarning = false;
 
         this.prefix = 'http';
@@ -595,7 +596,11 @@ class LaMetric extends utils.Adapter {
 
                     await this.setApiConnected(true);
 
-                    if (this.isNewerVersion(content.os_version, this.supportedVersion) && !this.displayedVersionWarning) {
+                    if (content.model === 'sa8') {
+                        this.supportedVersion = this.supportedVersionSa8; // 2022+
+                    }
+
+                    if (this.isNewerVersion(content.os_version,) && !this.displayedVersionWarning) {
                         this.log.warn(`You should update your LaMetric Time - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.os_version}`);
                         this.displayedVersionWarning = true; // Just show once
                     }
