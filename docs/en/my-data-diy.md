@@ -11,7 +11,7 @@ Since version 2.0.0 of this app, data can be transferred in different ways to th
 
 Both methods are explained in this document.
 
-## My Data (DIY) - Poll *(Adapter version >= 3.0.0 required)*
+## My Data (DIY) - Push *(Adapter version >= 3.0.0 required)*
 
 *Not implemented yet*
 
@@ -125,5 +125,6 @@ Since version 2.0.0 of the *My Data DIY* app a lot of options have been added to
     - Poll Interval: 15 Sek.
     - Username: *see above (depends on method)*
     - Passwort: *see above (depends on method)*
+- Data Format: Predefined (LaMetric Format)
 
 ![example config iPhone poll](./img/my-data-diy-iphone-poll.png)

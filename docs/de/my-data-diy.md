@@ -125,5 +125,6 @@ Seit Version 2.0.0 der *My Data DIY* App können weitere Einstellungen vorgenomm
     - Poll Interval: 15 Sek.
     - Username: *siehe oben (je nach Methode)*
     - Passwort: *siehe oben (je nach Methode)*
+- Data Format: Predefined (LaMetric Format)
 
 ![example config iPhone poll](./img/my-data-diy-iphone-poll.png)
