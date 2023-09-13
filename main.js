@@ -14,7 +14,7 @@ class LaMetric extends utils.Adapter {
             name: adapterName,
         });
 
-        this.supportedVersion = '2.3.6'; // https://firmware.lametric.com
+        this.supportedVersion = '2.3.7'; // https://firmware.lametric.com
         this.supportedVersionSa8 = '3.0.16'; // https://firmware.lametric.com/?product=time2
         this.displayedVersionWarning = false;
 
@@ -41,7 +41,6 @@ class LaMetric extends utils.Adapter {
         try {
             await this.setApiConnected(false);
             await this.subscribeStatesAsync('*');
-            await this.refreshState();
 
             if (!this.config.lametricIp || !this.config.lametricToken) {
                 this.log.error(`IP address and/or token not configured - please check instance configuration and restart`);
@@ -55,6 +54,8 @@ class LaMetric extends utils.Adapter {
 
                 this.log.info(`Starting - connecting to ${this.prefix}://${this.config.lametricIp}:${this.port}`);
             }
+
+            await this.refreshState();
 
             if (this.config.mydatadiy && Array.isArray(this.config.mydatadiy)) {
                 this.collectMyDataDiyForeignStates(this.config.mydatadiy);
@@ -580,7 +581,7 @@ class LaMetric extends utils.Adapter {
     }
 
     async refreshState() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             this.log.debug('re-creating refresh state timeout');
             this.refreshStateTimeout =
                 this.refreshStateTimeout ||
@@ -668,13 +669,15 @@ class LaMetric extends utils.Adapter {
                             resolve(true);
                         })
                         .catch((error) => {
-                            this.log.warn(`(device) Unable to execute action: ${error}`);
+                            this.log.warn(`(device/display) Unable to execute action: ${error}`);
                             resolve(false);
                         });
                 })
                 .catch((error) => {
+                    this.log.warn(`(device) Unable to execute action: ${error}`);
+
                     this.setApiConnected(false);
-                    reject(error);
+                    resolve(false);
                 });
         });
     }

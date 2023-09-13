@@ -57,7 +57,7 @@ iobroker add lametric
 
 * (klein0r) Added push option for My Data DIY
 * (klein0r) Added option to force app reload
-* (klein0r) Updated LaMetric firmware version recommendation to 2.3.6 (3.0.16)
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.7 (3.0.16)
 
 ### 2.4.2 (2023-09-08)
 
