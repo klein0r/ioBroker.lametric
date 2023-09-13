@@ -1,6 +1,6 @@
 {
   "name": "iobroker.lametric",
-  "version": "2.4.2",
+  "version": "3.0.0",
   "description": "ioBroker LaMetric Adapter",
   "author": {
     "name": "Matthias Kleine",

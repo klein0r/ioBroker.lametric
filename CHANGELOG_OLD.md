@@ -1,4 +1,8 @@
 # Older changes
+## 2.3.1 (2023-02-21)
+
+* (klein0r) Update My Data DIY when object changes data type
+
 ## 2.3.0 (2023-02-13)
 
 * (klein0r) Fixed message responses

@@ -53,7 +53,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.0.0 (2023-09-13)
 
 * (klein0r) Added push option for My Data DIY
 * (klein0r) Added option to force app reload
@@ -76,10 +76,6 @@ iobroker add lametric
 ### 2.3.2 (2023-02-21)
 
 * (klein0r) Optimized setState logic
-
-### 2.3.1 (2023-02-21)
-
-* (klein0r) Update My Data DIY when object changes data type
 
 ## License
 

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "2.4.2",
+    "version": "3.0.0",
     "news": {
+      "3.0.0": {
+        "en": "Added push option for My Data DIY\nAdded option to force app reload\nUpdated LaMetric firmware version recommendation to 2.3.7 (3.0.16)",
+        "de": "Zusätzliche Push-Option für meine Daten DIY\nOption hinzugefügt, um App-Reload zu zwingen\nAktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.7 (3.0.16)",
+        "ru": "Добавлена опция push для My Data DIY\nДобавлена опция для восстановления приложения\nОбновленная рекомендация LaMetric прошивки версии 2.3.7 (3.0.16)",
+        "pt": "Adicionado opção push para My Data DIY\nOpção adicionada para forçar a recarga do aplicativo\nRecomendação de versão de firmware LaMetric atualizada para 2.3.7 (3.0.16)",
+        "nl": "Toegevoegd optie voor My Data DIY\nOptie toegevoegd om app te herladen\nUpdate LaMetric firmaware versie aanbeveling aan 2.3.7 (3.16)",
+        "fr": "Option push supplémentaire pour My Data DIY\nOption supplémentaire pour forcer la recharge de l'application\nMise à jour de la recommandation de version du firmware LaMetric au 2.3.7 (3.0.16)",
+        "it": "Aggiunta opzione push per My Data DIY\nAggiunta opzione per forza app reload\nRaccomandazione di versione firmware LaMetric aggiornata a 2.3.7 (3.0.16)",
+        "es": "Opción de empuje adicional para mi DIY de datos\nOpción adicional para forzar la recarga de la aplicación\nRecomendación actualizada de la versión de firmware de LaMetric a 2.3.7 (3.0.16)",
+        "pl": "Wykorzystywana opcja na stronie My Data DIY\nWstępna opcja dla aplikacji wymaga przeciążenia\nRekomendacja wersji oprogramowania LaMetric zaleciła 2.3,7 (3.0.16)",
+        "uk": "Додано параметр для My Data DIY\nДодана можливість перезавантаження програми\nОновлено рекомендацію прошивки LaMetric до 2.3.7 (3.0.16)",
+        "zh-cn": "增加我的数据能力\n增加强迫卸货的选择\n最新版的《拉马斯公司指南》建议2.3.7(3.016)"
+      },
       "2.4.2": {
         "en": "Updated LaMetric firmware version recommendation to 2.3.6",
         "de": "Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.6",
@@ -80,19 +93,6 @@
         "pl": "Fixed message responses\nPrzycisk do ikony\nWstęp do preview for Web url",
         "uk": "Виправлені відповіді повідомлення\nДодано іконку кнопка для налаштування екземпляра\nДодано попередній перегляд для конфігурації веб-ви URL",
         "zh-cn": "固定信息答复\n增加icon但ton 例如配置\n增加网上目录的预约"
-      },
-      "2.2.1": {
-        "en": "Format number values for My Data DIY",
-        "de": "Formatnummernwerte für My Data DIY",
-        "ru": "Формат значения номера для My Data DIY",
-        "pt": "Formatar valores de número para meus dados DIY",
-        "nl": "Format nummerwaarden voor My Data DIY",
-        "fr": "Format des valeurs de nombre pour My Data DIY",
-        "it": "Formattare i valori numerici per il mio DIY dati",
-        "es": "Valores del número de formato para mi DIY de datos",
-        "pl": "Format Numbers for My Data DIY (ang.)",
-        "uk": "Формат значень номеру для My Data DIY",
-        "zh-cn": "我数据数据数字数值"
       }
     },
     "titleLang": {
