@@ -51,6 +51,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+NodeJS 16.x is required
+
 ### 3.0.0 (2023-09-13)
 
 * (klein0r) Added push option for My Data DIY
