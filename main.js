@@ -14,8 +14,8 @@ class LaMetric extends utils.Adapter {
             name: adapterName,
         });
 
-        this.supportedVersion = '2.3.7'; // https://firmware.lametric.com
-        this.supportedVersionSa8 = '3.0.16'; // https://firmware.lametric.com/?product=time2
+        this.supportedVersion = '2.3.8'; // https://firmware.lametric.com
+        this.supportedVersionSa8 = '3.0.18'; // https://firmware.lametric.com/?product=time2
         this.displayedVersionWarning = false;
 
         this.prefix = 'http';

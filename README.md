@@ -55,6 +55,8 @@ iobroker add lametric
 
 NodeJS 16.x is required
 
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.18)
+
 ### 3.0.0 (2023-09-13)
 
 * (klein0r) Added push option for My Data DIY
