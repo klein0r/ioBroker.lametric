@@ -65,6 +65,7 @@
                         "zh-cn": "本网站可供使用的词汇"
                     },
                     "button": true,
+                    "variant": "contained",
                     "icon": "info",
                     "sm": 12,
                     "md": 12,
