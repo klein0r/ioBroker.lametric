@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "news": {
+      "3.1.0": {
+        "en": "NodeJS 16.x is required\n\n* Updated LaMetric firmware version recommendation to 2.3.8 (3.0.18)\n* Updated admin tab layout (icons, button style)\n* Fixed path of default widgets",
+        "de": "NodeJS 16.x ist erforderlich\n\n* Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.8 (3.0.18)\n* Aktualisiertes Admin-Tab-Layout (Symbole, Schaltflächenstil)\n* Fixed path of default widgets",
+        "ru": "NodeJS 16.x требуется\n\n* Обновленная рекомендация версии LaMetric прошивки до 2.3.8 (3.0.18)\n* Обновленная планировка вкладки админ (icons, button style)\n* Исправлен путь виджетов по умолчанию",
+        "pt": "NodeJS 16.x é necessário\n\n* Recomendação de versão de firmware LaMetric atualizada para 2.3.8 (3.0.18)\n* Layout de guia de administrador atualizado (icons, estilo de botão)\n* Caminho fixo de widgets padrão",
+        "nl": "NodeJS 16.x is vereist\n\nVertaling:\n♪ Verkleinde administratief\n♪ Fixed path of default Widgets ♪",
+        "fr": "NodeJS 16.x est nécessaire\n\n* Mise à jour de la recommandation de version du firmware LaMetric au 2.3.8 (3.0.18)\n* Mise à jour de l'onglet administrateur (icônes, style bouton)\n* chemin fixe de widgets par défaut",
+        "it": "NodeJS 16.x è richiesto\n\n* Raccomandazione di versione firmware LaMetric aggiornata a 2.3.8 (3.0.18)\n# Scheda di amministrazione aggiornata (icon, stile pulsante)\n* percorso fisso dei widget predefiniti",
+        "es": "NodeJS 16.x es necesario\n\n* Recomendación actualizada de la versión de firmware de LaMetric a 2.3.8 (3.0.18)\n* Actualizado diseño de pestañas de administración (icons, estilo de botón)\n* Vía fija de widgets predeterminados",
+        "pl": "NodeJS 16 (ang.)\n\n* Updated LaMetric firmware rekomendacja 2.3.8 (3.0.18)\n* Ulepszona adminowa tabela (ikon, styl przycisku)\n* Fixed path of default widgets (ang.)",
+        "uk": "NodeJS 16.x обов'язковий\n\n* Оновлено рекомендацію прошивки LaMetric до 2.3.8 (3.0.18)\nІм'я * Оновлено макет вкладки адміністратора (коніки, стиль кнопки)\n* Фіксований шлях віджетів за замовчуванням",
+        "zh-cn": "不需要16.JS16x。\n\n* 最新版的《拉梅克科学家》建议给2.3.8(3.0.18)。\n* A/64/50。 更新的括号(理论,但代顿风格)\n* 固定的违约目标道路"
+      },
       "3.0.0": {
         "en": "Added push option for My Data DIY\nAdded option to force app reload\nUpdated LaMetric firmware version recommendation to 2.3.7 (3.0.16)",
         "de": "Zusätzliche Push-Option für meine Daten DIY\nOption hinzugefügt, um App-Reload zu zwingen\nAktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.7 (3.0.16)",
@@ -80,19 +93,6 @@
         "pl": "Update My Data DIY, gdy obiekt zmienia typ danych",
         "uk": "Оновлення даних DIY при зміні даних об'єкта",
         "zh-cn": "我的最新资料 数据类型变化"
-      },
-      "2.3.0": {
-        "en": "Fixed message responses\nAdded icon button to instance configuration\nAdded preview for web url in instance configuration",
-        "de": "Feste Nachrichtenantworten\nHinzufügen von Symbol-Taste zur Instanz-Konfiguration\nVorschau für Web url in der Konfiguration hinzugefügt",
-        "ru": "Исправлены ответы на сообщения\nДобавлена кнопка иконки к конфигурации\nДобавлен предварительный просмотр для web url в конфигурации экземпляра",
-        "pt": "Respostas de mensagem fixas\nAdicionado botão de ícone para configuração de instância\nVisualização adicionada para URL da web na configuração de instância",
-        "nl": "Vertaling:\nVoegde icoonknop toe aan configu\n_",
-        "fr": "Réponses aux messages fixes\nAjout de la configuration d'icône\nAjout de la prévisualisation pour la configuration web url in instance",
-        "it": "Risposte dei messaggi corretti\nPulsante icona aggiunto alla configurazione di istanza\nAnteprima aggiuntiva per web url nella configurazione di istanza",
-        "es": "Respuestas de mensajes fijos\nBotón de icono añadido para la configuración de instancia\nAñadido vista previa para configuración de url web en instancia",
-        "pl": "Fixed message responses\nPrzycisk do ikony\nWstęp do preview for Web url",
-        "uk": "Виправлені відповіді повідомлення\nДодано іконку кнопка для налаштування екземпляра\nДодано попередній перегляд для конфігурації веб-ви URL",
-        "zh-cn": "固定信息答复\n增加icon但ton 例如配置\n增加网上目录的预约"
       }
     },
     "titleLang": {

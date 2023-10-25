@@ -1,4 +1,8 @@
 # Older changes
+## 2.3.2 (2023-02-21)
+
+* (klein0r) Optimized setState logic
+
 ## 2.3.1 (2023-02-21)
 
 * (klein0r) Update My Data DIY when object changes data type
