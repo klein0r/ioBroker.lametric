@@ -57,6 +57,7 @@ NodeJS 16.x is required
 
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.18)
 * (klein0r) Updated admin tab layout (icons, button style)
+* (klein0r) Fixed path of default widgets
 
 ### 3.0.0 (2023-09-13)
 
