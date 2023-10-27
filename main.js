@@ -1488,14 +1488,14 @@ class LaMetric extends utils.Adapter {
         // Collect all IDs in texts
         frames.forEach((f) => {
             f.text.replace(this.myDataDiyRegex, (m, id) => {
-                if (foreignStates.includes(id)) {
+                if (!foreignStates.includes(id)) {
                     this.log.debug(`[mydatadiy] found dynamic state with id "${id}" in text`);
                     foreignStates.push(id);
                 }
             });
 
             f.icon.replace(this.myDataDiyRegex, (m, id) => {
-                if (foreignStates.includes(id)) {
+                if (!foreignStates.includes(id)) {
                     this.log.debug(`[mydatadiy] found dynamic state with id "${id}" in icon`);
                     foreignStates.push(id);
                 }
@@ -1559,11 +1559,16 @@ class LaMetric extends utils.Adapter {
         const newFrames = clonedFrames
             .map((f) => {
                 let replacedText = f.text.replace(this.myDataDiyRegex, (m, id) => {
-                    const newVal = this.myDataDiyForeignStates.find((item) => item.id === id).val;
+                    const foreignState = this.myDataDiyForeignStates.find((item) => item.id === id);
+                    if (foreignState) {
+                        const newVal = foreignState.val;
 
-                    this.log.debug(`[mydatadiy] replacing "${id}" in frame text with "${newVal}"`);
+                        this.log.debug(`[mydatadiy] replacing "${id}" in frame text with "${newVal}"`);
 
-                    return newVal;
+                        return newVal;
+                    } else {
+                        return `<error ${id}: not found>`;
+                    }
                 });
 
                 if (f?.hideif && f.hideif == replacedText) {

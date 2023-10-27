@@ -51,6 +51,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Fixed issue with foreign states of version 3.1.0
+
 ### 3.1.0 (2023-10-25)
 
 NodeJS 16.x is required
