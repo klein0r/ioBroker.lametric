@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.1.1 (2023-10-27)
 
 * (klein0r) Fixed issue with foreign states of version 3.1.0
 
@@ -76,12 +76,6 @@ NodeJS 16.x is required
 ### 2.4.1 (2023-06-10)
 
 * (klein0r) Blockly bugfix
-
-### 2.4.0 (2023-05-10)
-
-* (klein0r) Allow to change device mode via state (manual, auto, kiosk, schedule)
-* (klein0r) Added state for available firmware update
-* (klein0r) Updated LaMetric firmware version recommendation to 2.3.5
 
 ## License
 

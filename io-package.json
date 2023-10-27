@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "news": {
+      "3.1.1": {
+        "en": "Fixed issue with foreign states of version 3.1.0",
+        "de": "Problem mit fremden Staaten von Version 3.1.0 behoben",
+        "ru": "Исправлена проблема с иностранными государствами версии 3.1.0",
+        "pt": "Problema fixo com estados estrangeiros da versão 3.1.0",
+        "nl": "Quality over Quantity (QoQ) Releases Vertaling:",
+        "fr": "Numéro fixe avec les états étrangers de la version 3.1.0",
+        "it": "Emissione fissa con stati stranieri della versione 3.1.0",
+        "es": "Edición fija con estados extranjeros de la versión 3.1.0",
+        "pl": "Wydarzenia z zagranicznymi państwami w wersji 3.1.0",
+        "uk": "Виправлено проблему з іноземними державами версії 3.1.0",
+        "zh-cn": "同外国国有混合问题版本3.1"
+      },
       "3.1.0": {
         "en": "NodeJS 16.x is required\n\n* Updated LaMetric firmware version recommendation to 2.3.8 (3.0.18)\n* Updated admin tab layout (icons, button style)\n* Fixed path of default widgets",
         "de": "NodeJS 16.x ist erforderlich\n\n* Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.8 (3.0.18)\n* Aktualisiertes Admin-Tab-Layout (Symbole, Schaltflächenstil)\n* Fixed path of default widgets",
@@ -80,19 +93,6 @@
         "pl": "Zbiór optymistyczny logika państwowa",
         "uk": "Оптимізований набір Державна логіка",
         "zh-cn": "全球化 国家逻辑"
-      },
-      "2.3.1": {
-        "en": "Update My Data DIY when object changes data type",
-        "de": "Meine Daten aktualisieren DIY, wenn Objekt Datentyp ändert",
-        "ru": "Обновить мои данные DIY когда объект меняет тип данных",
-        "pt": "Atualizar meus dados DIY quando o objeto muda o tipo de dados",
-        "nl": "Update My Data DIY als object data type verandert",
-        "fr": "Mettre à jour mes données DIY lorsque l'objet modifie le type de données",
-        "it": "Aggiorna i miei dati DIY quando l'oggetto cambia tipo di dati",
-        "es": "Actualizar mis datos DIY cuando el objeto cambia el tipo de datos",
-        "pl": "Update My Data DIY, gdy obiekt zmienia typ danych",
-        "uk": "Оновлення даних DIY при зміні даних об'єкта",
-        "zh-cn": "我的最新资料 数据类型变化"
       }
     },
     "titleLang": {

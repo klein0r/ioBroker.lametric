@@ -1,4 +1,10 @@
 # Older changes
+## 2.4.0 (2023-05-10)
+
+* (klein0r) Allow to change device mode via state (manual, auto, kiosk, schedule)
+* (klein0r) Added state for available firmware update
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.5
+
 ## 2.3.2 (2023-02-21)
 
 * (klein0r) Optimized setState logic
