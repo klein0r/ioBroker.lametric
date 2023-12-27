@@ -53,6 +53,7 @@ iobroker add lametric
 -->
 ### **WORK IN PROGRESS**
 
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.21)
 * (klein0r) Some devices don't have bluetooth low energy states (sa8)
 
 ### 3.1.1 (2023-10-27)
