@@ -600,6 +600,8 @@ class LaMetric extends utils.Adapter {
 
                     await this.setApiConnected(true);
 
+                    this.log.debug(`(device) Model: ${content.model} (${content.os_version})`);
+
                     if (content.model === 'sa8') {
                         this.supportedVersion = this.supportedVersionSa8; // 2022+
                     }
@@ -627,9 +629,15 @@ class LaMetric extends utils.Adapter {
                     await this.setStateChangedAsync('meta.bluetooth.pairable', { val: content.bluetooth.pairable, ack: true });
                     await this.setStateChangedAsync('meta.bluetooth.address', { val: content.bluetooth.address, ack: true });
 
-                    await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: content.bluetooth.low_energy.active, ack: true });
-                    await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: content.bluetooth.low_energy.advertising, ack: true });
-                    await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: content.bluetooth.low_energy.connectable, ack: true });
+                    if (content.bluetooth?.low_energy) {
+                        await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: content.bluetooth.low_energy.active, ack: true });
+                        await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: content.bluetooth.low_energy.advertising, ack: true });
+                        await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: content.bluetooth.low_energy.connectable, ack: true });
+                    } else {
+                        await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: false, ack: true, c: 'Not available' });
+                        await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: false, ack: true, c: 'Not available' });
+                        await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: false, ack: true, c: 'Not available' });
+                    }
 
                     await this.setStateChangedAsync('meta.wifi.active', { val: content.wifi.active, ack: true });
                     await this.setStateChangedAsync('meta.wifi.address', { val: content.wifi.address, ack: true });
@@ -669,12 +677,12 @@ class LaMetric extends utils.Adapter {
                             resolve(true);
                         })
                         .catch((error) => {
-                            this.log.warn(`(device/display) Unable to execute action: ${error}`);
+                            this.log.warn(`(device/display) Unable to get status: ${error}`);
                             resolve(false);
                         });
                 })
                 .catch((error) => {
-                    this.log.warn(`(device) Unable to execute action: ${error}`);
+                    this.log.warn(`(device) Unable to get status: ${error}`);
 
                     this.setApiConnected(false);
                     resolve(false);
