@@ -1,4 +1,8 @@
 # Older changes
+## 2.4.1 (2023-06-10)
+
+* (klein0r) Blockly bugfix
+
 ## 2.4.0 (2023-05-10)
 
 * (klein0r) Allow to change device mode via state (manual, auto, kiosk, schedule)

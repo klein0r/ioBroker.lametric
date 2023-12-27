@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.1.2 (2023-12-27)
 
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.21)
 * (klein0r) Some devices don't have bluetooth low energy states (sa8)
@@ -77,10 +77,6 @@ NodeJS 16.x is required
 ### 2.4.2 (2023-09-08)
 
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.6
-
-### 2.4.1 (2023-06-10)
-
-* (klein0r) Blockly bugfix
 
 ## License
 

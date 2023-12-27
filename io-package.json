@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "news": {
+      "3.1.2": {
+        "en": "Updated LaMetric firmware version recommendation to 2.3.8 (3.0.21)\nSome devices don't have bluetooth low energy states (sa8)",
+        "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.8 (3.0.21)\nEinige Geräte haben keinen bluetooth niedrigen Energiezustand (sa8)",
+        "ru": "Обновленная версия LaMetric прошивки рекомендации до 2.3.8 (3.0.21)\nНекоторые устройства не имеют низкоэнергетические состояния bluetooth (sa8)",
+        "pt": "Recomendação de versão de firmware LaMetric atualizada para 2.3.8 (3.0.21)\nAlguns dispositivos não têm estados de baixa energia bluetooth (sa8)",
+        "nl": "Upded LaMetric firmaware versie aanbeveling aan 2.3.8 (3.21)\nSommige apparaten hebben geen blauwtooth laag energiegebied",
+        "fr": "Mise à jour de la recommandation de version du firmware LaMetric au 2.3.8 (3.0.21)\nCertains appareils n'ont pas d'états de basse énergie bluetooth (sa8)",
+        "it": "Raccomandazione di versione firmware LaMetric aggiornata a 2.3.8 (3.0.21)\nAlcuni dispositivi non hanno bluetooth bassi stati energetici (sa8)",
+        "es": "Recomendación actualizada de la versión de firmware de LaMetric a 2.3.8 (3.0.21)\nAlgunos dispositivos no tienen estados de baja energía bluetooth (sa8)",
+        "pl": "Rekomendacja wersji oprogramowania LaMetric zaleciła 2.3,8 (3.0.21)\nNiektóre urządzenia nie posiadają stanów o niskiej energii (sa8)",
+        "uk": "Оновлено рекомендацію прошивки LaMetric до 2.3.8 (3.0.21)\nДеякі пристрої не мають низьких енергоносіїв bluetooth (sa8)",
+        "zh-cn": "最新版的《拉梅斯公司指南》(3.021)\n有些装置的蓝色低能源国家(萨8)"
+      },
       "3.1.1": {
         "en": "Fixed issue with foreign states of version 3.1.0",
         "de": "Problem mit fremden Staaten von Version 3.1.0 behoben",
@@ -80,19 +93,6 @@
         "pl": "Obok zmiany trybu urządzenia poprzez stan (manual, auto, kiosk, schedule)\nWstępny stan do aktualizacji oprogramowania\nRekomendowana wersja oprogramowania LaMetric rekomenduje 2.3,5",
         "uk": "Дозволяє змінити режим пристрою через стан (ручний, авто, kiosk, розклад)\nДодано стан для доступного оновлення мікропрограми\nОновлено рекомендацію прошивки LaMetric до 2.3.5",
         "zh-cn": "允许通过国家(个人、汽车、 kiosk,时间表)改变装置方式\nA. 增加可用软件更新的国家\n最新版的《拉马斯科学家》建议2.3.5"
-      },
-      "2.3.2": {
-        "en": "Optimized setState logic",
-        "de": "Optimiertes Set Staatliche Logik",
-        "ru": "Оптимизированный набор Государственная логика",
-        "pt": "Conjunto otimizado Lógica do Estado",
-        "nl": "Optimistische set Staatslogica",
-        "fr": "Set optimisé State logic",
-        "it": "Set ottimizzato La logica dello Stato",
-        "es": "Set optimizado State logic",
-        "pl": "Zbiór optymistyczny logika państwowa",
-        "uk": "Оптимізований набір Державна логіка",
-        "zh-cn": "全球化 国家逻辑"
       }
     },
     "titleLang": {
