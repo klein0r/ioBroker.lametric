@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.1.2",
+    "version": "3.1.3",
     "news": {
+      "3.1.3": {
+        "en": "Fixed web extension",
+        "de": "Feste Web-Erweiterung",
+        "ru": "Исправленное расширение",
+        "pt": "Extensão web fixa",
+        "nl": "Vaste webextensie",
+        "fr": "Extension web fixe",
+        "it": "Estensione web fissa",
+        "es": "Extensión web fija",
+        "pl": "Naprawiono rozszerzenie sieci web",
+        "uk": "Виправлено розширення веб",
+        "zh-cn": "固定网络扩展"
+      },
       "3.1.2": {
         "en": "Updated LaMetric firmware version recommendation to 2.3.8 (3.0.21)\nSome devices don't have bluetooth low energy states (sa8)",
         "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.8 (3.0.21)\nEinige Geräte haben keinen bluetooth niedrigen Energiezustand (sa8)",
@@ -80,19 +93,6 @@
         "pl": "Śledczy",
         "uk": "Виправлення помилок",
         "zh-cn": "B. 锁定的软禁"
-      },
-      "2.4.0": {
-        "en": "Allow to change device mode via state (manual, auto, kiosk, schedule)\nAdded state for available firmware update\nUpdated LaMetric firmware version recommendation to 2.3.5",
-        "de": "Erlauben Sie, den Gerätemodus über den Zustand zu ändern (manuell, auto, kiosk, Zeitplan)\nHinzugefügt Zustand für verfügbare Firmware-Update\nAktualisierte LaMetric Firmware Version Empfehlung auf 2.3.5",
-        "ru": "Разрешить изменить режим устройства через состояние (ручной, авто, киоск, расписание)\nДобавлено состояние для доступного обновления прошивки\nОбновленная рекомендация LaMetric прошивки версии 2.3.5",
-        "pt": "Permitir alterar o modo de dispositivo via estado (manual, auto, quiosque, cronograma)\nEstado adicionado para atualização de firmware disponível\nRecomendação de versão de firmware LaMetric atualizada para 2.3.5",
-        "nl": "Sta toe apparatuur te veranderen via staat (manuele, auto, kiosk, schema)\nVertaling:\nUpdate LaMetric firmaware aanbeveling aan 2,3,5",
-        "fr": "Permettre de modifier le mode de périphérique via l'état (manuel, auto, kiosque, horaire)\nÉtat ajouté pour la mise à jour du firmware disponible\nMise à jour de la recommandation de version du firmware LaMetric au 2.3.5",
-        "it": "Consentire di modificare la modalità del dispositivo tramite stato (manuale, auto, chiosco, programma)\nStato aggiunto per l'aggiornamento firmware disponibile\nRaccomandazione di versione firmware LaMetric aggiornata a 2.3.5",
-        "es": "Permitir cambiar el modo de dispositivo a través del estado (manual, auto, quiosco, horario)\nEstado añadido para actualización de firmware disponible\nRecomendación actualizada de la versión de firmware de LaMetric a 2.3.5",
-        "pl": "Obok zmiany trybu urządzenia poprzez stan (manual, auto, kiosk, schedule)\nWstępny stan do aktualizacji oprogramowania\nRekomendowana wersja oprogramowania LaMetric rekomenduje 2.3,5",
-        "uk": "Дозволяє змінити режим пристрою через стан (ручний, авто, kiosk, розклад)\nДодано стан для доступного оновлення мікропрограми\nОновлено рекомендацію прошивки LaMetric до 2.3.5",
-        "zh-cn": "允许通过国家(个人、汽车、 kiosk,时间表)改变装置方式\nA. 增加可用软件更新的国家\n最新版的《拉马斯科学家》建议2.3.5"
       }
     },
     "titleLang": {

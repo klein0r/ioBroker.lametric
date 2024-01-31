@@ -1,4 +1,8 @@
 # Older changes
+## 2.4.2 (2023-09-08)
+
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.6
+
 ## 2.4.1 (2023-06-10)
 
 * (klein0r) Blockly bugfix
