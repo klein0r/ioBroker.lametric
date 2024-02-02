@@ -25,7 +25,7 @@ All you need is the IP address of your device and the api developer key.
 
 ## Sponsored by
 
-[![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png)](https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-lametric)
+[![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png?2024)](https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-lametric)
 
 ## Installation
 
