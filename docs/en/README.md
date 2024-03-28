@@ -11,8 +11,8 @@
 
 ## Requirements
 
-- nodejs 14.5 (or later)
-- js-controller 4.0.15 (or later)
+- nodejs 18 (or later)
+- js-controller 5.0.0 (or later)
 - Admin Adapter 6.0.0 (or later)
 - _LaMetric Time_ with firmware _2.3.8_ (_3.0.21_ on the 2022 model) (or later)
 
