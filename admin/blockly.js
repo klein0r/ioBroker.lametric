@@ -91,34 +91,30 @@ Blockly.Words['lametric_help'] = { en: 'https://github.com/klein0r/ioBroker.lame
 
 Blockly.Sendto.blocks['lametric'] =
     '<block type="lametric">' +
-    '     <value name="INSTANCE">' +
-    '     </value>' +
-    '     <value name="MESSAGE">' +
-    '         <shadow type="text">' +
-    '             <field name="TEXT">haus-automatisierung.com</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="SOUND">' +
-    '     </value>' +
-    '     <value name="PRIORITY">' +
-    '     </value>' +
-    '     <value name="ICON">' +
-    '         <shadow type="text">' +
-    '             <field name="TEXT">i31820</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="ICON_TYPE">' +
-    '     </value>' +
-    '     <value name="LIFETIME">' +
-    '         <shadow type="math_number">' +
-    '             <field name="NUM">1000</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="CYCLES">' +
-    '         <shadow type="math_number">' +
-    '             <field name="NUM">1</field>' +
-    '         </shadow>' +
-    '     </value>' +
+    '  <field name="INSTANCE"></field>' +
+    '  <field name="SOUND"></field>' +
+    '  <field name="PRIORITY"></field>' +
+    '  <field name="ICON_TYPE">none</field>' +
+    '  <value name="MESSAGE">' +
+    '    <shadow type="text">' +
+    '      <field name="TEXT">haus-automatisierung.com</field>' +
+    '    </shadow>' +
+    '  </value>' +
+    '  <value name="ICON">' +
+    '    <shadow type="text">' +
+    '      <field name="TEXT">i31820</field>' +
+    '    </shadow>' +
+    '  </value>' +
+    '  <value name="LIFETIME">' +
+    '    <shadow type="math_number">' +
+    '      <field name="NUM">1000</field>' +
+    '    </shadow>' +
+    '  </value>' +
+    '  <value name="CYCLES">' +
+    '    <shadow type="math_number">' +
+    '      <field name="NUM">1</field>' +
+    '    </shadow>' +
+    '  </value>' +
     '</block>';
 
 Blockly.Blocks['lametric'] = {
