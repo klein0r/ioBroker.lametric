@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.2.0 (2024-06-07)
 
 NodeJS >= 18.x and js-controller >= 5 is required
 
@@ -77,12 +77,6 @@ NodeJS 16.x is required
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.18)
 * (klein0r) Updated admin tab layout (icons, button style)
 * (klein0r) Fixed path of default widgets
-
-### 3.0.0 (2023-09-13)
-
-* (klein0r) Added push option for My Data DIY
-* (klein0r) Added option to force app reload
-* (klein0r) Updated LaMetric firmware version recommendation to 2.3.7 (3.0.16)
 
 ## License
 
