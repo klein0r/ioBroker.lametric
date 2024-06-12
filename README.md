@@ -52,7 +52,8 @@ iobroker add lametric
   ### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
-* (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)
+* (@klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)
+* (@klein0r) Updated dependencies
 
 ### 3.2.0 (2024-06-07)
 
