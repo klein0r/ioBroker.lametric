@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "news": {
+      "3.2.1": {
+        "en": "(@klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)\n(@klein0r) Updated dependencies",
+        "de": "(@klein0r) Aktualisierte LaMetric Firmware-Versionsempfehlung auf 2.3.8 (3.1.0)\n(@klein0r) Aktualisierte Abhängigkeiten",
+        "ru": "(@klein0r)\n(@klein0r) Обновленные зависимости",
+        "pt": "(@klein0r) Recomendação atualizada da versão de firmware LaMetric para 2.3.8 (3.1.0)\n(@klein0r) Dependências atualizadas",
+        "nl": "(@klein0r) Bijgewerkte LaMetric firmware versie aanbeveling naar 2.3.8 (3.10.0)\n(@klein0r) Bijgewerkte afhankelijkheden",
+        "fr": "(@klein0r) Mise à jour de la recommandation du firmware LaMetric à 2.3.8 (3.1.0)\n(@klein0r) Dépendances actualisées",
+        "it": "(@klein0r) Raccomandazione della versione firmware LaMetric aggiornata a 2.3.8 (3.1.0)\n(@klein0r) Dipendenze aggiornate",
+        "es": "(@klein0r) Recomendación actualizada de la versión de firmware de LaMetric (3.1.0)\n(@klein0r) Dependencias actualizadas",
+        "pl": "(@ klein0r) Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.8 (3.1.0)\n(@ klein0r) Aktualizacja zależności",
+        "uk": "(@klein0r) Оновлено рекомендацію версії прошивки LaMetric до 2.3.8 (3.1.0)\n(@klein0r) Оновлені залежності",
+        "zh-cn": "(@klein0r) 更新后的 LaMetric 固件版本建议为2.3.8 (3.1.0)\n(@klein0r) (韩语). 更新的依赖关系"
+      },
       "3.2.0": {
         "en": "NodeJS >= 18.x and js-controller >= 5 is required\n\n* Fixed Blockly definitions (removed warnings)",
         "de": "NodeJS >= 18.x und js-Controller >= 5 ist erforderlich\n\n* Feste Blockdefinitionen (entfernte Warnungen)",
@@ -80,19 +93,6 @@
         "pl": "Wykorzystywana opcja na stronie My Data DIY\nWstępna opcja dla aplikacji wymaga przeciążenia\nRekomendacja wersji oprogramowania LaMetric zaleciła 2.3,7 (3.0.16)",
         "uk": "Додано параметр для My Data DIY\nДодана можливість перезавантаження програми\nОновлено рекомендацію прошивки LaMetric до 2.3.7 (3.0.16)",
         "zh-cn": "增加我的数据能力\n增加强迫卸货的选择\n最新版的《拉马斯公司指南》建议2.3.7(3.016)"
-      },
-      "2.4.2": {
-        "en": "Updated LaMetric firmware version recommendation to 2.3.6",
-        "de": "Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.6",
-        "ru": "Обновленная версия LaMetric прошивки рекомендации до 2.3.6",
-        "pt": "Recomendação de versão de firmware LaMetric atualizada para 2.3.6",
-        "nl": "Update LaMetric firmaware aanbeveling aan 2,3,6",
-        "fr": "Mise à jour de la recommandation de version du firmware LaMetric au 2.3.6",
-        "it": "Raccomandazione di versione firmware LaMetric aggiornata a 2.3.6",
-        "es": "Recomendación actualizada de la versión de firmware de LaMetric a 2.3.6",
-        "pl": "Rekomendowana wersja oprogramowania LaMetric rekomenduje 2.3.6",
-        "uk": "Оновлено рекомендацію прошивки LaMetric до 2.3.6",
-        "zh-cn": "最新版的《拉梅特科学家》建议2.3.6"
       }
     },
     "titleLang": {

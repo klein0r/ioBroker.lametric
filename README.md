@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.2.1 (2024-06-12)
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)
 * (@klein0r) Updated dependencies
 
@@ -73,14 +73,6 @@ NodeJS >= 18.x and js-controller >= 5 is required
 ### 3.1.1 (2023-10-27)
 
 * (klein0r) Fixed issue with foreign states of version 3.1.0
-
-### 3.1.0 (2023-10-25)
-
-NodeJS 16.x is required
-
-* (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.18)
-* (klein0r) Updated admin tab layout (icons, button style)
-* (klein0r) Fixed path of default widgets
 
 ## License
 

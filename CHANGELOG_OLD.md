@@ -1,4 +1,12 @@
 # Older changes
+## 3.1.0 (2023-10-25)
+
+NodeJS 16.x is required
+
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.18)
+* (klein0r) Updated admin tab layout (icons, button style)
+* (klein0r) Fixed path of default widgets
+
 ## 3.0.0 (2023-09-13)
 
 * (klein0r) Added push option for My Data DIY
