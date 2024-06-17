@@ -239,24 +239,22 @@ Blockly.Blocks['lametric'] = {
 };
 
 Blockly.JavaScript['lametric'] = function (block) {
+    const instance = block.getFieldValue('INSTANCE');
     const priority = block.getFieldValue('PRIORITY');
     const iconType = block.getFieldValue('ICON_TYPE');
     const sound = block.getFieldValue('SOUND');
-
     const lifeTime = Blockly.JavaScript.valueToCode(block, 'LIFETIME', Blockly.JavaScript.ORDER_ATOMIC);
     const icon = Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC);
     const text = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
     const cycles = Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC);
 
-    const objText = [];
-    priority && objText.push(`priority: '${priority}'`);
-    iconType && objText.push(`iconType: '${iconType}'`);
-    sound && objText.push(`sound: '${sound}'`);
-
-    lifeTime && objText.push(`lifeTime: parseInt(${lifeTime})`);
-    icon && objText.push(`icon: ${icon}`);
-    text && objText.push(`text: ${text}`);
-    cycles && objText.push(`cycles: parseInt(${cycles})`);
-
-    return `sendTo('lametric${block.getFieldValue('INSTANCE')}', 'notification', { ${objText.join(', ')} });`;
+    return `sendTo('lametric${instance}', 'notification', {\n` +
+        priority ? `  priority: '${priority}',\n` : '' +
+        iconType ? `  iconType: '${iconType}',\n` : '' +
+        sound ? `  sound: '${sound}',\n` : '' +
+        lifeTime ? `  lifeTime: parseInt(${lifeTime}),\n` : '' +
+        icon ? `  icon: ${icon},\n` : '' +
+        text ? `  text: ${text},\n` : '' +
+        cycles ? `  cycles: parseInt(${cycles}),\n` : '' +
+        `});`;
 };
