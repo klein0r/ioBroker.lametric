@@ -14,7 +14,7 @@
 - nodejs 18 (or later)
 - js-controller 5.0.0 (or later)
 - Admin Adapter 6.0.0 (or later)
-- _LaMetric Time_ with firmware _2.3.8_ (_3.1.0_ on the 2022 model) (or later)
+- _LaMetric Time_ with firmware _2.3.9_ (_3.1.1_ on the 2022 model) (or later)
 
 [Firmware-Changelog](https://firmware.lametric.com) [Firmware-Changelog Time2](https://firmware.lametric.com/?product=time2)
 

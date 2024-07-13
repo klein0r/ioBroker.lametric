@@ -51,7 +51,12 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.1)
+
 ### 3.2.1 (2024-06-12)
+
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)
 * (@klein0r) Updated dependencies
 
