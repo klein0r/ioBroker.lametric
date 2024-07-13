@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.2.2 (2024-07-13)
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.1)
 
@@ -74,10 +74,6 @@ NodeJS >= 18.x and js-controller >= 5 is required
 
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.21)
 * (klein0r) Some devices don't have bluetooth low energy states (sa8)
-
-### 3.1.1 (2023-10-27)
-
-* (klein0r) Fixed issue with foreign states of version 3.1.0
 
 ## License
 

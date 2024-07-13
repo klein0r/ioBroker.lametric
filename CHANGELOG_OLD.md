@@ -1,4 +1,8 @@
 # Older changes
+## 3.1.1 (2023-10-27)
+
+* (klein0r) Fixed issue with foreign states of version 3.1.0
+
 ## 3.1.0 (2023-10-25)
 
 NodeJS 16.x is required
