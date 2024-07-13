@@ -4,17 +4,17 @@
     "version": "3.2.1",
     "news": {
       "3.2.1": {
-        "en": "(@klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)\n(@klein0r) Updated dependencies",
-        "de": "(@klein0r) Aktualisierte LaMetric Firmware-Versionsempfehlung auf 2.3.8 (3.1.0)\n(@klein0r) Aktualisierte Abhängigkeiten",
-        "ru": "(@klein0r)\n(@klein0r) Обновленные зависимости",
-        "pt": "(@klein0r) Recomendação atualizada da versão de firmware LaMetric para 2.3.8 (3.1.0)\n(@klein0r) Dependências atualizadas",
-        "nl": "(@klein0r) Bijgewerkte LaMetric firmware versie aanbeveling naar 2.3.8 (3.10.0)\n(@klein0r) Bijgewerkte afhankelijkheden",
-        "fr": "(@klein0r) Mise à jour de la recommandation du firmware LaMetric à 2.3.8 (3.1.0)\n(@klein0r) Dépendances actualisées",
-        "it": "(@klein0r) Raccomandazione della versione firmware LaMetric aggiornata a 2.3.8 (3.1.0)\n(@klein0r) Dipendenze aggiornate",
-        "es": "(@klein0r) Recomendación actualizada de la versión de firmware de LaMetric (3.1.0)\n(@klein0r) Dependencias actualizadas",
+        "en": "Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)\nUpdated dependencies",
+        "de": "Aktualisierte LaMetric Firmware-Versionsempfehlung auf 2.3.8 (3.1.0)\nAktualisierte Abhängigkeiten",
+        "ru": "(@klein0r)\nОбновленные зависимости",
+        "pt": "Recomendação atualizada da versão de firmware LaMetric para 2.3.8 (3.1.0)\nDependências atualizadas",
+        "nl": "Bijgewerkte LaMetric firmware versie aanbeveling naar 2.3.8 (3.10.0)\nBijgewerkte afhankelijkheden",
+        "fr": "Mise à jour de la recommandation du firmware LaMetric à 2.3.8 (3.1.0)\nDépendances actualisées",
+        "it": "Raccomandazione della versione firmware LaMetric aggiornata a 2.3.8 (3.1.0)\nDipendenze aggiornate",
+        "es": "Recomendación actualizada de la versión de firmware de LaMetric (3.1.0)\nDependencias actualizadas",
         "pl": "(@ klein0r) Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.8 (3.1.0)\n(@ klein0r) Aktualizacja zależności",
-        "uk": "(@klein0r) Оновлено рекомендацію версії прошивки LaMetric до 2.3.8 (3.1.0)\n(@klein0r) Оновлені залежності",
-        "zh-cn": "(@klein0r) 更新后的 LaMetric 固件版本建议为2.3.8 (3.1.0)\n(@klein0r) (韩语). 更新的依赖关系"
+        "uk": "Оновлено рекомендацію версії прошивки LaMetric до 2.3.8 (3.1.0)\nОновлені залежності",
+        "zh-cn": "更新后的 LaMetric 固件版本建议为2.3.8 (3.1.0)\n(韩语). 更新的依赖关系"
       },
       "3.2.0": {
         "en": "NodeJS >= 18.x and js-controller >= 5 is required\n\n* Fixed Blockly definitions (removed warnings)",
