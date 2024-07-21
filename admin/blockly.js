@@ -249,12 +249,12 @@ Blockly.JavaScript['lametric'] = function (block) {
     const cycles = Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC);
 
     return `sendTo('lametric${instance}', 'notification', {\n` +
-        priority ? `  priority: '${priority}',\n` : '' +
-        iconType ? `  iconType: '${iconType}',\n` : '' +
-        sound ? `  sound: '${sound}',\n` : '' +
-        lifeTime ? `  lifeTime: parseInt(${lifeTime}),\n` : '' +
-        icon ? `  icon: ${icon},\n` : '' +
-        text ? `  text: ${text},\n` : '' +
-        cycles ? `  cycles: parseInt(${cycles}),\n` : '' +
+        (priority ? `  priority: '${priority}',\n` : '') +
+        (iconType ? `  iconType: '${iconType}',\n` : '') +
+        (sound ? `  sound: '${sound}',\n` : '') +
+        (lifeTime ? `  lifeTime: parseInt(${lifeTime}),\n` : '') +
+        (icon ? `  icon: ${icon},\n` : '') +
+        (text ? `  text: ${text},\n` : '') +
+        (cycles ? `  cycles: parseInt(${cycles}),\n` : '') +
         `});`;
 };
