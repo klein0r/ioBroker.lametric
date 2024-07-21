@@ -1,4 +1,9 @@
 # Older changes
+## 3.1.2 (2023-12-27)
+
+* (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.21)
+* (klein0r) Some devices don't have bluetooth low energy states (sa8)
+
 ## 3.1.1 (2023-10-27)
 
 * (klein0r) Fixed issue with foreign states of version 3.1.0

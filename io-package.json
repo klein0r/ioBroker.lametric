@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.2.2",
+    "version": "3.2.3",
     "news": {
+      "3.2.3": {
+        "en": "Fixed blockly definitions",
+        "de": "Feste blockweise Definitionen",
+        "ru": "Исправленные блокированные определения",
+        "pt": "Definições bloqueadas fixas",
+        "nl": "Vaste blokdefinities",
+        "fr": "Définition par blocs",
+        "it": "Definizioni bloccate fissate",
+        "es": "Definiciones bloqueadas fijas",
+        "pl": "Poprawione definicje blokowane",
+        "uk": "Фіксовані визначення блоків",
+        "zh-cn": "固定的区块定义"
+      },
       "3.2.2": {
         "en": "Updated LaMetric firmware version recommendation to 2.3.9 (3.1.1)",
         "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.9 (3.1.1)",
@@ -80,19 +93,6 @@
         "pl": "Wydarzenia z zagranicznymi państwami w wersji 3.1.0",
         "uk": "Виправлено проблему з іноземними державами версії 3.1.0",
         "zh-cn": "同外国国有混合问题版本3.1"
-      },
-      "3.1.0": {
-        "en": "NodeJS 16.x is required\n\n* Updated LaMetric firmware version recommendation to 2.3.8 (3.0.18)\n* Updated admin tab layout (icons, button style)\n* Fixed path of default widgets",
-        "de": "NodeJS 16.x ist erforderlich\n\n* Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.8 (3.0.18)\n* Aktualisiertes Admin-Tab-Layout (Symbole, Schaltflächenstil)\n* Fixed path of default widgets",
-        "ru": "NodeJS 16.x требуется\n\n* Обновленная рекомендация версии LaMetric прошивки до 2.3.8 (3.0.18)\n* Обновленная планировка вкладки админ (icons, button style)\n* Исправлен путь виджетов по умолчанию",
-        "pt": "NodeJS 16.x é necessário\n\n* Recomendação de versão de firmware LaMetric atualizada para 2.3.8 (3.0.18)\n* Layout de guia de administrador atualizado (icons, estilo de botão)\n* Caminho fixo de widgets padrão",
-        "nl": "NodeJS 16.x is vereist\n\nVertaling:\n♪ Verkleinde administratief\n♪ Fixed path of default Widgets ♪",
-        "fr": "NodeJS 16.x est nécessaire\n\n* Mise à jour de la recommandation de version du firmware LaMetric au 2.3.8 (3.0.18)\n* Mise à jour de l'onglet administrateur (icônes, style bouton)\n* chemin fixe de widgets par défaut",
-        "it": "NodeJS 16.x è richiesto\n\n* Raccomandazione di versione firmware LaMetric aggiornata a 2.3.8 (3.0.18)\n# Scheda di amministrazione aggiornata (icon, stile pulsante)\n* percorso fisso dei widget predefiniti",
-        "es": "NodeJS 16.x es necesario\n\n* Recomendación actualizada de la versión de firmware de LaMetric a 2.3.8 (3.0.18)\n* Actualizado diseño de pestañas de administración (icons, estilo de botón)\n* Vía fija de widgets predeterminados",
-        "pl": "NodeJS 16 (ang.)\n\n* Updated LaMetric firmware rekomendacja 2.3.8 (3.0.18)\n* Ulepszona adminowa tabela (ikon, styl przycisku)\n* Fixed path of default widgets (ang.)",
-        "uk": "NodeJS 16.x обов'язковий\n\n* Оновлено рекомендацію прошивки LaMetric до 2.3.8 (3.0.18)\nІм'я * Оновлено макет вкладки адміністратора (коніки, стиль кнопки)\n* Фіксований шлях віджетів за замовчуванням",
-        "zh-cn": "不需要16.JS16x。\n\n* 最新版的《拉梅克科学家》建议给2.3.8(3.0.18)。\n* A/64/50。 更新的括号(理论,但代顿风格)\n* 固定的违约目标道路"
       }
     },
     "titleLang": {
