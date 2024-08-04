@@ -96,30 +96,30 @@
       }
     },
     "titleLang": {
-      "en": "LaMetric Time",
-      "de": "LaMetric Time",
-      "ru": "LaMetric Time",
-      "pt": "LaMetric Time",
-      "nl": "LaMetric Time",
-      "fr": "LaMetric Time",
-      "it": "LaMetric Time",
-      "es": "LaMetric Time",
-      "pl": "LaMetric Time",
-      "uk": "LaMetric Time",
-      "zh-cn": "LaMetric Time"
+      "en": "LaMetric",
+      "de": "LaMetric",
+      "ru": "LaMetric",
+      "pt": "LaMetric",
+      "nl": "LaMetric",
+      "fr": "LaMetric",
+      "it": "LaMetric",
+      "es": "LaMetric",
+      "pl": "LaMetric",
+      "uk": "LaMetric",
+      "zh-cn": "LaMetric"
     },
     "desc": {
-      "en": "Control and manage your LaMetric Time",
-      "de": "Steuere und Verwalte Deine LaMetric Time",
-      "ru": "Контролируйте свое время LaMetric и управляйте им",
-      "pt": "Controle e gerencie seu LaMetric Time",
-      "nl": "Beheer en beheer uw LaMetric Time",
-      "fr": "Contrôlez et gérez votre LaMetric Time",
-      "it": "Controlla e gestisci il tuo LaMetric Time",
-      "es": "Controle y administre su tiempo LaMetric",
-      "pl": "Kontroluj i zarządzaj swoim czasem LaMetric",
-      "uk": "Контролюйте та керуйте своїм LaMetric Time",
-      "zh-cn": "控制和管理您的 LaMetric 时间"
+      "en": "Control and manage your LaMetric device",
+      "de": "Steuerung und Verwaltung Deines LaMetric Geräts",
+      "ru": "Управление и управление вашим LaMetric устройством",
+      "pt": "Controlar e gerenciar seu dispositivo LaMetric",
+      "nl": "Uw LaMetric-apparaat bedienen en beheren",
+      "fr": "Contrôlez et gérez votre appareil LaMetric",
+      "it": "Controllare e gestire il dispositivo LaMetric",
+      "es": "Controla y gestiona tu dispositivo LaMetric",
+      "pl": "Sterowanie urządzeniem LaMetric i zarządzanie nim",
+      "uk": "Управління та управління пристроєм LaMetric",
+      "zh-cn": "控制并管理您的 LaMetric 设备"
     },
     "authors": [
       "Matthias Kleine <info@haus-automatisierung.com>"

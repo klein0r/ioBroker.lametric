@@ -2,8 +2,8 @@
     "cli": true,
     "target": "directory",
     "adapterName": "lametric",
-    "title": "LaMetric Time",
-    "description": "Control and manage your LaMetric Time",
+    "title": "LaMetric",
+    "description": "Control and manage your LaMetric device",
     "keywords": [
         "lametric",
         "hardware",

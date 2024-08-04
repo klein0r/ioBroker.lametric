@@ -14,7 +14,7 @@
                     "md": 6,
                     "lg": 6,
                     "label": "IP",
-                    "help": "IP address of your LaMetric Time"
+                    "help": "IP address of your LaMetric device"
                 },
                 "lametricToken": {
                     "type": "text",
