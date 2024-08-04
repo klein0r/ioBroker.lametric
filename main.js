@@ -14,9 +14,11 @@ class LaMetric extends utils.Adapter {
             name: adapterName,
         });
 
-        this.supportedVersion = '2.3.9'; // https://firmware.lametric.com
-        this.supportedVersionSa8 = '3.1.1'; // https://firmware.lametric.com/?product=time2
         this.supportedApiVersion = '2.0.0';
+        this.supportedVersions = {
+            'LM 37X8': '2.3.9', // https://firmware.lametric.com
+            sa8: '3.1.1', // https://firmware.lametric.com/?product=time2
+        };
 
         this.displayedVersionWarning = false;
 
@@ -607,7 +609,7 @@ class LaMetric extends utils.Adapter {
                     await this.setStateChangedAsync('meta.versionApi', { val: content.api_version, ack: true, c: `Recommended: >=${this.supportedApiVersion}` });
 
                     if (this.isNewerVersion(content.api_version, this.supportedApiVersion) && !this.displayedVersionWarning) {
-                        this.log.warn(`Update your LaMetric Time - supported API version of this adapter is ${this.supportedApiVersion} (or later). Your current version is ${content.api_version}`);
+                        this.log.warn(`Update your LaMetric device - supported API version of this adapter is ${this.supportedApiVersion} (or later). Your current version is ${content.api_version}`);
                     }
 
                     this.buildRequestAsync('device', 'GET')
@@ -616,18 +618,19 @@ class LaMetric extends utils.Adapter {
 
                             this.log.debug(`(device) Model: ${content.model} (${content.os_version})`);
 
-                            if (content.model === 'sa8') {
-                                this.supportedVersion = this.supportedVersionSa8; // 2022+
+                            const supportedVersion = this.supportedVersions[content.model];
+                            if (!supportedVersion) {
+                                throw new Error(`Device model "${content.model}" is not supported by this adapter`);
                             }
 
-                            if (this.isNewerVersion(content.os_version, this.supportedVersion) && !this.displayedVersionWarning) {
-                                this.log.warn(`Update your LaMetric Time - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.os_version}`);
+                            if (this.isNewerVersion(content.os_version, supportedVersion) && !this.displayedVersionWarning) {
+                                this.log.warn(`Update your LaMetric device - supported version of this adapter is ${supportedVersion} (or later). Your current version is ${content.os_version}`);
                                 this.displayedVersionWarning = true; // Just show once
                             }
 
                             await this.setStateChangedAsync('meta.name', { val: content.name, ack: true });
                             await this.setStateChangedAsync('meta.serial', { val: content.serial_number, ack: true });
-                            await this.setStateChangedAsync('meta.version', { val: content.os_version, ack: true, c: `Recommended: >=${this.supportedVersion}` });
+                            await this.setStateChangedAsync('meta.version', { val: content.os_version, ack: true, c: `Recommended: >=${supportedVersion}` });
                             await this.setStateChangedAsync('meta.versionUpdate', { val: content?.update_available?.version ?? '-', ack: true });
                             await this.setStateChangedAsync('meta.model', { val: content.model, ack: true });
                             await this.setStateChangedAsync('meta.mode', { val: content.mode, ack: true });
@@ -1639,12 +1642,14 @@ class LaMetric extends utils.Adapter {
         if (this.config.type === 'push') {
             if (!this.myDataDiyApp) {
                 this.log.warn(`[mydatadiy] unable to push changes to device - app package id not found`);
-            } else {
+            } else if (newFrames.length > 0) {
                 this.log.debug(`[mydatadiy] pusing changes to device - app ${this.myDataDiyApp}`);
 
                 this.buildRequestAsync(`widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}`, 'POST', { frames: newFrames }).catch((error) => {
                     this.log.warn(`(widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}) Unable to execute action: ${error}`);
                 });
+            } else {
+                this.log.debug(`[mydatadiy] skipping -> no frames configured - app ${this.myDataDiyApp}`);
             }
         }
     }
