@@ -32,6 +32,15 @@
                     "lg": 6,
                     "label": "Use HTTPS"
                 },
+                "_headerOptionsSupport": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Support this project",
+                    "size": 3,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
+                },
                 "_ioBrokerKursBanner": {
                     "newLine": true,
                     "type": "staticImage",

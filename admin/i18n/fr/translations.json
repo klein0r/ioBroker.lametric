@@ -13,5 +13,8 @@
     "API Key": "clé API",
     "Web adapter instance": "Instance d'adaptateur Web",
     "Can be used to request the configured data": "Peut être utilisé pour demander les données configurées",
-    "Url for My Data (DIY) app": "Url pour l'application My Data (DIY)"
+    "Url for My Data (DIY) app": "Url pour l'application My Data (DIY)",
+    "Type": "Taper",
+    "Push changes to device (or poll via web service)": "Transférer les modifications sur l'appareil (ou interroger via le service Web)",
+    "Support this project": "Soutenez ce projet"
 }

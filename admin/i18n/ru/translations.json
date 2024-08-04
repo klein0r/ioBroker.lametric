@@ -13,5 +13,8 @@
     "API Key": "Ключ API",
     "Web adapter instance": "Экземпляр веб-адаптера",
     "Can be used to request the configured data": "Может использоваться для запроса сконфигурированных данных",
-    "Url for My Data (DIY) app": "URL для приложения My Data (DIY)"
+    "Url for My Data (DIY) app": "URL для приложения My Data (DIY)",
+    "Type": "Тип",
+    "Push changes to device (or poll via web service)": "Отправка изменений на устройство (или опрос через веб-сервис)",
+    "Support this project": "Поддержите этот проект"
 }

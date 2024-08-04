@@ -13,5 +13,8 @@
     "API Key": "API sleutel",
     "Web adapter instance": "Webadapter-instantie",
     "Can be used to request the configured data": "Kan worden gebruikt om de geconfigureerde gegevens op te vragen",
-    "Url for My Data (DIY) app": "URL voor de app My Data (DIY)"
+    "Url for My Data (DIY) app": "URL voor de app My Data (DIY)",
+    "Type": "Type",
+    "Push changes to device (or poll via web service)": "Wijzigingen naar apparaat pushen (of poll via webservice)",
+    "Support this project": "Steun dit project"
 }
