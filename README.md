@@ -51,6 +51,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Added api version as state (and check value)
+
 ### 3.2.3 (2024-07-21)
 
 * (@klein0r) Fixed blockly definitions

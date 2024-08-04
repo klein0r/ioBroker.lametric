@@ -16,6 +16,8 @@ class LaMetric extends utils.Adapter {
 
         this.supportedVersion = '2.3.9'; // https://firmware.lametric.com
         this.supportedVersionSa8 = '3.1.1'; // https://firmware.lametric.com/?product=time2
+        this.supportedApiVersion = '2.0.0';
+
         this.displayedVersionWarning = false;
 
         this.prefix = 'http';
@@ -594,95 +596,113 @@ class LaMetric extends utils.Adapter {
                     }
                 }, 60000);
 
-            this.buildRequestAsync('device', 'GET')
+            this.buildRequestAsync()
                 .then(async (response) => {
                     const content = response.data;
 
                     await this.setApiConnected(true);
 
-                    this.log.debug(`(device) Model: ${content.model} (${content.os_version})`);
+                    this.log.debug(`(api) API-Version: ${content.api_version}`);
 
-                    if (content.model === 'sa8') {
-                        this.supportedVersion = this.supportedVersionSa8; // 2022+
+                    await this.setStateChangedAsync('meta.versionApi', { val: content.api_version, ack: true, c: `Recommended: >=${this.supportedApiVersion}` });
+
+                    if (this.isNewerVersion(content.api_version, this.supportedApiVersion) && !this.displayedVersionWarning) {
+                        this.log.warn(`Update your LaMetric Time - supported API version of this adapter is ${this.supportedApiVersion} (or later). Your current version is ${content.api_version}`);
                     }
 
-                    if (this.isNewerVersion(content.os_version, this.supportedVersion) && !this.displayedVersionWarning) {
-                        this.log.warn(`You should update your LaMetric Time - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.os_version}`);
-                        this.displayedVersionWarning = true; // Just show once
-                    }
-
-                    await this.setStateChangedAsync('meta.name', { val: content.name, ack: true });
-                    await this.setStateChangedAsync('meta.serial', { val: content.serial_number, ack: true });
-                    await this.setStateChangedAsync('meta.version', { val: content.os_version, ack: true });
-                    await this.setStateChangedAsync('meta.versionUpdate', { val: content?.update_available?.version ?? '-', ack: true });
-                    await this.setStateChangedAsync('meta.model', { val: content.model, ack: true });
-                    await this.setStateChangedAsync('meta.mode', { val: content.mode, ack: true });
-
-                    await this.setStateChangedAsync('meta.audio.volume', { val: content.audio.volume, ack: true });
-                    await this.setStateChangedAsync('meta.audio.volumeMin', { val: content.audio.volume_limit.min, ack: true });
-                    await this.setStateChangedAsync('meta.audio.volumeMax', { val: content.audio.volume_limit.max, ack: true });
-
-                    await this.setStateChangedAsync('meta.bluetooth.available', { val: content.bluetooth.available, ack: true });
-                    await this.setStateChangedAsync('meta.bluetooth.name', { val: content.bluetooth.name, ack: true });
-                    await this.setStateChangedAsync('meta.bluetooth.active', { val: content.bluetooth.active, ack: true });
-                    await this.setStateChangedAsync('meta.bluetooth.discoverable', { val: content.bluetooth.discoverable, ack: true });
-                    await this.setStateChangedAsync('meta.bluetooth.pairable', { val: content.bluetooth.pairable, ack: true });
-                    await this.setStateChangedAsync('meta.bluetooth.address', { val: content.bluetooth.address, ack: true });
-
-                    if (content.bluetooth?.low_energy) {
-                        await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: content.bluetooth.low_energy.active, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: content.bluetooth.low_energy.advertising, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: content.bluetooth.low_energy.connectable, ack: true });
-                    } else {
-                        await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: false, ack: true, c: 'Not available' });
-                        await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: false, ack: true, c: 'Not available' });
-                        await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: false, ack: true, c: 'Not available' });
-                    }
-
-                    await this.setStateChangedAsync('meta.wifi.active', { val: content.wifi.active, ack: true });
-                    await this.setStateChangedAsync('meta.wifi.address', { val: content.wifi.address, ack: true });
-                    await this.setStateChangedAsync('meta.wifi.available', { val: content.wifi.available, ack: true });
-                    await this.setStateChangedAsync('meta.wifi.encryption', { val: content.wifi.encryption, ack: true });
-                    await this.setStateChangedAsync('meta.wifi.ssid', { val: content.wifi.essid, ack: true });
-                    await this.setStateChangedAsync('meta.wifi.ip', { val: content.wifi.ip, ack: true });
-                    await this.setStateChangedAsync('meta.wifi.mode', { val: content.wifi.mode, ack: true });
-                    await this.setStateChangedAsync('meta.wifi.netmask', { val: content.wifi.netmask, ack: true });
-                    await this.setStateChangedAsync('meta.wifi.strength', { val: content.wifi.strength, ack: true });
-
-                    this.buildRequestAsync('device/display', 'GET')
+                    this.buildRequestAsync('device', 'GET')
                         .then(async (response) => {
                             const content = response.data;
 
-                            await this.setStateChangedAsync('meta.display.brightness', { val: content.brightness, ack: true });
-                            await this.setStateChangedAsync('meta.display.brightnessMin', { val: content.brightness_limit.min, ack: true });
-                            await this.setStateChangedAsync('meta.display.brightnessMax', { val: content.brightness_limit.max, ack: true });
-                            await this.setStateChangedAsync('meta.display.brightnessAuto', { val: content.brightness_mode === 'auto', ack: true });
-                            await this.setStateChangedAsync('meta.display.brightnessMode', { val: content.brightness_mode, ack: true });
+                            this.log.debug(`(device) Model: ${content.model} (${content.os_version})`);
 
-                            await this.setStateChangedAsync('meta.display.width', { val: content.width, ack: true });
-                            await this.setStateChangedAsync('meta.display.height', { val: content.height, ack: true });
-                            await this.setStateChangedAsync('meta.display.type', { val: content.type, ack: true });
+                            if (content.model === 'sa8') {
+                                this.supportedVersion = this.supportedVersionSa8; // 2022+
+                            }
 
-                            await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.screensaver.enabled, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.screensaver.widget, ack: true });
+                            if (this.isNewerVersion(content.os_version, this.supportedVersion) && !this.displayedVersionWarning) {
+                                this.log.warn(`Update your LaMetric Time - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.os_version}`);
+                                this.displayedVersionWarning = true; // Just show once
+                            }
 
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: content.screensaver.modes.time_based.enabled, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: content.screensaver.modes.time_based.start_time, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: content.screensaver.modes.time_based.local_start_time, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: content.screensaver.modes.time_based.end_time, ack: true });
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: content.screensaver.modes.time_based.local_end_time, ack: true });
+                            await this.setStateChangedAsync('meta.name', { val: content.name, ack: true });
+                            await this.setStateChangedAsync('meta.serial', { val: content.serial_number, ack: true });
+                            await this.setStateChangedAsync('meta.version', { val: content.os_version, ack: true, c: `Recommended: >=${this.supportedVersion}` });
+                            await this.setStateChangedAsync('meta.versionUpdate', { val: content?.update_available?.version ?? '-', ack: true });
+                            await this.setStateChangedAsync('meta.model', { val: content.model, ack: true });
+                            await this.setStateChangedAsync('meta.mode', { val: content.mode, ack: true });
 
-                            await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.screensaver.modes.when_dark.enabled, ack: true });
+                            await this.setStateChangedAsync('meta.audio.volume', { val: content.audio.volume, ack: true });
+                            await this.setStateChangedAsync('meta.audio.volumeMin', { val: content.audio.volume_limit.min, ack: true });
+                            await this.setStateChangedAsync('meta.audio.volumeMax', { val: content.audio.volume_limit.max, ack: true });
 
-                            resolve(true);
+                            await this.setStateChangedAsync('meta.bluetooth.available', { val: content.bluetooth.available, ack: true });
+                            await this.setStateChangedAsync('meta.bluetooth.name', { val: content.bluetooth.name, ack: true });
+                            await this.setStateChangedAsync('meta.bluetooth.active', { val: content.bluetooth.active, ack: true });
+                            await this.setStateChangedAsync('meta.bluetooth.discoverable', { val: content.bluetooth.discoverable, ack: true });
+                            await this.setStateChangedAsync('meta.bluetooth.pairable', { val: content.bluetooth.pairable, ack: true });
+                            await this.setStateChangedAsync('meta.bluetooth.address', { val: content.bluetooth.address, ack: true });
+
+                            if (content.bluetooth?.low_energy) {
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: content.bluetooth.low_energy.active, ack: true });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: content.bluetooth.low_energy.advertising, ack: true });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: content.bluetooth.low_energy.connectable, ack: true });
+                            } else {
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: false, ack: true, c: 'Not available' });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: false, ack: true, c: 'Not available' });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: false, ack: true, c: 'Not available' });
+                            }
+
+                            await this.setStateChangedAsync('meta.wifi.active', { val: content.wifi.active, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.address', { val: content.wifi.address, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.available', { val: content.wifi.available, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.encryption', { val: content.wifi.encryption, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.ssid', { val: content.wifi.essid, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.ip', { val: content.wifi.ip, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.mode', { val: content.wifi.mode, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.netmask', { val: content.wifi.netmask, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.strength', { val: content.wifi.strength, ack: true });
+
+                            this.buildRequestAsync('device/display', 'GET')
+                                .then(async (response) => {
+                                    const content = response.data;
+
+                                    await this.setStateChangedAsync('meta.display.brightness', { val: content.brightness, ack: true });
+                                    await this.setStateChangedAsync('meta.display.brightnessMin', { val: content.brightness_limit.min, ack: true });
+                                    await this.setStateChangedAsync('meta.display.brightnessMax', { val: content.brightness_limit.max, ack: true });
+                                    await this.setStateChangedAsync('meta.display.brightnessAuto', { val: content.brightness_mode === 'auto', ack: true });
+                                    await this.setStateChangedAsync('meta.display.brightnessMode', { val: content.brightness_mode, ack: true });
+
+                                    await this.setStateChangedAsync('meta.display.width', { val: content.width, ack: true });
+                                    await this.setStateChangedAsync('meta.display.height', { val: content.height, ack: true });
+                                    await this.setStateChangedAsync('meta.display.type', { val: content.type, ack: true });
+
+                                    await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.screensaver.enabled, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.screensaver.widget, ack: true });
+
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: content.screensaver.modes.time_based.enabled, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: content.screensaver.modes.time_based.start_time, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: content.screensaver.modes.time_based.local_start_time, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: content.screensaver.modes.time_based.end_time, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: content.screensaver.modes.time_based.local_end_time, ack: true });
+
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.screensaver.modes.when_dark.enabled, ack: true });
+
+                                    resolve(true);
+                                })
+                                .catch((error) => {
+                                    this.log.warn(`(device/display) Unable to get status: ${error}`);
+                                    resolve(false);
+                                });
                         })
                         .catch((error) => {
-                            this.log.warn(`(device/display) Unable to get status: ${error}`);
+                            this.log.warn(`(device) Unable to get status: ${error}`);
+
                             resolve(false);
                         });
                 })
                 .catch((error) => {
-                    this.log.warn(`(device) Unable to get status: ${error}`);
+                    this.log.warn(`(api) Device not reachable: ${error}`);
 
                     this.setApiConnected(false);
                     resolve(false);
@@ -1423,7 +1443,11 @@ class LaMetric extends utils.Adapter {
     buildRequestAsync(service, method, data) {
         return new Promise((resolve, reject) => {
             const baseURL = `${this.prefix}://${this.config.lametricIp}:${this.port}`;
-            const url = `/api/v2/${service}`;
+            const url = service ? `/api/v2/${service}` : '/api/v2';
+
+            if (!method) {
+                method = 'GET';
+            }
 
             if (this.config.lametricIp && this.config.lametricToken) {
                 if (data) {

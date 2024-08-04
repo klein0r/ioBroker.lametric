@@ -359,6 +359,30 @@
       "native": {}
     },
     {
+      "_id": "meta.versionApi",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "API version",
+          "de": "API-Version",
+          "ru": "API",
+          "pt": "Versão API",
+          "nl": "API-versie",
+          "fr": "Version de l'API",
+          "it": "Versione API",
+          "es": "Versión API",
+          "pl": "Wersja API",
+          "uk": "Версія API",
+          "zh-cn": "API 版本"
+        },
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
       "_id": "meta.model",
       "type": "state",
       "common": {
