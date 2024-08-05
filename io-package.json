@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.2.3",
+    "version": "3.3.0",
     "news": {
+      "3.3.0": {
+        "en": "Added api version as state (and check value)",
+        "de": "Api-Version als Zustand hinzugefügt (und Prüfwert)",
+        "ru": "Добавлена версия api как состояние (и значение проверки)",
+        "pt": "Adicionado api versão como estado (e valor de verificação)",
+        "nl": "Toegevoegd api-versie als status (en controlewaarde)",
+        "fr": "Ajout de la version api comme état (et vérifier la valeur)",
+        "it": "Aggiunto versione api come stato (e il valore di controllo)",
+        "es": "Añadido api versión como estado (y valor de comprobación)",
+        "pl": "Dodano wersję api jako stan (i wartość kontrolna)",
+        "uk": "Додано версію api як стан (і значення перевірки)",
+        "zh-cn": "添加的 api 版本为状态( 并检查值)"
+      },
       "3.2.3": {
         "en": "Fixed blockly definitions",
         "de": "Feste blockweise Definitionen",
@@ -80,19 +93,6 @@
         "pl": "Rekomendacja wersji oprogramowania LaMetric zaleciła 2.3,8 (3.0.21)\nNiektóre urządzenia nie posiadają stanów o niskiej energii (sa8)",
         "uk": "Оновлено рекомендацію прошивки LaMetric до 2.3.8 (3.0.21)\nДеякі пристрої не мають низьких енергоносіїв bluetooth (sa8)",
         "zh-cn": "最新版的《拉梅斯公司指南》(3.021)\n有些装置的蓝色低能源国家(萨8)"
-      },
-      "3.1.1": {
-        "en": "Fixed issue with foreign states of version 3.1.0",
-        "de": "Problem mit fremden Staaten von Version 3.1.0 behoben",
-        "ru": "Исправлена проблема с иностранными государствами версии 3.1.0",
-        "pt": "Problema fixo com estados estrangeiros da versão 3.1.0",
-        "nl": "Quality over Quantity (QoQ) Releases Vertaling:",
-        "fr": "Numéro fixe avec les états étrangers de la version 3.1.0",
-        "it": "Emissione fissa con stati stranieri della versione 3.1.0",
-        "es": "Edición fija con estados extranjeros de la versión 3.1.0",
-        "pl": "Wydarzenia z zagranicznymi państwami w wersji 3.1.0",
-        "uk": "Виправлено проблему з іноземними державами версії 3.1.0",
-        "zh-cn": "同外国国有混合问题版本3.1"
       }
     },
     "titleLang": {

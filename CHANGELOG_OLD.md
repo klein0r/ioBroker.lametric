@@ -1,4 +1,8 @@
 # Older changes
+## 3.1.3 (2024-01-31)
+
+* (klein0r) Fixed web extension
+
 ## 3.1.2 (2023-12-27)
 
 * (klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.0.21)

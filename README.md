@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.3.0 (2024-08-05)
 
 * (@klein0r) Added api version as state (and check value)
 
@@ -73,10 +73,6 @@ iobroker add lametric
 NodeJS >= 18.x and js-controller >= 5 is required
 
 * (klein0r) Fixed Blockly definitions (removed warnings)
-
-### 3.1.3 (2024-01-31)
-
-* (klein0r) Fixed web extension
 
 ## License
 
