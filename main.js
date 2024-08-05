@@ -683,11 +683,13 @@ class LaMetric extends utils.Adapter {
                                     await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.screensaver.enabled, ack: true });
                                     await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.screensaver.widget, ack: true });
 
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: content.screensaver.modes.time_based.enabled, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: content.screensaver.modes.time_based.start_time, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: content.screensaver.modes.time_based.local_start_time, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: content.screensaver.modes.time_based.end_time, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: content.screensaver.modes.time_based.local_end_time, ack: true });
+                                    const timeBasedScreensaver = content.screensaver.modes.time_based;
+
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: timeBasedScreensaver?.enabled, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: timeBasedScreensaver?.start_time, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: timeBasedScreensaver?.local_start_time, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: timeBasedScreensaver?.end_time, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: timeBasedScreensaver?.local_end_time, ack: true });
 
                                     await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.screensaver.modes.when_dark.enabled, ack: true });
 
