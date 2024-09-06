@@ -315,6 +315,7 @@ class LaMetric extends utils.Adapter {
                         // START special Widgets
 
                         if (action == 'clock.clockface') {
+                            // @ts-ignore
                             if (['weather', 'page_a_day', 'custom', 'none'].includes(state.val)) {
                                 data.params = {
                                     type: state.val,
@@ -476,6 +477,7 @@ class LaMetric extends utils.Adapter {
                         const numberItems = notification.text[i].filter((item) => typeof item === 'number');
 
                         if (numberItems.length > 0) {
+                            // @ts-ignore
                             dataModel.frames.push({ chartData: numberItems });
                         } else {
                             this.log.warn('Chart frames should contain numbers (other items are ignored)');
@@ -489,6 +491,7 @@ class LaMetric extends utils.Adapter {
                             frame.icon = notification.icon;
                         }
 
+                        // @ts-ignore
                         dataModel.frames.push(frame);
                     }
                 }
@@ -669,7 +672,13 @@ class LaMetric extends utils.Adapter {
 
                         this.buildRequestAsync('device/stream', 'GET')
                             .then(async (response) => {
+                                // eslint-disable-next-line no-unused-vars
                                 const content = response.data;
+
+                                // TODO
+                            })
+                            .catch((error) => {
+                                this.log.warn(`(device/stream) Unable to get information: ${error}`);
                             });
                     } else {
                         this.setStateChangedAsync('streaming.supported', { val: false, ack: true, c: content.api_version });
@@ -1587,6 +1596,7 @@ class LaMetric extends utils.Adapter {
 
         // Collect all IDs in texts
         frames.forEach((f) => {
+            // @ts-ignore
             f.text.replace(this.myDataDiyRegex, (m, id) => {
                 if (!foreignStates.includes(id)) {
                     this.log.debug(`[mydatadiy] found dynamic state with id "${id}" in text`);
@@ -1594,6 +1604,7 @@ class LaMetric extends utils.Adapter {
                 }
             });
 
+            // @ts-ignore
             f.icon.replace(this.myDataDiyRegex, (m, id) => {
                 if (!foreignStates.includes(id)) {
                     this.log.debug(`[mydatadiy] found dynamic state with id "${id}" in icon`);
@@ -1658,6 +1669,7 @@ class LaMetric extends utils.Adapter {
         const clonedFrames = JSON.parse(JSON.stringify(this.config.mydatadiy)); // TODO: Better way to clone?! structuredClone in nodejs 17
         const newFrames = clonedFrames
             .map((f) => {
+                // @ts-ignore
                 let replacedText = f.text.replace(this.myDataDiyRegex, (m, id) => {
                     const foreignState = this.myDataDiyForeignStates.find((item) => item.id === id);
                     if (foreignState) {
@@ -1682,6 +1694,7 @@ class LaMetric extends utils.Adapter {
                 };
 
                 if (f.icon) {
+                    // @ts-ignore
                     newObj.icon = f.icon.replace(this.myDataDiyRegex, (m, id) => {
                         const newVal = this.myDataDiyForeignStates.find((item) => item.id === id).val;
 
