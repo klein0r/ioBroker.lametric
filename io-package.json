@@ -1616,7 +1616,7 @@
           "uk": "За підтримки",
           "zh-cn": "被支持"
         },
-        "role": "indicator.reachable",
+        "role": "indicator",
         "type": "boolean",
         "read": true,
         "write": false,
