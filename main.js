@@ -769,7 +769,7 @@ class LaMetric extends utils.Adapter {
                                         this.myDataDiyApp = uuid;
 
                                         if (this.isNewerVersion(pack.version, '2.0.0')) {
-                                            this.log.warn(`[mydatadiy] Please update the My Data DIY to a version >= 2.0.0 to use push (or configure polling)`);
+                                            this.log.warn(`[mydatadiy] Please update the "My Data DIY" app to a version >= 2.0.0 to use push (or configure polling)`);
                                         }
                                     }
                                 }
