@@ -17,7 +17,7 @@ class LaMetric extends utils.Adapter {
         this.supportedApiVersion = '2.0.0';
         this.supportedVersions = {
             'LM 37X8': '2.3.9', // https://firmware.lametric.com
-            sa8: '3.1.1', // https://firmware.lametric.com/?product=time2
+            sa8: '3.1.2', // https://firmware.lametric.com/?product=time2
         };
 
         this.displayedVersionWarning = false;
