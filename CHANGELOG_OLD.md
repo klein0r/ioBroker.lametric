@@ -1,4 +1,10 @@
 # Older changes
+## 3.2.0 (2024-06-07)
+
+NodeJS >= 18.x and js-controller >= 5 is required
+
+* (klein0r) Fixed Blockly definitions (removed warnings)
+
 ## 3.1.3 (2024-01-31)
 
 * (klein0r) Fixed web extension

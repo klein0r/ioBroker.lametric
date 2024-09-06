@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.4.0 (2024-09-06)
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.2)
 * (@klein0r) Added support for notification manager
@@ -74,12 +74,6 @@ iobroker add lametric
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)
 * (@klein0r) Updated dependencies
-
-### 3.2.0 (2024-06-07)
-
-NodeJS >= 18.x and js-controller >= 5 is required
-
-* (klein0r) Fixed Blockly definitions (removed warnings)
 
 ## License
 

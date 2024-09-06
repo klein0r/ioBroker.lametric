@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.3.0",
+    "version": "3.4.0",
     "news": {
+      "3.4.0": {
+        "en": "Updated LaMetric firmware version recommendation to 2.3.9 (3.1.2)\nAdded support for notification manager\nAdded validator for icon inputs\nFixed some missing translations",
+        "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.9 (3.1.2)\nUnterstützung für Benachrichtigungsmanager hinzugefügt\nValidator für Icon-Eingänge hinzugefügt\nEinige fehlende Übersetzungen behoben",
+        "ru": "Обновленная рекомендация LaMetric прошивки к 2.3.9 (3.1.2)\nДополнительная поддержка администратора уведомлений\nДобавлен валидатор для входных знаков\nИсправлены некоторые недостающие переводы",
+        "pt": "Recomendação de versão de firmware LaMetric atualizada para 2.3.9 (3.1.2)\nAdicionado suporte para o gerenciador de notificações\nAdicionado validador para entradas de ícone\nCorrigido algumas traduções em falta",
+        "nl": "Bijgewerkt LaMetric firmware versie aanbeveling aan 2.3.9 (3.1.2)\nOndersteuning voor notificatiebeheer toegevoegd\nToegevoegde validator voor pictograminvoer\nEnkele ontbrekende vertalingen hersteld",
+        "fr": "Mise à jour de la recommandation de version du firmware LaMetric à 2.3.9 (3.1.2)\nSoutien supplémentaire au gestionnaire de notification\nAjout du validateur pour les entrées d'icônes\nCorrection de certaines traductions manquantes",
+        "it": "Raccomandazione di versione firmware LaMetric aggiornata a 2.3.9 (3.1.2)\nAggiunto supporto per il gestore di notifica\nAggiunto validatore per ingressi icona\nRisolto alcune traduzioni mancanti",
+        "es": "Recomendación actualizada de la versión de firmware de LaMetric (3.1.2)\nApoyo adicional para el administrador de notificación\nAgregado validador para entradas de icono\nArreglado algunas traducciones faltantes",
+        "pl": "Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.9 (3.1.2)\nDodano wsparcie dla menedżera powiadomień\nDodano walidator dla wejść ikon\nNaprawiono kilka brakujących tłumaczeń",
+        "uk": "Оновлено рекомендацію прошивки LaMetric до 2.3.9 (3.1.2)\nДодано підтримку менеджера повідомлень\nДодано валідатор для вхідних іконок\nВиправлено деякі відсутні переклади",
+        "zh-cn": "更新后的 LaMetric 固件版本建议为2.3.9(3.1.2)\n添加对通知管理器的支持\n图标输入添加验证符\n修复一些缺失的翻译"
+      },
       "3.3.0": {
         "en": "Added api version as state (and check value)",
         "de": "Api-Version als Zustand hinzugefügt (und Prüfwert)",
@@ -80,19 +93,6 @@
         "pl": "Naprawiono rozszerzenie sieci web",
         "uk": "Виправлено розширення веб",
         "zh-cn": "固定网络扩展"
-      },
-      "3.1.2": {
-        "en": "Updated LaMetric firmware version recommendation to 2.3.8 (3.0.21)\nSome devices don't have bluetooth low energy states (sa8)",
-        "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.8 (3.0.21)\nEinige Geräte haben keinen bluetooth niedrigen Energiezustand (sa8)",
-        "ru": "Обновленная версия LaMetric прошивки рекомендации до 2.3.8 (3.0.21)\nНекоторые устройства не имеют низкоэнергетические состояния bluetooth (sa8)",
-        "pt": "Recomendação de versão de firmware LaMetric atualizada para 2.3.8 (3.0.21)\nAlguns dispositivos não têm estados de baixa energia bluetooth (sa8)",
-        "nl": "Upded LaMetric firmaware versie aanbeveling aan 2.3.8 (3.21)\nSommige apparaten hebben geen blauwtooth laag energiegebied",
-        "fr": "Mise à jour de la recommandation de version du firmware LaMetric au 2.3.8 (3.0.21)\nCertains appareils n'ont pas d'états de basse énergie bluetooth (sa8)",
-        "it": "Raccomandazione di versione firmware LaMetric aggiornata a 2.3.8 (3.0.21)\nAlcuni dispositivi non hanno bluetooth bassi stati energetici (sa8)",
-        "es": "Recomendación actualizada de la versión de firmware de LaMetric a 2.3.8 (3.0.21)\nAlgunos dispositivos no tienen estados de baja energía bluetooth (sa8)",
-        "pl": "Rekomendacja wersji oprogramowania LaMetric zaleciła 2.3,8 (3.0.21)\nNiektóre urządzenia nie posiadają stanów o niskiej energii (sa8)",
-        "uk": "Оновлено рекомендацію прошивки LaMetric до 2.3.8 (3.0.21)\nДеякі пристрої не мають низьких енергоносіїв bluetooth (sa8)",
-        "zh-cn": "最新版的《拉梅斯公司指南》(3.021)\n有些装置的蓝色低能源国家(萨8)"
       }
     },
     "titleLang": {
