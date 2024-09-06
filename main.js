@@ -66,7 +66,7 @@ class LaMetric extends utils.Adapter {
                 this.collectMyDataDiyForeignStates(this.config.mydatadiy);
             } else {
                 this.log.info('[mydatadiy] configuration not available - skipping');
-                await this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'No config', icon: 'a9335' }] }), ack: true });
+                await this.setState('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'No config', icon: 'a9335' }] }), ack: true });
             }
         } catch (err) {
             this.log.error(`Error on startup: ${err}`);
@@ -329,7 +329,7 @@ class LaMetric extends utils.Adapter {
 
                             data.activate = true;
 
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true }); // Confirm state change
+                            await this.setState(idNoNamespace, { val: state.val, ack: true }); // Confirm state change
                         } else if (action.startsWith('clock.alarm')) {
                             const caStates = await this.getStatesAsync(`apps.${widget}.clock.alarm.*`);
 
@@ -355,7 +355,7 @@ class LaMetric extends utils.Adapter {
                                 start_now: false,
                             };
 
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true }); // Confirm state change
+                            await this.setState(idNoNamespace, { val: state.val, ack: true }); // Confirm state change
                         }
 
                         // END special Widgets
@@ -1715,7 +1715,7 @@ class LaMetric extends utils.Adapter {
 
         this.log.debug(`[mydatadiy] completed - frame update to ${JSON.stringify(newFrames)}`);
 
-        await this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: newFrames }), ack: true });
+        await this.setState('mydatadiy.obj', { val: JSON.stringify({ frames: newFrames }), ack: true });
 
         if (this.config.type === 'push') {
             if (!this.myDataDiyApp) {
@@ -1761,8 +1761,14 @@ class LaMetric extends utils.Adapter {
      */
     onUnload(callback) {
         try {
+            if (this.apiConnected && this.config.type === 'push' && this.myDataDiyApp) {
+                this.buildRequestAsync(`widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}`, 'POST', { frames: [{ text: 'Adapter stopped', icon: 'a9335' }] }).catch((error) => {
+                    this.log.warn(`(widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}) Unable to execute action: ${error}`);
+                });
+            }
+
             this.setApiConnected(false);
-            this.setStateAsync('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'Adapter stopped', icon: 'a9335' }] }), ack: true });
+            this.setState('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'Adapter stopped', icon: 'a9335' }] }), ack: true });
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
