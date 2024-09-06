@@ -54,6 +54,7 @@ iobroker add lametric
 ### **WORK IN PROGRESS**
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.2)
+* (@klein0r) Added support for notification manager
 * (@klein0r) Added validator for icon inputs
 
 ### 3.3.0 (2024-08-05)

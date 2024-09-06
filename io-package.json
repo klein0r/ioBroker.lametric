@@ -148,7 +148,10 @@
     "connectionType": "local",
     "dataSource": "poll",
     "blockly": true,
-    "messagebox": true,
+    "supportedMessages": {
+      "custom": true,
+      "notifications": true
+    },
     "webExtension": "lib/web.js",
     "adminUI": {
       "config": "json"

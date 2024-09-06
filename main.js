@@ -556,6 +556,54 @@ class LaMetric extends utils.Adapter {
                 } else {
                     this.sendTo(obj.from, obj.command, 'Please select a web instance for url preview', obj.callback);
                 }
+            } else if (obj.command === 'sendNotification' && typeof obj.message === 'object') {
+                const notification = obj.message;
+
+                const { instances } = notification.category;
+
+                const messages = Object.entries(instances)
+                    .map(([, entry]) => entry.messages.map((m) => m.message))
+                    .join(', ');
+
+                // TODO: Configurable options for notifications
+                const data = {
+                    model: {
+                        iconType: 'alert',
+                        priority: 'critical',
+                        sound: {
+                            category: 'alarms',
+                            id: 'alarm1',
+                            repeat: 1,
+                        },
+                        frames: [
+                            {
+                                icon: 'i3389',
+                                text: messages,
+                            },
+                        ],
+                    },
+                };
+
+                this.buildRequestAsync('device/notifications', 'POST', data)
+                    .then(async (response) => {
+                        const content = response.data;
+
+                        // Confirm message
+                        if (obj.callback) {
+                            if (content && content.success) {
+                                this.sendTo(obj.from, obj.command, content.success, obj.callback);
+                            } else {
+                                this.sendTo(obj.from, obj.command, { error: 'failed' }, obj.callback);
+                            }
+                        }
+                    })
+                    .catch((error) => {
+                        this.log.warn(`(device/notifications) Unable to execute action: ${error}`);
+
+                        if (obj.callback) {
+                            this.sendTo(obj.from, obj.command, { error: error }, obj.callback);
+                        }
+                    });
             } else {
                 this.log.error(`[onMessage] Received incomplete message via "sendTo"`);
 
