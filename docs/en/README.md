@@ -12,13 +12,19 @@
 ## Requirements
 
 - nodejs 18 (or later)
-- js-controller 5.0.0 (or later)
+- js-controller 5.0.19 (or later)
 - Admin Adapter 6.0.0 (or later)
-- _LaMetric Time_ with firmware _2.3.9_ (_3.1.2_ on the 2022 model) (or later)
+- _LaMetric Time_ with firmware _3.1.2_ (or later)
+    - firmware _2.3.9_ (or later) on older models (produced before year 2022)
 
 [Firmware-Changelog](https://firmware.lametric.com) [Firmware-Changelog Time2](https://firmware.lametric.com/?product=time2)
 
 ## Configuration
+
+1. Add the LaMetric Time to your local network
+    - LaMetric Time App (2017 to 2021) - [iOS](https://apps.apple.com/de/app/lametric-time/id987445829), [Google Play Store](https://play.google.com/store/apps/details?id=com.smartatoms.lametric)
+    - LaMetric App (2022 to heute) - [iOS](https://apps.apple.com/de/app/lametric/id1502981694), [Google Play Store](https://play.google.com/store/apps/details?id=com.lametric.platform)
+2. Copy the device API key from the app (only models 2022 and newer). Use the following website for older models:
 
 You can get your device API key [here](https://developer.lametric.com/user/devices).
 
