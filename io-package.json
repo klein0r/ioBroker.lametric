@@ -218,6 +218,7 @@
           "it": "Informazione",
           "es": "Información",
           "pl": "Informacja",
+          "uk": "Інформація",
           "zh-cn": "信息"
         }
       },
@@ -237,6 +238,7 @@
           "it": "Se connesso a LaMetric",
           "es": "Si está conectado a LaMetric",
           "pl": "W przypadku połączenia z LaMetric",
+          "uk": "Підключається до LaMetric",
           "zh-cn": "如果连接到 LaMetric"
         },
         "role": "indicator.reachable",
@@ -251,7 +253,6 @@
       "_id": "meta",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Meta information",
           "de": "Meta-Informationen",
@@ -262,6 +263,7 @@
           "it": "Meta informazioni",
           "es": "Meta informacion",
           "pl": "Metainformacje",
+          "uk": "Мета",
           "zh-cn": "元信息"
         }
       },
@@ -281,6 +283,7 @@
           "it": "Nome",
           "es": "Nombre",
           "pl": "Nazwa",
+          "uk": "Ім'я",
           "zh-cn": "姓名"
         },
         "type": "string",
@@ -304,6 +307,7 @@
           "it": "Numero di serie",
           "es": "Número de serie",
           "pl": "Numer seryjny",
+          "uk": "Серійний номер",
           "zh-cn": "序列号"
         },
         "type": "string",
@@ -399,6 +403,7 @@
           "it": "Numero di modello",
           "es": "Número de modelo",
           "pl": "Numer modelu",
+          "uk": "Номер моделі",
           "zh-cn": "型号"
         },
         "type": "string",
@@ -422,6 +427,7 @@
           "it": "Modalità dispositivo",
           "es": "Modo de dispositivo",
           "pl": "Tryb urządzenia",
+          "uk": "Режим пристрою",
           "zh-cn": "设备模式"
         },
         "type": "string",
@@ -441,7 +447,6 @@
       "_id": "meta.audio",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Audio",
           "de": "Audio",
@@ -452,6 +457,7 @@
           "it": "Audio",
           "es": "Audio",
           "pl": "Audio",
+          "uk": "Аудіо",
           "zh-cn": "声音的"
         }
       },
@@ -471,6 +477,7 @@
           "it": "Volume audio",
           "es": "Volumen de audio",
           "pl": "Głośność dźwięku",
+          "uk": "Аудіо об'єм",
           "zh-cn": "音量"
         },
         "type": "number",
@@ -495,6 +502,7 @@
           "it": "Volume audio (min)",
           "es": "Volumen de audio (min)",
           "pl": "Głośność dźwięku (min)",
+          "uk": "Аудіо об'єм (min)",
           "zh-cn": "音频音量（分钟）"
         },
         "type": "number",
@@ -519,6 +527,7 @@
           "it": "Volume audio (massimo)",
           "es": "Volumen de audio (máx.)",
           "pl": "Głośność dźwięku (maks.)",
+          "uk": "Аудіо об'єм (max)",
           "zh-cn": "音频音量（最大）"
         },
         "type": "number",
@@ -533,7 +542,6 @@
       "_id": "meta.bluetooth",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Bluetooth",
           "de": "Bluetooth",
@@ -544,6 +552,7 @@
           "it": "Bluetooth",
           "es": "Bluetooth",
           "pl": "Bluetooth",
+          "uk": "Билетень",
           "zh-cn": "蓝牙"
         }
       },
@@ -554,7 +563,7 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Available",
+          "en": "Bluetooth available",
           "de": "Bluetooth verfügbar",
           "ru": "Bluetooth доступен",
           "pt": "Bluetooth disponível",
@@ -563,6 +572,7 @@
           "it": "Bluetooth disponibile",
           "es": "Bluetooth disponible",
           "pl": "Dostępny Bluetooth",
+          "uk": "Bluetooth Доступний",
           "zh-cn": "蓝牙可用"
         },
         "type": "boolean",
@@ -577,15 +587,16 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Name",
+          "en": "Bluetooth name",
           "de": "Bluetooth-Name",
           "ru": "Имя Bluetooth",
-          "pt": "Nome Bluetooth",
-          "nl": "Bluetooth-naam",
+          "pt": "Nome de Bluetooth",
+          "nl": "Bluetooth naam",
           "fr": "Nom Bluetooth",
           "it": "Nome Bluetooth",
-          "es": "Nombre de Bluetooth",
+          "es": "Nombre Bluetooth",
           "pl": "Nazwa Bluetooth",
+          "uk": "Назва Bluetooth",
           "zh-cn": "蓝牙名称"
         },
         "type": "string",
@@ -600,16 +611,17 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Active",
+          "en": "Bluetooth active",
           "de": "Bluetooth aktiv",
-          "ru": "Bluetooth активен",
+          "ru": "Bluetooth актив",
           "pt": "Bluetooth ativo",
           "nl": "Bluetooth actief",
           "fr": "Bluetooth actif",
           "it": "Bluetooth attivo",
           "es": "Bluetooth activo",
-          "pl": "Bluetooth aktywny",
-          "zh-cn": "蓝牙有源"
+          "pl": "Aktywny Bluetooth",
+          "uk": "Активний Bluetooth",
+          "zh-cn": "蓝牙活动"
         },
         "type": "boolean",
         "role": "switch.enable",
@@ -623,15 +635,16 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Discoverable",
-          "de": "Bluetooth erkennbar",
+          "en": "Bluetooth discoverable",
+          "de": "Bluetooth auffindbar",
           "ru": "Обнаружение Bluetooth",
-          "pt": "Bluetooth detectável",
-          "nl": "Bluetooth detecteerbaar",
-          "fr": "Bluetooth détectable",
-          "it": "Rilevabile Bluetooth",
-          "es": "Bluetooth detectable",
-          "pl": "Wykrywalny przez Bluetooth",
+          "pt": "Descoberta de Bluetooth",
+          "nl": "Bluetooth te ontdekken",
+          "fr": "Bluetooth découvrable",
+          "it": "Bluetooth scoperto",
+          "es": "Bluetooth descubierta",
+          "pl": "Odkrywalny Bluetooth",
+          "uk": "Bluetooth відкрив",
           "zh-cn": "蓝牙可发现"
         },
         "type": "boolean",
@@ -646,15 +659,16 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Pairable",
-          "de": "Bluetooth koppelbar",
-          "ru": "Bluetooth Pairable",
-          "pt": "Bluetooth emparelhável",
-          "nl": "Bluetooth-koppelbaar",
-          "fr": "Bluetooth appairable",
-          "it": "Bluetooth abbinabile",
-          "es": "Bluetooth emparejable",
-          "pl": "Możliwość parowania przez Bluetooth",
+          "en": "Bluetooth pairable",
+          "de": "Bluetooth paarbar",
+          "ru": "Bluetooth pairable",
+          "pt": "Bluetooth emparelhado",
+          "nl": "Bluetooth-paarbaar",
+          "fr": "Jumelage Bluetooth",
+          "it": "Compatibile con Bluetooth",
+          "es": "Bluetooth parable",
+          "pl": "Bluetooth",
+          "uk": "Bluetooth парний",
           "zh-cn": "蓝牙配对"
         },
         "type": "boolean",
@@ -669,15 +683,16 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Address",
+          "en": "Bluetooth address",
           "de": "Bluetooth-Adresse",
           "ru": "Адрес Bluetooth",
           "pt": "Endereço Bluetooth",
           "nl": "Bluetooth-adres",
           "fr": "Adresse Bluetooth",
           "it": "Indirizzo Bluetooth",
-          "es": "Dirección de Bluetooth",
+          "es": "Dirección Bluetooth",
           "pl": "Adres Bluetooth",
+          "uk": "Адреса Bluetooth",
           "zh-cn": "蓝牙地址"
         },
         "type": "string",
@@ -691,7 +706,6 @@
       "_id": "meta.bluetooth.low_energy",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Bluetooth Low Energy",
           "de": "Bluetooth Low Energy",
@@ -702,6 +716,7 @@
           "it": "Bluetooth a bassa energia",
           "es": "Bluetooth de baja energía",
           "pl": "Niska energia Bluetooth",
+          "uk": "Bluetooth Низька енергія",
           "zh-cn": "低功耗蓝牙"
         }
       },
@@ -712,16 +727,17 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Low Energy Active",
-          "de": "Bluetooth Low Energy Aktiv",
-          "ru": "Bluetooth с низким энергопотреблением, активный",
-          "pt": "Bluetooth de baixa energia ativo",
-          "nl": "Bluetooth Lage Energie Actief",
-          "fr": "Bluetooth à faible consommation d'énergie actif",
-          "it": "Bluetooth a basso consumo energetico attivo",
-          "es": "Bluetooth de baja energía activo",
-          "pl": "Aktywny Bluetooth Low Energy",
-          "zh-cn": "低功耗蓝牙有源"
+          "en": "Bluetooth Low Energy active",
+          "de": "Bluetooth Low Energy aktiv",
+          "ru": "Bluetooth Low Energy",
+          "pt": "Bluetooth baixa energia ativa",
+          "nl": "Bluetooth Low Energy actief",
+          "fr": "Bluetooth Low Energy active",
+          "it": "Bluetooth Low Energy attivo",
+          "es": "Bluetooth Low Energy activo",
+          "pl": "Aktywność Bluetooth Low Energy",
+          "uk": "Bluetooth Низька енергія Активний",
+          "zh-cn": "蓝牙低能活动"
         },
         "type": "boolean",
         "role": "indicator",
@@ -735,16 +751,17 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Low Energy Advertising",
-          "de": "Bluetooth Low Energy Auffindbar",
-          "ru": "Bluetooth с низким энергопотреблением",
-          "pt": "Publicidade de Bluetooth de baixa energia",
-          "nl": "Bluetooth Low Energy-advertenties",
-          "fr": "Publicité Bluetooth Low Energy",
-          "it": "Pubblicità Bluetooth a basso consumo energetico",
+          "en": "Bluetooth Low Energy advertising",
+          "de": "Bluetooth Low Energy auffindbar",
+          "ru": "Реклама Bluetooth Low Energy",
+          "pt": "Bluetooth publicidade de baixa energia",
+          "nl": "Bluetooth Low Energy-reclame",
+          "fr": "Publicité Bluetooth basse énergie",
+          "it": "Pubblicità Bluetooth Low Energy",
           "es": "Publicidad Bluetooth Low Energy",
-          "pl": "Reklama Bluetooth o niskiej energii",
-          "zh-cn": "蓝牙低功耗广告"
+          "pl": "Reklama Bluetooth Low Energy",
+          "uk": "Bluetooth Low Energy реклама",
+          "zh-cn": "蓝牙低能广告"
         },
         "type": "boolean",
         "role": "indicator",
@@ -758,16 +775,17 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Bluetooth Low Energy Connectable",
+          "en": "Bluetooth Low Energy connectable",
           "de": "Bluetooth Low Energy verbindbar",
-          "ru": "Возможность подключения по Bluetooth с низким энергопотреблением",
-          "pt": "Bluetooth conectável de baixa energia",
-          "nl": "Bluetooth Low Energy aansluitbaar",
-          "fr": "Bluetooth à faible consommation d'énergie connectable",
-          "it": "Bluetooth a bassa energia collegabile",
-          "es": "Bluetooth de baja energía conectable",
-          "pl": "Możliwość podłączenia Bluetooth Low Energy",
-          "zh-cn": "蓝牙低功耗可连接"
+          "ru": "Bluetooth Low Energy",
+          "pt": "Bluetooth de baixa energia conecável",
+          "nl": "Bluetooth lage energie aansluitbaar",
+          "fr": "Connexion Bluetooth basse énergie",
+          "it": "Connessione Bluetooth Low Energy",
+          "es": "Bluetooth Low Energy conectado",
+          "pl": "Połączenia Bluetooth Low Energy",
+          "uk": "Bluetooth Low Energy підключений",
+          "zh-cn": "蓝牙低能连接"
         },
         "type": "boolean",
         "role": "indicator",
@@ -780,7 +798,6 @@
       "_id": "meta.display",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Display",
           "de": "Anzeige",
@@ -987,7 +1004,6 @@
       "_id": "meta.display.screensaver",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Screensaver",
           "de": "Bildschirmschoner",
@@ -1053,7 +1069,6 @@
       "_id": "meta.display.screensaver.modes",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Screensaver Modes",
           "de": "Bildschirmschoner-Modi",
@@ -1073,7 +1088,6 @@
       "_id": "meta.display.screensaver.modes.timeBased",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Time Based Screensaver",
           "de": "Zeitbasierter Bildschirmschoner",
@@ -1208,7 +1222,6 @@
       "_id": "meta.display.screensaver.modes.whenDark",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "When Dark Screensaver",
           "de": "Wenn Dunkel Bildschirmschoner",
@@ -1251,7 +1264,6 @@
       "_id": "meta.wifi",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "WiFi",
           "de": "W-LAN",
@@ -1479,7 +1491,6 @@
       "_id": "apps",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Apps",
           "de": "Apps",
@@ -1569,10 +1580,54 @@
       "native": {}
     },
     {
+      "_id": "streaming",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Streaming",
+          "de": "Streaming",
+          "ru": "Поток",
+          "pt": "Streaming",
+          "nl": "Streaming",
+          "fr": "Streaming",
+          "it": "Streaming",
+          "es": "Streaming",
+          "pl": "Streaming",
+          "uk": "Потоки",
+          "zh-cn": "流线"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "streaming.supported",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Is supported",
+          "de": "Wird unterstützt",
+          "ru": "Поддерживается",
+          "pt": "É suportado",
+          "nl": "Wordt ondersteund",
+          "fr": "Est soutenu",
+          "it": "È supportato",
+          "es": "Is supported",
+          "pl": "Jest obsługiwany",
+          "uk": "За підтримки",
+          "zh-cn": "被支持"
+        },
+        "role": "indicator.reachable",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
       "_id": "mydatadiy",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "My Data (DIY)",
           "de": "Meine Daten (DIY)",
@@ -1583,6 +1638,7 @@
           "it": "I miei dati (fai da te)",
           "es": "Mis datos (bricolaje)",
           "pl": "Moje dane (zrób to sam)",
+          "uk": "Мої дані (DIY)",
           "zh-cn": "我的数据（DIY）"
         }
       },
@@ -1602,6 +1658,7 @@
           "it": "Dati del telaio I miei dati (fai-da-te)",
           "es": "Datos del marco de My Data (DIY)",
           "pl": "Dane ramki Moje dane (DIY)",
+          "uk": "Дані мої (DIY)",
           "zh-cn": "我的数据 (DIY) 帧数据"
         },
         "type": "string",

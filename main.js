@@ -14,13 +14,14 @@ class LaMetric extends utils.Adapter {
             name: adapterName,
         });
 
+        this.displayedVersionWarning = false;
         this.supportedApiVersion = '2.0.0';
         this.supportedVersions = {
             'LM 37X8': '2.3.9', // https://firmware.lametric.com
             sa8: '3.1.2', // https://firmware.lametric.com/?product=time2
         };
 
-        this.displayedVersionWarning = false;
+        this.supportsStreaming = false;
 
         this.prefix = 'http';
         this.port = 8080;
@@ -658,6 +659,20 @@ class LaMetric extends utils.Adapter {
 
                     if (this.isNewerVersion(content.api_version, this.supportedApiVersion) && !this.displayedVersionWarning) {
                         this.log.warn(`Update your LaMetric device - supported API version of this adapter is ${this.supportedApiVersion} (or later). Your current version is ${content.api_version}`);
+                    }
+
+                    if (content.endpoints?.stream_url) {
+                        this.log.debug(`(api) This device supports streaming: ${content.endpoints.stream_url}`);
+                        this.supportsStreaming = true;
+
+                        this.setStateChangedAsync('streaming.supported', { val: true, ack: true, c: content.api_version });
+
+                        this.buildRequestAsync('device/stream', 'GET')
+                            .then(async (response) => {
+                                const content = response.data;
+                            });
+                    } else {
+                        this.setStateChangedAsync('streaming.supported', { val: false, ack: true, c: content.api_version });
                     }
 
                     this.buildRequestAsync('device', 'GET')
