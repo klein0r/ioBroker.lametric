@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.4.0",
+    "version": "3.4.1",
     "news": {
+      "3.4.1": {
+        "en": "Limit frame duration to 10 seconds (limited by LaMetric)",
+        "de": "Rahmendauer auf 10 Sekunden (begrenzt durch LaMetric)",
+        "ru": "Ограничение рамы до 10 секунд (ограничено LaMetric)",
+        "pt": "Limitar a duração do quadro a 10 segundos (limitado por LaMetric)",
+        "nl": "Beperk frame duur tot 10 seconden (beperkt door LaMetric)",
+        "fr": "Limiter la durée du cadre à 10 secondes (limitée par LaMetric)",
+        "it": "Durata della cornice di limite a 10 secondi (limitata da LaMetric)",
+        "es": "Duración límite del marco a 10 segundos (limitado por LaMetric)",
+        "pl": "Ograniczenie czasu trwania ramki do 10 sekund (ograniczone przez LaMetric)",
+        "uk": "Тривалість ліміту до 10 секунд (обмежена LaMetric)",
+        "zh-cn": "将帧长度限制为 10 秒( 受 LaMetric 限制)"
+      },
       "3.4.0": {
         "en": "Updated LaMetric firmware version recommendation to 2.3.9 (3.1.2)\nAdded support for notification manager\nAdded validator for icon inputs\nFixed some missing translations",
         "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.9 (3.1.2)\nUnterstützung für Benachrichtigungsmanager hinzugefügt\nValidator für Icon-Eingänge hinzugefügt\nEinige fehlende Übersetzungen behoben",
@@ -80,19 +93,6 @@
         "pl": "NodeJS > = 18.x i kontroler js- > = 5 jest wymagane\n\n* Poprawione definicje Blockly (usunięte ostrzeżenia)",
         "uk": "NodeJS >= 18.x та js-controller >= 5 обов'язково\n\n* Виправлені помилкові визначення (виділені попередження)",
         "zh-cn": "节点JS18x和js控制器QQ 需要5个\n\n* 固定块定义(撤消警告)"
-      },
-      "3.1.3": {
-        "en": "Fixed web extension",
-        "de": "Feste Web-Erweiterung",
-        "ru": "Исправленное расширение",
-        "pt": "Extensão web fixa",
-        "nl": "Vaste webextensie",
-        "fr": "Extension web fixe",
-        "it": "Estensione web fissa",
-        "es": "Extensión web fija",
-        "pl": "Naprawiono rozszerzenie sieci web",
-        "uk": "Виправлено розширення веб",
-        "zh-cn": "固定网络扩展"
       }
     },
     "titleLang": {

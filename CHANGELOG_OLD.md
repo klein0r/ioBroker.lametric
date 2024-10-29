@@ -1,4 +1,9 @@
 # Older changes
+## 3.2.1 (2024-06-12)
+
+* (@klein0r) Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)
+* (@klein0r) Updated dependencies
+
 ## 3.2.0 (2024-06-07)
 
 NodeJS >= 18.x and js-controller >= 5 is required
