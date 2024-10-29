@@ -1688,9 +1688,15 @@ class LaMetric extends utils.Adapter {
                     replacedText = ''; // will be removed in filter function (see below)
                 }
 
+                let duration = f?.duration ?? 5;
+
+                if (duration > 10) {
+                    duration = 10; // 10 seconds is the limit
+                }
+
                 const newObj = {
                     text: replacedText.trim(),
-                    duration: f?.duration ? f.duration * 1000 : 5000,
+                    duration: duration * 1000, // ms
                 };
 
                 if (f.icon) {
@@ -1719,7 +1725,7 @@ class LaMetric extends utils.Adapter {
 
         if (this.config.type === 'push') {
             if (!this.myDataDiyApp) {
-                this.log.warn(`[mydatadiy] unable to push changes to device - app package id not found`);
+                this.log.warn(`[mydatadiy] unable to push changes to device - app package id not found (app installed?)`);
             } else if (newFrames.length > 0) {
                 this.log.debug(`[mydatadiy] pusing changes to device - app ${this.myDataDiyApp}`);
 

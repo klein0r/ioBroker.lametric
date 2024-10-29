@@ -51,6 +51,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Limit frame duration to 10 seconds (limited by LaMetric)
+
 ### 3.4.0 (2024-09-06)
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.2)
