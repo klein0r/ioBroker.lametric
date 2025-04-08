@@ -53,6 +53,8 @@ iobroker add lametric
 -->
 ### **WORK IN PROGRESS**
 
+NodeJS >= 20.x and js-controller >= 6 is required
+
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.4)
 
 ### 3.4.1 (2024-10-29)
