@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "3.4.1",
+    "version": "4.0.0",
     "news": {
+      "4.0.0": {
+        "en": "NodeJS >= 20.x and js-controller >= 6 is required\n\n* Updated LaMetric firmware version recommendation to 2.3.9 (3.1.4)",
+        "de": "NodeJS >= 20.x und js-Controller >= 6 ist erforderlich\n\n* Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.9 (3.1.4)",
+        "ru": "NodeJS >= 20.x и js-контроллер >= 6 Требуется\n\n* Рекомендация по обновленной версии прошивки LaMetric 2.3.9 (3.1.4)",
+        "pt": "NodeJS >= 20.x e js-controller >= 6 é necessário\n\n* Recomendação de versão de firmware LaMetric atualizada para 2.3.9 (3.1.4)",
+        "nl": "Van niet-gelegeerd staal 6 is vereist\n\n* Bijgewerkt LaMetric firmware versie aanbeveling tot 2.3.9 (3.1.4)",
+        "fr": "NodeJS >= 20.x et js-controller >= 6 est nécessaire\n\n* Mise à jour de la recommandation de la version du firmware LaMetric à 2.3.9 (3.1.4)",
+        "it": "NodeJS >= 20.x e js-controller >= 6 è richiesto\n\n* Raccomandazione di versione firmware LaMetric aggiornata a 2.3.9 (3.1.4)",
+        "es": "NodeJS ю= 20.x y js-controller Se requiere 6\n\n* Recomendación actualizada de la versión de firmware de LaMetric (3.1.4)",
+        "pl": "NodeJS > = 20 x i kontroler js- > = 6 jest wymagane\n\n* Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.9 (3.1.4)",
+        "uk": "NodeJS >= 20.x та js-controller >= 6 обов'язковий\n\n* Оновлено рекомендацію прошивки LaMetric до 2.3.9 (3.1.4)",
+        "zh-cn": "节点JS20x和js控制器QQ 需要6个\n\n* 更新后的实验室固件版建议为2.3.9(3.1.4)"
+      },
       "3.4.1": {
         "en": "Limit frame duration to 10 seconds (limited by LaMetric)",
         "de": "Rahmendauer auf 10 Sekunden (begrenzt durch LaMetric)",
@@ -80,19 +93,6 @@
         "pl": "(@ klein0r) Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.8 (3.1.0)\n(@ klein0r) Aktualizacja zależności",
         "uk": "Оновлено рекомендацію версії прошивки LaMetric до 2.3.8 (3.1.0)\nОновлені залежності",
         "zh-cn": "更新后的 LaMetric 固件版本建议为2.3.8 (3.1.0)\n(韩语). 更新的依赖关系"
-      },
-      "3.2.0": {
-        "en": "NodeJS >= 18.x and js-controller >= 5 is required\n\n* Fixed Blockly definitions (removed warnings)",
-        "de": "NodeJS >= 18.x und js-Controller >= 5 ist erforderlich\n\n* Feste Blockdefinitionen (entfernte Warnungen)",
-        "ru": "NodeJS >= 18.x и js-контроллер >= 5 требуется\n\n* Исправленные блокированные определения (удаленные предупреждения)",
-        "pt": "NodeJS >= 18.x e js-controller >= 5 é necessário\n\n* Definições bloqueadas fixas (avisões remotas)",
-        "nl": "Voor de toepassing van de onderverdelingen 870190 tot en met 870290 wordt onder post 8702 verstaan: 5 is vereist\n\n* Vaste blokdefinities (verwijderde waarschuwingen)",
-        "fr": "NodeJS >= 18.x et js-controller >= 5 est nécessaire\n\n* Définitions fixes par blocs (avertissements supprimés)",
-        "it": "NodeJS >= 18.x e js-controller 5 è richiesto\n\n* Definizioni Bloccate Fisse (avviso rimosso)",
-        "es": "NodeJS >= 18.x y js-controller Se requiere 5\n\n* Definiciones limitadas (removidas advertencias)",
-        "pl": "NodeJS > = 18.x i kontroler js- > = 5 jest wymagane\n\n* Poprawione definicje Blockly (usunięte ostrzeżenia)",
-        "uk": "NodeJS >= 18.x та js-controller >= 5 обов'язково\n\n* Виправлені помилкові визначення (виділені попередження)",
-        "zh-cn": "节点JS18x和js控制器QQ 需要5个\n\n* 固定块定义(撤消警告)"
       }
     },
     "titleLang": {
