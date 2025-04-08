@@ -48,17 +48,18 @@ class LaMetric extends utils.Adapter {
             await this.subscribeStatesAsync('*');
 
             if (!this.config.lametricIp || !this.config.lametricToken) {
-                this.log.error(`IP address and/or token not configured - please check instance configuration and restart`);
+                this.log.error(
+                    `IP address and/or token not configured - please check instance configuration and restart`,
+                );
                 typeof this.terminate === 'function' ? this.terminate(11) : process.exit(11);
                 return;
-            } else {
-                if (this.config.useHttps) {
-                    this.prefix = 'https';
-                    this.port = 4343;
-                }
-
-                this.log.info(`Starting - connecting to ${this.prefix}://${this.config.lametricIp}:${this.port}`);
             }
+            if (this.config.useHttps) {
+                this.prefix = 'https';
+                this.port = 4343;
+            }
+
+            this.log.info(`Starting - connecting to ${this.prefix}://${this.config.lametricIp}:${this.port}`);
 
             await this.refreshState();
 
@@ -66,7 +67,10 @@ class LaMetric extends utils.Adapter {
                 this.collectMyDataDiyForeignStates(this.config.mydatadiy);
             } else {
                 this.log.info('[mydatadiy] configuration not available - skipping');
-                await this.setState('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'No config', icon: 'a9335' }] }), ack: true });
+                await this.setState('mydatadiy.obj', {
+                    val: JSON.stringify({ frames: [{ text: 'No config', icon: 'a9335' }] }),
+                    ack: true,
+                });
             }
         } catch (err) {
             this.log.error(`Error on startup: ${err}`);
@@ -81,23 +85,27 @@ class LaMetric extends utils.Adapter {
      */
     async onStateChange(id, state) {
         // Check if changed state is in MyDataDIY state list
-        if (id && this.myDataDiyForeignStates.filter((item) => item.id === id).length > 0) {
+        if (id && this.myDataDiyForeignStates.filter(item => item.id === id).length > 0) {
             if (state) {
                 if (state.ack) {
-                    this.myDataDiyForeignStates = this.myDataDiyForeignStates.map((item) => {
+                    this.myDataDiyForeignStates = this.myDataDiyForeignStates.map(item => {
                         if (item.id === id) {
-                            this.log.debug(`[mydatadiy] onStateChange - received new value "${state.val}" of state "${id}"`);
+                            this.log.debug(
+                                `[mydatadiy] onStateChange - received new value "${state.val}" of state "${id}"`,
+                            );
                             item.val = this.formatMyDataDiyValue(id, state.val);
                         }
 
                         return item;
                     });
                 } else {
-                    this.log.debug(`[mydatadiy] onStateChange - ignored value "${state.val}" of state "${id}" (ack = false)`);
+                    this.log.debug(
+                        `[mydatadiy] onStateChange - ignored value "${state.val}" of state "${id}" (ack = false)`,
+                    );
                 }
             } else {
                 // State deleted
-                this.myDataDiyForeignStates = this.myDataDiyForeignStates.map((item) => {
+                this.myDataDiyForeignStates = this.myDataDiyForeignStates.map(item => {
                     if (item.id === id) {
                         this.log.debug(`[mydatadiy] onStateChange - state "${id}" has been deleted`);
                         item.val = this.formatMyDataDiyValue(id, `<deleted ${id}>`);
@@ -107,7 +115,9 @@ class LaMetric extends utils.Adapter {
                 });
             }
 
-            this.log.debug(`[mydatadiy] onStateChange - list after value update ${JSON.stringify(this.myDataDiyForeignStates)}`);
+            this.log.debug(
+                `[mydatadiy] onStateChange - list after value update ${JSON.stringify(this.myDataDiyForeignStates)}`,
+            );
 
             await this.refreshMyDataDiy();
         }
@@ -121,103 +131,178 @@ class LaMetric extends utils.Adapter {
                 this.log.debug(`changing device mode to ${state.val}`);
 
                 this.buildRequestAsync('device', 'PUT', { mode: state.val })
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
                         await this.setStateChangedAsync('meta.mode', { val: content.success.data.mode, ack: true });
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device) Unable to execute action: ${error}`);
                     });
             } else if (idNoNamespace === 'meta.display.brightness') {
                 this.log.debug(`changing brightness to ${state.val}`);
 
                 this.buildRequestAsync('device/display', 'PUT', { brightness: state.val, brightness_mode: 'manual' })
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
-                        await this.setStateChangedAsync('meta.display.brightness', { val: content.success.data.brightness, ack: true });
-                        await this.setStateChangedAsync('meta.display.brightnessMin', { val: content.success.data.brightness_limit.min, ack: true });
-                        await this.setStateChangedAsync('meta.display.brightnessMax', { val: content.success.data.brightness_limit.max, ack: true });
-                        await this.setStateChangedAsync('meta.display.brightnessAuto', { val: content.success.data.brightness_mode === 'auto', ack: true });
-                        await this.setStateChangedAsync('meta.display.brightnessMode', { val: content.success.data.brightness_mode, ack: true });
+                        await this.setStateChangedAsync('meta.display.brightness', {
+                            val: content.success.data.brightness,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.brightnessMin', {
+                            val: content.success.data.brightness_limit.min,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.brightnessMax', {
+                            val: content.success.data.brightness_limit.max,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.brightnessAuto', {
+                            val: content.success.data.brightness_mode === 'auto',
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.brightnessMode', {
+                            val: content.success.data.brightness_mode,
+                            ack: true,
+                        });
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/display) Unable to execute action: ${error}`);
                     });
             } else if (idNoNamespace === 'meta.display.brightnessAuto') {
                 this.log.debug(`changing auto brightness mode to ${state.val}`);
 
                 this.buildRequestAsync('device/display', 'PUT', { brightness_mode: state.val ? 'auto' : 'manual' })
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
-                        await this.setStateChangedAsync('meta.display.brightness', { val: content.success.data.brightness, ack: true });
-                        await this.setStateChangedAsync('meta.display.brightnessMin', { val: content.success.data.brightness_limit.min, ack: true });
-                        await this.setStateChangedAsync('meta.display.brightnessMax', { val: content.success.data.brightness_limit.max, ack: true });
-                        await this.setStateChangedAsync('meta.display.brightnessAuto', { val: content.success.data.brightness_mode === 'auto', ack: true });
-                        await this.setStateChangedAsync('meta.display.brightnessMode', { val: content.success.data.brightness_mode, ack: true });
+                        await this.setStateChangedAsync('meta.display.brightness', {
+                            val: content.success.data.brightness,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.brightnessMin', {
+                            val: content.success.data.brightness_limit.min,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.brightnessMax', {
+                            val: content.success.data.brightness_limit.max,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.brightnessAuto', {
+                            val: content.success.data.brightness_mode === 'auto',
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.brightnessMode', {
+                            val: content.success.data.brightness_mode,
+                            ack: true,
+                        });
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/display) Unable to execute action: ${error}`);
                     });
             } else if (idNoNamespace === 'meta.audio.volume') {
                 this.log.debug(`changing volume to ${state.val}`);
 
                 this.buildRequestAsync('device/audio', 'PUT', { volume: state.val })
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
-                        await this.setStateChangedAsync('meta.audio.volume', { val: content.success.data.volume, ack: true });
-                        await this.setStateChangedAsync('meta.audio.volumeMin', { val: content.success.data.volume_limit.min, ack: true });
-                        await this.setStateChangedAsync('meta.audio.volumeMax', { val: content.success.data.volume_limit.max, ack: true });
+                        await this.setStateChangedAsync('meta.audio.volume', {
+                            val: content.success.data.volume,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.audio.volumeMin', {
+                            val: content.success.data.volume_limit.min,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.audio.volumeMax', {
+                            val: content.success.data.volume_limit.max,
+                            ack: true,
+                        });
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/audio) Unable to execute action: ${error}`);
                     });
             } else if (idNoNamespace === 'meta.bluetooth.active') {
                 this.log.debug(`changing bluetooth state to ${state.val}`);
 
                 this.buildRequestAsync('device/bluetooth', 'PUT', { active: state.val })
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
-                        await this.setStateChangedAsync('meta.bluetooth.active', { val: content.success.data.active, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.available', { val: content.success.data.available, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.discoverable', { val: content.success.data.discoverable, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.address', { val: content.success.data.mac, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.name', { val: content.success.data.name, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.pairable', { val: content.success.data.pairable, ack: true });
+                        await this.setStateChangedAsync('meta.bluetooth.active', {
+                            val: content.success.data.active,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.available', {
+                            val: content.success.data.available,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.discoverable', {
+                            val: content.success.data.discoverable,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.address', {
+                            val: content.success.data.mac,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.name', {
+                            val: content.success.data.name,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.pairable', {
+                            val: content.success.data.pairable,
+                            ack: true,
+                        });
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/bluetooth) Unable to execute action: ${error}`);
                     });
             } else if (idNoNamespace === 'meta.bluetooth.name') {
                 this.log.debug(`changing bluetooth name to ${state.val}`);
 
                 this.buildRequestAsync('device/bluetooth', 'PUT', { name: state.val })
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
-                        await this.setStateChangedAsync('meta.bluetooth.active', { val: content.success.data.active, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.available', { val: content.success.data.available, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.discoverable', { val: content.success.data.discoverable, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.address', { val: content.success.data.mac, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.name', { val: content.success.data.name, ack: true });
-                        await this.setStateChangedAsync('meta.bluetooth.pairable', { val: content.success.data.pairable, ack: true });
+                        await this.setStateChangedAsync('meta.bluetooth.active', {
+                            val: content.success.data.active,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.available', {
+                            val: content.success.data.available,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.discoverable', {
+                            val: content.success.data.discoverable,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.address', {
+                            val: content.success.data.mac,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.name', {
+                            val: content.success.data.name,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.bluetooth.pairable', {
+                            val: content.success.data.pairable,
+                            ack: true,
+                        });
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/bluetooth) Unable to execute action: ${error}`);
                     });
             } else if (idNoNamespace === 'apps.next') {
                 this.log.debug('switching to next app');
 
-                this.buildRequestAsync('device/apps/next', 'PUT').catch((error) => {
+                this.buildRequestAsync('device/apps/next', 'PUT').catch(error => {
                     this.log.warn(`(device/apps/next) Unable to execute action: ${error}`);
                 });
             } else if (idNoNamespace === 'apps.prev') {
                 this.log.debug('switching to previous app');
 
-                this.buildRequestAsync('device/apps/prev', 'PUT').catch((error) => {
+                this.buildRequestAsync('device/apps/prev', 'PUT').catch(error => {
                     this.log.warn(`(device/apps/prev) Unable to execute action: ${error}`);
                 });
             } else if (idNoNamespace === 'apps.reload') {
@@ -227,41 +312,74 @@ class LaMetric extends utils.Adapter {
                 this.log.debug(`changing screensaver state to ${state.val}`);
 
                 this.buildRequestAsync('device/display', 'PUT', { screensaver: { enabled: state.val } })
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
-                        await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.success.data.screensaver.enabled, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.success.data.screensaver.widget, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.enabled', {
+                            val: content.success.data.screensaver.enabled,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.widget', {
+                            val: content.success.data.screensaver.widget,
+                            ack: true,
+                        });
 
                         const timeBasedObj = content.success.data.screensaver.modes.time_based;
 
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: timeBasedObj.enabled, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: timeBasedObj.start_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: timeBasedObj.local_start_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: timeBasedObj.end_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: timeBasedObj.local_end_time, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', {
+                            val: timeBasedObj.enabled,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', {
+                            val: timeBasedObj.start_time,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', {
+                            val: timeBasedObj.local_start_time,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', {
+                            val: timeBasedObj.end_time,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', {
+                            val: timeBasedObj.local_end_time,
+                            ack: true,
+                        });
 
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.success.data.screensaver.modes.when_dark.enabled, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', {
+                            val: content.success.data.screensaver.modes.when_dark.enabled,
+                            ack: true,
+                        });
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/display) Unable to execute action: ${error}`);
                     });
             } else if (idNoNamespace.startsWith('meta.display.screensaver.modes.')) {
                 this.log.debug('changing screensaver settings');
 
                 const screensaverStates = await this.getStatesAsync('meta.display.screensaver.*');
-                const screensaverEnabledState = screensaverStates?.[`${this.namespace}.meta.display.screensaver.enabled`]?.val;
+                const screensaverEnabledState =
+                    screensaverStates?.[`${this.namespace}.meta.display.screensaver.enabled`]?.val;
                 const currentModeParams = {};
                 let currentMode = 'when_dark';
 
                 if (idNoNamespace.includes('timeBased')) {
                     currentMode = 'time_based';
-                    currentModeParams.enabled = screensaverStates?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.enabled`]?.val ?? false;
-                    currentModeParams.start_time = screensaverStates?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.startTime`]?.val ?? '23:00:00';
-                    currentModeParams.end_time = screensaverStates?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.endTime`]?.val ?? '08:00:00';
+                    currentModeParams.enabled =
+                        screensaverStates?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.enabled`]
+                            ?.val ?? false;
+                    currentModeParams.start_time =
+                        screensaverStates?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.startTime`]
+                            ?.val ?? '23:00:00';
+                    currentModeParams.end_time =
+                        screensaverStates?.[`${this.namespace}.meta.display.screensaver.modes.timeBased.endTime`]
+                            ?.val ?? '08:00:00';
                 } else if (idNoNamespace.includes('whenDark')) {
                     currentMode = 'when_dark';
-                    currentModeParams.enabled = screensaverStates?.[`${this.namespace}.meta.display.screensaver.modes.whenDark.enabled`]?.val ?? false;
+                    currentModeParams.enabled =
+                        screensaverStates?.[`${this.namespace}.meta.display.screensaver.modes.whenDark.enabled`]?.val ??
+                        false;
                 }
 
                 this.buildRequestAsync('device/display', 'PUT', {
@@ -271,23 +389,47 @@ class LaMetric extends utils.Adapter {
                         mode_params: currentModeParams,
                     },
                 })
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
-                        await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.success.data.screensaver.enabled, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.success.data.screensaver.widget, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.enabled', {
+                            val: content.success.data.screensaver.enabled,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.widget', {
+                            val: content.success.data.screensaver.widget,
+                            ack: true,
+                        });
 
                         const timeBasedObj = content.success.data.screensaver.modes.time_based;
 
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: timeBasedObj.enabled, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: timeBasedObj.start_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: timeBasedObj.local_start_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: timeBasedObj.end_time, ack: true });
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: timeBasedObj.local_end_time, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', {
+                            val: timeBasedObj.enabled,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', {
+                            val: timeBasedObj.start_time,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', {
+                            val: timeBasedObj.local_start_time,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', {
+                            val: timeBasedObj.end_time,
+                            ack: true,
+                        });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', {
+                            val: timeBasedObj.local_end_time,
+                            ack: true,
+                        });
 
-                        await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.success.data.screensaver.modes.when_dark.enabled, ack: true });
+                        await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', {
+                            val: content.success.data.screensaver.modes.when_dark.enabled,
+                            ack: true,
+                        });
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device) Unable to execute action: ${error}`);
                     });
             } else if (idNoNamespace.startsWith('apps.')) {
@@ -304,19 +446,22 @@ class LaMetric extends utils.Adapter {
                     if (action === 'activate') {
                         this.log.debug(`[widget] activating "${widget}" of package "${pack}"`);
 
-                        this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/activate`, 'PUT').catch((error) => {
-                            this.log.warn(`(device/apps/${pack}/widgets/${widget}/activate) Unable to execute action: ${error}`);
+                        this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/activate`, 'PUT').catch(error => {
+                            this.log.warn(
+                                `(device/apps/${pack}/widgets/${widget}/activate) Unable to execute action: ${error}`,
+                            );
                         });
                     } else {
-                        this.log.debug(`[widget] running special action "${action}" on "${widget}" of package "${pack}"`);
+                        this.log.debug(
+                            `[widget] running special action "${action}" on "${widget}" of package "${pack}"`,
+                        );
 
                         const data = { id: action };
 
                         // START special Widgets
 
                         if (action == 'clock.clockface') {
-                            // @ts-ignore
-                            if (['weather', 'page_a_day', 'custom', 'none'].includes(state.val)) {
+                            if (['weather', 'page_a_day', 'custom', 'none'].includes(String(state.val))) {
                                 data.params = {
                                     type: state.val,
                                 };
@@ -335,9 +480,18 @@ class LaMetric extends utils.Adapter {
 
                             this.log.debug(`[widget] current clock.alarm states: ${JSON.stringify(caStates)}`);
 
-                            const caEnabled = action === 'clock.alarm.enabled' ? state.val : caStates[`${this.namespace}.apps.${widget}.clock.alarm.enabled`]?.val;
-                            const caTime = action === 'clock.alarm.time' ? state.val : caStates[`${this.namespace}.apps.${widget}.clock.alarm.time`]?.val;
-                            const caWithRadio = action === 'clock.alarm.wake_with_radio' ? state.val : caStates[`${this.namespace}.apps.${widget}.clock.alarm.wake_with_radio`]?.val;
+                            const caEnabled =
+                                action === 'clock.alarm.enabled'
+                                    ? state.val
+                                    : caStates[`${this.namespace}.apps.${widget}.clock.alarm.enabled`]?.val;
+                            const caTime =
+                                action === 'clock.alarm.time'
+                                    ? state.val
+                                    : caStates[`${this.namespace}.apps.${widget}.clock.alarm.time`]?.val;
+                            const caWithRadio =
+                                action === 'clock.alarm.wake_with_radio'
+                                    ? state.val
+                                    : caStates[`${this.namespace}.apps.${widget}.clock.alarm.wake_with_radio`]?.val;
 
                             data.id = 'clock.alarm';
                             data.params = {
@@ -346,9 +500,18 @@ class LaMetric extends utils.Adapter {
                                 wake_with_radio: caWithRadio ?? false,
                             };
 
-                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.enabled`, { val: data.params.enabled, ack: true });
-                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.time`, { val: data.params.time, ack: true });
-                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.wake_with_radio`, { val: data.params.wake_with_radio, ack: true });
+                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.enabled`, {
+                                val: data.params.enabled,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.time`, {
+                                val: data.params.time,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.wake_with_radio`, {
+                                val: data.params.wake_with_radio,
+                                ack: true,
+                            });
                         } else if (action == 'countdown.configure') {
                             data.params = {
                                 duration: state.val,
@@ -360,9 +523,13 @@ class LaMetric extends utils.Adapter {
 
                         // END special Widgets
 
-                        this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/actions`, 'POST', data).catch((error) => {
-                            this.log.warn(`(device/apps/${pack}/widgets/${widget}/actions) Unable to execute action: ${error}`);
-                        });
+                        this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/actions`, 'POST', data).catch(
+                            error => {
+                                this.log.warn(
+                                    `(device/apps/${pack}/widgets/${widget}/actions) Unable to execute action: ${error}`,
+                                );
+                            },
+                        );
                     }
                 }
             }
@@ -374,7 +541,7 @@ class LaMetric extends utils.Adapter {
      * @param {ioBroker.Object | null | undefined} obj
      */
     onObjectChange(id, obj) {
-        if (id && this.myDataDiyForeignStates.filter((item) => item.id === id).length > 0) {
+        if (id && this.myDataDiyForeignStates.filter(item => item.id === id).length > 0) {
             const isNumberState = this.myDataDiyNumberStates.includes(id);
 
             if (obj) {
@@ -383,19 +550,25 @@ class LaMetric extends utils.Adapter {
                     if (!isNumberState) {
                         this.myDataDiyNumberStates.push(id);
 
-                        this.log.debug(`[mydatadiy] onObjectChange - added state "${id}" to number states list: ${JSON.stringify(this.myDataDiyNumberStates)}`);
+                        this.log.debug(
+                            `[mydatadiy] onObjectChange - added state "${id}" to number states list: ${JSON.stringify(this.myDataDiyNumberStates)}`,
+                        );
                     }
                 } else if (isNumberState) {
                     this.myDataDiyNumberStates.splice(this.myDataDiyNumberStates.indexOf(id), 1);
 
-                    this.log.debug(`[mydatadiy] onObjectChange - removed state "${id}" from number states list: ${JSON.stringify(this.myDataDiyNumberStates)}`);
+                    this.log.debug(
+                        `[mydatadiy] onObjectChange - removed state "${id}" from number states list: ${JSON.stringify(this.myDataDiyNumberStates)}`,
+                    );
                 }
             } else {
                 // Object deleted
                 if (isNumberState) {
                     this.myDataDiyNumberStates.splice(this.myDataDiyNumberStates.indexOf(id), 1);
 
-                    this.log.debug(`[mydatadiy] onObjectChange - removed deleted state "${id}" from number states list: ${JSON.stringify(this.myDataDiyNumberStates)}`);
+                    this.log.debug(
+                        `[mydatadiy] onObjectChange - removed deleted state "${id}" from number states list: ${JSON.stringify(this.myDataDiyNumberStates)}`,
+                    );
                 }
             }
         }
@@ -474,10 +647,10 @@ class LaMetric extends utils.Adapter {
 
                 for (let i = 0; i < notification.text.length; i++) {
                     if (Array.isArray(notification.text[i])) {
-                        const numberItems = notification.text[i].filter((item) => typeof item === 'number');
+                        const numberItems = notification.text[i].filter(item => typeof item === 'number');
 
                         if (numberItems.length > 0) {
-                            // @ts-ignore
+                            // @ts-expect-error Assign to never
                             dataModel.frames.push({ chartData: numberItems });
                         } else {
                             this.log.warn('Chart frames should contain numbers (other items are ignored)');
@@ -491,7 +664,7 @@ class LaMetric extends utils.Adapter {
                             frame.icon = notification.icon;
                         }
 
-                        // @ts-ignore
+                        // @ts-expect-error Assign to never
                         dataModel.frames.push(frame);
                     }
                 }
@@ -523,7 +696,7 @@ class LaMetric extends utils.Adapter {
                 this.log.debug(`[onMessage] Notification data: ${JSON.stringify(data)}`);
 
                 this.buildRequestAsync('device/notifications', 'POST', data)
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
                         // Confirm message
@@ -535,7 +708,7 @@ class LaMetric extends utils.Adapter {
                             }
                         }
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/notifications) Unable to execute action: ${error}`);
 
                         if (obj.callback) {
@@ -544,17 +717,24 @@ class LaMetric extends utils.Adapter {
                     });
             } else if (obj.command === 'getPollingUrl' && typeof obj.message === 'object') {
                 if (obj.message?.webInstance) {
-                    this.log.debug(`[onMessage] Try to get instance configuration of system.adapter.${obj.message.webInstance}`);
+                    this.log.debug(
+                        `[onMessage] Try to get instance configuration of system.adapter.${obj.message.webInstance}`,
+                    );
 
                     this.getForeignObjectAsync(`system.adapter.${obj.message.webInstance}`)
-                        .then((webObj) => {
+                        .then(webObj => {
                             const protocol = webObj?.native?.secure ? 'https' : 'http';
                             const bind = webObj?.native?.bind;
                             const port = webObj?.native?.port;
 
-                            this.sendTo(obj.from, obj.command, `${protocol}://${bind}:${port}/${this.namespace}/`, obj.callback);
+                            this.sendTo(
+                                obj.from,
+                                obj.command,
+                                `${protocol}://${bind}:${port}/${this.namespace}/`,
+                                obj.callback,
+                            );
                         })
-                        .catch((err) => {
+                        .catch(err => {
                             this.sendTo(obj.from, obj.command, `Error: ${err}`, obj.callback);
                         });
                 } else {
@@ -566,7 +746,7 @@ class LaMetric extends utils.Adapter {
                 const { instances } = notification.category;
 
                 const messages = Object.entries(instances)
-                    .map(([, entry]) => entry.messages.map((m) => m.message))
+                    .map(([, entry]) => entry.messages.map(m => m.message))
                     .join(', ');
 
                 // TODO: Configurable options for notifications
@@ -589,7 +769,7 @@ class LaMetric extends utils.Adapter {
                 };
 
                 this.buildRequestAsync('device/notifications', 'POST', data)
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
                         // Confirm message
@@ -601,7 +781,7 @@ class LaMetric extends utils.Adapter {
                             }
                         }
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/notifications) Unable to execute action: ${error}`);
 
                         if (obj.callback) {
@@ -637,7 +817,7 @@ class LaMetric extends utils.Adapter {
     }
 
     async refreshState() {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             this.log.debug('re-creating refresh state timeout');
             this.refreshStateTimeout =
                 this.refreshStateTimeout ||
@@ -651,41 +831,56 @@ class LaMetric extends utils.Adapter {
                 }, 60000);
 
             this.buildRequestAsync()
-                .then(async (response) => {
+                .then(async response => {
                     const content = response.data;
 
                     await this.setApiConnected(true);
 
                     this.log.debug(`(api) API-Version: ${content.api_version}`);
 
-                    await this.setStateChangedAsync('meta.versionApi', { val: content.api_version, ack: true, c: `Recommended: >=${this.supportedApiVersion}` });
+                    await this.setStateChangedAsync('meta.versionApi', {
+                        val: content.api_version,
+                        ack: true,
+                        c: `Recommended: >=${this.supportedApiVersion}`,
+                    });
 
-                    if (this.isNewerVersion(content.api_version, this.supportedApiVersion) && !this.displayedVersionWarning) {
-                        this.log.warn(`Update your LaMetric device - supported API version of this adapter is ${this.supportedApiVersion} (or later). Your current version is ${content.api_version}`);
+                    if (
+                        this.isNewerVersion(content.api_version, this.supportedApiVersion) &&
+                        !this.displayedVersionWarning
+                    ) {
+                        this.log.warn(
+                            `Update your LaMetric device - supported API version of this adapter is ${this.supportedApiVersion} (or later). Your current version is ${content.api_version}`,
+                        );
                     }
 
                     if (content.endpoints?.stream_url) {
                         this.log.debug(`(api) This device supports streaming: ${content.endpoints.stream_url}`);
                         this.supportsStreaming = true;
 
-                        this.setStateChangedAsync('streaming.supported', { val: true, ack: true, c: content.api_version });
+                        this.setStateChangedAsync('streaming.supported', {
+                            val: true,
+                            ack: true,
+                            c: content.api_version,
+                        });
 
                         this.buildRequestAsync('device/stream', 'GET')
-                            .then(async (response) => {
-                                // eslint-disable-next-line no-unused-vars
-                                const content = response.data;
-
+                            .then(async () => {
+                                // const content = response.data;
                                 // TODO
                             })
-                            .catch((error) => {
+                            .catch(error => {
                                 this.log.warn(`(device/stream) Unable to get information: ${error}`);
                             });
                     } else {
-                        this.setStateChangedAsync('streaming.supported', { val: false, ack: true, c: content.api_version });
+                        this.setStateChangedAsync('streaming.supported', {
+                            val: false,
+                            ack: true,
+                            c: content.api_version,
+                        });
                     }
 
                     this.buildRequestAsync('device', 'GET')
-                        .then(async (response) => {
+                        .then(async response => {
                             const content = response.data;
 
                             this.log.debug(`(device) Model: ${content.model} (${content.os_version})`);
@@ -695,90 +890,216 @@ class LaMetric extends utils.Adapter {
                                 throw new Error(`Device model "${content.model}" is not supported by this adapter`);
                             }
 
-                            if (this.isNewerVersion(content.os_version, supportedVersion) && !this.displayedVersionWarning) {
-                                this.log.warn(`Update your LaMetric device - supported version of this adapter is ${supportedVersion} (or later). Your current version is ${content.os_version}`);
+                            if (
+                                this.isNewerVersion(content.os_version, supportedVersion) &&
+                                !this.displayedVersionWarning
+                            ) {
+                                this.log.warn(
+                                    `Update your LaMetric device - supported version of this adapter is ${supportedVersion} (or later). Your current version is ${content.os_version}`,
+                                );
                                 this.displayedVersionWarning = true; // Just show once
                             }
 
                             await this.setStateChangedAsync('meta.name', { val: content.name, ack: true });
                             await this.setStateChangedAsync('meta.serial', { val: content.serial_number, ack: true });
-                            await this.setStateChangedAsync('meta.version', { val: content.os_version, ack: true, c: `Recommended: >=${supportedVersion}` });
-                            await this.setStateChangedAsync('meta.versionUpdate', { val: content?.update_available?.version ?? '-', ack: true });
+                            await this.setStateChangedAsync('meta.version', {
+                                val: content.os_version,
+                                ack: true,
+                                c: `Recommended: >=${supportedVersion}`,
+                            });
+                            await this.setStateChangedAsync('meta.versionUpdate', {
+                                val: content?.update_available?.version ?? '-',
+                                ack: true,
+                            });
                             await this.setStateChangedAsync('meta.model', { val: content.model, ack: true });
                             await this.setStateChangedAsync('meta.mode', { val: content.mode, ack: true });
 
-                            await this.setStateChangedAsync('meta.audio.volume', { val: content.audio.volume, ack: true });
-                            await this.setStateChangedAsync('meta.audio.volumeMin', { val: content.audio.volume_limit.min, ack: true });
-                            await this.setStateChangedAsync('meta.audio.volumeMax', { val: content.audio.volume_limit.max, ack: true });
+                            await this.setStateChangedAsync('meta.audio.volume', {
+                                val: content.audio.volume,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.audio.volumeMin', {
+                                val: content.audio.volume_limit.min,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.audio.volumeMax', {
+                                val: content.audio.volume_limit.max,
+                                ack: true,
+                            });
 
-                            await this.setStateChangedAsync('meta.bluetooth.available', { val: content.bluetooth.available, ack: true });
-                            await this.setStateChangedAsync('meta.bluetooth.name', { val: content.bluetooth.name, ack: true });
-                            await this.setStateChangedAsync('meta.bluetooth.active', { val: content.bluetooth.active, ack: true });
-                            await this.setStateChangedAsync('meta.bluetooth.discoverable', { val: content.bluetooth.discoverable, ack: true });
-                            await this.setStateChangedAsync('meta.bluetooth.pairable', { val: content.bluetooth.pairable, ack: true });
-                            await this.setStateChangedAsync('meta.bluetooth.address', { val: content.bluetooth.address, ack: true });
+                            await this.setStateChangedAsync('meta.bluetooth.available', {
+                                val: content.bluetooth.available,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.bluetooth.name', {
+                                val: content.bluetooth.name,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.bluetooth.active', {
+                                val: content.bluetooth.active,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.bluetooth.discoverable', {
+                                val: content.bluetooth.discoverable,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.bluetooth.pairable', {
+                                val: content.bluetooth.pairable,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.bluetooth.address', {
+                                val: content.bluetooth.address,
+                                ack: true,
+                            });
 
                             if (content.bluetooth?.low_energy) {
-                                await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: content.bluetooth.low_energy.active, ack: true });
-                                await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: content.bluetooth.low_energy.advertising, ack: true });
-                                await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: content.bluetooth.low_energy.connectable, ack: true });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.active', {
+                                    val: content.bluetooth.low_energy.active,
+                                    ack: true,
+                                });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', {
+                                    val: content.bluetooth.low_energy.advertising,
+                                    ack: true,
+                                });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', {
+                                    val: content.bluetooth.low_energy.connectable,
+                                    ack: true,
+                                });
                             } else {
-                                await this.setStateChangedAsync('meta.bluetooth.low_energy.active', { val: false, ack: true, c: 'Not available' });
-                                await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', { val: false, ack: true, c: 'Not available' });
-                                await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', { val: false, ack: true, c: 'Not available' });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.active', {
+                                    val: false,
+                                    ack: true,
+                                    c: 'Not available',
+                                });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.advertising', {
+                                    val: false,
+                                    ack: true,
+                                    c: 'Not available',
+                                });
+                                await this.setStateChangedAsync('meta.bluetooth.low_energy.connectable', {
+                                    val: false,
+                                    ack: true,
+                                    c: 'Not available',
+                                });
                             }
 
-                            await this.setStateChangedAsync('meta.wifi.active', { val: content.wifi.active, ack: true });
-                            await this.setStateChangedAsync('meta.wifi.address', { val: content.wifi.address, ack: true });
-                            await this.setStateChangedAsync('meta.wifi.available', { val: content.wifi.available, ack: true });
-                            await this.setStateChangedAsync('meta.wifi.encryption', { val: content.wifi.encryption, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.active', {
+                                val: content.wifi.active,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.wifi.address', {
+                                val: content.wifi.address,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.wifi.available', {
+                                val: content.wifi.available,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.wifi.encryption', {
+                                val: content.wifi.encryption,
+                                ack: true,
+                            });
                             await this.setStateChangedAsync('meta.wifi.ssid', { val: content.wifi.essid, ack: true });
                             await this.setStateChangedAsync('meta.wifi.ip', { val: content.wifi.ip, ack: true });
                             await this.setStateChangedAsync('meta.wifi.mode', { val: content.wifi.mode, ack: true });
-                            await this.setStateChangedAsync('meta.wifi.netmask', { val: content.wifi.netmask, ack: true });
-                            await this.setStateChangedAsync('meta.wifi.strength', { val: content.wifi.strength, ack: true });
+                            await this.setStateChangedAsync('meta.wifi.netmask', {
+                                val: content.wifi.netmask,
+                                ack: true,
+                            });
+                            await this.setStateChangedAsync('meta.wifi.strength', {
+                                val: content.wifi.strength,
+                                ack: true,
+                            });
 
                             this.buildRequestAsync('device/display', 'GET')
-                                .then(async (response) => {
+                                .then(async response => {
                                     const content = response.data;
 
-                                    await this.setStateChangedAsync('meta.display.brightness', { val: content.brightness, ack: true });
-                                    await this.setStateChangedAsync('meta.display.brightnessMin', { val: content.brightness_limit.min, ack: true });
-                                    await this.setStateChangedAsync('meta.display.brightnessMax', { val: content.brightness_limit.max, ack: true });
-                                    await this.setStateChangedAsync('meta.display.brightnessAuto', { val: content.brightness_mode === 'auto', ack: true });
-                                    await this.setStateChangedAsync('meta.display.brightnessMode', { val: content.brightness_mode, ack: true });
+                                    await this.setStateChangedAsync('meta.display.brightness', {
+                                        val: content.brightness,
+                                        ack: true,
+                                    });
+                                    await this.setStateChangedAsync('meta.display.brightnessMin', {
+                                        val: content.brightness_limit.min,
+                                        ack: true,
+                                    });
+                                    await this.setStateChangedAsync('meta.display.brightnessMax', {
+                                        val: content.brightness_limit.max,
+                                        ack: true,
+                                    });
+                                    await this.setStateChangedAsync('meta.display.brightnessAuto', {
+                                        val: content.brightness_mode === 'auto',
+                                        ack: true,
+                                    });
+                                    await this.setStateChangedAsync('meta.display.brightnessMode', {
+                                        val: content.brightness_mode,
+                                        ack: true,
+                                    });
 
-                                    await this.setStateChangedAsync('meta.display.width', { val: content.width, ack: true });
-                                    await this.setStateChangedAsync('meta.display.height', { val: content.height, ack: true });
-                                    await this.setStateChangedAsync('meta.display.type', { val: content.type, ack: true });
+                                    await this.setStateChangedAsync('meta.display.width', {
+                                        val: content.width,
+                                        ack: true,
+                                    });
+                                    await this.setStateChangedAsync('meta.display.height', {
+                                        val: content.height,
+                                        ack: true,
+                                    });
+                                    await this.setStateChangedAsync('meta.display.type', {
+                                        val: content.type,
+                                        ack: true,
+                                    });
 
-                                    await this.setStateChangedAsync('meta.display.screensaver.enabled', { val: content.screensaver.enabled, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.widget', { val: content.screensaver.widget, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.enabled', {
+                                        val: content.screensaver.enabled,
+                                        ack: true,
+                                    });
+                                    await this.setStateChangedAsync('meta.display.screensaver.widget', {
+                                        val: content.screensaver.widget,
+                                        ack: true,
+                                    });
 
                                     const timeBasedScreensaver = content.screensaver.modes.time_based;
 
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.enabled', { val: timeBasedScreensaver?.enabled, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTime', { val: timeBasedScreensaver?.start_time, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.startTimeLocal', { val: timeBasedScreensaver?.local_start_time, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTime', { val: timeBasedScreensaver?.end_time, ack: true });
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.timeBased.endTimeLocal', { val: timeBasedScreensaver?.local_end_time, ack: true });
+                                    await this.setStateChangedAsync(
+                                        'meta.display.screensaver.modes.timeBased.enabled',
+                                        { val: timeBasedScreensaver?.enabled, ack: true },
+                                    );
+                                    await this.setStateChangedAsync(
+                                        'meta.display.screensaver.modes.timeBased.startTime',
+                                        { val: timeBasedScreensaver?.start_time, ack: true },
+                                    );
+                                    await this.setStateChangedAsync(
+                                        'meta.display.screensaver.modes.timeBased.startTimeLocal',
+                                        { val: timeBasedScreensaver?.local_start_time, ack: true },
+                                    );
+                                    await this.setStateChangedAsync(
+                                        'meta.display.screensaver.modes.timeBased.endTime',
+                                        { val: timeBasedScreensaver?.end_time, ack: true },
+                                    );
+                                    await this.setStateChangedAsync(
+                                        'meta.display.screensaver.modes.timeBased.endTimeLocal',
+                                        { val: timeBasedScreensaver?.local_end_time, ack: true },
+                                    );
 
-                                    await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', { val: content.screensaver.modes.when_dark.enabled, ack: true });
+                                    await this.setStateChangedAsync('meta.display.screensaver.modes.whenDark.enabled', {
+                                        val: content.screensaver.modes.when_dark.enabled,
+                                        ack: true,
+                                    });
 
                                     resolve(true);
                                 })
-                                .catch((error) => {
+                                .catch(error => {
                                     this.log.warn(`(device/display) Unable to get status: ${error}`);
                                     resolve(false);
                                 });
                         })
-                        .catch((error) => {
+                        .catch(error => {
                             this.log.warn(`(device) Unable to get status: ${error}`);
 
                             resolve(false);
                         });
                 })
-                .catch((error) => {
+                .catch(error => {
                     this.log.warn(`(api) Device not reachable: ${error}`);
 
                     this.setApiConnected(false);
@@ -788,7 +1109,7 @@ class LaMetric extends utils.Adapter {
     }
 
     async refreshApps() {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             if (this.apiConnected) {
                 this.log.debug('[apps] re-creating refresh timeout');
                 this.refreshAppTimeout =
@@ -802,7 +1123,7 @@ class LaMetric extends utils.Adapter {
                     );
 
                 this.buildRequestAsync('device/apps', 'GET')
-                    .then(async (response) => {
+                    .then(async response => {
                         const content = response.data;
 
                         const appPath = 'apps';
@@ -841,7 +1162,9 @@ class LaMetric extends utils.Adapter {
                                         this.myDataDiyApp = uuid;
 
                                         if (this.isNewerVersion(pack.version, '2.0.0')) {
-                                            this.log.warn(`[mydatadiy] Please update the "My Data DIY" app to a version >= 2.0.0 to use push (or configure polling)`);
+                                            this.log.warn(
+                                                `[mydatadiy] Please update the "My Data DIY" app to a version >= 2.0.0 to use push (or configure polling)`,
+                                            );
                                         }
                                     }
                                 }
@@ -899,7 +1222,10 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {},
                                 });
-                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.index`, { val: widget.index, ack: true });
+                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.index`, {
+                                    val: widget.index,
+                                    ack: true,
+                                });
 
                                 await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.package`, {
                                     type: 'state',
@@ -923,7 +1249,10 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {},
                                 });
-                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.package`, { val: pack.package, ack: true });
+                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.package`, {
+                                    val: pack.package,
+                                    ack: true,
+                                });
 
                                 await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.vendor`, {
                                     type: 'state',
@@ -947,7 +1276,10 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {},
                                 });
-                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.vendor`, { val: pack.vendor, ack: true });
+                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.vendor`, {
+                                    val: pack.vendor,
+                                    ack: true,
+                                });
 
                                 await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.version`, {
                                     type: 'state',
@@ -971,7 +1303,10 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {},
                                 });
-                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.version`, { val: pack.version, ack: true });
+                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.version`, {
+                                    val: pack.version,
+                                    ack: true,
+                                });
 
                                 await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.visible`, {
                                     type: 'state',
@@ -996,7 +1331,10 @@ class LaMetric extends utils.Adapter {
                                     },
                                     native: {},
                                 });
-                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.visible`, { val: widget.visible, ack: true });
+                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.visible`, {
+                                    val: widget.visible,
+                                    ack: true,
+                                });
 
                                 // START special Widgets
 
@@ -1110,28 +1448,31 @@ class LaMetric extends utils.Adapter {
                                         native: {},
                                     });
 
-                                    await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.clock.alarm.wake_with_radio`, {
-                                        type: 'state',
-                                        common: {
-                                            name: {
-                                                en: 'with Radio',
-                                                de: 'mit Radio',
-                                                ru: 'с радио',
-                                                pt: 'com rádio',
-                                                nl: 'met radio',
-                                                fr: 'avec radio',
-                                                it: 'con Radio',
-                                                es: 'con radio',
-                                                pl: 'z radiem',
-                                                'zh-cn': '带收音机',
+                                    await this.setObjectNotExistsAsync(
+                                        `${appPath}.${widgetPath}.clock.alarm.wake_with_radio`,
+                                        {
+                                            type: 'state',
+                                            common: {
+                                                name: {
+                                                    en: 'with Radio',
+                                                    de: 'mit Radio',
+                                                    ru: 'с радио',
+                                                    pt: 'com rádio',
+                                                    nl: 'met radio',
+                                                    fr: 'avec radio',
+                                                    it: 'con Radio',
+                                                    es: 'con radio',
+                                                    pl: 'z radiem',
+                                                    'zh-cn': '带收音机',
+                                                },
+                                                type: 'boolean',
+                                                role: 'switch.enable',
+                                                read: true,
+                                                write: true,
                                             },
-                                            type: 'boolean',
-                                            role: 'switch.enable',
-                                            read: true,
-                                            write: true,
+                                            native: {},
                                         },
-                                        native: {},
-                                    });
+                                    );
                                 } else if (pack.package === 'com.lametric.radio') {
                                     await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.radio`, {
                                         type: 'channel',
@@ -1509,7 +1850,7 @@ class LaMetric extends utils.Adapter {
 
                         resolve(true);
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.log.warn(`(device/apps) Unable to execute action: ${error}`);
                         resolve(false);
                     });
@@ -1528,9 +1869,13 @@ class LaMetric extends utils.Adapter {
 
             if (this.config.lametricIp && this.config.lametricToken) {
                 if (data) {
-                    this.log.debug(`sending "${method}" request to "${url}" with ${this.prefix} on port ${this.port} with data: ${JSON.stringify(data)}`);
+                    this.log.debug(
+                        `sending "${method}" request to "${url}" with ${this.prefix} on port ${this.port} with data: ${JSON.stringify(data)}`,
+                    );
                 } else {
-                    this.log.debug(`sending "${method}" request to "${url}" with ${this.prefix} on port ${this.port} without data`);
+                    this.log.debug(
+                        `sending "${method}" request to "${url}" with ${this.prefix} on port ${this.port} without data`,
+                    );
                 }
 
                 axios({
@@ -1551,19 +1896,23 @@ class LaMetric extends utils.Adapter {
                         rejectUnauthorized: false,
                     }),
                 })
-                    .then((response) => {
-                        this.log.debug(`received ${response.status} response from "${baseURL}${url}" with content: ${JSON.stringify(response.data)}`);
+                    .then(response => {
+                        this.log.debug(
+                            `received ${response.status} response from "${baseURL}${url}" with content: ${JSON.stringify(response.data)}`,
+                        );
 
                         // no error - clear up reminder
                         delete this.lastErrorCode;
 
                         resolve(response);
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         if (error.response) {
                             // The request was made and the server responded with a status code
 
-                            this.log.warn(`received ${error.response.status} response from ${baseURL}${url} with content: ${JSON.stringify(error.response.data)}`);
+                            this.log.warn(
+                                `received ${error.response.status} response from ${baseURL}${url} with content: ${JSON.stringify(error.response.data)}`,
+                            );
                         } else if (error.request) {
                             // The request was made but no response was received
                             // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
@@ -1595,8 +1944,7 @@ class LaMetric extends utils.Adapter {
         const foreignStates = [];
 
         // Collect all IDs in texts
-        frames.forEach((f) => {
-            // @ts-ignore
+        frames.forEach(f => {
             f.text.replace(this.myDataDiyRegex, (m, id) => {
                 if (!foreignStates.includes(id)) {
                     this.log.debug(`[mydatadiy] found dynamic state with id "${id}" in text`);
@@ -1604,7 +1952,6 @@ class LaMetric extends utils.Adapter {
                 }
             });
 
-            // @ts-ignore
             f.icon.replace(this.myDataDiyRegex, (m, id) => {
                 if (!foreignStates.includes(id)) {
                     this.log.debug(`[mydatadiy] found dynamic state with id "${id}" in icon`);
@@ -1616,10 +1963,10 @@ class LaMetric extends utils.Adapter {
         this.log.debug(`[mydatadiy] found ${foreignStates.length} dynamic states: ${JSON.stringify(foreignStates)}`);
 
         Promise.all(
-            foreignStates.map((id) => {
-                return new Promise((resolve) => {
+            foreignStates.map(id => {
+                return new Promise(resolve => {
                     this.getForeignObjectAsync(id)
-                        .then((object) => {
+                        .then(object => {
                             this.subscribeForeignStatesAsync(id);
                             this.subscribeForeignObjectsAsync(id);
                             this.log.debug(`[mydatadiy] subscribed to foreign state "${id}"`);
@@ -1630,13 +1977,14 @@ class LaMetric extends utils.Adapter {
                                 }
 
                                 return this.getForeignStateAsync(id);
-                            } else {
-                                throw new Error(`Invalid object (type ${object?.type || 'unknown'})`);
                             }
+                            throw new Error(`Invalid object (type ${object?.type || 'unknown'})`);
                         })
-                        .then((state) => {
+                        .then(state => {
                             if (state) {
-                                this.log.debug(`[mydatadiy] received value "${state.val}" of state "${id}" (ack: ${state.ack})`);
+                                this.log.debug(
+                                    `[mydatadiy] received value "${state.val}" of state "${id}" (ack: ${state.ack})`,
+                                );
 
                                 resolve({
                                     id: id,
@@ -1646,7 +1994,7 @@ class LaMetric extends utils.Adapter {
                                 throw new Error('Invalid state (maybe empty or null)');
                             }
                         })
-                        .catch((err) => {
+                        .catch(err => {
                             this.log.warn(`[mydatadiy] unable to get value of "${id}": ${err}`);
                             resolve({
                                 id: id,
@@ -1655,7 +2003,7 @@ class LaMetric extends utils.Adapter {
                         });
                 });
             }),
-        ).then((data) => {
+        ).then(data => {
             this.myDataDiyForeignStates = data;
 
             this.log.debug(`[mydatadiy] found foreign states: ${JSON.stringify(this.myDataDiyForeignStates)}`);
@@ -1668,19 +2016,17 @@ class LaMetric extends utils.Adapter {
 
         const clonedFrames = JSON.parse(JSON.stringify(this.config.mydatadiy)); // TODO: Better way to clone?! structuredClone in nodejs 17
         const newFrames = clonedFrames
-            .map((f) => {
-                // @ts-ignore
+            .map(f => {
                 let replacedText = f.text.replace(this.myDataDiyRegex, (m, id) => {
-                    const foreignState = this.myDataDiyForeignStates.find((item) => item.id === id);
+                    const foreignState = this.myDataDiyForeignStates.find(item => item.id === id);
                     if (foreignState) {
                         const newVal = foreignState.val;
 
                         this.log.debug(`[mydatadiy] replacing "${id}" in frame text with "${newVal}"`);
 
                         return newVal;
-                    } else {
-                        return `<error ${id}: not found>`;
                     }
+                    return `<error ${id}: not found>`;
                 });
 
                 if (f?.hideif && f.hideif == replacedText) {
@@ -1700,9 +2046,8 @@ class LaMetric extends utils.Adapter {
                 };
 
                 if (f.icon) {
-                    // @ts-ignore
                     newObj.icon = f.icon.replace(this.myDataDiyRegex, (m, id) => {
-                        const newVal = this.myDataDiyForeignStates.find((item) => item.id === id).val;
+                        const newVal = this.myDataDiyForeignStates.find(item => item.id === id).val;
 
                         this.log.debug(`[mydatadiy] replacing "${id}" in frame text with "${newVal}"`);
 
@@ -1712,7 +2057,7 @@ class LaMetric extends utils.Adapter {
 
                 return newObj;
             })
-            .filter((f) => {
+            .filter(f => {
                 if (f.text.length == 0) {
                     this.log.debug(`[mydatadiy] removed frame with empty text`);
                 }
@@ -1725,12 +2070,18 @@ class LaMetric extends utils.Adapter {
 
         if (this.config.type === 'push') {
             if (!this.myDataDiyApp) {
-                this.log.warn(`[mydatadiy] unable to push changes to device - app package id not found (app installed?)`);
+                this.log.warn(
+                    `[mydatadiy] unable to push changes to device - app package id not found (app installed?)`,
+                );
             } else if (newFrames.length > 0) {
                 this.log.debug(`[mydatadiy] pusing changes to device - app ${this.myDataDiyApp}`);
 
-                this.buildRequestAsync(`widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}`, 'POST', { frames: newFrames }).catch((error) => {
-                    this.log.warn(`(widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}) Unable to execute action: ${error}`);
+                this.buildRequestAsync(`widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}`, 'POST', {
+                    frames: newFrames,
+                }).catch(error => {
+                    this.log.warn(
+                        `(widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}) Unable to execute action: ${error}`,
+                    );
                 });
             } else {
                 this.log.debug(`[mydatadiy] skipping -> no frames configured - app ${this.myDataDiyApp}`);
@@ -1750,7 +2101,9 @@ class LaMetric extends utils.Adapter {
                 }
 
                 newVal = this.formatValue(val, countDecimals);
-                this.log.debug(`[mydatadiy] formatted value of "${id}" from ${val} to ${newVal} (${countDecimals} decimals)`);
+                this.log.debug(
+                    `[mydatadiy] formatted value of "${id}" from ${val} to ${newVal} (${countDecimals} decimals)`,
+                );
             }
         }
 
@@ -1758,7 +2111,7 @@ class LaMetric extends utils.Adapter {
     }
 
     removeNamespace(id) {
-        const re = new RegExp(this.namespace + '*\\.', 'g');
+        const re = new RegExp(`${this.namespace}*\\.`, 'g');
         return id.replace(re, '');
     }
 
@@ -1768,13 +2121,20 @@ class LaMetric extends utils.Adapter {
     onUnload(callback) {
         try {
             if (this.apiConnected && this.config.type === 'push' && this.myDataDiyApp) {
-                this.buildRequestAsync(`widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}`, 'POST', { frames: [{ text: 'Adapter stopped', icon: 'a9335' }] }).catch((error) => {
-                    this.log.warn(`(widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}) Unable to execute action: ${error}`);
+                this.buildRequestAsync(`widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}`, 'POST', {
+                    frames: [{ text: 'Adapter stopped', icon: 'a9335' }],
+                }).catch(error => {
+                    this.log.warn(
+                        `(widget/update/${MY_DATA_DIY_PACKAGE}/${this.myDataDiyApp}) Unable to execute action: ${error}`,
+                    );
                 });
             }
 
             this.setApiConnected(false);
-            this.setState('mydatadiy.obj', { val: JSON.stringify({ frames: [{ text: 'Adapter stopped', icon: 'a9335' }] }), ack: true });
+            this.setState('mydatadiy.obj', {
+                val: JSON.stringify({ frames: [{ text: 'Adapter stopped', icon: 'a9335' }] }),
+                ack: true,
+            });
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
@@ -1798,20 +2158,23 @@ class LaMetric extends utils.Adapter {
         for (let i = 0; i < newParts.length; i++) {
             const a = ~~newParts[i]; // parse int
             const b = ~~oldParts[i]; // parse int
-            if (a > b) return true;
-            if (a < b) return false;
+            if (a > b) {
+                return true;
+            }
+            if (a < b) {
+                return false;
+            }
         }
         return false;
     }
 }
 
-// @ts-ignore parent is a valid property on module
 if (module.parent) {
     // Export the constructor in compact mode
     /**
-     * @param {Partial<ioBroker.AdapterOptions>} [options={}]
+     * @param {Partial<ioBroker.AdapterOptions>} [options]
      */
-    module.exports = (options) => new LaMetric(options);
+    module.exports = options => new LaMetric(options);
 } else {
     // otherwise start the instance directly
     new LaMetric();

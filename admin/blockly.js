@@ -11,9 +11,8 @@ Blockly.Translate =
         lang = lang || systemLang;
         if (Blockly.Words && Blockly.Words[word]) {
             return Blockly.Words[word][lang] || Blockly.Words[word].en;
-        } else {
-            return word;
         }
+        return word;
     };
 
 /// --- SendTo lametric --------------------------------------------------
@@ -86,8 +85,14 @@ Blockly.Words['lametric_icon_info'] = { en: 'info', de: 'Information' };
 Blockly.Words['lametric_icon_alert'] = { en: 'alert', de: 'Alarm' };
 
 Blockly.Words['lametric_anyInstance'] = { en: 'all instances', de: 'Alle Instanzen' };
-Blockly.Words['lametric_tooltip'] = { en: 'Send notification to LaMetric', de: 'Sende eine Benachrichtigung zur LaMetric' };
-Blockly.Words['lametric_help'] = { en: 'https://github.com/klein0r/ioBroker.lametric/blob/master/README.md', de: 'https://github.com/klein0r/ioBroker.lametric/blob/master/README.md' };
+Blockly.Words['lametric_tooltip'] = {
+    en: 'Send notification to LaMetric',
+    de: 'Sende eine Benachrichtigung zur LaMetric',
+};
+Blockly.Words['lametric_help'] = {
+    en: 'https://github.com/klein0r/ioBroker.lametric/blob/master/README.md',
+    de: 'https://github.com/klein0r/ioBroker.lametric/blob/master/README.md',
+};
 
 Blockly.Sendto.blocks['lametric'] =
     '<block type="lametric">' +
@@ -125,19 +130,21 @@ Blockly.Blocks['lametric'] = {
                 const m = main.instances[i].match(/^system.adapter.lametric.(\d+)$/);
                 if (m) {
                     const n = parseInt(m[1], 10);
-                    options.push(['lametric.' + n, '.' + n]);
+                    options.push([`lametric.${n}`, `.${n}`]);
                 }
             }
         }
 
         if (!options.length) {
             for (let k = 0; k <= 4; k++) {
-                options.push(['lametric.' + k, '.' + k]);
+                options.push([`lametric.${k}`, `.${k}`]);
             }
         }
         options.unshift([Blockly.Translate('lametric_anyInstance'), '']);
 
-        this.appendDummyInput('INSTANCE').appendField(Blockly.Translate('lametric')).appendField(new Blockly.FieldDropdown(options), 'INSTANCE');
+        this.appendDummyInput('INSTANCE')
+            .appendField(Blockly.Translate('lametric'))
+            .appendField(new Blockly.FieldDropdown(options), 'INSTANCE');
 
         this.appendValueInput('MESSAGE').appendField(Blockly.Translate('lametric_message'));
 
@@ -248,13 +255,9 @@ Blockly.JavaScript['lametric'] = function (block) {
     const text = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
     const cycles = Blockly.JavaScript.valueToCode(block, 'CYCLES', Blockly.JavaScript.ORDER_ATOMIC);
 
-    return `sendTo('lametric${instance}', 'notification', {\n` +
-        (priority ? `  priority: '${priority}',\n` : '') +
-        (iconType ? `  iconType: '${iconType}',\n` : '') +
-        (sound ? `  sound: '${sound}',\n` : '') +
-        (lifeTime ? `  lifeTime: parseInt(${lifeTime}),\n` : '') +
-        (icon ? `  icon: ${icon},\n` : '') +
-        (text ? `  text: ${text},\n` : '') +
-        (cycles ? `  cycles: parseInt(${cycles}),\n` : '') +
-        `});`;
+    return `sendTo('lametric${instance}', 'notification', {\n${priority ? `  priority: '${priority}',\n` : ''}${
+        iconType ? `  iconType: '${iconType}',\n` : ''
+    }${sound ? `  sound: '${sound}',\n` : ''}${lifeTime ? `  lifeTime: parseInt(${lifeTime}),\n` : ''}${
+        icon ? `  icon: ${icon},\n` : ''
+    }${text ? `  text: ${text},\n` : ''}${cycles ? `  cycles: parseInt(${cycles}),\n` : ''}});`;
 };
