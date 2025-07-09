@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 4.1.0 (2025-07-09)
 
 * (@klein0r) Allow icons with placeholders in config (improved validation)
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.2.3)
@@ -76,10 +76,6 @@ NodeJS >= 20.x and js-controller >= 6 is required
 ### 3.3.0 (2024-08-05)
 
 * (@klein0r) Added api version as state (and check value)
-
-### 3.2.3 (2024-07-21)
-
-* (@klein0r) Fixed blockly definitions
 
 ## License
 

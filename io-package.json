@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "news": {
+      "4.1.0": {
+        "en": "Allow icons with placeholders in config (improved validation)\nUpdated LaMetric firmware version recommendation to 2.3.9 (3.2.3)",
+        "de": "Icons mit Platzhaltern in config (verbesserte Validierung)\nAktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.9 (3.2.3)",
+        "ru": "Разрешить иконки с заполнителями в конфигурации (улучшенная проверка)\nОбновленная версия прошивки LaMetric с рекомендациями 2.3.9 (3.2.3)",
+        "pt": "Permitir ícones com placeholders na configuração (validação melhorada)\nRecomendou a versão de firmware LaMetric para 2.3.9 (3.2.3)",
+        "nl": "Pictogrammen met plaatshouders in config toestaan (verbeterde validatie)\nBijgewerkt LaMetric firmware versie aanbeveling naar 2.3.9 (3.2.3)",
+        "fr": "Autoriser les icônes avec des placeholders en configuration (validation améliorée)\nMise à jour de la recommandation de version du firmware LaMetric à 2.3.9 (3.2.3)",
+        "it": "Consentire icone con segnaposto in configurazione (valida migliorata)\nRaccomandazione di versione firmware LaMetric aggiornata a 2.3.9 (3.2.3)",
+        "es": "Permitir iconos con marcadores de posición en config (validación mejorada)\nRecomendación actualizada de la versión de firmware de LaMetric (3.2.3)",
+        "pl": "Dopuść ikony z zakładkami w konfigu (ulepszona walidacja)\nAktualizacja rekomendacji LaMetric firmware wersja do 2.3.9 (3.2.3)",
+        "uk": "Дозволити іконки з власниками місця в конфігурації (перевірена перевірка)\nОновлено рекомендацію прошивки LaMetric до 2.3.9 (3.2.3)",
+        "zh-cn": "允许配置中的占位符图标( 改进验证)\n更新后的实验室固件版建议为2.3.9(3.2.3)"
+      },
       "4.0.0": {
         "en": "NodeJS >= 20.x and js-controller >= 6 is required\n\n* Updated LaMetric firmware version recommendation to 2.3.9 (3.1.4)",
         "de": "NodeJS >= 20.x und js-Controller >= 6 ist erforderlich\n\n* Aktualisierte LaMetric Firmware Version Empfehlung auf 2.3.9 (3.1.4)",
@@ -80,19 +93,6 @@
         "pl": "Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.9 (3.1.1)",
         "uk": "Оновлено рекомендацію прошивки LaMetric до 2.3.9 (3.1.1)",
         "zh-cn": "更新后的 LaMetric 固件版建议为2.3.9(3.1.1)"
-      },
-      "3.2.1": {
-        "en": "Updated LaMetric firmware version recommendation to 2.3.8 (3.1.0)\nUpdated dependencies",
-        "de": "Aktualisierte LaMetric Firmware-Versionsempfehlung auf 2.3.8 (3.1.0)\nAktualisierte Abhängigkeiten",
-        "ru": "(@klein0r)\nОбновленные зависимости",
-        "pt": "Recomendação atualizada da versão de firmware LaMetric para 2.3.8 (3.1.0)\nDependências atualizadas",
-        "nl": "Bijgewerkte LaMetric firmware versie aanbeveling naar 2.3.8 (3.10.0)\nBijgewerkte afhankelijkheden",
-        "fr": "Mise à jour de la recommandation du firmware LaMetric à 2.3.8 (3.1.0)\nDépendances actualisées",
-        "it": "Raccomandazione della versione firmware LaMetric aggiornata a 2.3.8 (3.1.0)\nDipendenze aggiornate",
-        "es": "Recomendación actualizada de la versión de firmware de LaMetric (3.1.0)\nDependencias actualizadas",
-        "pl": "(@ klein0r) Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.8 (3.1.0)\n(@ klein0r) Aktualizacja zależności",
-        "uk": "Оновлено рекомендацію версії прошивки LaMetric до 2.3.8 (3.1.0)\nОновлені залежності",
-        "zh-cn": "更新后的 LaMetric 固件版本建议为2.3.8 (3.1.0)\n(韩语). 更新的依赖关系"
       }
     },
     "titleLang": {
