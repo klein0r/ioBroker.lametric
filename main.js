@@ -2024,6 +2024,10 @@ class LaMetric extends utils.Adapter {
 
                         this.log.debug(`[mydatadiy] replacing "${id}" in frame text with "${newVal}"`);
 
+                        if (!foreignState.ack) {
+                            this.log.debug(`[mydatadiy] "${id}" in frame text is not acknowledged`);
+                        }
+
                         return newVal;
                     }
                     return `<error ${id}: not found>`;
@@ -2047,11 +2051,19 @@ class LaMetric extends utils.Adapter {
 
                 if (f.icon) {
                     newObj.icon = f.icon.replace(this.myDataDiyRegex, (m, id) => {
-                        const newVal = this.myDataDiyForeignStates.find(item => item.id === id).val;
+                        const foreignState = this.myDataDiyForeignStates.find(item => item.id === id);
+                        if (foreignState) {
+                            const newVal = foreignState.val;
 
-                        this.log.debug(`[mydatadiy] replacing "${id}" in frame text with "${newVal}"`);
+                            this.log.debug(`[mydatadiy] replacing "${id}" in frame icon with "${newVal}"`);
 
-                        return newVal;
+                            if (!foreignState.ack) {
+                                this.log.debug(`[mydatadiy] "${id}" in frame icon is not acknowledged`);
+                            }
+
+                            return newVal;
+                        }
+                        return `<error ${id}: not found>`;
                     });
                 }
 

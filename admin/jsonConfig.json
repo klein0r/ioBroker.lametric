@@ -106,7 +106,7 @@
                             "filter": false,
                             "sort": false,
                             "default": "i31820",
-                            "validator": "String(data.icon).length > 0 && String(data.icon).match(/[ai]{1}[0-9]{1,}/)",
+                            "validator": "String(data.icon).length > 0 && (String(data.icon).match(/[ai]{1}[0-9]{1,}/) || (String(data.icon).includes('{') && String(data.icon).includes('}')))",
                             "validatorErrorText": "Invalid format",
                             "validatorNoSaveOnError": true
                         },

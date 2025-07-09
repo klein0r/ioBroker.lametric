@@ -51,6 +51,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Allow icons with placeholders in config (improved validation)
+
 ### 4.0.0 (2025-04-08)
 
 NodeJS >= 20.x and js-controller >= 6 is required
