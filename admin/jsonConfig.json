@@ -10,26 +10,32 @@
             "items": {
                 "lametricIp": {
                     "type": "text",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "label": "IP",
                     "help": "IP address of your LaMetric device"
                 },
                 "lametricToken": {
                     "type": "text",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "label": "API Key",
                     "help": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>"
                 },
                 "useHttps": {
                     "newLine": true,
                     "type": "checkbox",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "label": "Use HTTPS"
                 },
                 "_headerOptionsSupport": {
@@ -37,16 +43,20 @@
                     "type": "header",
                     "text": "Support this project",
                     "size": 3,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "_ioBrokerKursBanner": {
                     "newLine": true,
                     "type": "staticImage",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "href": "https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-lametric",
                     "src": "https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png"
                 }
@@ -76,15 +86,19 @@
                     "button": true,
                     "variant": "contained",
                     "icon": "info",
-                    "sm": 12,
-                    "md": 12,
-                    "lg": 12
-                },
-                "mydatadiy": {
-                    "type": "table",
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12,
+                    "xl": 12
+                },
+                "mydatadiy": {
+                    "type": "table",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12,
                     "label": "My Data (DIY)",
                     "items": [
                         {
@@ -178,9 +192,11 @@
                 "type": {
                     "newLine": true,
                     "type": "select",
+                    "xs": 12,
                     "sm": 12,
                     "md": 4,
                     "lg": 4,
+                    "xl": 4,
                     "options": [
                         {
                             "label": "push",
@@ -200,9 +216,11 @@
                     "type": "instance",
                     "hidden": "data.type !== 'poll'",
                     "adapter": "web",
+                    "xs": 12,
                     "sm": 12,
                     "md": 4,
                     "lg": 4,
+                    "xl": 4,
                     "label": "Web adapter instance",
                     "help": "Can be used to request the configured data"
                 },
@@ -216,9 +234,11 @@
                     ],
                     "command": "getPollingUrl",
                     "jsonData": "{\"webInstance\": \"${data.webInstance}\"}",
+                    "xs": 12,
                     "sm": 12,
                     "md": 4,
                     "lg": 4,
+                    "xl": 4,
                     "label": "Url for My Data (DIY) app"
                 }
             }
