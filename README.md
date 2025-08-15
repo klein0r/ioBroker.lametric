@@ -51,6 +51,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.2.4)
+
 ### 4.1.0 (2025-07-09)
 
 * (@klein0r) Allow icons with placeholders in config (improved validation)
