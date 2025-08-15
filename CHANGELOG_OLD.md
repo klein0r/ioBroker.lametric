@@ -1,4 +1,8 @@
 # Older changes
+## 3.3.0 (2024-08-05)
+
+* (@klein0r) Added api version as state (and check value)
+
 ## 3.2.3 (2024-07-21)
 
 * (@klein0r) Fixed blockly definitions

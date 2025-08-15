@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "4.1.0",
+    "version": "4.2.0",
     "news": {
+      "4.2.0": {
+        "en": "Updated LaMetric firmware version recommendation to 2.3.9 (3.2.4)",
+        "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.9 (3.2.4)",
+        "ru": "Обновленная версия прошивки LaMetric с рекомендациями 2.3.9 (3.2.4)",
+        "pt": "Recomendações atualizadas da versão de firmware LaMetric para 2.3.9 (3.2.4)",
+        "nl": "Bijgewerkt LaMetric firmware versie aanbeveling aan 2.3.9 (3.2.4)",
+        "fr": "Mise à jour de la recommandation de version du firmware LaMetric à 2.3.9 (3.2.4)",
+        "it": "Raccomandazione di versione firmware LaMetric aggiornata a 2.3.9 (3.2.4)",
+        "es": "Recomendación actualizada de la versión de firmware de LaMetric (3.2.4)",
+        "pl": "Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.9 (3.2.4)",
+        "uk": "Оновлено рекомендацію прошивки LaMetric до 2.3.9 (3.2.4)",
+        "zh-cn": "更新的 LaMetric 固件版本建议为2.3.9(3.2.4)"
+      },
       "4.1.0": {
         "en": "Allow icons with placeholders in config (improved validation)\nUpdated LaMetric firmware version recommendation to 2.3.9 (3.2.3)",
         "de": "Icons mit Platzhaltern in config (verbesserte Validierung)\nAktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.9 (3.2.3)",
@@ -80,19 +93,6 @@
         "pl": "Poprawione definicje blokowane",
         "uk": "Фіксовані визначення блоків",
         "zh-cn": "固定的区块定义"
-      },
-      "3.2.2": {
-        "en": "Updated LaMetric firmware version recommendation to 2.3.9 (3.1.1)",
-        "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.9 (3.1.1)",
-        "ru": "Обновленная рекомендация LaMetric прошивки к 2.3.9 (3.1.1)",
-        "pt": "Recomendação de versão de firmware LaMetric atualizada para 2.3.9 (3.1.1)",
-        "nl": "Bijgewerkte LaMetric firmware versie aanbeveling naar 2.3.9 (3.1.1)",
-        "fr": "Mise à jour de la recommandation de version du firmware LaMetric à 2.3.9 (3.1.1)",
-        "it": "Raccomandazione di versione firmware LaMetric aggiornata a 2.3.9 (3.1.1)",
-        "es": "Recomendación actualizada de la versión de firmware de LaMetric (3.1.1)",
-        "pl": "Aktualizacja rekomendacji LaMetric firmware wersja do 2.3.9 (3.1.1)",
-        "uk": "Оновлено рекомендацію прошивки LaMetric до 2.3.9 (3.1.1)",
-        "zh-cn": "更新后的 LaMetric 固件版建议为2.3.9(3.1.1)"
       }
     },
     "titleLang": {

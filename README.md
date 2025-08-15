@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 4.2.0 (2025-08-15)
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.2.4)
 
@@ -76,10 +76,6 @@ NodeJS >= 20.x and js-controller >= 6 is required
 * (@klein0r) Added support for notification manager
 * (@klein0r) Added validator for icon inputs
 * (@klein0r) Fixed some missing translations
-
-### 3.3.0 (2024-08-05)
-
-* (@klein0r) Added api version as state (and check value)
 
 ## License
 
