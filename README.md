@@ -51,6 +51,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) admin 7.6.17 and js-controller 6.0.11 (or later) are required
+
 ### 4.2.0 (2025-08-15)
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.2.4)
