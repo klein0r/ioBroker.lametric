@@ -33,7 +33,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.32.0",
     "@iobroker/adapter-dev": "^1.4.0",
-    "@iobroker/eslint-config": "^2.0.2",
+    "@iobroker/eslint-config": "^2.1.0",
     "@iobroker/testing": "^5.1.0",
     "@types/chai": "^5.2.2",
     "@types/chai-as-promised": "^8.0.2",
