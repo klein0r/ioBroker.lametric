@@ -46,6 +46,7 @@ class LaMetric extends utils.Adapter {
         try {
             await this.setApiConnected(false);
             await this.subscribeStatesAsync('*');
+            await this.fixAppObjects();
 
             if (!this.config.lametricIp || !this.config.lametricToken) {
                 this.log.error(
@@ -76,6 +77,70 @@ class LaMetric extends utils.Adapter {
             this.log.error(`Error on startup: ${err}`);
             typeof this.terminate === 'function' ? this.terminate(11) : process.exit(11);
             return;
+        }
+    }
+
+    /**
+     * Remove "old" app objects, which have been accitentially created
+     */
+    async fixAppObjects() {
+        const appPath = 'apps';
+
+        const channelObjs = await this.getChannelsOfAsync(appPath);
+        const validApps = [];
+
+        // Collect all apps
+        if (channelObjs) {
+            for (const channelObj of channelObjs) {
+                const id = this.removeNamespace(channelObj._id);
+
+                // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
+                if (id.split('.').length === 2) {
+                    validApps.push(id);
+                }
+            }
+        }
+
+        // states
+        const appStateObjs = await this.getObjectViewAsync('system', 'state', {
+            startkey: `${this.namespace}.apps.`,
+            endkey: `${this.namespace}.apps.\u9999`,
+        });
+
+        for (const appStateObj of appStateObjs.rows) {
+            const id = this.removeNamespace(appStateObj.id);
+            let isValid = false;
+
+            for (const validApp of validApps) {
+                if (id.startsWith(validApp)) {
+                    isValid = true;
+                }
+            }
+
+            if (!isValid) {
+                await this.delObjectAsync(id);
+            }
+        }
+
+        // channels
+        const appChannelObjs = await this.getObjectViewAsync('system', 'channel', {
+            startkey: `${this.namespace}.apps.`,
+            endkey: `${this.namespace}.apps.\u9999`,
+        });
+
+        for (const appChannelObj of appChannelObjs.rows) {
+            const id = this.removeNamespace(appChannelObj.id);
+            let isValid = false;
+
+            for (const validApp of validApps) {
+                if (id.startsWith(validApp)) {
+                    isValid = true;
+                }
+            }
+
+            if (!isValid) {
+                await this.delObjectAsync(id);
+            }
         }
     }
 
@@ -492,6 +557,7 @@ class LaMetric extends utils.Adapter {
                                 action === 'clock.alarm.wake_with_radio'
                                     ? state.val
                                     : caStates[`${this.namespace}.apps.${widget}.clock.alarm.wake_with_radio`]?.val;
+
 
                             data.id = 'clock.alarm';
                             data.params = {
@@ -1134,8 +1200,8 @@ class LaMetric extends utils.Adapter {
 
                         // Collect all apps
                         if (channelObjs) {
-                            for (let i = 0; i < channelObjs.length; i++) {
-                                const id = this.removeNamespace(channelObjs[i]._id);
+                            for (const channelObj of channelObjs) {
+                                const id = this.removeNamespace(channelObj._id);
 
                                 // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
                                 if (id.split('.').length === 2) {
@@ -1144,13 +1210,15 @@ class LaMetric extends utils.Adapter {
                             }
                         }
 
+                        this.log.debug(`[apps] found existing apps: ${appsAll.join(';')}`);
+
                         // Create new app structure
                         for (const p of Object.keys(content)) {
                             const pack = content[p];
 
                             for (const uuid of Object.keys(pack.widgets)) {
                                 const widget = pack.widgets[uuid];
-                                const widgetPath = uuid.replace('.', '_');
+                                const widgetPath = uuid.replaceAll('.', '_');
 
                                 appsKeep.push(`${appPath}.${widgetPath}`);
                                 this.log.debug(`[apps] found (keep): ${appPath}.${widgetPath}`);
