@@ -1,4 +1,11 @@
 # Older changes
+## 3.4.0 (2024-09-06)
+
+* (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.2)
+* (@klein0r) Added support for notification manager
+* (@klein0r) Added validator for icon inputs
+* (@klein0r) Fixed some missing translations
+
 ## 3.3.0 (2024-08-05)
 
 * (@klein0r) Added api version as state (and check value)

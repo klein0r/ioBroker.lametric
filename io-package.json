@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "lametric",
-    "version": "4.2.0",
+    "version": "5.0.0",
     "news": {
+      "5.0.0": {
+        "en": "admin 7.6.17 and js-controller 6.0.11 (or later) are required\npackage and index state of apps have been removed\nFixed app structure",
+        "de": "admin 7.6.17 und js-controller 6.0.11 (oder später) sind erforderlich\npaket- und indexzustand von apps wurden entfernt\nFeste App-Struktur",
+        "ru": "admin 7.6.17 и js-контроллер 6.0.11 (или более поздние)\nсостояние пакета и индекса приложений удалено\nФиксированная структура приложения",
+        "pt": "admin 7.6.17 e js-controller 6.0.11 (ou posterior) são necessários\npacote e estado do índice de aplicativos foram removidos\nEstrutura fixa da aplicação",
+        "nl": "admin 7.6.17 en js-controller 6.0.11 (of later) zijn vereist\npackage en index status van apps zijn verwijderd\nVaste appstructuur",
+        "fr": "admin 7.6.17 et js-contrôleur 6.0.11 (ou plus tard) sont requis\npaquet et l'état index des applications ont été supprimés\nStructure de l'application fixe",
+        "it": "admin 7.6.17 e js-controller 6.0.11 (o successivo) sono richiesti\npacchetto e stato indice delle applicazioni sono stati rimossi\nStruttura app fissa",
+        "es": "admin 7.6.17 y js-controller 6.0.11 (o posterior) son necesarios\npaquete e índice de estado de las aplicaciones se han eliminado\nEstructura de aplicación fija",
+        "pl": "wymagany jest admin 7.6.17 i kontroler js- 6.0.11 (lub późniejszy)\npakiet i stan indeksu aplikacji zostały usunięte\nStała struktura aplikacji",
+        "uk": "admin 7.6.17 та js-controller 6.0.11 (або пізніше) обов’язкові\nвидалено пакет і індексний стан додатків\nФіксована структура додатка",
+        "zh-cn": "需要admin 7.6.17和js控制器 6.0.11(或以后)\n软件包和索引状态已删除\n固定应用结构"
+      },
       "4.2.0": {
         "en": "Updated LaMetric firmware version recommendation to 2.3.9 (3.2.4)",
         "de": "Aktualisierte LaMetric Firmwareversion Empfehlung auf 2.3.9 (3.2.4)",
@@ -80,19 +93,6 @@
         "pl": "Dodano wersję api jako stan (i wartość kontrolna)",
         "uk": "Додано версію api як стан (і значення перевірки)",
         "zh-cn": "添加的 api 版本为状态( 并检查值)"
-      },
-      "3.2.3": {
-        "en": "Fixed blockly definitions",
-        "de": "Feste blockweise Definitionen",
-        "ru": "Исправленные блокированные определения",
-        "pt": "Definições bloqueadas fixas",
-        "nl": "Vaste blokdefinities",
-        "fr": "Définition par blocs",
-        "it": "Definizioni bloccate fissate",
-        "es": "Definiciones bloqueadas fijas",
-        "pl": "Poprawione definicje blokowane",
-        "uk": "Фіксовані визначення блоків",
-        "zh-cn": "固定的区块定义"
       }
     },
     "titleLang": {
