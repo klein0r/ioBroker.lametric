@@ -485,26 +485,27 @@ class LaMetric extends utils.Adapter {
                     });
             } else if (idNoNamespace.startsWith('apps.')) {
                 const matches = id.match(/.+\.apps\.([a-z0-9_]{0,32})\.(.*)$/);
-                const widget = matches ? matches[1] : undefined;
+                const app = matches ? matches[1] : undefined;
                 const action = matches ? matches[2] : undefined;
 
-                this.log.debug(`[widget] running action "${action}" on "${widget}"`);
+                this.log.debug(`[widget] running action "${action}" on "${app}"`);
 
-                const packState = await this.getStateAsync(`apps.${widget}.package`);
-                if (action && packState) {
-                    const pack = packState.val;
+                const channelObj = await this.getObjectAsync(`apps.${app}`);
+                if (action && channelObj) {
+                    const pack = channelObj.native.package;
+                    const uuid = channelObj.native.uuid;
 
                     if (action === 'activate') {
-                        this.log.debug(`[widget] activating "${widget}" of package "${pack}"`);
+                        this.log.debug(`[widget] activating "${uuid}" of package "${pack}"`);
 
-                        this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/activate`, 'PUT').catch(error => {
+                        this.buildRequestAsync(`device/apps/${pack}/widgets/${uuid}/activate`, 'PUT').catch(error => {
                             this.log.warn(
-                                `(device/apps/${pack}/widgets/${widget}/activate) Unable to execute action: ${error}`,
+                                `(device/apps/${pack}/widgets/${uuid}/activate) Unable to execute action: ${error}`,
                             );
                         });
                     } else {
                         this.log.debug(
-                            `[widget] running special action "${action}" on "${widget}" of package "${pack}"`,
+                            `[widget] running special action "${action}" on "${app}" of package "${pack}"`,
                         );
 
                         const data = { id: action };
@@ -527,22 +528,22 @@ class LaMetric extends utils.Adapter {
 
                             await this.setState(idNoNamespace, { val: state.val, ack: true }); // Confirm state change
                         } else if (action.startsWith('clock.alarm')) {
-                            const caStates = await this.getStatesAsync(`apps.${widget}.clock.alarm.*`);
+                            const caStates = await this.getStatesAsync(`apps.${app}.clock.alarm.*`);
 
                             this.log.debug(`[widget] current clock.alarm states: ${JSON.stringify(caStates)}`);
 
                             const caEnabled =
                                 action === 'clock.alarm.enabled'
                                     ? state.val
-                                    : caStates[`${this.namespace}.apps.${widget}.clock.alarm.enabled`]?.val;
+                                    : caStates[`${this.namespace}.apps.${app}.clock.alarm.enabled`]?.val;
                             const caTime =
                                 action === 'clock.alarm.time'
                                     ? state.val
-                                    : caStates[`${this.namespace}.apps.${widget}.clock.alarm.time`]?.val;
+                                    : caStates[`${this.namespace}.apps.${app}.clock.alarm.time`]?.val;
                             const caWithRadio =
                                 action === 'clock.alarm.wake_with_radio'
                                     ? state.val
-                                    : caStates[`${this.namespace}.apps.${widget}.clock.alarm.wake_with_radio`]?.val;
+                                    : caStates[`${this.namespace}.apps.${app}.clock.alarm.wake_with_radio`]?.val;
 
 
                             data.id = 'clock.alarm';
@@ -552,15 +553,15 @@ class LaMetric extends utils.Adapter {
                                 wake_with_radio: caWithRadio ?? false,
                             };
 
-                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.enabled`, {
+                            await this.setStateChangedAsync(`apps.${app}.clock.alarm.enabled`, {
                                 val: data.params.enabled,
                                 ack: true,
                             });
-                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.time`, {
+                            await this.setStateChangedAsync(`apps.${app}.clock.alarm.time`, {
                                 val: data.params.time,
                                 ack: true,
                             });
-                            await this.setStateChangedAsync(`apps.${widget}.clock.alarm.wake_with_radio`, {
+                            await this.setStateChangedAsync(`apps.${app}.clock.alarm.wake_with_radio`, {
                                 val: data.params.wake_with_radio,
                                 ack: true,
                             });
@@ -575,14 +576,16 @@ class LaMetric extends utils.Adapter {
 
                         // END special Widgets
 
-                        this.buildRequestAsync(`device/apps/${pack}/widgets/${widget}/actions`, 'POST', data).catch(
+                        this.buildRequestAsync(`device/apps/${pack}/widgets/${uuid}/actions`, 'POST', data).catch(
                             error => {
                                 this.log.warn(
-                                    `(device/apps/${pack}/widgets/${widget}/actions) Unable to execute action: ${error}`,
+                                    `(device/apps/${pack}/widgets/${uuid}/actions) Unable to execute action: ${error}`,
                                 );
                             },
                         );
                     }
+                } else {
+                    this.log.warn(`[widget] unable to run action "${action}" on "${app}"`);
                 }
             }
         }
@@ -1229,15 +1232,19 @@ class LaMetric extends utils.Adapter {
                                     }
                                 }
 
-                                await this.extendObjectAsync(`${appPath}.${widgetPath}`, {
+                                await this.extendObject(`${appPath}.${widgetPath}`, {
                                     type: 'channel',
                                     common: {
                                         name: `Widget ${pack.package} (${pack.version})`,
                                     },
-                                    native: {},
+                                    native: {
+                                        uuid,
+                                        package: pack.package,
+                                        index: widget.index,
+                                    },
                                 });
 
-                                await this.extendObjectAsync(`${appPath}.${widgetPath}.activate`, {
+                                await this.extendObject(`${appPath}.${widgetPath}.activate`, {
                                     type: 'state',
                                     common: {
                                         name: {
@@ -1258,60 +1265,6 @@ class LaMetric extends utils.Adapter {
                                         write: true,
                                     },
                                     native: {},
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.index`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Index',
-                                            de: 'Index',
-                                            ru: 'Показатель',
-                                            pt: 'Índice',
-                                            nl: 'Inhoudsopgave',
-                                            fr: 'Indice',
-                                            it: 'Indice',
-                                            es: 'Índice',
-                                            pl: 'Indeks',
-                                            'zh-cn': '指数',
-                                        },
-                                        type: 'number',
-                                        role: 'value',
-                                        read: true,
-                                        write: false,
-                                    },
-                                    native: {},
-                                });
-                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.index`, {
-                                    val: widget.index,
-                                    ack: true,
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.package`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Package',
-                                            de: 'Paket',
-                                            ru: 'Упаковка',
-                                            pt: 'Pacote',
-                                            nl: 'Pakket',
-                                            fr: 'Emballer',
-                                            it: 'Pacchetto',
-                                            es: 'Paquete',
-                                            pl: 'Pakiet',
-                                            'zh-cn': '包裹',
-                                        },
-                                        type: 'string',
-                                        role: 'text',
-                                        read: true,
-                                        write: false,
-                                    },
-                                    native: {},
-                                });
-                                await this.setStateChangedAsync(`${appPath}.${widgetPath}.package`, {
-                                    val: pack.package,
-                                    ack: true,
                                 });
 
                                 await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.vendor`, {
@@ -1396,6 +1349,11 @@ class LaMetric extends utils.Adapter {
                                     ack: true,
                                 });
 
+                                // Remove old states (not required anymore)
+
+                                await this.delObjectAsync(`${appPath}.${widgetPath}.index`, { recursive: true });
+                                await this.delObjectAsync(`${appPath}.${widgetPath}.package`, { recursive: true });
+
                                 // START special Widgets
 
                                 if (pack.package === 'com.lametric.clock') {
@@ -1415,9 +1373,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '钟',
                                             },
                                         },
-                                        native: {
-                                            package: pack.package,
-                                        },
+                                        native: {},
                                     });
 
                                     await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.clock.clockface`, {
@@ -1550,9 +1506,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '收音机',
                                             },
                                         },
-                                        native: {
-                                            package: pack.package,
-                                        },
+                                        native: {},
                                     });
 
                                     await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.radio.play`, {
@@ -1663,9 +1617,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '跑表',
                                             },
                                         },
-                                        native: {
-                                            package: pack.package,
-                                        },
+                                        native: {},
                                     });
 
                                     await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.stopwatch.start`, {
@@ -1753,9 +1705,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '天气',
                                             },
                                         },
-                                        native: {
-                                            package: pack.package,
-                                        },
+                                        native: {},
                                     });
 
                                     await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.weather.forecast`, {
@@ -1797,9 +1747,7 @@ class LaMetric extends utils.Adapter {
                                                 'zh-cn': '倒数',
                                             },
                                         },
-                                        native: {
-                                            package: pack.package,
-                                        },
+                                        native: {},
                                     });
 
                                     await this.setObjectNotExistsAsync(`${appPath}.${widgetPath}.countdown.configure`, {

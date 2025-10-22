@@ -54,6 +54,8 @@ iobroker add lametric
 ### **WORK IN PROGRESS**
 
 * (@klein0r) admin 7.6.17 and js-controller 6.0.11 (or later) are required
+* (@klein0r) package and index state of apps have been removed
+* (@klein0r) Fixed app structure
 
 ### 4.2.0 (2025-08-15)
 
