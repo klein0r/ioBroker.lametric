@@ -496,7 +496,7 @@ class LaMetric extends utils.Adapter {
                     const uuid = channelObj.native.uuid;
 
                     if (action === 'activate') {
-                        this.log.debug(`[widget] activating "${uuid}" of package "${pack}"`);
+                        this.log.debug(`[widget] activating "${app}" of package "${pack}"`);
 
                         this.buildRequestAsync(`device/apps/${pack}/widgets/${uuid}/activate`, 'PUT').catch(error => {
                             this.log.warn(
@@ -504,9 +504,7 @@ class LaMetric extends utils.Adapter {
                             );
                         });
                     } else {
-                        this.log.debug(
-                            `[widget] running special action "${action}" on "${app}" of package "${pack}"`,
-                        );
+                        this.log.debug(`[widget] running special action "${action}" on "${app}" of package "${pack}"`);
 
                         const data = { id: action };
 
@@ -544,7 +542,6 @@ class LaMetric extends utils.Adapter {
                                 action === 'clock.alarm.wake_with_radio'
                                     ? state.val
                                     : caStates[`${this.namespace}.apps.${app}.clock.alarm.wake_with_radio`]?.val;
-
 
                             data.id = 'clock.alarm';
                             data.params = {
