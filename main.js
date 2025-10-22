@@ -85,21 +85,7 @@ class LaMetric extends utils.Adapter {
      */
     async fixAppObjects() {
         const appPath = 'apps';
-
-        const channelObjs = await this.getChannelsOfAsync(appPath);
-        const validApps = [];
-
-        // Collect all apps
-        if (channelObjs) {
-            for (const channelObj of channelObjs) {
-                const id = this.removeNamespace(channelObj._id);
-
-                // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
-                if (id.split('.').length === 2) {
-                    validApps.push(id);
-                }
-            }
-        }
+        const validApps = await this.getCurrentApps(appPath);
 
         // states
         const appStateObjs = await this.getObjectViewAsync('system', 'state', {
@@ -1174,6 +1160,25 @@ class LaMetric extends utils.Adapter {
         });
     }
 
+    async getCurrentApps(appPath) {
+        const channelObjs = await this.getChannelsOfAsync(appPath);
+        const appsAll = [];
+
+        // Collect all apps
+        if (channelObjs) {
+            for (const channelObj of channelObjs) {
+                const id = this.removeNamespace(channelObj._id);
+
+                // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
+                if (id.split('.').length === 2) {
+                    appsAll.push(id);
+                }
+            }
+        }
+
+        return appsAll;
+    }
+
     async refreshApps() {
         return new Promise(resolve => {
             if (this.apiConnected) {
@@ -1194,21 +1199,8 @@ class LaMetric extends utils.Adapter {
 
                         const appPath = 'apps';
 
-                        const channelObjs = await this.getChannelsOfAsync(appPath);
-                        const appsAll = [];
+                        const appsAll = await this.getCurrentApps(appPath);
                         const appsKeep = [];
-
-                        // Collect all apps
-                        if (channelObjs) {
-                            for (const channelObj of channelObjs) {
-                                const id = this.removeNamespace(channelObj._id);
-
-                                // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
-                                if (id.split('.').length === 2) {
-                                    appsAll.push(id);
-                                }
-                            }
-                        }
 
                         this.log.debug(`[apps] found existing apps: ${appsAll.join(';')}`);
 
