@@ -1232,7 +1232,8 @@ class LaMetric extends utils.Adapter {
                                 await this.extendObject(`${appPath}.${widgetPath}`, {
                                     type: 'channel',
                                     common: {
-                                        name: `Widget ${pack.package} (${pack.version})`,
+                                        name: pack.package,
+                                        desc: `Version ${pack.version}`,
                                     },
                                     native: {
                                         uuid,
