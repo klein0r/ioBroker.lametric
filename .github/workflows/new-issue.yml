@@ -1,4 +1,4 @@
-# v0.6
+# v0.11
 name: New issue
 
 on:
@@ -19,15 +19,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
-
       - name: Setup node
         id: setup_node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
       - name: Get package name
         id: get_package_name
-        uses: ASzc/change-string-case-action@v6
+        uses: ASzc/change-string-case-action@v8
         with:
           string: ${{ github.event.repository.name }}
       - name: Get NPM version
@@ -36,7 +35,7 @@ jobs:
       - name: Create comment
         id: create_comment_ok
         if: ${{ contains(github.event.issue.body, steps.get_npm_version.outputs.LATEST_VERSION) }}
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
@@ -51,7 +50,7 @@ jobs:
       - name: Create comment (not beta version)
         id: create_comment_version
         if: ${{ !contains(github.event.issue.body, steps.get_npm_version.outputs.LATEST_VERSION) }}
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
