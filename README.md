@@ -80,6 +80,8 @@ NodeJS >= 20.x and js-controller >= 6 is required
 
 * (@klein0r) Limit frame duration to 10 seconds (limited by LaMetric)
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 The MIT License (MIT)
