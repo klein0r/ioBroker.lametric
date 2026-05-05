@@ -52,6 +52,7 @@ iobroker add lametric
   ### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
 
 * (@klein0r) Updated dependencies
 
@@ -79,6 +80,8 @@ NodeJS >= 20.x and js-controller >= 6 is required
 ### 3.4.1 (2024-10-29)
 
 * (@klein0r) Limit frame duration to 10 seconds (limited by LaMetric)
+
+[Older changelogs can be found there](CHANGELOG_OLD.md)
 
 ## License
 
