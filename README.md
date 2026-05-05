@@ -51,7 +51,7 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 6.0.0 (2026-05-05)
 
 * (copilot) Adapter requires node.js >= 22 now
 * (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
@@ -77,12 +77,6 @@ iobroker add lametric
 NodeJS >= 20.x and js-controller >= 6 is required
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.4)
-
-### 3.4.1 (2024-10-29)
-
-* (@klein0r) Limit frame duration to 10 seconds (limited by LaMetric)
-
-[Older changelogs can be found there](CHANGELOG_OLD.md)
 
 ## License
 
