@@ -52,6 +52,7 @@ iobroker add lametric
   ### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
 
 * (@klein0r) Updated dependencies
 
