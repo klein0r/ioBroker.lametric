@@ -13,8 +13,8 @@
 
 - nodejs 20 (oder neuer)
 - js-controller 6.0.0 (oder neuer)
-- Admin Adapter 7.4.10 (oder neuer)
-- _LaMetric Time_ mit Firmware _3.2.4_ (oder neuer)
+- Admin Adapter 7.6.20 (oder neuer)
+- _LaMetric Time_ mit Firmware _3.2.7_ (oder neuer)
     - Firmware _2.3.9_ (oder neuer) auf älteren Modellen (hergestellt vor dem Jahr 2022)
 
 [Firmware-Changelog](https://firmware.lametric.com) [Firmware-Changelog Time2](https://firmware.lametric.com/?product=time2)
