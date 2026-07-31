@@ -1,0 +1,20 @@
+{
+    "API Key": "Klucz API",
+    "Can be used to request the configured data": "Może być używany do żądania skonfigurowanych danych",
+    "Hide if": "ukryj, jeśli wartość",
+    "IP": "Adres IP",
+    "IP address of your LaMetric device": "Adres IP twojego czasu LaMetric",
+    "Icon": "Ikona",
+    "My Data (DIY)": "My Data (DIY)",
+    "Options": "Opcje",
+    "Push changes to device (or poll via web service)": "Wypchnij zmiany na urządzenie (lub przeprowadź ankietę za pośrednictwem usługi internetowej)",
+    "Support this project": "Wesprzyj ten projekt",
+    "Text": "tekst",
+    "Type": "Typ",
+    "Url for My Data (DIY) app": "Adres URL aplikacji My Data (DIY)",
+    "Use HTTPS": "Użyj HTTPS",
+    "Use the SimpleAPI adapter to request these information (see README for details)": "Użyj adaptera SimpleAPI, aby zażądać tych informacji (szczegółowe informacje można znaleźć w pliku README)",
+    "Web adapter instance": "Instancja adaptera sieciowego",
+    "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "Dostępne ikony znajdziesz <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">tutaj</a>",
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Twój osobisty token programisty - możesz go zdobyć <a href=\"https://developer.lametric.com/\">tutaj</a>"
+}

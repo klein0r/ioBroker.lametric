@@ -1,0 +1,20 @@
+{
+    "API Key": "API sleutel",
+    "Can be used to request the configured data": "Kan worden gebruikt om de geconfigureerde gegevens op te vragen",
+    "Hide if": "verbergen als waarde",
+    "IP": "IP adres",
+    "IP address of your LaMetric device": "IP-adres van uw LaMetric Time",
+    "Icon": "icoon",
+    "My Data (DIY)": "My Data (DIY)",
+    "Options": "opties",
+    "Push changes to device (or poll via web service)": "Wijzigingen naar apparaat pushen (of poll via webservice)",
+    "Support this project": "Steun dit project",
+    "Text": "tekst",
+    "Type": "Type",
+    "Url for My Data (DIY) app": "URL voor de app My Data (DIY)",
+    "Use HTTPS": "HTTPS gebruiken",
+    "Use the SimpleAPI adapter to request these information (see README for details)": "Gebruik de SimpleAPI-adapter om deze informatie op te vragen (zie README voor details)",
+    "Web adapter instance": "Webadapter-instantie",
+    "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "Beschikbare pictogrammen vindt u <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">hier</a>",
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Je persoonlijke ontwikkelaarstoken - je kunt het <a href=\"https://developer.lametric.com/\">hier downloaden</a>"
+}

@@ -1,0 +1,20 @@
+{
+    "API Key": "API Key",
+    "Can be used to request the configured data": "Can be used to request the configured data",
+    "Hide if": "hide if value",
+    "IP": "IP-Address",
+    "IP address of your LaMetric device": "IP address of your LaMetric device",
+    "Icon": "Icon",
+    "My Data (DIY)": "My Data (DIY)",
+    "Options": "Options",
+    "Push changes to device (or poll via web service)": "Push changes to device (or poll via web service)",
+    "Support this project": "Support this project",
+    "Text": "Text",
+    "Type": "Type",
+    "Url for My Data (DIY) app": "Url for My Data (DIY) app",
+    "Use HTTPS": "Use HTTPS",
+    "Use the SimpleAPI adapter to request these information (see README for details)": "Use the SimpleAPI adapter to request these information (see README for details)",
+    "Web adapter instance": "Web adapter instance",
+    "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>": "You can find available icons <a target=\"_blank\" href=\"https://developer.lametric.com/icons\">here</a>",
+    "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>": "Your personal developer token - you can get it <a href=\"https://developer.lametric.com/\">here</a>"
+}
