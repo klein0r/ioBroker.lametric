@@ -52,8 +52,7 @@ class LaMetric extends utils.Adapter {
                 this.log.error(
                     `IP address and/or token not configured - please check instance configuration and restart`,
                 );
-                typeof this.terminate === 'function' ? this.terminate(11) : process.exit(11);
-                return;
+                this.terminate(11);
             }
             if (this.config.useHttps) {
                 this.prefix = 'https';
@@ -75,8 +74,7 @@ class LaMetric extends utils.Adapter {
             }
         } catch (err) {
             this.log.error(`Error on startup: ${err}`);
-            typeof this.terminate === 'function' ? this.terminate(11) : process.exit(11);
-            return;
+            this.terminate(11);
         }
     }
 
