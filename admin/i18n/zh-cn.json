@@ -5,6 +5,7 @@
     "IP": "IP地址",
     "IP address of your LaMetric device": "您的LaMetric Time的IP地址",
     "Icon": "图标",
+    "Invalid format": "格式无效",
     "My Data (DIY)": "My Data (DIY)",
     "Options": "选项",
     "Push changes to device (or poll via web service)": "将更改推送到设备（或通过网络服务轮询）",
