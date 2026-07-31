@@ -506,7 +506,7 @@
           "zh-cn": "音频音量（分钟）"
         },
         "type": "number",
-        "role": "level.volume",
+        "role": "value.min",
         "unit": "%",
         "read": true,
         "write": false
@@ -531,7 +531,7 @@
           "zh-cn": "音频音量（最大）"
         },
         "type": "number",
-        "role": "level.volume",
+        "role": "value.max",
         "unit": "%",
         "read": true,
         "write": false
@@ -854,7 +854,7 @@
           "zh-cn": "亮度最小值"
         },
         "type": "number",
-        "role": "level.dimmer",
+        "role": "value.min",
         "unit": "%",
         "read": true,
         "write": false
@@ -878,7 +878,7 @@
           "zh-cn": "最大亮度"
         },
         "type": "number",
-        "role": "level.dimmer",
+        "role": "value.max",
         "unit": "%",
         "read": true,
         "write": false
