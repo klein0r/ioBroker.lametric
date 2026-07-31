@@ -82,6 +82,8 @@ NodeJS >= 20.x and js-controller >= 6 is required
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.1.4)
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 The MIT License (MIT)
