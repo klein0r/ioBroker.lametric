@@ -1150,7 +1150,12 @@ class LaMetric extends utils.Adapter {
                         });
                 })
                 .catch(error => {
-                    this.log.warn(`(api) Device not reachable: ${error}`);
+                    // Device offline: warn once on the transition, then log repeats at debug to avoid flooding the log
+                    if (this.apiConnected) {
+                        this.log.warn(`(api) Device not reachable: ${error}`);
+                    } else {
+                        this.log.debug(`(api) Device not reachable: ${error}`);
+                    }
 
                     this.setApiConnected(false);
                     resolve(false);
