@@ -51,6 +51,10 @@ iobroker add lametric
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@hwiedermann) Log "Device not reachable" at debug level on repeated failures while the device stays offline (#397)
+
 ### 6.0.1 (2026-08-04)
 
 * (@klein0r) Updated LaMetric firmware version recommendation to 2.3.9 (3.2.7)
