@@ -4,6 +4,7 @@ const utils = require('@iobroker/adapter-core');
 const axios = require('axios').default;
 const https = require('node:https');
 const adapterName = require('./package.json').name.split('.').pop();
+const { COMMANDS, HELP } = require('./lib/help');
 
 const MY_DATA_DIY_PACKAGE = 'com.lametric.diy.devwidget';
 
@@ -667,6 +668,14 @@ class LaMetric extends utils.Adapter {
      */
     onMessage(obj) {
         this.log.debug(`[onMessage] received message: ${JSON.stringify(obj.message)}`);
+
+        if (obj.command === 'help') {
+            // A description of all commands for AI agents and script authors, also while the device is offline
+            if (obj.callback) {
+                this.sendTo(obj.from, obj.command, { help: HELP, commands: COMMANDS }, obj.callback);
+            }
+            return;
+        }
 
         if (obj && obj.message) {
             // Notification
