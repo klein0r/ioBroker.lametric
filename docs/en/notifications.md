@@ -105,3 +105,7 @@ sendTo(
     }
 );
 ```
+
+## Help for scripts and AI agents
+
+`sendTo('lametric.0', 'help', {})` answers `{ help, commands }`: a description of all messages and of the states for AI agents (e.g. pi-agent) and script authors, and the list of all commands with `write` (`true` if the command has an effect on the device).
